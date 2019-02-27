@@ -1,4 +1,4 @@
-= TaskBook
+= Tasketch
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 https://travis-ci.org/cs2113-ay1819s2-t09-2/main[image:https://travis-ci.org/cs2113-ay1819s2-t09-2/main.svg?branch=master[Build Status]]
@@ -11,9 +11,12 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* This is a desktop Task Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* It is a Java application intended for students or anyone to manage their tasks.
-* It is *written in OOP fashion*. It
+* Tasketch is an application that helps you to manage your daily tasks.
+* Tasketch is a CLI (Command Line Interface) application with GUI output so that you can have best of the both worlds.
+* Tasketch is a Java application that you can run on any machine with Java Runtime Environment installed.
+* What makes Tasketch special:
+** Add to-do tasks on daily basis
+** Write reflection for a task
 
 == Site Map
 
@@ -25,6 +28,8 @@ endif::[]
 
 == Acknowledgements
 
-* The original source of the code i.e. AddressBook-Level4 project created by SE-EDU initiative at https://github.com/se-edu/
+* This application is built on the sample application https://github.com/nusCS2113-AY1819S2/addressbook-level4[Address Book (Level 4)]
+* Libraries used: https://github.com/TestFX/TestFX[TextFX], https://bitbucket.org/controlsfx/controlsfx/[ControlsFX],
+ https://github.com/FasterXML/jackson[Jackson], https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5], http://opencsv.sourceforge.net/[opencsv]
 
 == Licence : link:LICENSE[MIT]
