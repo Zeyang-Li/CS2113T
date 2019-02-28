@@ -22,7 +22,7 @@ Responsibilities: Deliverables and deadlines +
 image::jingchen-z.jpg[width="150", align="left"]
 {empty}[https://github.com/jingchen-z[github]] [<<jingchen-z#, portfolio>>]
 
-Role: UI Designer + In charge of Data Storage
+Role: Developer +
 Responsibilities: Design UI and the format of Data Storage.
 
 '''
