@@ -28,15 +28,16 @@ Tasketch can get your tasks' schedule done faster than traditional GUI apps. Int
 .  Copy the file to the folder you want to use as the home folder for your Tasketch.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]*(this picture needs to be changed)*
+image::Ui.png[width="790"]
+*(this picture needs to be changed)*
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all the tasks you have added
-* **`add`**`s/[startDateTime] e/endDateTime] t/[topic] d/[description]` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd task shown in the current list
+* **`add`**`s/[startDateTime] e/endDateTime] t/[topic] d/[description]` : adds a new task to Tasketch.
+* **`delete`**`331` : deletes the task with taskid 331 in Tasketch.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -47,8 +48,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Some commands have an alias, which you can also use to execute the command e.g. to add a person to the address book, you can
-type either `add n/John Doe` or `a n/John Doe`.
+* Some commands have an alias, which you can also use to execute the command e.g. to add a task to Tasketch, you can
+type either `add ...` or `a ...`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/TASK`, `TASK` is a parameter which can be used as `add n/Do MA1101R tutorial`.
 * Parameters can be in any order e.g. if the command specifies `s/START_DATE e/END_DATE`, `e/END_DATE s/START_DATE` is also acceptable.
 ====
