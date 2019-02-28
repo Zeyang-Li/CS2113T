@@ -18,12 +18,12 @@ Responsibilities: Deliverables and deadlines +
 
 '''
 
-=== John Roe
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
+=== Zhang Jingchen
+image::jingchen-z.jpg[width="150", align="left"]
+{empty}[https://github.com/jingchen-z[github]] [<<jingchen-z#, portfolio>>]
 
-Role: Team Lead +
-Responsibilities: UI
+Role: UI Designer + In charge of Data Storage
+Responsibilities: Design UI and the format of Data Storage.
 
 '''
 
