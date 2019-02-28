@@ -18,25 +18,25 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-TaskBook is for those who *prefer to use a desktop app for managing contacts*. More importantly, TB is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-TB can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Tasketch is for those who *prefer to use a desktop app for managing their daily tasks' schedule*. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+Tasketch can get your tasks' schedule done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `taskbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
+.  Copy the file to the folder you want to use as the home folder for your Tasketch.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::Ui.png[width="790"]*(this picture needs to be changed)*
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
+* *`list`* : lists all the tasks you have added
+* **`add`**`s/[startDateTime] e/endDateTime] t/[topic] d/[description]` : adds a contact named `John Doe` to the Address Book.
+* **`delete`**`3` : deletes the 3rd task shown in the current list
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -57,52 +57,63 @@ type either `add n/John Doe` or `a n/John Doe`.
 
 Format: `help`
 
-=== Adding a person: `add`
+=== Adding a task: `add`
 
-Adds a person to the address book +
+Adds a task to Tasketch +
 Alias: `a` +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: 1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+Usage: add task to the current date +
+2. `add d/DATE s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+Usage: add task to a specific date
 
-[TIP]
-A person can have any number of tags (including 0)
+
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add s/1300 e/1500 t/CS2113T lecture d/will be talking about version control`
+* `add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security`
 
-=== Listing all persons : `list`
+=== Listing all tasks : `list`
 
-Shows a list of all persons in the address book. +
+Shows a list of tasks in Tasketch. +
 Alias: `l` +
-Format: `list`
+Format: 1.`list` +
+Usage: list all the tasks of today +
 
-=== Editing a person : `edit`
+2.`list DATE` +
+Usage: list all the tasks of that specific date +
 
-Edits an existing person in the address book. +
+Examples:
+
+* `list 02-2019` +
+Usage: list all the tasks in February, 2019
+* `list 20-02-2019` +
+Usage: list all the tasks in February 20th, 2019
+
+=== Editing a task : `edit`
+
+Edits an existing task in Tasketch. +
 Alias: `e` +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `edit TASK_ID [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]`
 
 ****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
+* Edits the task with the specified `TASK_ID`. The TASK_ID refers to the taskid shown in the displayed list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
+* When editing description, the existing description of the task will be removed.
 ****
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 331 s/1200 e/1400 t/GET1018 tut` +
+Edits the start time and end time of the task with ID 331 to be `12:00` and `14:00` respectively. Change the topic to `GET1018 tut`.
 
-=== Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords. +
-Alias: `f` +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+=== Searching tasks by keywords: `search`
+
+Finds tasks whose topic or description contain any of the given keywords. +
+Alias: `s` +
+Format: `search KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -114,121 +125,48 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+* `search Cs2113t` +
+Returns `CS2113T lecture`
+* `search Lecture` +
+Returns `CS2113T lecture` and `CS3235 lecture`
 
-=== Deleting a person : `delete`
+=== Deleting a task : `delete`
 
-Deletes the specified person from the address book. +
+Deletes the specified task from Tasketch. +
 Alias: `d` +
-Format: `delete INDEX`
+Format: `delete TASK_ID`
 
 ****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
-
-Examples:
-
-* `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st person in the results of the `find` command.
-
-=== Selecting a person : `select`
-
-Selects the person identified by the index number used in the displayed person list. +
-Alias: `s` +
-Format: `select INDEX`
-
-****
-* Selects the person and loads the Google search page the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* `1, 2, 3, ...`
+* The task id will be given to each task when you add them into Tasketch
+* The task id of each task will be shown in the list
+* Deletes the task with the specified `TASK_ID`.
 ****
 
 Examples:
 
 * `list` +
-`select 2` +
-Selects the 2nd person in the address book.
-* `find Betsy` +
-`select 1` +
-Selects the 1st person in the results of the `find` command.
+`delete 331` +
+Deletes the task with taskid 331 in Tasketch.
+* `search cs2113t` +
+`delete 421` +
+Deletes the task with taskid 421 in Tasketch.
 
-=== Listing entered commands : `history`
 
-Lists all the commands that you have entered in reverse chronological order. +
-Alias: `h` +
-Format: `history`
+=== Clearing all tasks : `clear`
 
-[NOTE]
-====
-Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
-====
-
-// tag::undoredo[]
-=== Undoing previous command : `undo`
-
-Restores the address book to the state before the previous _undoable_ command was executed. +
-Alias: `u` +
-Format: `undo`
-
-[NOTE]
-====
-Undoable commands: those commands that modify the address book's content (`add`, `delete`, `edit` and `clear`).
-====
-
-Examples:
-
-* `delete 1` +
-`list` +
-`undo` (reverses the `delete 1` command) +
-
-* `select 1` +
-`list` +
-`undo` +
-The `undo` command fails as there are no undoable commands executed previously.
-
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-
-=== Redoing the previously undone command : `redo`
-
-Reverses the most recent `undo` command. +
-Alias: `r` +
-Format: `redo`
-
-Examples:
-
-* `delete 1` +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-
-* `delete 1` +
-`redo` +
-The `redo` command fails as there are no `undo` commands executed previously.
-
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command) +
-// end::undoredo[]
-
-=== Clearing all entries : `clear`
-
-Clears all entries from the address book. +
+Clears all tasks of the specified date from Tasketch. +
 Alias: `c` +
-Format: `clear`
+Format:1. `clear` +
+Usage: clear all the tasks in Tasketch +
+2.`clear DATE` +
+Usage: clear all the tasks in the specified date
+
+Examples:
+
+* `clear 21-02-2019` +
+Clear all the tasks in February 21st, 2019.
+* `clear 02-2019` +
+Clear all the tasks in February, 2019.
 
 === Exiting the program : `exit`
 
@@ -240,32 +178,22 @@ Format: `exit`
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
-
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
+* *Add* `add [DATE] s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+e.g.1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+2.`add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security`
+* *Clear* : `clear [DATE]`
+* *Delete* : `delete TASK_ID` +
+e.g. `delete 331`
+* *Edit* : `edit TASK_ID [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]` +
+e.g. `edit 331 s/1200 e/1400 t/GET1018 tut`
+* *Search* : `search KEYWORD [MORE_KEYWORDS]` +
+e.g. `search CS2113T`
+* *List* : `list [DATE]`
 * *Help* : `help`
-* *Select* : `select INDEX` +
-e.g.`select 2`
-* *History* : `history`
-* *Undo* : `undo`
-* *Redo* : `redo`
