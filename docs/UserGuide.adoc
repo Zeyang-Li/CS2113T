@@ -62,7 +62,8 @@ Format: `help`
 
 Adds a task to Tasketch +
 Alias: `a` +
-Format: 1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+Format: +
+1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
 Usage: add task to the current date +
 2. `add d/DATE s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
 Usage: add task to a specific date
@@ -78,7 +79,8 @@ Examples:
 
 Shows a list of tasks in Tasketch. +
 Alias: `l` +
-Format: 1.`list` +
+Format: +
+1.`list` +
 Usage: list all the tasks of today +
 
 2.`list DATE` +
@@ -157,7 +159,8 @@ Deletes the task with taskid 421 in Tasketch.
 
 Clears all tasks of the specified date from Tasketch. +
 Alias: `c` +
-Format:1. `clear` +
+Format: +
+1. `clear` +
 Usage: clear all the tasks in Tasketch +
 2.`clear DATE` +
 Usage: clear all the tasks in the specified date
@@ -187,7 +190,8 @@ There is no need to save manually.
 == Command Summary
 
 * *Add* `add [DATE] s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
-e.g.1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+e.g. +
+1.`add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
 2.`add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security`
 * *Clear* : `clear [DATE]`
 * *Delete* : `delete TASK_ID` +
