@@ -28,15 +28,15 @@ Tasketch can get your tasks' schedule done faster than traditional GUI apps. Int
 .  Copy the file to the folder you want to use as the home folder for your Tasketch.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]*(this picture needs to be changed)*
+image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all the tasks you have added
-* **`add`**`s/[startDateTime] e/endDateTime] t/[topic] d/[description]` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd task shown in the current list
+* **`add`**`s/[startDateTime] e/endDateTime] t/[topic] d/[description]` : adds a new task to Tasketch.
+* **`delete`**`331` : deletes the task with taskid 331 in Tasketch.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -47,8 +47,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Some commands have an alias, which you can also use to execute the command e.g. to add a person to the address book, you can
-type either `add n/John Doe` or `a n/John Doe`.
+* Some commands have an alias, which you can also use to execute the command e.g. to add a task to Tasketch, you can
+type either `add ...` or `a ...`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/TASK`, `TASK` is a parameter which can be used as `add n/Do MA1101R tutorial`.
 * Parameters can be in any order e.g. if the command specifies `s/START_DATE e/END_DATE`, `e/END_DATE s/START_DATE` is also acceptable.
 ====
@@ -61,7 +61,8 @@ Format: `help`
 
 Adds a task to Tasketch +
 Alias: `a` +
-Format: 1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+Format: +
+1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
 Usage: add task to the current date +
 2. `add d/DATE s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
 Usage: add task to a specific date
@@ -77,7 +78,8 @@ Examples:
 
 Shows a list of tasks in Tasketch. +
 Alias: `l` +
-Format: 1.`list` +
+Format: +
+1.`list` +
 Usage: list all the tasks of today +
 
 2.`list DATE` +
@@ -156,7 +158,8 @@ Deletes the task with taskid 421 in Tasketch.
 
 Clears all tasks of the specified date from Tasketch. +
 Alias: `c` +
-Format:1. `clear` +
+Format: +
+1. `clear` +
 Usage: clear all the tasks in Tasketch +
 2.`clear DATE` +
 Usage: clear all the tasks in the specified date
@@ -186,7 +189,8 @@ There is no need to save manually.
 == Command Summary
 
 * *Add* `add [DATE] s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
-e.g.1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
+e.g. +
+1.`add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
 2.`add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security`
 * *Clear* : `clear [DATE]`
 * *Delete* : `delete TASK_ID` +
