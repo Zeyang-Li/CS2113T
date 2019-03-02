@@ -27,7 +27,7 @@ Responsibilities: Design UI and the format of Data Storage.
 
 '''
 
-=== Johnny Doe
+=== Shi bo
 image::yijinl.jpg[width="150", align="left"]
 {empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
 
