@@ -19,7 +19,7 @@ Responsibilities: Deliverables and deadlines +
 '''
 
 === Zhang Jingchen
-image::jingchen-z.jpg[width="150", align="left"]
+image::jingchen-z.png[width="150", align="left"]
 {empty}[https://github.com/jingchen-z[github]] [<<jingchen-z#, portfolio>>]
 
 Role: Developer +
