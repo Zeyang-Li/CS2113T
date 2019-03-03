@@ -6,7 +6,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
-public class ExitCommand extends Command{
+/**
+ * Execute this command to exit the program.
+ */
+public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 

@@ -3,6 +3,9 @@ package seedu.address.logic.command;
 //To be replaced:
 import seedu.address.model.Model;
 
+/**
+ * Help command will outputs help options.
+ */
 public class HelpCommand {
 
     public static final String COMMAND_WORD = "help";

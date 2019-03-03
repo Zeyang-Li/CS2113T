@@ -1,7 +1,7 @@
 package seedu.address.logic.command;
 
 import java.util.List;
-import static java.util.Objects.requireNonNull;
+
 //To be replaced:
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -9,8 +9,11 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
-
+/**
+ * This command delete a task.
+ */
 public class DeleteCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_ALIAS = "d";
@@ -35,7 +38,8 @@ public class DeleteCommand {
      * @return
      * @throws CommandException
      */
-    public seedu.address.logic.command.CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public seedu.address.logic.command.CommandResult execute(Model model, CommandHistory history) 
+            throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 

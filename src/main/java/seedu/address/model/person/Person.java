@@ -13,13 +13,12 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {//public class Task
+public class Person { //public class Task
 
     // Identity fields
-    private final Name name;//private final Time startTime
-    private final Phone phone;//private final Time endTime
-    private final Email email;//private final Date startDate
-                              //private final Date endDate
+    private final Name name; //private final Time startTime
+    private final Phone phone; //private final Time endTime
+    private final Email email; //private final Date startDate, private final Date endDate
 
     // Data fields
     private final Address address;
@@ -30,8 +29,8 @@ public class Person {//public class Task
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;//set the attributes according to parameters
-        this.phone = phone;//calculate endTime / endDate and assign them
+        this.name = name; //set the attributes according to parameters
+        this.phone = phone; //calculate endTime / endDate and assign them
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);

@@ -1,13 +1,16 @@
 package seedu.address.logic.parser;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-import java.util.Arrays;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * This is the search task command.
+ */
 public class FindTaskCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

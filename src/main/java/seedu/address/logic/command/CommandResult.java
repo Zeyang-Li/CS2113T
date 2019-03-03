@@ -2,6 +2,9 @@ package seedu.address.logic.command;
 
 import java.util.Objects;
 
+/**
+ * CommandResult is the base class for result returned from command.
+ */
 public class CommandResult extends Command {
 
     private final String feedbackToUser;
@@ -51,8 +54,9 @@ public class CommandResult extends Command {
         if (!(other instanceof seedu.address.logic.command.CommandResult)) {
             return false;
         }
-
-        seedu.address.logic.command.CommandResult otherCommandResult = (seedu.address.logic.command.CommandResult) other;
+        
+        seedu.address.logic.command.CommandResult otherCommandResult = 
+                (seedu.address.logic.command.CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
