@@ -15,7 +15,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Setting up
 
@@ -103,6 +103,12 @@ When you are ready to start coding,
 1. Get some sense of the overall design by reading <<Design-Architecture>>.
 2. Take a look at <<GetStartedProgramming>>.
 
+== Target user profile
+. has a need to manage a significant number of tasks everyday
+. prefer desktop apps over other types
+. can type fast
+. prefers typing over mouse input
+. is reasonably comfortable using CLI apps
 == Design
 
 [[Design-Architecture]]
