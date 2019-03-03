@@ -3,13 +3,15 @@ package seedu.address.logic.command;
 import java.util.List;
 
 //To be replaced:
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.CommandHistory;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import static java.util.Objects.requireNonNull;
 
 /**
  * This command delete a task.
@@ -34,11 +36,10 @@ public class DeleteCommand {
     /**
      * This is the method execute
      * @param model
-     * @param history
      * @return
      * @throws CommandException
      */
-    public seedu.address.logic.command.CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public seedu.address.logic.command.CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 

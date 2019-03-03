@@ -1,5 +1,8 @@
 package seedu.address.logic.command;
 
+/**
+ * This command search for a task.
+ */
 public class SearchCommand {
     public static final String COMMAND_WORD = "find";
     public static final String COMMAND_ALIAS = "f";

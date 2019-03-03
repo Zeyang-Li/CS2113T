@@ -1,9 +1,10 @@
 package seedu.address.logic.command;
 
 //To be replaced:
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import seedu.address.model.Model;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * This command will list all tasks.
