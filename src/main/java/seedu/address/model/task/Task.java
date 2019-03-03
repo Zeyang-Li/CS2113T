@@ -21,7 +21,7 @@ public class Task {
     private final EndDate endDate;
     private final StartTime startTime;
     private final EndTime endTime;
-//  private final Duration duration;
+    //  private final Duration duration;
 
 
     // Data fields

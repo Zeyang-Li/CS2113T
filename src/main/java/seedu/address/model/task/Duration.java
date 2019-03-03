@@ -3,6 +3,10 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Task's duration in the task book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
+ */
 public class Duration {
 
     public static final String MESSAGE_CONSTRAINTS =
