@@ -231,33 +231,33 @@ When you are ready to start coding,
 . User requests help
 . TaskBook shows a list of commands with the examples of their usage
 
-Use case ends.
+	Use case ends.
 
 === Add a task
 1. MSS
 . User request add [task] -s [startDateTime] -e [endDateTime] -t [topic] -d [description] 
 . TaskBook add that task into the current day’s task list
 
-Use case ends.
+	Use case ends.
 2. Extension
 . User request add [task] [date]
 .. TaskBook add that task into the specific date’s task list
 
-Use case ends
+	Use case ends
 
 === Editing a task
 1. MSS
 . User request edit -taskID [id] -s [startDateTime] -e [endDateTime] -t [topic] -d [description] 
 . TaskBook lists the details of a task and user can edit the description of the task. 
 
-Use case ends
+	Use case ends
 
 === Search a task
 1. MSS
 . User request search [keyWords/subString]
 . TaskBook list all the tasks which satisfy the searching condition. 
 
-Use case ends.
+	Use case ends.
 
 === Delete a task
 1. MSS
@@ -265,42 +265,44 @@ Use case ends.
 . TaskBook list all the task satisfy that keywords condition
 . TaskBook remove that task.
 
-Use case ends
+	Use case ends
 
 === Clear tasks by time period
 1. MSS
 . User request clear [day/month]
 . TaskBook remove the tasks in that period. 
 
-Use case ends
+	Use case ends
 
 === List tasks by time period
 1. MSS
 . User request list
 . TaskBook shows a list of tasks of the current day by default. 
 
-Use case ends.
+	Use case ends.
 
 2. Extension
 . User request list all
 .. TaskBook shows a list of all the tasks. 
 
-Use case ends.
+	Use case ends.
+	
 . User request list [Date]
 .. TaskBook shows a list of tasks of that specific date. 
 
-Use case ends.
+	Use case ends.
+	
 . User request list [Month]
 .. TaskBook shows a list of tasks of that month
 
-Use case ends.
+	Use case ends.
 
 === Exit
 1. MSS
 . User request for exiting the program
 . TaskBook saves all the changes and exits. 
 
-Use case ends.
+	Use case ends.
 
 == Implementation
 
