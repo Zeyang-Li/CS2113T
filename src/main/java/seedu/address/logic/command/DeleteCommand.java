@@ -38,8 +38,7 @@ public class DeleteCommand {
      * @return
      * @throws CommandException
      */
-    public seedu.address.logic.command.CommandResult execute(Model model, CommandHistory history) 
-            throws CommandException {
+    public seedu.address.logic.command.CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
