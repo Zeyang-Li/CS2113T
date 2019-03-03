@@ -239,6 +239,7 @@ When you are ready to start coding,
 . TaskBook add that task into the current day’s task list
 
 	Use case ends.
+	
 2. Extension
 . User request add [task] [date]
 .. TaskBook add that task into the specific date’s task list
