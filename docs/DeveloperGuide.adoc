@@ -117,110 +117,110 @@ When you are ready to start coding,
 
 === Priority 1 function
 
-. See usage function
+==== See usage function
 
 1. Role:New user
 2. Benefit: User can refer to instructions when forgotten
 
-. Add task to a specific date
+==== Add task to a specific date
 
 1. Role:User
 2. Benefit: User can view what to do for the next few days
 
-. Delete a task
+==== Delete a task
 
 1. Role:User
 2. Benefit: User can delete task when he no longer want to do it
 
-. Edit a task
+==== Edit a task
 
 1. Role:User
 2. Benefit: User can change the information of the task
 
-. View the next coming task
+==== View the next coming task
 
 1. Role:User
 2. Benefit: User will know what to prepare next
 
-. Clear tasks
+==== Clear tasks
 
 1. Role:User
 2. Benefit: User can clear all the tasks of a day, a week or a month
 
-. Exit the programme
+==== Exit the programme
 
 1. Role:User
 2. Benefit: Users can exit the programme when he doesn’t want to see the listed tasks
 
-. Search one task by part of the description
+==== Search one task by part of the description
 
 1. Role:User
 2. Benefit: Users can check the full information of the task when they forget the task description
 
 === Priority 2 function
-. Highlight today’s date 
+==== Highlight today’s date 
 
 1. Role:User
 2. Benefit: User can know today’s date
 
-. Add priority of the task 
+==== Add priority of the task 
 
 1. Role:User
 2. Benefit: User can set the importance of an task
 
-. View priority of all events 
+==== View priority of all events 
 
 1. Role:User
 2. Benefit: User can see all the events based on the priority
 
-. List tasks of certain priority of this week
+==== List tasks of certain priority of this week
 
 1. Role:User
 2. Benefit: User can know what must be done in this week
 
-. Classify a task
+==== Classify a task
 
 1. Role:User
 2. Benefit: User can separate different tasks
 
-. Seach tasks by classification
+==== Seach tasks by classification
 
 1. Role:User
 2. Benefit: User can see different tasks based on the classification
 
-. Writing reflection
+==== Writing reflection
 
 1. Role:User
 2. Benefit: User can write their daily reflection
 
-. Alarm
+==== Alarm
 
 1. Role:User
 2. Benefit: It can remind users of the coming events
 
 === Priority 3 function
 
-. Change the color for different version of calendar
+==== Change the color for different version of calendar
 
 1. Role:User
 2. Benefit: User can choose different version of different color of calendar
 
-. Record total time spent on each classified task type
+==== Record total time spent on each classified task type
 
 1. Role:User
 2. Benefit: User can see how much time they spend on a specific task type each day.
 
-. Analyze the total time spent
+==== Analyze the total time spent
 
 1. Role:User
 2. Benefit: it can analyze users’ spent time and maybe give some suggestions
 
-. Play music for user
+==== Play music for user
 
 1. Role:User
 2. Benefit: it can act as an entertainment to user when he is working on his task
 
-. Find out weather condition for current location
+==== Find out weather condition for current location
 
 1. Role:User
 2. Benefit: User able to plan the next action to do, like to bring umbrella or not
