@@ -4,31 +4,30 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-AddressBook - Level 4 was developed by the https://se-edu.github.io/docs/Team.html[se-edu] team. +
-_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
-{empty} +
+Tasketch was developed by the C2113T-T09-2 team. +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 == Project Team
 
-=== John Doe
-image::damithc.jpg[width="150", align="left"]
-{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/damithc[github]] [<<johndoe#, portfolio>>]
+=== Cheah Zhi Kang
+image::cheahzk.png[width="150", align="left"]
+{empty}[https://github.com/cheahzk[github]]
 
-Role: Project Advisor
-
-'''
-
-=== John Roe
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
-
-Role: Team Lead +
-Responsibilities: UI
+Role: Team Leader +
+Responsibilities: Deliverables and deadlines +
 
 '''
 
-=== Johnny Doe
+=== Zhang Jingchen
+image::jingchen-z.png[width="150", align="left"]
+{empty}[https://github.com/jingchen-z[github]] [<<jingchen-z#, portfolio>>]
+
+Role: Developer +
+Responsibilities: Design UI and the format of Data Storage.
+
+'''
+
+=== Shi bo
 image::yijinl.jpg[width="150", align="left"]
 {empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
 
