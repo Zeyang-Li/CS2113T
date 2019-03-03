@@ -59,7 +59,7 @@ public class AddCommand extends Command{
     }
 
     /**
-     * 
+     * This is the method equals
      * @param other
      * @return
      */

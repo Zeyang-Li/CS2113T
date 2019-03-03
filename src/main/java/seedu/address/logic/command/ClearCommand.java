@@ -10,7 +10,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Tasketch been cleared!";
 
     /**
-     * 
+     * This is the method execute
      * @return
      */
     public CommandResult execute() {

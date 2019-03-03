@@ -29,7 +29,7 @@ public class DeleteCommand {
     }
 
     /**
-     * 
+     * This is the method execute
      * @param model
      * @param history
      * @return
