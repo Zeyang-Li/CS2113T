@@ -1,9 +1,10 @@
 package seedu.address.logic.command;
 
 //To be replaced:
+import seedu.address.logic.CommandHistory;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.CommandHistory;
 
 import seedu.address.model.Model;
 
