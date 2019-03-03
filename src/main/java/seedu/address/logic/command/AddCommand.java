@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Add a task to Tasketch 
+ * Add a task to Tasketch
  */
 public class AddCommand extends Command{
     public static final String COMMAND_WORD = "add";
