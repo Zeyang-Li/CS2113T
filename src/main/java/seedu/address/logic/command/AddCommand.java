@@ -11,10 +11,8 @@ import seedu.address.model.person.Person;
  * Add a task to Tasketch 
  */
 public class AddCommand extends Command{
-    
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_ALIAS = "a";
-    
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Tasketch. "
             + "Parameters: "
             + "-t" + "TOPIC "
@@ -47,14 +45,13 @@ public class AddCommand extends Command{
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
-    
     public AddCommand(Person person) {
         toAdd = person;
     }
 
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.logic.commands.AddCommand // instanceof handles nulls
+                || (other instanceof seedu.address.logic.command.AddCommand // instanceof handles nulls
                 && toAdd.equals(((seedu.address.logic.command.AddCommand) other).toAdd));
     }
 }
