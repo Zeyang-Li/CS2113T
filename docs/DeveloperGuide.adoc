@@ -110,6 +110,33 @@ When you are ready to start coding,
 . prefers typing over mouse input
 . is reasonably comfortable using CLI apps
 
+== Value proposition:
+. Manage tasks faster than a typical mouse/GUI driven apps
+
+== User stories
+=== Priority 1 function
+.See usage function
+..Role:New user
+..Benefit: User can refer to instructions when forgotten
+.Add task to a specific date
+..Role:User
+..Benefit: User can view what to do for the next few days
+=== Priority 2 function
+.Highlight today’s date 
+..Role:User
+..Benefit: User can know today’s date
+.Add priority of the task 
+..Role:User
+..Benefit: User can set the importance of an task
+.View priority of all events 
+..Role:User
+..Benefit: User can see all the events based on the priority
+.list tasks of certain priority of this week
+..Role:User
+..Benefit: User can know what must be done in this week
+
+=== Priority 3 function
+
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
