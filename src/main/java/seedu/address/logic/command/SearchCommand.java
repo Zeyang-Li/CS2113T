@@ -1,16 +1,5 @@
 package seedu.address.logic.command;
 
-
-//To be replaced:
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
-
 public class SearchCommand {
     public static final String COMMAND_WORD = "find";
     public static final String COMMAND_ALIAS = "f";

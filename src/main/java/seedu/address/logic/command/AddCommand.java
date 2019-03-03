@@ -32,9 +32,21 @@ public class AddCommand extends Command{
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This Task already exists in Tasketch";
-    public Person toAdd;
+    private Person toAdd;
 
-    /* @Override */
+    /**
+     * The construction method.
+     */
+    public AddCommand(Person person) {
+        toAdd = person;
+    }
+
+    /**
+     * This returns the result of the command.
+     * @param model
+     * @return
+     * @throws CommandException
+     */
     public CommandResult execute(Model model) throws CommandException {
 
         if (model.hasPerson(toAdd)) {
@@ -45,10 +57,12 @@ public class AddCommand extends Command{
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
-    public AddCommand(Person person) {
-        toAdd = person;
-    }
 
+    /**
+     * 
+     * @param other
+     * @return
+     */
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.logic.command.AddCommand // instanceof handles nulls

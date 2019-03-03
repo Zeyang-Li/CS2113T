@@ -1,11 +1,7 @@
 package seedu.address.logic.command;
 
 //To be replaced:
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.command.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class ListCommand {

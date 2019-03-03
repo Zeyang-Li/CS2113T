@@ -1,14 +1,5 @@
 package seedu.address.logic.command;
 
-//To be replaced:
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import seedu.address.commons.core.index.Index;
-
-
 /**
  * Edit the details of a task.
  * Topic, start time, duration, description.

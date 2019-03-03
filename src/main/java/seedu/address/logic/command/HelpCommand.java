@@ -1,8 +1,6 @@
 package seedu.address.logic.command;
-import seedu.address.logic.command.CommandResult;
 
 //To be replaced:
-import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
 public class HelpCommand {

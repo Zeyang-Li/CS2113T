@@ -2,7 +2,7 @@ package seedu.address.logic.command;
 
 import java.util.Objects;
 
-public class CommandResult extends Command{
+public class CommandResult extends Command {
 
     private final String feedbackToUser;
 
