@@ -21,7 +21,7 @@ public class Task {
     private final EndDate endDate;
     private final StartTime startTime;
     private final EndTime endTime;
-//    private final Duration duration;
+//  private final Duration duration;
 
 
     // Data fields
@@ -31,7 +31,8 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Topic topic, StartDate startDate, EndDate endDate, StartTime startTime, EndTime endTime, Description description, Set<Tag> tags) {
+    public Task(Topic topic, StartDate startDate, EndDate endDate, StartTime startTime, EndTime endTime,
+                Description description, Set<Tag> tags) {
         requireAllNonNull(topic, startDate, endDate, startTime, endTime, description, tags);
         this.topic = topic;
         this.startDate = startDate;
