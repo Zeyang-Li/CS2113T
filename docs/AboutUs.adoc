@@ -36,9 +36,9 @@ Responsibilities: Data
 
 '''
 
-=== Johnny Roe
-image::m133225.jpg[width="150", align="left"]
-{empty}[http://github.com/m133225[github]] [<<johndoe#, portfolio>>]
+=== Wan Chunwei
+image::Wanchunwei.jpg[width="150", align="left"]
+{empty}[https://github.com/Wanchunwei[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Dev Ops + Threading
