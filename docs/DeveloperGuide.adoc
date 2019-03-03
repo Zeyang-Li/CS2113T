@@ -239,6 +239,46 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+== Value proposition:
+. Manage tasks faster than a typical mouse/GUI driven apps
+
+== User stories
+
+=== Priority 1 function
+
+. See usage function
+
+1. Role:New user
+2. Benefit: User can refer to instructions when forgotten
+
+. Add task to a specific date
+
+1. Role:User
+2. Benefit: User can view what to do for the next few days
+
+=== Priority 2 function
+. Highlight today’s date 
+
+1. Role:User
+2. Benefit: User can know today’s date
+
+. Add priority of the task 
+
+1. Role:User
+2. Benefit: User can set the importance of an task
+
+. View priority of all events 
+
+1. Role:User
+2. Benefit: User can see all the events based on the priority
+
+. list tasks of certain priority of this week
+
+1. Role:User
+2. Benefit: User can know what must be done in this week
+
+=== Priority 3 function
+
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
