@@ -54,7 +54,6 @@ public class CommandResult extends Command {
         if (!(other instanceof seedu.address.logic.command.CommandResult)) {
             return false;
         }
-        
         seedu.address.logic.command.CommandResult otherCommandResult;
         otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
