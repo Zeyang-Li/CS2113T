@@ -1,7 +1,7 @@
 = Tasketch
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
-https://travis-ci.org/cs2113-ay1819s2-t09-2/main[image:https://travis-ci.org/cs2113-ay1819s2-t09-2/main.svg?branch=master[Build Status]]
+https://travis-ci.org/CS2113-AY1819S2-T09-2/main[image:https://travis-ci.org/CS2113-AY1819S2-T09-2/main.svg?branch=master[Build Status]]
 
 ifdef::env-github[]
 image::docs/images/Ui.png[width="600"]
