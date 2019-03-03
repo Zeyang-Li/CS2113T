@@ -37,7 +37,7 @@ Responsibilities: Data
 '''
 
 === Wan Chunwei
-image::Wanchunwei.jpg[width="150", align="left"]
+image::Wanchunwei.png[width="150", align="left"]
 {empty}[https://github.com/Wanchunwei[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
