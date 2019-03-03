@@ -179,7 +179,8 @@ image::LogicClassDiagram.png[width="800"]
 
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
-
+.  !Important! Before every teammate fully understand the logic, please follow the next line:
+.  !Important! We keep the original files on commands, and create our own command files so that we will not mess up the command files.
 .  `Logic` uses the `AddressBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a person).
@@ -201,6 +202,8 @@ image::ModelClassDiagram.png[width="800"]
 
 The `Model`,
 
+* !Important! Before every teammate fully understand the logic, please follow the next line:
+* !Important! We keep the original files on model, and create our own model files so that we will not mess up the original model.
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
@@ -558,6 +561,8 @@ Do take a look at <<Design-Logic>> before attempting to modify the `Logic` compo
 ** Just like we store each individual command word constant `COMMAND_WORD` inside `*Command.java` (e.g.  link:{repoURL}/src/main/java/seedu/address/logic/commands/FindCommand.java[`FindCommand#COMMAND_WORD`], link:{repoURL}/src/main/java/seedu/address/logic/commands/DeleteCommand.java[`DeleteCommand#COMMAND_WORD`]), you need a new constant for aliases as well (e.g. `FindCommand#COMMAND_ALIAS`).
 ** link:{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java[`AddressBookParser`] is responsible for analyzing command words.
 * Solution
+** !Important! Before every teammate fully understand the logic, please follow the next line:
+** !Important! We keep the original files on parser, and create our own parser files so that we will not mess up the logic.
 ** Modify the switch statement in link:{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java[`AddressBookParser#parseCommand(String)`] such that both the proper command word and alias can be used to execute the same intended command.
 ** Add new tests for each of the aliases that you have added.
 ** Update the user guide to document the new aliases.
