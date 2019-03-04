@@ -3,7 +3,7 @@ package seedu.address.logic.command.exceptions;
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */
-public class TasketchCommandExceprions extends Exception{
+public class TasketchCommandExceprions extends Exception {
 
     public TasketchCommandExceprions(String message) {
         super(message);
