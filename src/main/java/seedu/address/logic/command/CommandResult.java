@@ -1,11 +1,14 @@
 package seedu.address.logic.command;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
+
 
 /**
  * CommandResult is the base class for result returned from command.
  */
-public class CommandResult extends Command {
+public class CommandResult {
 
     private final String feedbackToUser;
 
