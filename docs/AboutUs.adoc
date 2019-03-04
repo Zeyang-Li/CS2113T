@@ -10,7 +10,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Cheah Zhi Kang
-image::zhikang.jpg[width="150", align="left"]
+image::cheahzk.png[width="150", align="left"]
 {empty}[https://github.com/cheahzk[github]]
 
 Role: Team Leader +
@@ -19,7 +19,7 @@ Responsibilities: Deliverables and deadlines +
 '''
 
 === Zhang Jingchen
-image::jingchen-z.jpg[width="150", align="left"]
+image::jingchen-z.png[width="150", align="left"]
 {empty}[https://github.com/jingchen-z[github]] [<<jingchen-z#, portfolio>>]
 
 Role: Developer +
@@ -27,7 +27,7 @@ Responsibilities: Design UI and the format of Data Storage.
 
 '''
 
-=== Johnny Doe
+=== Shi bo
 image::yijinl.jpg[width="150", align="left"]
 {empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
 
@@ -36,9 +36,9 @@ Responsibilities: Data
 
 '''
 
-=== Johnny Roe
-image::m133225.jpg[width="150", align="left"]
-{empty}[http://github.com/m133225[github]] [<<johndoe#, portfolio>>]
+=== Wan Chunwei
+image::Wanchunwei.png[width="150", align="left"]
+{empty}[https://github.com/Wanchunwei[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Dev Ops + Threading
