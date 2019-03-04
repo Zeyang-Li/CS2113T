@@ -11,7 +11,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 === Cheah Zhi Kang
 image::cheahzk.png[width="150", align="left"]
-{empty}[https://github.com/cheahzk[github]]
+{empty}[https://github.com/cheahzk[github]] [<<cheahzk#, portfolio>>]
 
 Role: Team Leader +
 Responsibilities: Deliverables and deadlines
