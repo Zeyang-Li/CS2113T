@@ -14,7 +14,7 @@ image::cheahzk.png[width="150", align="left"]
 {empty}[https://github.com/cheahzk[github]] [<<cheahzk#, portfolio>>]
 
 Role: Team Leader +
-Responsibilities: Deliverables and deadlines
+Responsibilities: Deliverables and deadlines +
 
 '''
 
@@ -29,7 +29,12 @@ Responsibilities: Design UI and the format of Data Storage.
 
 === Jin Shibo
 image::BrittonAlone.png[width="150", align="left"]
+<<<<<<< HEAD
+{empty}[http://github.com/BrittonAlone[github]] [<<Jin Shibo#, portfolio>>]
+=======
+
 {empty}[http://github.com/BrittonAlone[github]] [<<johndoe#, portfolio>>]
+>>>>>>> 8f56b7f5bf317fae12808e15777bbf86a096c05b
 
 Role: Developer +
 Responsibilities: Data + Documentation
