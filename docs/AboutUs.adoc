@@ -29,11 +29,7 @@ Responsibilities: Design UI and the format of Data Storage.
 
 === Jin Shibo
 image::BrittonAlone.png[width="150", align="left"]
-<<<<<<< HEAD
 {empty}[http://github.com/BrittonAlone[github]] [<<BrittonAlone#, portfolio>>]
-=======
-{empty}[http://github.com/BrittonAlone[github]] [<<Jin Shibo#, portfolio>>]
->>>>>>> master
 
 Role: Developer +
 Responsibilities: Data + Documentation
