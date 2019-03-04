@@ -27,12 +27,12 @@ Responsibilities: Design UI and the format of Data Storage.
 
 '''
 
-=== Shi bo
-image::yijinl.jpg[width="150", align="left"]
+=== Jin Shibo
+image::BrittonAlone.png[width="150", align="left"]
 {empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Data
+Responsibilities: Documentation
 
 '''
 
