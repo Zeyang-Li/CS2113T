@@ -29,12 +29,7 @@ Responsibilities: Design UI and the format of Data Storage.
 
 === Jin Shibo
 image::BrittonAlone.png[width="150", align="left"]
-<<<<<<< HEAD
-{empty}[http://github.com/BrittonAlone[github]] [<<Jin Shibo#, portfolio>>]
-=======
-
-{empty}[http://github.com/BrittonAlone[github]] [<<johndoe#, portfolio>>]
->>>>>>> 8f56b7f5bf317fae12808e15777bbf86a096c05b
+{empty}[http://github.com/BrittonAlone[github]] [<<BrittonAlone#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Data + Documentation
@@ -43,7 +38,7 @@ Responsibilities: Data + Documentation
 
 === Wan Chunwei
 image::Wanchunwei.png[width="150", align="left"]
-{empty}[https://github.com/Wanchunwei[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/Wanchunwei[github]] [<<Wanchunwei#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Code quality + Integration
@@ -52,7 +47,7 @@ Responsibilities: Code quality + Integration
 
 === Li Zeyang
 image::Zeyang-Li.png[width="150", align="left"]
-{empty}[https://github.com/Zeyang-Li[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/Zeyang-Li[github]] [<<Zeyang-Li#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Scheduling and tracking + Testing
