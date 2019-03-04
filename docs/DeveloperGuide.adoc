@@ -249,14 +249,14 @@ When you are ready to start coding,
 === Editing a task
 1. MSS
 . User request edit -taskID [id] -s [startDateTime] -e [endDateTime] -t [topic] -d [description]
-. TaskBook lists the details of a task and user can edit the description of the task. 
+. TaskBook lists the details of a task and user can edit the description of the task.
 
 	Use case ends
 
 === Search a task
 1. MSS
 . User request search [keyWords/subString]
-. TaskBook list all the tasks which satisfy the searching condition. 
+. TaskBook list all the tasks which satisfy the searching condition.
 
 	Use case ends.
 
