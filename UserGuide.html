@@ -47,7 +47,7 @@ Tasketch can get your tasks' schedule done faster than traditional GUI apps. Int
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>tasketch.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a><strong>(the link needs to be changed)</strong>.</p>
+<p>Download the latest <code>tasketch.jar</code> <a href="https://github.com/CS2113-AY1819S2-T09-2/main/releases">here</a><strong>(the link needs to be changed)</strong>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your Tasketch.</p>
@@ -171,6 +171,10 @@ Usage: list all the tasks in February, 2019</p>
 <p><code>list 20-02-2019</code><br>
 Usage: list all the tasks in February 20th, 2019</p>
 </li>
+<li>
+<p><code>list all</code><br>
+Usage: list all the tasks in the storage</p>
+</li>
 </ul>
 </div>
 </div>
@@ -218,26 +222,26 @@ Edits the start time and end time of the task with ID 331 to be <code>12:00</cod
 <div class="paragraph">
 <p>Finds tasks whose topic or description contain any of the given keywords.<br>
 Alias: <code>s</code><br>
-Format: <code>search KEYWORD [MORE_KEYWORDS]</code></p>
+Format: <code>search KEYWORD [MORE_KEYWORDS] &#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case insensitive. e.g <code>Tutorial</code> will match <code>tutorial</code></p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+<p>The order of the keywords does not matter. e.g. <code>CS2113T tutorial</code> will match <code>tutorial CS2113T</code></p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>Only the description is searched.</p>
 </li>
 <li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>Only full words will be matched e.g. <code>tut</code> will not match <code>tutorial</code></p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Tasks matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>CS2113T tutorial</code> will return <code>CS2113T lecture</code>, <code>CS3235 tutorial</code></p>
 </li>
 </ul>
 </div>
@@ -249,7 +253,7 @@ Format: <code>search KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>search Cs2113t</code><br>
+<p><code>search CS2113T</code><br>
 Returns <code>CS2113T lecture</code></p>
 </li>
 <li>
@@ -291,12 +295,12 @@ Format: <code>delete TASK_ID</code></p>
 <li>
 <p><code>list</code><br>
 <code>delete 331</code><br>
-Deletes the task with taskid 331 in Tasketch.</p>
+Deletes the task with taskID 331 in Tasketch.</p>
 </li>
 <li>
 <p><code>search cs2113t</code><br>
 <code>delete 421</code><br>
-Deletes the task with taskid 421 in Tasketch.</p>
+Deletes the task with taskID 421 in Tasketch.</p>
 </li>
 </ul>
 </div>
@@ -307,7 +311,7 @@ Deletes the task with taskid 421 in Tasketch.</p>
 <p>Clears all tasks of the specified date from Tasketch.<br>
 Alias: <code>c</code><br>
 Format:<br>
-1. <code>clear</code><br>
+1. <code>clear all</code><br>
 Usage: clear all the tasks in Tasketch<br>
 2.<code>clear DATE</code><br>
 Usage: clear all the tasks in the specified date</p>
@@ -324,6 +328,10 @@ Clear all the tasks in February 21st, 2019.</p>
 <li>
 <p><code>clear 02-2019</code><br>
 Clear all the tasks in February, 2019.</p>
+</li>
+<li>
+<p><code>clear all</code><br>
+Clear all the tasks in the storage.</p>
 </li>
 </ul>
 </div>
@@ -365,7 +373,8 @@ e.g.<br>
 2.<code>add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security</code></p>
 </li>
 <li>
-<p><strong>Clear</strong> : <code>clear [DATE]</code></p>
+<p><strong>Clear</strong> : <code>clear [DATE]</code><br>
+e.g. <code>clear 21-02-2019</code></p>
 </li>
 <li>
 <p><strong>Delete</strong> : <code>delete TASK_ID</code><br>
@@ -380,12 +389,16 @@ e.g. <code>edit 331 s/1200 e/1400 t/GET1018 tut</code></p>
 e.g. <code>search CS2113T</code></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list [DATE]</code></p>
+<p><strong>List</strong> : <code>list [DATE]</code><br>
+e.g. <code>list 02-2019</code></p>
 </li>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code></p>
+</li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-04 07:02:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-04 07:28:08 UTC</div></div></div></body></html>
