@@ -14,7 +14,7 @@ image::cheahzk.png[width="150", align="left"]
 {empty}[https://github.com/cheahzk[github]]
 
 Role: Team Leader +
-Responsibilities: Deliverables and deadlines +
+Responsibilities: Deliverables and deadlines
 
 '''
 
@@ -29,10 +29,11 @@ Responsibilities: Design UI and the format of Data Storage.
 
 === Jin Shibo
 image::BrittonAlone.png[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+
+{empty}[http://github.com/BrittonAlone[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Documentation
+Responsibilities: Data + Documentation
 
 '''
 
@@ -41,15 +42,15 @@ image::Wanchunwei.png[width="150", align="left"]
 {empty}[https://github.com/Wanchunwei[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Dev Ops + Threading
+Responsibilities: Code quality + Integration
 
 '''
 
-=== Benson Meier
-image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
+=== Li Zeyang
+image::Zeyang-Li.png[width="150", align="left"]
+{empty}[https://github.com/Zeyang-Li[github]] [<<johndoe#, portfolio>>]
 
 Role: Developer +
-Responsibilities: UI
+Responsibilities: Scheduling and tracking + Testing
 
 '''

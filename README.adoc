@@ -16,7 +16,10 @@ endif::[]
 * Tasketch is a Java application that you can run on any machine with Java Runtime Environment installed.
 * What makes Tasketch special:
 ** Add to-do tasks on daily basis
+** List the tasks based on the order of priority
+** Each task has a task_ID which helps the user to identify tasks clearly
 ** Write reflection for a task
+** Remind users of the upcoming tasks
 
 == Site Map
 

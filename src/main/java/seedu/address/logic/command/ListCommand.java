@@ -13,7 +13,7 @@ public class ListCommand {
     public static final String COMMAND_WORD = "list";
     public static final String COMMAND_ALIAS = "l";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
     /**
      * This is the execute method.
