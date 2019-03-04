@@ -158,17 +158,17 @@ When you are ready to start coding,
 2. Benefit: Users can check the full information of the task when they forget the task description
 
 === Priority 2 function
-==== Highlight today’s date 
+==== Highlight today’s date
 
 1. Role:User
 2. Benefit: User can know today’s date
 
-==== Add priority of the task 
+==== Add priority of the task
 
 1. Role:User
 2. Benefit: User can set the importance of an task
 
-==== View priority of all events 
+==== View priority of all events
 
 1. Role:User
 2. Benefit: User can see all the events based on the priority
@@ -235,11 +235,11 @@ When you are ready to start coding,
 
 === Add a task
 1. MSS
-. User request add [task] -s [startDateTime] -e [endDateTime] -t [topic] -d [description] 
+. User request add [task] -s [startDateTime] -e [endDateTime] -t [topic] -d [description]
 . TaskBook add that task into the current day’s task list
 
 	Use case ends.
-	
+
 2. Extension
 . User request add [task] [date]
 .. TaskBook add that task into the specific date’s task list
@@ -248,7 +248,7 @@ When you are ready to start coding,
 
 === Editing a task
 1. MSS
-. User request edit -taskID [id] -s [startDateTime] -e [endDateTime] -t [topic] -d [description] 
+. User request edit -taskID [id] -s [startDateTime] -e [endDateTime] -t [topic] -d [description]
 . TaskBook lists the details of a task and user can edit the description of the task. 
 
 	Use case ends
@@ -271,28 +271,28 @@ When you are ready to start coding,
 === Clear tasks by time period
 1. MSS
 . User request clear [day/month]
-. TaskBook remove the tasks in that period. 
+. TaskBook remove the tasks in that period.
 
 	Use case ends
 
 === List tasks by time period
 1. MSS
 . User request list of all tasks
-. TaskBook shows a list of tasks of the current day by default. 
+. TaskBook shows a list of tasks of the current day by default.
 
 	Use case ends.
 
 2. Extension
 . User request list all
-.. TaskBook shows a list of all the tasks. 
+.. TaskBook shows a list of all the tasks.
 
 	Use case ends.
-	
+
 . User request list [Date]
-.. TaskBook shows a list of tasks of that specific date. 
+.. TaskBook shows a list of tasks of that specific date.
 
 	Use case ends.
-	
+
 . User request list [Month]
 .. TaskBook shows a list of tasks of that month
 
@@ -301,19 +301,19 @@ When you are ready to start coding,
 === Exit
 1. MSS
 . User request for exiting the program
-. TaskBook saves all the changes and exits. 
+. TaskBook saves all the changes and exits.
 
 	Use case ends.
 
 == Appendix C: Non-functional requirements
-. Should work on any mainstream OS as long as it has Java 9 (revision 
+. Should work on any mainstream OS as long as it has Java 9 (revision
 1.8.0_201 or higher) installed.
 
-. Should be able to hold up to 1000 tasks without a noticeable sluggishness 
+. Should be able to hold up to 1000 tasks without a noticeable sluggishness
 in performance for typical usage.
 
-. A user with above average typing speed for regular English text (i.e. not 
-code, not system admin commands) should be able to accomplish most of 
+. A user with above average typing speed for regular English text (i.e. not
+code, not system admin commands) should be able to accomplish most of
 the tasks faster using commands than using the mouse.
 
 == Appendix D: Glossary
