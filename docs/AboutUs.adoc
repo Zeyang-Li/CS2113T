@@ -14,7 +14,7 @@ image::cheahzk.png[width="150", align="left"]
 {empty}[https://github.com/cheahzk[github]] [<<cheahzk#, portfolio>>]
 
 Role: Team Leader +
-Responsibilities: Deliverables and deadlines
+Responsibilities: Deliverables and deadlines +
 
 '''
 
