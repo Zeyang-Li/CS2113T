@@ -17,7 +17,7 @@ public class ExitCommand extends Command {
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Tasketch as requested ...";
 
-    @Override
+    //@Override
     public seedu.address.logic.command.CommandResult execute(Model model, CommandHistory history) {
         // to be implement
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
