@@ -1,11 +1,13 @@
-package seedu.address.logic.command;
+package seedu.address.logic.commands;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
 /**
- * CommandResult is the base class for result returned from command.
+ * Represents the result of a command execution.
  */
-public class CommandResult extends Command {
+public class CommandResult {
 
     private final String feedbackToUser;
 
@@ -19,7 +21,7 @@ public class CommandResult extends Command {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = feedbackToUser;
+        this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -51,11 +53,11 @@ public class CommandResult extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.logic.command.CommandResult)) {
+        if (!(other instanceof CommandResult)) {
             return false;
         }
-        seedu.address.logic.command.CommandResult otherCommandResult;
-        otherCommandResult = (CommandResult) other;
+
+        CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
