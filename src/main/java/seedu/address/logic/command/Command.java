@@ -1,10 +1,5 @@
 package seedu.address.logic.command;
 
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.logic.command.exceptions.CommandException;
-
-import seedu.address.model.Model;
-
 /**
  * TO BE FURTHER IMPLEMENTED
  */

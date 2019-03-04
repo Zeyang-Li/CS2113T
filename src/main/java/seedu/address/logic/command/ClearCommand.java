@@ -1,10 +1,6 @@
 package seedu.address.logic.command;
 
-import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
 /**
  * Clears data in Tasketch.
  */
