@@ -4,7 +4,7 @@ package seedu.address.logic.command;
 /**
  * Clears data in Tasketch.
  */
-public class ClearCommand extends Command {
+public class ClearCommand extends TasketchCommand {
     public static final String COMMAND_WORD = "clear";
     public static final String COMMAND_ALIAS = "c";
     public static final String MESSAGE_SUCCESS = "Tasketch been completely cleared!";
