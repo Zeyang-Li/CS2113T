@@ -46,8 +46,8 @@ Responsibilities: Code quality + Integration
 '''
 
 === Li Zeyang
-image::Zeyang-Li.png[width="150", align="left"]
-{empty}[https://github.com/Zeyang-Li[github]] [<<Zeyang-Li#, portfolio>>]
+image::zeyang-li.png[width="150", align="left"]
+{empty}[https://github.com/Zeyang-Li[github]] [<<zeyang-li#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Scheduling and tracking + Testing
