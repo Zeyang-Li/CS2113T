@@ -8,8 +8,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -27,12 +27,12 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTaskBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskBook getTaskBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
@@ -43,7 +43,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -59,14 +59,14 @@ public interface Logic {
      * Selected person in the filtered person list.
      * null if no person is selected.
      *
-     * @see seedu.address.model.Model#selectedPersonProperty()
+     * @see seedu.address.model.Model#selectedTaskProperty()
      */
-    ReadOnlyProperty<Person> selectedPersonProperty();
+    ReadOnlyProperty<Task> selectedTaskProperty();
 
     /**
      * Sets the selected person in the filtered person list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Person)
+     * @see seedu.address.model.Model#setSelectedTask(Task)
      */
-    void setSelectedPerson(Person person);
+    void setSelectedTask(Task task);
 }
