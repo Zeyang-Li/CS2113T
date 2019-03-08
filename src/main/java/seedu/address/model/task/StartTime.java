@@ -10,10 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class StartTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should only contain numbers, and it should be 4 digits long";
-    public static final String VALIDATION_REGEX = "\\d{4,}";
+            "Time should only contain numbers & '.', 2 digits'.'2digits, ie: 13.00";
+    public static final String VALIDATION_REGEX = "\\d{2}" + "." + "\\d{2}";
 
-    private final String value;
+    public final String value;
 
     /**
      * Constructs a {@code StartTime}.
