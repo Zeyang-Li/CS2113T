@@ -1,63 +1,67 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+//To be replaced:
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
- * Adds a person to the address book.
+ * Add a task to Tasketch
  */
 public class AddCommand extends Command {
-
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_ALIAS = "a";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Tasketch. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_NAME + "TASK NAME "
+            + PREFIX_STARTDATE + "START_DATE (omit colon) "
+            + PREFIX_STARTTIME + "START_TIME (omit colon) "
+            + PREFIX_ENDDATE + "END_DATE (omit colon) "
+            + PREFIX_ENDTIME + "END_TIME (omit colon) "
+            + PREFIX_DESCRIPTION + "CONTENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Revise CS2113T "
+            + PREFIX_STARTDATE + "031519"
+            + PREFIX_STARTTIME + "1400 "
+            + PREFIX_ENDDATE + "031519"
+            + PREFIX_ENDTIME + "1700 "
+            + PREFIX_DESCRIPTION + "Class diagram "
+            + PREFIX_TAG + "urgent"
+            + PREFIX_TAG + "due soon...\n";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-
-    private final Person toAdd;
+    public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This Task already exists in Tasketch";
+    private Task toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Task}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Task task) {
+        requireNonNull(task);
+        toAdd = task;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
-        model.commitAddressBook();
+        model.addTask(toAdd);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
