@@ -1,5 +1,4 @@
 package seedu.address;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -31,8 +30,11 @@ import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
+
+
 /**
  * The main entry point to the application.
+ * Testing Travis
  */
 //This line is to test Travis CI
 public class MainApp extends Application {

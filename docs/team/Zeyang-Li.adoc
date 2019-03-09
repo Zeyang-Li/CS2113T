@@ -14,7 +14,7 @@ Tasketch is a desktop address book application used for teaching Software Engine
 == Summary of contributions
 
 * *Major enhancement*: added *the ability to exit the programme and clear some tasks*
-** What it does: allows the user to exit the programme and to clear some tasks that are no longer needed on the daily basis or the monthly basis.
+** What it does: What it does: allows the user to exit the programme and to clear some tasks that are no longer needed on the daily basis or the monthly basis.
 ** Justification: This feature improves the product significantly because a user can make clear a branch of tasks in the app.
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_

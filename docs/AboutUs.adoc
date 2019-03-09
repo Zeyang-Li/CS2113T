@@ -11,7 +11,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 === Cheah Zhi Kang
 image::cheahzk.png[width="150", align="left"]
-{empty}[https://github.com/cheahzk[github]]
+{empty}[https://github.com/cheahzk[github]] [<<cheahzk#, portfolio>>]
 
 Role: Team Leader +
 Responsibilities: Deliverables and deadlines +
@@ -27,29 +27,29 @@ Responsibilities: Design UI and the format of Data Storage.
 
 '''
 
-=== Shi bo
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== Jin Shibo
+image::BrittonAlone.png[width="150", align="left"]
+{empty}[http://github.com/BrittonAlone[github]] [<<BrittonAlone#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Data
+Responsibilities: Data + Documentation
 
 '''
 
 === Wan Chunwei
 image::Wanchunwei.png[width="150", align="left"]
-{empty}[https://github.com/Wanchunwei[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/Wanchunwei[github]] [<<Wanchunwei#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Dev Ops + Threading
+Responsibilities: Code quality + Integration
 
 '''
 
-=== Benson Meier
-image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
+=== Li Zeyang
+image::zeyang-li.png[width="150", align="left"]
+{empty}[https://github.com/Zeyang-Li[github]] [<<zeyang-li#, portfolio>>]
 
 Role: Developer +
-Responsibilities: UI
+Responsibilities: Scheduling and tracking + Testing
 
 '''
