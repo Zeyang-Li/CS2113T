@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.logic.command.editing.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.Test;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
+import seedu.address.logic.command.editing.HelpCommand;
 import seedu.address.model.ModelManager;
 
 public class HelpCommandTest {

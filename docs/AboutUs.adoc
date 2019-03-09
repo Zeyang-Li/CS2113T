@@ -28,7 +28,7 @@ Responsibilities: Design UI and the format of Data Storage.
 '''
 
 === Jin Shibo
-image::BrittonAlone.png[width="150", align="left"]
+image::brittonalone.png[width="150", align="left"]
 {empty}[http://github.com/BrittonAlone[github]] [<<BrittonAlone#, portfolio>>]
 
 Role: Developer +
@@ -37,7 +37,7 @@ Responsibilities: Data + Documentation
 '''
 
 === Wan Chunwei
-image::Wanchunwei.png[width="150", align="left"]
+image::wanchunwei.png[width="150", align="left"]
 {empty}[https://github.com/Wanchunwei[github]] [<<Wanchunwei#, portfolio>>]
 
 Role: Developer +
