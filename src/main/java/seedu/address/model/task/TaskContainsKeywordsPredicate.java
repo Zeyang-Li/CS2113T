@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.task.Task;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Task}'s {@code Name} matches any of the keywords given.
  */
 public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;

@@ -51,7 +51,9 @@ public class Task {
         return startDate;
     }
 
-    public EndDate getEndDate() { return endDate; }
+    public EndDate getEndDate() {
+        return endDate;
+    }
 
     public StartTime getStartTime() {
         return startTime;

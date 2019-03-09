@@ -4,16 +4,17 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.TaskBook;
 import seedu.address.model.ReadOnlyTaskBook;
-import seedu.address.model.task.Task;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.TaskBook;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.EndDate;
+import seedu.address.model.task.EndTime;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
 import seedu.address.model.task.StartTime;
-import seedu.address.model.task.EndDate;
-import seedu.address.model.task.EndTime;
-import seedu.address.model.task.Description;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+
 
 /**
  * Contains utility methods for populating {@code TaskBook} with sample data.
