@@ -21,11 +21,11 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Name("Revise CS2113T"), new StartDate("0315"), new StartTime("1400"), new EndDate("0325"),
-                new EndTime("1700"), new Description("Class diagram"),
+            new Task(new Name("Revise CS2113T"), new StartDate("15-03-16"), new StartTime("14.00"),
+                new EndDate("25-03-19"), new EndTime("17.00"), new Description("Class diagram"),
                 getTagSet("CS2113T")),
-            new Task(new Name("Do CS2101"), new StartDate("0317"), new StartTime("1000"), new EndDate("0318"),
-                new EndTime("1000"), new Description("User Guide"),
+            new Task(new Name("Do CS2101"), new StartDate("17-03-19"), new StartTime("10.00"), new EndDate("18-03-19"),
+                new EndTime("10.00"), new Description("User Guide"),
                 getTagSet("CS2101"))
         };
     }
