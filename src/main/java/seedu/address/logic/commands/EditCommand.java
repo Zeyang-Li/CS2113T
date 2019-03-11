@@ -19,7 +19,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Taskmodel;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
