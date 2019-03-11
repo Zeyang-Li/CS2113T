@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EndDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should only contain numbers, and it should be 6 digits long";
-    public static final String VALIDATION_REGEX = "\\d{6}";
+            "Date should only contain numbers & -, 2 digits-2 digits-2digits, ie: 12-03-19";
+    public static final String VALIDATION_REGEX = "\\d{2}" + "-" + "\\d{2}" + "-" + "\\d{2}";
     public final String value;
 
     /**

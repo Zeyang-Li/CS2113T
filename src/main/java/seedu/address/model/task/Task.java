@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Task {
 
     // Identity fields
-    private final Topic topic;
+    private final Name name;
     private final StartDate startDate;
     private final EndDate endDate;
     private final StartTime startTime;
@@ -31,10 +31,10 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Topic topic, StartDate startDate, EndDate endDate, StartTime startTime, EndTime endTime,
+    public Task(Name name, StartDate startDate, StartTime startTime, EndDate endDate, EndTime endTime,
                 Description description, Set<Tag> tags) {
-        requireAllNonNull(topic, startDate, endDate, startTime, endTime, description, tags);
-        this.topic = topic;
+        requireAllNonNull(name, startDate, endDate, startTime, endTime, description, tags);
+        this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startTime = startTime;
@@ -43,8 +43,8 @@ public class Task {
         this.tags.addAll(tags);
     }
 
-    public Topic getTopic() {
-        return topic;
+    public Name getName() {
+        return name;
     }
 
     public StartDate getStartDate() {
@@ -85,11 +85,12 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getTopic().equals(getTopic())
+                && otherTask.getName().equals(getName())
                 && otherTask.getStartDate().equals(getStartDate())
-                && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getStartTime().equals(getStartTime())
-                && otherTask.getEndTime().equals(getEndTime());
+                && otherTask.getEndDate().equals(getEndDate())
+                && otherTask.getEndTime().equals(getEndTime())
+                && otherTask.getDescription().equals(getDescription());
     }
 
     /**
@@ -107,10 +108,10 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getTopic().equals(getTopic())
+        return otherTask.getName().equals(getName())
                 && otherTask.getStartDate().equals(getStartDate())
-                && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getStartTime().equals(getStartTime())
+                && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getEndTime().equals(getEndTime())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags());
@@ -119,13 +120,13 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(topic, startDate, endDate, startTime, endTime, description, tags);
+        return Objects.hash(name, startDate, startTime, endDate, endTime, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTopic())
+        builder.append(getName())
                 .append(" StartDate: ")
                 .append(getStartDate())
                 .append(" StartTime: ")
