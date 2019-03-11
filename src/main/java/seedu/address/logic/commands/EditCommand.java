@@ -174,7 +174,7 @@ public class EditCommand extends Command {
 
 
         public EditTaskDescriptor(Description description, Duration duration, EndDate endDate, EndTime endTime,
-				Name name, StartDate startDate, StartTime startTime) {
+				Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
 			super();
 			this.description = description;
 			this.duration = duration;
@@ -183,12 +183,13 @@ public class EditCommand extends Command {
 			this.name = name;
 			this.startDate = startDate;
 			this.startTime = startTime;
+			this.tags = tags;
 		}
 
 
 
 		public EditTaskDescriptor(Description description, EndDate endDate, EndTime endTime, Name name,
-				StartDate startDate, StartTime startTime) {
+				StartDate startDate, StartTime startTime, Set<Tag> tags) {
 			super();
 			this.description = description;
 			this.endDate = endDate;
@@ -196,6 +197,7 @@ public class EditCommand extends Command {
 			this.name = name;
 			this.startDate = startDate;
 			this.startTime = startTime;
+			this.tags = tags;
 		}
 
 
@@ -212,6 +214,7 @@ public class EditCommand extends Command {
             setEndTime(toCopy.endTime);
             setStartDate(toCopy.startDate);
             setStartTime(toCopy.startTime);
+            setTags(toCopy.tags);
         }
 
 
