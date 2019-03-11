@@ -31,7 +31,7 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, StartDate startDate, EndDate endDate, StartTime startTime, EndTime endTime,
+    public Task(Name name, StartDate startDate, StartTime startTime, EndDate endDate, EndTime endTime,
                 Description description, Set<Tag> tags) {
         requireAllNonNull(name, startDate, endDate, startTime, endTime, description, tags);
         this.name = name;
@@ -87,9 +87,10 @@ public class Task {
         return otherTask != null
                 && otherTask.getName().equals(getName())
                 && otherTask.getStartDate().equals(getStartDate())
-                && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getStartTime().equals(getStartTime())
-                && otherTask.getEndTime().equals(getEndTime());
+                && otherTask.getEndDate().equals(getEndDate())
+                && otherTask.getEndTime().equals(getEndTime())
+                && otherTask.getDescription().equals(getDescription());
     }
 
     /**
@@ -109,8 +110,8 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getStartDate().equals(getStartDate())
-                && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getStartTime().equals(getStartTime())
+                && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getEndTime().equals(getEndTime())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags());
@@ -119,7 +120,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, startDate, endDate, startTime, endTime, description, tags);
+        return Objects.hash(name, startDate, startTime, endDate, endTime, description, tags);
     }
 
     @Override
