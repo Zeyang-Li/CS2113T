@@ -44,10 +44,10 @@ public class FindCommand {
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
-
+    
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
+        return other == this 
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
