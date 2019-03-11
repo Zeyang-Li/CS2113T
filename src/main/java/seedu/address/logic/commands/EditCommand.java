@@ -60,7 +60,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
-    
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -111,7 +110,6 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Task createEditedTask(Task personToEdit, EditTaskDescriptor editTaskDescriptor) {
-    	
         assert personToEdit != null;
 
 
@@ -120,7 +118,7 @@ public class EditCommand extends Command {
         StartDate updatedStartDate = editTaskDescriptor.getStartDate();
         StartTime updatedStartTime = editTaskDescriptor.getStartTime();
         EndDate updatedEndDate = editTaskDescriptor.getEndDate();
-        EndTime updatedEndTime = editTaskDescriptor.getEndTime(); 
+        EndTime updatedEndTime = editTaskDescriptor.getEndTime();
         Set<Tag> updatedTags = editTaskDescriptor.getTags();
 
         return new Task(updatedName, updatedStartDate, updatedStartTime, updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
@@ -158,7 +156,6 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
 
-    	
         private Description description;
         private Duration duration;
         private EndDate endDate;
@@ -226,8 +223,7 @@ public class EditCommand extends Command {
         }
 
 
-
-        
+    
 
 
 
@@ -347,7 +343,6 @@ public class EditCommand extends Command {
 
 
 
-	
 
 
 		/**
@@ -357,7 +352,6 @@ public class EditCommand extends Command {
 			return tags;
 		}
 
-		
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -449,12 +443,5 @@ public class EditCommand extends Command {
 				return false;
 			return true;
 		}
-
-
     }
-
-
-
-
-
 }
