@@ -25,25 +25,26 @@ import guitests.guihandles.BrowserPanelHandle;
 import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.MainMenuHandle;
 import guitests.guihandles.MainWindowHandle;
-import guitests.guihandles.PersonListPanelHandle;
+import guitests.guihandles.TaskListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.StatusBarFooterHandle;
 import seedu.address.TestApp;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.command.editing.ClearCommand;
-import seedu.address.logic.command.editing.FindCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.command.editing.SelectCommand;
-import seedu.address.model.AddressBook;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.logic.commands.SelectCommand;
+import seedu.address.model.Model;
+import seedu.address.model.TaskBook;
+import seedu.address.testutil.TypicalTasks;
 import seedu.address.ui.BrowserPanel;
 import seedu.address.ui.CommandBox;
 
 /**
- * A system test class for AddressBook, which provides access to handles of GUI components and helper methods
+ * A system test class for TaskBook, which provides access to handles of GUI components and helper methods
  * for test verification.
  */
-public abstract class AddressBookSystemTest {
+public abstract class TaskBookSystemTest {
     @ClassRule
     public static ClockRule clockRule = new ClockRule();
 
@@ -78,8 +79,8 @@ public abstract class AddressBookSystemTest {
     /**
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
-    protected AddressBook getInitialData() {
-        return TypicalPersons.getTypicalAddressBook();
+    protected TaskBook getInitialData() {
+        return TypicalTasks.getTypicalTaskBook();
     }
 
     /**
@@ -97,8 +98,8 @@ public abstract class AddressBookSystemTest {
         return mainWindowHandle.getCommandBox();
     }
 
-    public PersonListPanelHandle getPersonListPanel() {
-        return mainWindowHandle.getPersonListPanel();
+    public TaskListPanelHandle getTaskListPanel() {
+        return mainWindowHandle.getTaskListPanel();
     }
 
     public MainMenuHandle getMainMenu() {
@@ -133,52 +134,52 @@ public abstract class AddressBookSystemTest {
     }
 
     /**
-     * Displays all persons in the address book.
+     * Displays all tasks in the address book.
      */
-    protected void showAllPersons() {
+    protected void showAllTasks() {
         executeCommand(ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getAddressBook().getPersonList().size(), getModel().getFilteredPersonList().size());
+        assertEquals(getModel().getTaskBook().getTaskList().size(), getModel().getFilteredTaskList().size());
     }
 
     /**
-     * Displays all persons with any parts of their names matching {@code keyword} (case-insensitive).
+     * Displays all tasks with any parts of their names matching {@code keyword} (case-insensitive).
      */
-    protected void showPersonsWithName(String keyword) {
+    protected void showTasksWithName(String keyword) {
         executeCommand(FindCommand.COMMAND_WORD + " " + keyword);
-        assertTrue(getModel().getFilteredPersonList().size() < getModel().getAddressBook().getPersonList().size());
+        assertTrue(getModel().getFilteredTaskList().size() < getModel().getTaskBook().getTaskList().size());
     }
 
     /**
-     * Selects the person at {@code index} of the displayed list.
+     * Selects the task at {@code index} of the displayed list.
      */
-    protected void selectPerson(Index index) {
+    protected void selectTask(Index index) {
         executeCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
-        assertEquals(index.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
+        assertEquals(index.getZeroBased(), getTaskListPanel().getSelectedCardIndex());
     }
 
     /**
-     * Deletes all persons in the address book.
+     * Deletes all tasks in the task book.
      */
-    protected void deleteAllPersons() {
+    protected void deleteAllTasks() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getAddressBook().getPersonList().size());
+        assertEquals(0, getModel().getTaskBook().getTaskList().size());
     }
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
-     * {@code expectedResultMessage}, the storage contains the same person objects as {@code expectedModel}
-     * and the person list panel displays the persons in the model correctly.
+     * {@code expectedResultMessage}, the storage contains the same task objects as {@code expectedModel}
+     * and the task list panel displays the tasks in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
             Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
-        assertListMatching(getPersonListPanel(), expectedModel.getFilteredPersonList());
+        assertEquals(new TaskBook(expectedModel.getTaskBook()), testApp.readStorageTaskBook());
+        assertListMatching(getTaskListPanel(), expectedModel.getFilteredTaskList());
     }
 
     /**
-     * Calls {@code BrowserPanelHandle}, {@code PersonListPanelHandle} and {@code StatusBarFooterHandle} to remember
+     * Calls {@code BrowserPanelHandle}, {@code TaskListPanelHandle} and {@code StatusBarFooterHandle} to remember
      * their current state.
      */
     private void rememberStates() {
@@ -186,7 +187,7 @@ public abstract class AddressBookSystemTest {
         getBrowserPanel().rememberUrl();
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
-        getPersonListPanel().rememberSelectedPersonCard();
+        getTaskListPanel().rememberSelectedTaskCard();
     }
 
     /**
@@ -196,18 +197,18 @@ public abstract class AddressBookSystemTest {
      */
     protected void assertSelectedCardDeselected() {
         assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
-        assertFalse(getPersonListPanel().isAnyCardSelected());
+        assertFalse(getTaskListPanel().isAnyCardSelected());
     }
 
     /**
-     * Asserts that the browser's url is changed to display the details of the person in the person list panel at
+     * Asserts that the browser's url is changed to display the details of the task in the task list panel at
      * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
      * @see BrowserPanelHandle#isUrlChanged()
-     * @see PersonListPanelHandle#isSelectedPersonCardChanged()
+     * @see TaskListPanelHandle#isSelectedTaskCardChanged()
      */
     protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) {
-        getPersonListPanel().navigateToCard(getPersonListPanel().getSelectedCardIndex());
-        String selectedCardName = getPersonListPanel().getHandleToSelectedCard().getName();
+        getTaskListPanel().navigateToCard(getTaskListPanel().getSelectedCardIndex());
+        String selectedCardName = getTaskListPanel().getHandleToSelectedCard().getName();
         URL expectedUrl;
         try {
             expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + selectedCardName.replaceAll(" ", "%20"));
@@ -216,17 +217,17 @@ public abstract class AddressBookSystemTest {
         }
         assertEquals(expectedUrl, getBrowserPanel().getLoadedUrl());
 
-        assertEquals(expectedSelectedCardIndex.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
+        assertEquals(expectedSelectedCardIndex.getZeroBased(), getTaskListPanel().getSelectedCardIndex());
     }
 
     /**
-     * Asserts that the browser's url and the selected card in the person list panel remain unchanged.
+     * Asserts that the browser's url and the selected card in the task list panel remain unchanged.
      * @see BrowserPanelHandle#isUrlChanged()
-     * @see PersonListPanelHandle#isSelectedPersonCardChanged()
+     * @see TaskListPanelHandle#isSelectedTaskCardChanged()
      */
     protected void assertSelectedCardUnchanged() {
         assertFalse(getBrowserPanel().isUrlChanged());
-        assertFalse(getPersonListPanel().isSelectedPersonCardChanged());
+        assertFalse(getTaskListPanel().isSelectedTaskCardChanged());
     }
 
     /**
@@ -270,7 +271,7 @@ public abstract class AddressBookSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        assertListMatching(getPersonListPanel(), getModel().getFilteredPersonList());
+        assertListMatching(getTaskListPanel(), getModel().getFilteredTaskList());
         assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
                 getStatusBarFooter().getSaveLocation());
