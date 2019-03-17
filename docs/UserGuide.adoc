@@ -113,10 +113,10 @@ Examples:
 Edits the start time and end time of the task with ID 331 to be `12:00` and `14:00` respectively. Change the topic to `GET1018 tut`.
 
 
-=== Searching tasks by keywords: `search`
+=== Searching tasks by keywords: `find`
 
 Finds tasks whose topic or description contain any of the given keywords. +
-Alias: `s` +
+Alias: `f` +
 Format: `search KEYWORD [MORE_KEYWORDS] ...`
 
 ****
@@ -129,9 +129,9 @@ Format: `search KEYWORD [MORE_KEYWORDS] ...`
 
 Examples:
 
-* `search CS2113T` +
+* `find CS2113T` +
 Returns `CS2113T lecture`
-* `search Lecture` +
+* `f Lecture` +
 Returns `CS2113T lecture` and `CS3235 lecture`
 
 === Deleting a task : `delete`
