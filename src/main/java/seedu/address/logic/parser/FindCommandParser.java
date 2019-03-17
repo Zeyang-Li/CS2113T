@@ -8,6 +8,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
+/**
+ * Parses the given {@code String} of arguments.
+ */
 public class FindCommandParser {
 
     /**
