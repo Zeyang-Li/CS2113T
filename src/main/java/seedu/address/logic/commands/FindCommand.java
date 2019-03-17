@@ -19,7 +19,7 @@ import seedu.address.model.task.TaskContainsKeywordsPredicate;
  * Finds and lists all tasks in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String COMMAND_ALIAS = "f";
 
