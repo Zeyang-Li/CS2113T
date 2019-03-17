@@ -1,35 +1,28 @@
 package seedu.address.logic.commands;
 
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
-
-//import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-//import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
+
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.logic.parser.CliSyntax.*;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-//import static java.util.Objects.requireNonNull;
-
-//import seedu.address.commons.core.Messages;
-//import seedu.address.logic.CommandHistory;
-//import seedu.address.model.Model;
 
 /**
  * Finds and lists all tasks in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand {
+public class FindCommand extends Command{
+
     public static final String COMMAND_WORD = "find";
+
     public static final String COMMAND_ALIAS = "f";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " cs2113t cs2101 cs3230";
+            + "Example: " + COMMAND_WORD + " cs2101 cs2113t";
 
     private final TaskContainsKeywordsPredicate predicate;
 
@@ -40,14 +33,14 @@ public class FindCommand {
     //@Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        //model.updateFilteredPersonList(predicate);
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this
+        return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
