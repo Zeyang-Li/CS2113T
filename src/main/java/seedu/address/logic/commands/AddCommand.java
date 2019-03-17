@@ -1,18 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Add a task to Tasketch
@@ -31,13 +25,13 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Revise CS2113T "
-            + PREFIX_STARTDATE + "031519"
-            + PREFIX_STARTTIME + "1400 "
-            + PREFIX_ENDDATE + "031519"
-            + PREFIX_ENDTIME + "1700 "
+            + PREFIX_STARTDATE + "03-15-19 "
+            + PREFIX_STARTTIME + "14.00 "
+            + PREFIX_ENDDATE + "03-15-19 "
+            + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
-            + PREFIX_TAG + "urgent"
-            + PREFIX_TAG + "due soon...\n";
+            + PREFIX_TAG + "urgent "
+            + PREFIX_TAG + "duesoon\n";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This Task already exists in Tasketch";
