@@ -115,7 +115,7 @@ tasks.coveralls {
 task(nonGuiTests)
 
 // Run `test` task if `guiTests` or `nonGuiTests` is specified
-guiTests.dependsOn test
+//guiTests.dependsOn test
 nonGuiTests.dependsOn test
 
 //task(allTests)
