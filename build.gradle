@@ -143,7 +143,7 @@ test {
     }
 
     doFirst {
-        //boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
+        boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
         //boolean runNonGuiTests = gradle.taskGraph.hasTask(nonGuiTests)
 
         //if (!runGuiTests && !runNonGuiTests) {
@@ -151,9 +151,9 @@ test {
         //    runNonGuiTests = true
         //}
 
-        //if (runNonGuiTests) {
+        if (runNonGuiTests) {
         test.include 'seedu/address/**'
-        //}
+        }
 
         //if (runGuiTests) {
             //test.include 'systemtests/**'
