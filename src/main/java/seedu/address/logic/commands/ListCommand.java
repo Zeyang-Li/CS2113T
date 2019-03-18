@@ -24,7 +24,6 @@ public class ListCommand extends Command {
             "2. td/tmr: list td/tmr       list all the tasks of today/tommorow" +
             "3. before/after DATE: list before/after 25-03-19    list all the tasks which are before/after 25th March, 2019";
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
-    
 
 
     @Override
@@ -34,17 +33,9 @@ public class ListCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-
     public static ListCommand listAllTask() {
         return new ListCommand();
     }
 
-
-    public static ListCommand listBADate(String[] arguments){
-        return new ListCommand();
-    }
-
-
-
-
 }
+
