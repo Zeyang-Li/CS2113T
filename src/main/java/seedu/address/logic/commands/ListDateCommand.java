@@ -35,9 +35,6 @@ public class ListDateCommand extends Command {
      */
     private boolean meetRequirement(Task task) {
 
-        String[] date_info = specifiedDate.split("-");
-        if (date_info.length == 3) {
-
         String[] dateInfo = specifiedDate.split("-");
         if (dateInfo.length == 3) {
 
@@ -47,22 +44,17 @@ public class ListDateCommand extends Command {
             } else {
                 return false;
             }
+            
         } else if (dateInfo.length == 2) {
 
             final String taskDate = task.getStartDate().value;
             String[] splitDate = taskDate.split("-");
 
-            if (splitDate[1].equals(date_info[0]) && splitDate[2].equals(date_info[1])) {
-
             if (splitDate[1].equals(dateInfo[0]) && splitDate[2].equals(dateInfo[1])) {
-
                 return true;
             } else {
                 return false;
             }
-
-            }
-        }
         }
         return false;
     }
