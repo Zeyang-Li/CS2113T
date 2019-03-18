@@ -13,28 +13,28 @@ Tasketch is a desktop address book application used for teaching Software Engine
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to exit the programme and clear some tasks*
-** What it does: What it does: allows the user to exit the programme and to clear some tasks that are no longer needed on the daily basis or the monthly basis.
-** Justification: This feature improves the product significantly because a user can make clear a branch of tasks in the app.
+* *Major enhancement*: added *the ability to clear all tasks or clear tasks which start from one specific date or month, undo and redo the previous command*
+** What it does: What it does: allows the user to exit the programme and to clear some tasks that are no longer needed on the daily basis or the monthly basis or even clear all tasks in the storage. Besides, it also allow users to undo and redo the previous command.
+** Justification: This feature improves the product significantly because a user can make clear a branch of tasks in the app and recover form the previous command in case users have mad a mistake.
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Minor enhancement*: the ability to open help window and to exit the program.
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** Managed releases `v1.1` - `v1.2` (3 releases) on GitHub
 ** Enhancements to existing features:
 *** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
 *** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 ** Documentation:
 *** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
+*** PRs reviewed (with non-trivial review comments): https://github.com[#28], https://github.com[#31], https://github.com[#32], https://github.com[#35], https://github.com[#52], https://github.com[#58], https://github.com[#65]
+*** Contributed to forum discussions (examples:  https://github.com[])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
 *** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
 ** Tools:
@@ -50,9 +50,12 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[tag=undoredo]
-
-//include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=clear]
+include::../UserGuide.adoc[tag=history]
+include::../UserGuide.adoc[tag=undo]
+include::../UserGuide.adoc[tag=redo]
+include::../UserGuide.adoc[tag=help]
+include::../UserGuide.adoc[tag=exit]
 
 == Contributions to the Developer Guide
 

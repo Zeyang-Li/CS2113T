@@ -161,14 +161,14 @@ Format: +
 1. `clear` +
 Usage: clear all the tasks in Tasketch +
 2.`clear DATE` +
-Usage: clear all the tasks in the specified date
+Usage: clear all the tasks starting from the specified date
 
 Examples:
 
 * `clear 21-02-2019` +
-Clear all the tasks in February 21st, 2019.
+Clear all the tasks which start from February 21st, 2019.
 * `clear 02-2019` +
-Clear all the tasks in February, 2019.
+Clear all the tasks which start from February, 2019.
 * `clear` +
 Clear all the tasks in the storage.
 
