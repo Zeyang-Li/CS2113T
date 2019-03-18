@@ -160,7 +160,7 @@ public class EditCommand extends Command {
 
 
         public EditTaskDescriptor(Description description, EndDate endDate, EndTime endTime,
-				Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
+                            Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
 			super();
             this.description = description;
             this.endDate = endDate;
@@ -242,7 +242,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
- 		/**
+        /**
 		 * @param name2 the name to set
 		 */
         public void setName(Name name2) {
