@@ -188,21 +188,20 @@ public class EditCommand extends Command {
         /**
          * Returns true if at least one field is edited.
          */
-
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, description, endDate, endTime, startDate, startTime);
         }
 
         /**
-		 * @return the description
-		 */
+         * @return the description
+         */
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
-        /**
-		 * @param description the description to set
-		 */
+        /*
+         * @param description the description to set
+         */
         public void setDescription(Description description) {
             this.description = description;
         }
@@ -215,8 +214,8 @@ public class EditCommand extends Command {
         }
 
         /**
-		 * @param endDate the endDate to set
-		 */
+         * @param endDate the endDate to set
+         */
         public void setEndDate(EndDate endDate) {
             this.endDate = endDate;
         }
