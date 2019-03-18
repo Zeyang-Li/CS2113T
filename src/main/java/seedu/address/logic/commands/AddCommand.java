@@ -36,8 +36,8 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "15-03-19"
             + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
-            + PREFIX_TAG + "urgent"
-            + PREFIX_TAG + "due soon...\n";
+            + PREFIX_TAG + "urgent "
+            + PREFIX_TAG + "duesoon\n";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";

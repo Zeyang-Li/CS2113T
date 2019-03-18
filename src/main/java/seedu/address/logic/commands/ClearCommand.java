@@ -1,27 +1,28 @@
-package seedu.address.logic.command.editing;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.TaskBook;
+
+
 
 /**
- * Clears the address book.
+ * Clears the Tasketch.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String COMMAND_ALIAS = "c";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Tasketch has been cleared!";
 
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
-        model.commitAddressBook();
+        model.setTaskBook(new TaskBook());
+        model.commitTaskBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

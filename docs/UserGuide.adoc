@@ -151,7 +151,7 @@ Examples:
 * `list` +
 `delete 331` +
 Deletes the task with taskID 331 in Tasketch.
-* `search cs2113t` +
+* `find cs2113t` +
 `delete 421` +
 Deletes the task with taskID 421 in Tasketch.
 
@@ -174,6 +174,49 @@ Clear all the tasks in February 21st, 2019.
 Clear all the tasks in February, 2019.
 * `clear all` +
 Clear all the tasks in the storage.
+
+
+=== Listing entered commands : `history`
+
+Lists all the commands that you have entered in reverse chronological order. +
+Format: `history`
+
+=== Undoing previous command : `undo`
+
+Restores the Tasetch to the state before the previous undoable command was executed. +
+Format: `undo`
+
+Examples:
+
+* `delete 1` +
+`list` +
+`undo` (reverses the `delete 1` command)
+* `delete 1` +
+`clear` +
+`undo`  (reverses the `delete 1` command) +
+`undo` (reverses the `clear` command)
+
+
+=== Redoing the previously undone command : `redo`
+
+Reverses the most recent `undo` command. +
+Format: `redo`
+
+Examples:
+
+* `delete 1` +
+ `undo` (reverses the `delete 1` command) +
+ `redo` (reapplies the `delete 1` command)
+* `delete 1` +
+   `redo` +
+   The `redo` command fails as there are no undo commands executed previously.
+* `delete 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete 1` command) +
+`redo` (reapplies the `delete 1` command) +
+`redo` (reapplies the `clear` command)
+
 
 === Exiting the program : `exit`
 
@@ -206,5 +249,8 @@ e.g. `edit 331 s/1200 e/1400 t/GET1018 tut`
 e.g. `search CS2113T`
 * *List* : `list [DATE]` +
 e.g. `list 02-2019`
+* *History* : `history`
+* *Undo* : `undo`
+* *Redo* : `redo`
 * *Help* : `help`
 * *Exit* : `exit`
