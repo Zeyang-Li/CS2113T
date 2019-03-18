@@ -23,24 +23,24 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Tasketch. "
             + "Parameters: "
             + PREFIX_NAME + "TASK NAME "
-            + PREFIX_STARTDATE + "START_DATE (omit colon) "
-            + PREFIX_STARTTIME + "START_TIME (omit colon) "
-            + PREFIX_ENDDATE + "END_DATE (omit colon) "
-            + PREFIX_ENDTIME + "END_TIME (omit colon) "
+            + PREFIX_STARTDATE + "START_DATE "
+            + PREFIX_STARTTIME + "START_TIME "
+            + PREFIX_ENDDATE + "END_DATE "
+            + PREFIX_ENDTIME + "END_TIME "
             + PREFIX_DESCRIPTION + "CONTENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Revise CS2113T "
-            + PREFIX_STARTDATE + "03-15-19 "
+            + PREFIX_STARTDATE + "15-03-19"
             + PREFIX_STARTTIME + "14.00 "
-            + PREFIX_ENDDATE + "03-15-19 "
+            + PREFIX_ENDDATE + "15-03-19"
             + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
-            + PREFIX_TAG + "urgent"
-            + PREFIX_TAG + "due soon...\n";
+            + PREFIX_TAG + "urgent "
+            + PREFIX_TAG + "duesoon\n";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This Task already exists in Tasketch";
+    public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";
     private Task toAdd;
 
     /**
@@ -56,7 +56,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addTask(toAdd);
