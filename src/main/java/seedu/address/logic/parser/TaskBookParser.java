@@ -83,21 +83,24 @@ public class TaskBookParser {
         case ListCommand.COMMAND_WORD:
         case ListCommand.COMMAND_ALIAS:
             String key = new ListCommandParser().parse(arguments);
-            if(key.equals("ListCommand")){
+            if (key.equals("ListCommand")) {
                 return new ListCommand();
-            } else if(key.equals("ListtdCommand")){
+            } else if (key.equals("ListtdCommand")) {
                 return new ListtdCommand();
-            } else{
+            } else {
                 return new ListDateCommand(key);
             }
+
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
             return new HistoryCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
         case UndoCommand.COMMAND_WORD:
         case UndoCommand.COMMAND_ALIAS:
             return new UndoCommand();
@@ -105,6 +108,7 @@ public class TaskBookParser {
         case RedoCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
+            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
