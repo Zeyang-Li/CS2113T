@@ -80,7 +80,7 @@ public class TaskBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        /*
+
         case UndoCommand.COMMAND_WORD:
         case UndoCommand.COMMAND_ALIAS:
             return new UndoCommand();
@@ -88,7 +88,7 @@ public class TaskBookParser {
         case RedoCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
-        */
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
