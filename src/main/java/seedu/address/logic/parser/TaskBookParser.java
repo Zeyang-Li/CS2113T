@@ -15,6 +15,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -87,14 +89,15 @@ public class TaskBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        /*
+
         case UndoCommand.COMMAND_WORD:
         case UndoCommand.COMMAND_ALIAS:
             return new UndoCommand();
+
         case RedoCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
-        */
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
