@@ -89,12 +89,13 @@ import seedu.address.model.task.Task;
         }
 
 
-        Task TaskToEdit = lastShownList.get(index.getZeroBased());       
-        Task editedTask = createEditedTask(TaskToEdit, editTaskDescriptor);     
+        Task TaskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedTask(TaskToEdit, editTaskDescriptor);
+
         if (!TaskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-   
+
         model.setTask(TaskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.commitTaskBook();
@@ -117,7 +118,7 @@ import seedu.address.model.task.Task;
         StartDate updatedStartDate = editTaskDescriptor.getStartDate().orElse(personToEdit.getStartDate());
         StartTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(personToEdit.getStartTime());
         EndDate updatedEndDate = editTaskDescriptor.getEndDate().orElse(personToEdit.getEndDate());
-        EndTime updatedEndTime = editTaskDescriptor.getEndTime().orElse(personToEdit.getEndTime()); 
+        EndTime updatedEndTime = editTaskDescriptor.getEndTime().orElse(personToEdit.getEndTime());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(personToEdit.getTags());
 
         System.out.println(editTaskDescriptor.getName());
