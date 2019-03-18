@@ -65,7 +65,7 @@ public class TaskBookParser {
         case SelectCommand.COMMAND_WORD:
         case SelectCommand.COMMAND_ALIAS:
             return new SelectCommandParser().parse(arguments);
-        */    
+        */
         case ClearCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_ALIAS:
             return new ClearCommand();
