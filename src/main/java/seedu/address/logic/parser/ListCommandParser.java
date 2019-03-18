@@ -20,7 +20,7 @@ public class ListCommandParser {
                 return "ListCommand";
             } else if (arguments[0].equals("td")) {
                 return "ListtdCommand";
-            } else if (is_Valid_Date_Format(arguments[0])) {
+            } else if (isValidDateFormat(arguments[0])) {
                 return arguments[0];
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
@@ -33,7 +33,7 @@ public class ListCommandParser {
     /**
      * Check if user input is of the correct format
      */
-    public boolean is_Valid_Date_Format(String str) {
+    public boolean isValidDateFormat(String str) {
         String[] str_split = str.split("-");
         if (str_split.length == 2 || str_split.length == 3) {
             return true;
