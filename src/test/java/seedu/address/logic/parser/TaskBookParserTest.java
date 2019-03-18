@@ -1,19 +1,15 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.command.editing.ClearCommand;
-import seedu.address.logic.command.editing.DeleteCommand;
-import seedu.address.logic.command.editing.HelpCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -40,7 +36,7 @@ public class TaskBookParserTest {
         assertEquals(new AddCommand(task), command);
     }
 
-    @Test
+    /*@Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -65,7 +61,7 @@ public class TaskBookParserTest {
                 DeleteCommand.COMMAND_ALIAS + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
-    /*
+
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();

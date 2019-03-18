@@ -3,14 +3,14 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.task.Task;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.EndDate;
+import seedu.address.model.task.EndTime;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
 import seedu.address.model.task.StartTime;
-import seedu.address.model.task.EndDate;
-import seedu.address.model.task.EndTime;
-import seedu.address.model.task.Description;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
