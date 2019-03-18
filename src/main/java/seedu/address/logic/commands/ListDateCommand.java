@@ -65,7 +65,6 @@ public class ListDateCommand extends Command {
         }
         }
         return false;
-       
     }
 
     @Override
