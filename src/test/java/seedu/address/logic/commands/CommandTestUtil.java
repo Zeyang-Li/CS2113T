@@ -58,7 +58,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CS2113 = " " + PREFIX_TAG + VALID_TAG_CS2113;
     public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG + VALID_TAG_CS2101;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "cs2101&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + ""; // blank not allowed in names
     public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "a"; // 'a' not allowed in startDates
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "a"; // 'a' not allowed in startTimes
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "a"; // 'a' not allowed in endDates
