@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ReadOnlyProperty;
@@ -63,6 +64,8 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deleteTask(Task target);
+
+    void deleteTaskList(List<Task> targets);
 
     /**
      * Adds the given person.

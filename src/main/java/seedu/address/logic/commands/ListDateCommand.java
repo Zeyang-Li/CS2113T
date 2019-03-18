@@ -34,19 +34,28 @@ public class ListDateCommand extends Command {
      * A boolean function that help predicate to select specific tasks.
      */
     private boolean meetRequirement(Task task) {
+<<<<<<< HEAD
         String[] date_info = specifiedDate.split("-");
         if (date_info.length == 3) {
+=======
+        String[] dateInfo = specifiedDate.split("-");
+        if (dateInfo.length == 3) {
+>>>>>>> 18100ea2baabfae874bbe9d736603669502b76b4
             final String taskDate = task.getStartDate().value;
             if (taskDate.equals(specifiedDate)) {
                 return true;
             } else {
                 return false;
             }
-        } else if (date_info.length == 2) {
+        } else if (dateInfo.length == 2) {
 
             final String taskDate = task.getStartDate().value;
             String[] splitDate = taskDate.split("-");
+<<<<<<< HEAD
             if (splitDate[1].equals(date_info[0]) && splitDate[2].equals(date_info[1])) {
+=======
+            if (splitDate[1].equals(dateInfo[0]) && splitDate[2].equals(dateInfo[1])) {
+>>>>>>> 18100ea2baabfae874bbe9d736603669502b76b4
                 return true;
             } else {
                 return false;
