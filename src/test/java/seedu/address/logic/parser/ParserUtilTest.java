@@ -16,30 +16,18 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.EndDate;
-import seedu.address.model.task.EndTime;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
-import seedu.address.model.task.StartTime;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.Assert;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "Do CS2101&";
     private static final String INVALID_STARTDATE = "19-03-01";
-    private static final String INVALID_STARTTIME = "12.1@";
-    private static final String INVALID_ENDDATE = "19-03-01";
-    private static final String INVALID_ENDTIME = "12.1@";
-    private static final String INVALID_DECSRIPTION = "Do //";
     private static final String INVALID_TAG = "#cs2101";
 
     private static final String VALID_NAME = "Do CS2101";
     private static final String VALID_STARTDATE = "03-01-19";
-    private static final String VALID_STARTTIME = "12.10";
-    private static final String VALID_ENDDATE = "03-01-19";
-    private static final String VALID_ENDTIME = "12.10";
-    private static final String VALID_DECSRIPTION = "Do something";
     private static final String VALID_TAG_1 = "important";
     private static final String VALID_TAG_2 = "cs2101";
 

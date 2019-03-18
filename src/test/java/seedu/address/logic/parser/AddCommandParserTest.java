@@ -13,10 +13,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DES
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.STARTDATE_DESC_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STARTDATE_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2101;
@@ -26,8 +26,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2113;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.CS2101;
@@ -36,6 +36,7 @@ import static seedu.address.testutil.TypicalTasks.CS2113;
 import org.junit.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -43,7 +44,6 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
 import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandParserTest {

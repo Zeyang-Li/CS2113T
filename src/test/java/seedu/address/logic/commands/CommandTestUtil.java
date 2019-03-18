@@ -19,8 +19,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBook;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -62,14 +62,14 @@ public class CommandTestUtil {
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "a"; // 'a' not allowed in startTimes
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "a"; // 'a' not allowed in endDates
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "a"; // 'a' not allowed in endTimes
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;// empty string not allowed for desc
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty string not allowed for desc
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-//   public static final EditCommand.EditPersonDescriptor DESC_AMY;
-//   public static final EditCommand.EditPersonDescriptor DESC_BOB;
+   //public static final EditCommand.EditPersonDescriptor DESC_AMY;
+   //public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     /**
      * Executes the given {@code command}, confirms that <br>

@@ -1,19 +1,19 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDDATE_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDDATE_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDDATE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDDATE_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2113;
 
 import java.util.ArrayList;
 import java.util.Arrays;

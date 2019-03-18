@@ -1,10 +1,8 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -37,8 +35,8 @@ public class TaskBookParserTest {
                 + TaskUtil.getTaskDetails(task));
         assertEquals(new AddCommand(task), command);
     }
-/*
-    @Test
+
+    /*@Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);

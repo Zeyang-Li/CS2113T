@@ -20,10 +20,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.TaskBook;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.model.TaskBook;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandTest {
