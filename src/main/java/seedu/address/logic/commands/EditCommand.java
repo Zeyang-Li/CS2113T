@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -32,11 +33,11 @@ import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
 
 
- /**
+/**
   * Edits the details of an existing person in the address book.
   */
 
- public class EditCommand extends Command {
+public class EditCommand extends Command {
 
 
     public static final String COMMAND_WORD = "edit";
@@ -63,7 +64,7 @@ import seedu.address.model.task.Task;
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
-     /**
+    /**
       * @param index of the Task in the filtered Task list to edit
       * @param editPersonDescriptor details to edit the person with
       */
@@ -76,7 +77,7 @@ import seedu.address.model.task.Task;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
- 	@Override
+    @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
@@ -86,20 +87,20 @@ import seedu.address.model.task.Task;
         }
 
 
-        Task TaskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(TaskToEdit, editTaskDescriptor);
+        Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        if (!TaskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.setTask(TaskToEdit, editedTask);
+        model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
-     /**
+    /**
      * Creates and returns a {@code Task} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
@@ -116,10 +117,11 @@ import seedu.address.model.task.Task;
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(personToEdit.getTags());
 
         System.out.println(editTaskDescriptor.getName());
-        return new Task(updatedName, updatedStartDate, updatedStartTime, updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
+        return new Task(updatedName, updatedStartDate, updatedStartTime, 
+        		updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
     }
 
-     @Override
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {
@@ -138,7 +140,7 @@ import seedu.address.model.task.Task;
     }
 
 
-     /**
+    /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
@@ -160,7 +162,7 @@ import seedu.address.model.task.Task;
         public EditTaskDescriptor(Description description, EndDate endDate, EndTime endTime,
 				Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
 			super();
-			this.description = description;
+            this.description = description;
 			this.endDate = endDate;
 			this.endTime = endTime;
 			this.name = name;
@@ -183,7 +185,7 @@ import seedu.address.model.task.Task;
             setTags(toCopy.tags);
         }
 
-         /**
+        /**
          * Returns true if at least one field is edited.
          */
 
@@ -191,7 +193,7 @@ import seedu.address.model.task.Task;
             return CollectionUtil.isAnyNonNull(name, description, endDate, endTime, startDate, startTime);
         }
 
-         /**
+        /**
 		 * @return the description
 		 */
         public Optional<Description> getDescription() {
@@ -229,22 +231,22 @@ import seedu.address.model.task.Task;
  		/**
 		 * @param endTime the endTime to set
 		 */
-		public void setEndTime(EndTime endTime) {
-			this.endTime = endTime;
-		}
+        public void setEndTime(EndTime endTime) {
+            this.endTime = endTime;
+        }
 
- 		/**
+        /**
 		 * @return the name
 		 */
-		public Optional<Name> getName() {
+        public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
  		/**
 		 * @param name2 the name to set
 		 */
-		public void setName(Name name2) {
-			this.name = name2;
+        public void setName(Name name2) {
+            this.name = name2;
 		}
 
  		/**
@@ -282,15 +284,13 @@ import seedu.address.model.task.Task;
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-
-         /**
+        /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
-
 
 		@Override
 		public String toString() {
@@ -299,7 +299,5 @@ import seedu.address.model.task.Task;
 					+ "startDate=" + startDate + ", startTime="
 					+ startTime + "]";
 		}
-
     }
-
 }
