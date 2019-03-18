@@ -71,10 +71,6 @@ public class ClearDateCommand extends Command {
             }
         }
 
-//        if (count == 0) {
-//            throw new CommandException(MESSAGE_FAILURE);
-//        }
-
         model.deleteTaskList(tasksToBeDeleted);
         model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, count, specificDate));

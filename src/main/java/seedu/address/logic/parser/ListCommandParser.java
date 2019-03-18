@@ -34,8 +34,8 @@ public class ListCommandParser {
      * Check if user input is of the correct format
      */
     public boolean isValidDateFormat(String str) {
-        String[] str_split = str.split("-");
-        if (str_split.length == 2 || str_split.length == 3) {
+        String[] strSplit = str.split("-");
+        if (strSplit.length == 2 || strSplit.length == 3) {
             return true;
         } else {
             return false;

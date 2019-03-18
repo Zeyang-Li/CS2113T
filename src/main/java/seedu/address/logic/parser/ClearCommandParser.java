@@ -32,8 +32,8 @@ public class ClearCommandParser {
      * Check if user input is of the correct format
      */
     public boolean isValidDateFormat(String str) {
-        String[] str_split = str.split("-");
-        if (str_split.length == 2 || str_split.length == 3) {
+        String[] strSplited = str.split("-");
+        if (strSplited.length == 2 || strSplited.length == 3) {
             return true;
         } else {
             return false;
