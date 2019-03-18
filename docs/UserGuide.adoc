@@ -91,7 +91,7 @@ Examples:
 Usage: list all the tasks in February, 2019
 * `list 20-02-2019` +
 Usage: list all the tasks in February 20th, 2019
-* `list all` +
+* `list` +
 Usage: list all the tasks in the storage
 
 === Editing a task : `edit`
@@ -161,7 +161,7 @@ Deletes the task with taskID 421 in Tasketch.
 Clears all tasks of the specified date from Tasketch. +
 Alias: `c` +
 Format: +
-1. `clear all` +
+1. `clear` +
 Usage: clear all the tasks in Tasketch +
 2.`clear DATE` +
 Usage: clear all the tasks in the specified date
@@ -172,7 +172,7 @@ Examples:
 Clear all the tasks in February 21st, 2019.
 * `clear 02-2019` +
 Clear all the tasks in February, 2019.
-* `clear all` +
+* `clear` +
 Clear all the tasks in the storage.
 
 
