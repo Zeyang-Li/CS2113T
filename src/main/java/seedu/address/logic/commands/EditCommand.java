@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -32,7 +30,6 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
 import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
-
 
 
  /**
@@ -102,8 +99,6 @@ import seedu.address.model.task.Task;
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
-
-
      /**
      * Creates and returns a {@code Task} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -111,7 +106,6 @@ import seedu.address.model.task.Task;
     private static Task createEditedTask(Task personToEdit, EditTaskDescriptor editTaskDescriptor) {
 
         assert personToEdit != null;
-
 
         Name updatedName = editTaskDescriptor.getName().orElse(personToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(personToEdit.getDescription());
@@ -125,8 +119,6 @@ import seedu.address.model.task.Task;
         return new Task(updatedName, updatedStartDate, updatedStartTime, updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
     }
 
-
-
      @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -134,21 +126,16 @@ import seedu.address.model.task.Task;
             return true;
         }
 
-
-
-         // instanceof handles nulls
+        // instanceof handles nulls
         if (!(other instanceof EditCommand)) {
             return false;
         }
 
-
-
-         // state check
+        // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
                 && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
-
 
 
      /**
@@ -182,9 +169,6 @@ import seedu.address.model.task.Task;
 			this.tags = tags;
 		}
 
-
-
-
  		/**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
@@ -198,7 +182,6 @@ import seedu.address.model.task.Task;
             setStartTime(toCopy.startTime);
             setTags(toCopy.tags);
         }
-
 
          /**
          * Returns true if at least one field is edited.
@@ -215,17 +198,12 @@ import seedu.address.model.task.Task;
 			return Optional.ofNullable(description);
 		}
 
-
-
  		/**
 		 * @param description the description to set
 		 */
 		public void setDescription(Description description) {
 			this.description = description;
 		}
-
-
-
 
  		/**
 		 * @return the endDate
@@ -241,14 +219,12 @@ import seedu.address.model.task.Task;
 			this.endDate = endDate;
 		}
 
-
  		/**
 		 * @return the endTime
 		 */
 		public Optional<EndTime> getEndTime() {
 			return Optional.ofNullable(endTime);
 		}
-
 
  		/**
 		 * @param endTime the endTime to set
@@ -257,14 +233,12 @@ import seedu.address.model.task.Task;
 			this.endTime = endTime;
 		}
 
-
  		/**
 		 * @return the name
 		 */
 		public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
-
 
  		/**
 		 * @param name2 the name to set
@@ -273,14 +247,12 @@ import seedu.address.model.task.Task;
 			this.name = name2;
 		}
 
-
  		/**
 		 * @return the startDate
 		 */
 		public Optional<StartDate> getStartDate() {
 			return Optional.ofNullable(startDate);
 		}
-
 
  		/**
 		 * @param startDate the startDate to set
@@ -289,14 +261,12 @@ import seedu.address.model.task.Task;
 			this.startDate = startDate;
 		}
 
-
  		/**
 		 * @return the startTime
 		 */
 		public Optional<StartTime> getStartTime() {
 			return Optional.ofNullable(startTime);
 		}
-
 
  		/**
 		 * @param startTime the startTime to set
@@ -313,7 +283,6 @@ import seedu.address.model.task.Task;
         }
 
 
-
          /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -322,39 +291,15 @@ import seedu.address.model.task.Task;
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
- 		/* (non-Javadoc)
-		 * @see java.lang.Object#toString()
-		 */
+
 		@Override
 		public String toString() {
 			return "EditTaskDescriptor [description=" + description + ", endDate=" + endDate
-					+ ", endTime=" + endTime + ", name=" + name + ", startDate=" + startDate + ", startTime="
+					+ ", endTime=" + endTime + ", name=" + name + ", "
+					+ "startDate=" + startDate + ", startTime="
 					+ startTime + "]";
 		}
 
-
-
- 		/* (non-Javadoc)
-		 * @see java.lang.Object#hashCode()
-		 */
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((description == null) ? 0 : description.hashCode());
-			result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
-			result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
-			result = prime * result + ((name == null) ? 0 : name.hashCode());
-			result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-			result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
-			return result;
-
- 		}
-
- 		/* (non-Javadoc)
-		 * @see java.lang.Object#equals(java.lang.Object)
-		 */
-
-     }
+    }
 
 }
