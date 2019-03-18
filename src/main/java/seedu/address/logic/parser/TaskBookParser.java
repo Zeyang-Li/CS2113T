@@ -108,7 +108,6 @@ public class TaskBookParser {
         case RedoCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
-            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
