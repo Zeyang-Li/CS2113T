@@ -34,8 +34,10 @@ public class ListDateCommand extends Command {
      * A boolean function that help predicate to select specific tasks.
      */
     private boolean meetRequirement(Task task) {
+
         String[] dateInfo = specifiedDate.split("-");
         if (dateInfo.length == 3) {
+
             final String taskDate = task.getStartDate().value;
             if (taskDate.equals(specifiedDate)) {
                 return true;
@@ -46,12 +48,12 @@ public class ListDateCommand extends Command {
 
             final String taskDate = task.getStartDate().value;
             String[] splitDate = taskDate.split("-");
+
             if (splitDate[1].equals(dateInfo[0]) && splitDate[2].equals(dateInfo[1])) {
                 return true;
             } else {
                 return false;
             }
-
         }
         return false;
     }
