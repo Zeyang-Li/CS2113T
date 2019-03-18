@@ -1,16 +1,11 @@
 package seedu.address.logic.commands;
 
-import java.text.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.*;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import java.util.function.Predicate;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyTaskBook;
-import seedu.address.model.TaskBook;
 import seedu.address.model.task.Task;
 
 public class ListDateCommand extends Command{
