@@ -77,7 +77,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'Tasketch.jar'
 
     destinationDir = file("${buildDir}/jar/")
 }
@@ -111,17 +111,17 @@ tasks.coveralls {
     onlyIf { System.env.'CI' }
 }
 
-task(guiTests)
+//task(guiTests)
 task(nonGuiTests)
 
 // Run `test` task if `guiTests` or `nonGuiTests` is specified
-guiTests.dependsOn test
+//guiTests.dependsOn test
 nonGuiTests.dependsOn test
 
 task(allTests)
 
 // `allTests` implies both `guiTests` and `nonGuiTests`
-allTests.dependsOn guiTests
+//allTests.dependsOn guiTests
 allTests.dependsOn nonGuiTests
 
 test {
@@ -143,26 +143,26 @@ test {
     }
 
     doFirst {
-        boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
+        //boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
         boolean runNonGuiTests = gradle.taskGraph.hasTask(nonGuiTests)
 
-        if (!runGuiTests && !runNonGuiTests) {
-            runGuiTests = true
-            runNonGuiTests = true
-        }
+        //if (!runGuiTests && !runNonGuiTests) {
+        //    runGuiTests = true
+        //    runNonGuiTests = true
+        //}
 
         if (runNonGuiTests) {
-            test.include 'seedu/address/**'
-        }
-
-        if (runGuiTests) {
             test.include 'systemtests/**'
-            test.include 'seedu/address/ui/**'
         }
 
-        if (!runGuiTests) {
-            test.exclude 'seedu/address/ui/**'
-        }
+        //if (runGuiTests) {
+            //test.include 'systemtests/**'
+            //test.include 'seedu/address/ui/**'
+        //}
+
+        //if (!runGuiTests) {
+            //test.exclude 'seedu/address/ui/**'
+        //}
     }
 }
 
@@ -202,9 +202,8 @@ asciidoctor {
         idprefix: '',  // for compatibility with GitHub preview
         idseparator: '-',
         'site-root': "${sourceDir}",  // must be the same as sourceDir, do not modify
-        'site-name': 'AddressBook-Level4',
-        'site-githuburl': 'https://github.com/se-edu/addressbook-level4',
-        'site-seedu': true,  // delete this line if your project is not a fork (not a SE-EDU project)
+        'site-name': 'Tasketch',
+        'site-githuburl': 'https://github.com/CS2113-AY1819S2-T09-2/main',
     ]
 
     options['template_dirs'].each {
