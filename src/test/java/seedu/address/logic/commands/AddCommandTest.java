@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -147,6 +148,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void deleteTaskList(List<Task> targets) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
