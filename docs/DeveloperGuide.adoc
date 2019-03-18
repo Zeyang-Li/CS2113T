@@ -348,14 +348,14 @@ Manage tasks faster than a typical mouse/GUI driven apps
 ==== Clear tasks
 
 1. Role:User
-2. Benefit: User can clear all the tasks of a day, a week or a month
+2. Benefit: User can clear all the tasks of a day or a month
 
 ==== Exit the programme
 
 1. Role:User
 2. Benefit: Users can exit the programme when he doesn’t want to see the listed tasks
 
-==== Search one task by part of the description
+==== Find one task by part of the description
 
 1. Role:User
 2. Benefit: Users can check the full information of the task when they forget the task description
@@ -457,10 +457,10 @@ Manage tasks faster than a typical mouse/GUI driven apps
 
 	Use case ends
 
-=== Search a task
+=== Find a task
 1. MSS
-. User request search [keyWords/subString]
-. TaskBook list all the tasks which satisfy the searching condition.
+. User request find [keyWords/subString]
+. TaskBook will list all the tasks which satisfy the searching condition.
 
 	Use case ends.
 
@@ -474,10 +474,21 @@ Manage tasks faster than a typical mouse/GUI driven apps
 
 === Clear tasks by time period
 1. MSS
-. User request clear [day/month]
-. TaskBook remove the tasks in that period.
+. User request clear all
+. TaskBook removes all the tasks in Tasketch.
 
 	Use case ends
+
+2. Extension
+. User request clear [Date]
+. TaskBook removes the tasks which start from that day.
+
+	Use case ends.
+
+. User request clear [Month]
+. TaskBook removes the tasks which start from that month.
+
+	Use case ends.
 
 === List tasks by time period
 1. MSS
