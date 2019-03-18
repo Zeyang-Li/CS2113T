@@ -44,7 +44,6 @@ public class ListDateCommand extends Command {
             } else {
                 return false;
             }
-            
         } else if (dateInfo.length == 2) {
 
             final String taskDate = task.getStartDate().value;
