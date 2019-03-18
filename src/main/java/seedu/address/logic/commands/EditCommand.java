@@ -118,7 +118,7 @@ public class EditCommand extends Command {
 
         System.out.println(editTaskDescriptor.getName());
         return new Task(updatedName, updatedStartDate, updatedStartTime,
-        		updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
+                            updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
     }
 
     @Override
@@ -163,15 +163,15 @@ public class EditCommand extends Command {
 				Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
 			super();
             this.description = description;
-			this.endDate = endDate;
-			this.endTime = endTime;
-			this.name = name;
-			this.startDate = startDate;
-			this.startTime = startTime;
-			this.tags = tags;
-		}
+            this.endDate = endDate;
+            this.endTime = endTime;
+            this.name = name;
+            this.startDate = startDate;
+            this.startTime = startTime;
+            this.tags = tags;
+        }
 
- 		/**
+        /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
@@ -197,38 +197,38 @@ public class EditCommand extends Command {
 		 * @return the description
 		 */
         public Optional<Description> getDescription() {
-			return Optional.ofNullable(description);
-		}
+            return Optional.ofNullable(description);
+        }
 
- 		/**
+        /**
 		 * @param description the description to set
 		 */
-		public void setDescription(Description description) {
-			this.description = description;
-		}
+        public void setDescription(Description description) {
+            this.description = description;
+        }
 
- 		/**
+        /**
 		 * @return the endDate
 		 */
-		public Optional<EndDate> getEndDate() {
+        public Optional<EndDate> getEndDate() {
             return Optional.ofNullable(endDate);
         }
 
- 		/**
+        /**
 		 * @param endDate the endDate to set
 		 */
-		public void setEndDate(EndDate endDate) {
-			this.endDate = endDate;
-		}
+        public void setEndDate(EndDate endDate) {
+            this.endDate = endDate;
+        }
 
- 		/**
+        /**
 		 * @return the endTime
 		 */
-		public Optional<EndTime> getEndTime() {
-			return Optional.ofNullable(endTime);
-		}
+        public Optional<EndTime> getEndTime() {
+            return Optional.ofNullable(endTime);
+        }
 
- 		/**
+        /**
 		 * @param endTime the endTime to set
 		 */
         public void setEndTime(EndTime endTime) {
@@ -247,40 +247,40 @@ public class EditCommand extends Command {
 		 */
         public void setName(Name name2) {
             this.name = name2;
-		}
+        }
 
- 		/**
+        /**
 		 * @return the startDate
 		 */
-		public Optional<StartDate> getStartDate() {
-			return Optional.ofNullable(startDate);
-		}
+        public Optional<StartDate> getStartDate() {
+            return Optional.ofNullable(startDate);
+        }
 
- 		/**
+        /**
 		 * @param startDate the startDate to set
 		 */
-		public void setStartDate(StartDate startDate) {
-			this.startDate = startDate;
-		}
+        public void setStartDate(StartDate startDate) {
+            this.startDate = startDate;
+        }
 
- 		/**
+        /**
 		 * @return the startTime
 		 */
-		public Optional<StartTime> getStartTime() {
-			return Optional.ofNullable(startTime);
-		}
+        public Optional<StartTime> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
 
- 		/**
+        /**
 		 * @param startTime the startTime to set
 		 */
-		public void setStartTime(StartTime startTime) {
-			this.startTime = startTime;
-		}
+        public void setStartTime(StartTime startTime) {
+            this.startTime = startTime;
+        }
 
- 		/**
+        /**
 		 * @return the tags
 		 */
-		public Optional<Set<Tag>> getTags() {
+        public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
@@ -292,12 +292,12 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-		@Override
+        @Override
 		public String toString() {
-			return "EditTaskDescriptor [description=" + description + ", endDate=" + endDate
+            return "EditTaskDescriptor [description=" + description + ", endDate=" + endDate
 					+ ", endTime=" + endTime + ", name=" + name + ", "
 					+ "startDate=" + startDate + ", startTime="
 					+ startTime + "]";
-		}
+        }
     }
 }
