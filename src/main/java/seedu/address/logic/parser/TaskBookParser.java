@@ -87,7 +87,7 @@ public class TaskBookParser {
         */
         case ListCommand.COMMAND_WORD:
         case ListCommand.COMMAND_ALIAS:
-            String key = new ListCommandParser().parse(arguments);
+            key = new ListCommandParser().parse(arguments);
             if (key.equals("ListCommand")) {
                 return new ListCommand();
             } else if (key.equals("ListtdCommand")) {
