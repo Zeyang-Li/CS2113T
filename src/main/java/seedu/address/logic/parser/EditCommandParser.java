@@ -55,8 +55,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                                 (argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_STARTDATE).isPresent()) {
-            editPersonDescriptor.setStartDate
-            (ParserUtil.parseStartDate(argMultimap.getValue(PREFIX_STARTDATE).get()));
+            editPersonDescriptor.setStartDate(ParserUtil.parseStartDate
+                                (argMultimap.getValue(PREFIX_STARTDATE).get()));
         }
         if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
             editPersonDescriptor.setStartTime(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));

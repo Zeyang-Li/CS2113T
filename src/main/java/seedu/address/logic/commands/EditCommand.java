@@ -207,8 +207,8 @@ public class EditCommand extends Command {
         }
 
         /**
-		 * @return the endDate
-		 */
+         * @return the endDate
+         */
         public Optional<EndDate> getEndDate() {
             return Optional.ofNullable(endDate);
         }
@@ -221,64 +221,64 @@ public class EditCommand extends Command {
         }
 
         /**
-		 * @return the endTime
-		 */
+         * @return the endTime
+         */
         public Optional<EndTime> getEndTime() {
             return Optional.ofNullable(endTime);
         }
 
         /**
-		 * @param endTime the endTime to set
-		 */
+         * @param endTime the endTime to set
+         */
         public void setEndTime(EndTime endTime) {
             this.endTime = endTime;
         }
 
         /**
-		 * @return the name
-		 */
+         * @return the name
+         */
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
         /**
-		 * @param name2 the name to set
-		 */
+         * @param name2 the name to set
+         */
         public void setName(Name name2) {
             this.name = name2;
         }
 
         /**
-		 * @return the startDate
-		 */
+         * @return the startDate
+         */
         public Optional<StartDate> getStartDate() {
             return Optional.ofNullable(startDate);
         }
 
         /**
-		 * @param startDate the startDate to set
-		 */
+         * @param startDate the startDate to set
+         */
         public void setStartDate(StartDate startDate) {
             this.startDate = startDate;
         }
 
         /**
-		 * @return the startTime
-		 */
+         * @return the startTime
+         */
         public Optional<StartTime> getStartTime() {
             return Optional.ofNullable(startTime);
         }
 
         /**
-		 * @param startTime the startTime to set
-		 */
+         * @param startTime the startTime to set
+         */
         public void setStartTime(StartTime startTime) {
             this.startTime = startTime;
         }
 
         /**
-		 * @return the tags
-		 */
+         * @return the tags
+         */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
