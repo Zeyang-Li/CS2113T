@@ -117,7 +117,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(personToEdit.getTags());
 
         System.out.println(editTaskDescriptor.getName());
-        return new Task(updatedName, updatedStartDate, updatedStartTime, 
+        return new Task(updatedName, updatedStartDate, updatedStartTime,
         		updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
     }
 
