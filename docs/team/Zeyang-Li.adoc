@@ -50,9 +50,12 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[tag=undoredo]
-
-//include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=clear]
+include::../UserGuide.adoc[tag=history]
+include::../UserGuide.adoc[tag=undo]
+include::../UserGuide.adoc[tag=redo]
+include::../UserGuide.adoc[tag=help]
+include::../UserGuide.adoc[tag=exit]
 
 == Contributions to the Developer Guide
 
