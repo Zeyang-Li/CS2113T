@@ -35,8 +35,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all the tasks you have added
-* **`add`**`s/[startDateTime] e/endDateTime] t/[topic] d/[description]` : adds a new task to Tasketch.
-* **`delete`**`331` : deletes the task with taskid 331 in Tasketch.
+* **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
+* **`delete`**`3` : deletes the task with index 3 in Tasketch.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -50,29 +50,26 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Some commands have an alias, which you can also use to execute the command e.g. to add a task to Tasketch, you can
 type either `add ...` or `a ...`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/TASK`, `TASK` is a parameter which can be used as `add n/Do MA1101R tutorial`.
-* Parameters can be in any order e.g. if the command specifies `s/START_DATE e/END_DATE`, `e/END_DATE s/START_DATE` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `sd/START_DATE ed/END_DATE`, `ed/END_DATE sd/START_DATE` is also acceptable.
 ====
 
 === Viewing help : `help`
 
 Format: `help`
 
-=== Adding a task: `add`
+=== Adding a task: `add`/`a`
 
-Adds a task to Tasketch +
-Alias: `a` +
+Adds a task to the Tasketch +
 Format: +
-1. `add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
-Usage: add task to the current date +
-2. `add d/DATE s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
-Usage: add task to a specific date
+`add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [t/TAG]...`
 
-
+[TIP]
+A task can have any number of tags (including 0)
 
 Examples:
 
-* `add s/1300 e/1500 t/CS2113T lecture d/will be talking about version control`
-* `add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security`
+* `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
+* `add n/CS3235 sd/13-03-19 st/08.00 ed/13-03-19 et/10.00 d/Talk about network security t/important`
 
 === Listing all tasks : `list`
 
@@ -235,10 +232,8 @@ There is no need to save manually.
 
 == Command Summary
 
-* *Add* `add [DATE] s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
-e.g. +
-1.`add s/START_TIME e/END_TIME t/TOPIC d/DESCRIPTION` +
-2.`add d/21-02-2019 s/0800 e/1000 t/CS3235 lecture d/will be talking about network security`
+* *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [t/TAG]...` +
+e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
 * *Clear* : `clear [DATE]` +
 e.g. `clear 21-02-2019`
 * *Delete* : `delete TASK_ID` +

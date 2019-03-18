@@ -16,6 +16,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListDateCommand;
+import seedu.address.logic.commands.ListtdCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -57,18 +59,19 @@ public class TaskBookParser {
         case FindCommand.COMMAND_WORD:
         case FindCommand.COMMAND_ALIAS:
             return new FindCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-        case DeleteCommand.COMMAND_ALIAS:
-            return new DeleteCommandParser().parse(arguments);
         /*
         case EditCommand.COMMAND_WORD:
         case EditCommand.COMMAND_ALIAS:
             return new EditCommandParser().parse(arguments);
+
         case SelectCommand.COMMAND_WORD:
         case SelectCommand.COMMAND_ALIAS:
             return new SelectCommandParser().parse(arguments);
         */
+        case DeleteCommand.COMMAND_WORD:
+        case DeleteCommand.COMMAND_ALIAS:
+            return new DeleteCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_ALIAS:
             String key = new ClearCommandParser().parse(arguments);
@@ -84,7 +87,14 @@ public class TaskBookParser {
         */
         case ListCommand.COMMAND_WORD:
         case ListCommand.COMMAND_ALIAS:
-            return new ListCommand();
+            String key = new ListCommandParser().parse(arguments);
+            if (key.equals("ListCommand")) {
+                return new ListCommand();
+            } else if (key.equals("ListtdCommand")) {
+                return new ListtdCommand();
+            } else {
+                return new ListDateCommand(key);
+            }
 
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
@@ -103,7 +113,6 @@ public class TaskBookParser {
         case RedoCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
