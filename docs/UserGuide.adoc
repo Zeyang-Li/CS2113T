@@ -91,7 +91,7 @@ Examples:
 Usage: list all the tasks in February, 2019
 * `list 20-02-2019` +
 Usage: list all the tasks in February 20th, 2019
-* `list all` +
+* `list` +
 Usage: list all the tasks in the storage
 
 === Editing a task : `edit`

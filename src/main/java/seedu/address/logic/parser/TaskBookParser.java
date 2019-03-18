@@ -7,11 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -74,7 +70,14 @@ public class TaskBookParser {
         */
         case ListCommand.COMMAND_WORD:
         case ListCommand.COMMAND_ALIAS:
-            return new ListCommand();
+            String key = new ListCommandParser().parse(arguments);
+            if(key.equals("ListCommand")){
+                return new ListCommand();
+            } else if(key.equals("ListtdCommand")){
+                return new ListtdCommand();
+            } else{
+                return new ListDateCommand(key);
+            }
         /*
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
