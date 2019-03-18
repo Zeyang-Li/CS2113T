@@ -59,13 +59,10 @@ public class TaskBookParser {
         case FindCommand.COMMAND_WORD:
         case FindCommand.COMMAND_ALIAS:
             return new FindCommandParser().parse(arguments);
-<<<<<<< HEAD
 
-        case DeleteCommand.COMMAND_WORD:
-        case DeleteCommand.COMMAND_ALIAS:
-            return new DeleteCommandParser().parse(arguments);
-
-=======
+        case EditCommand.COMMAND_WORD:
+        case EditCommand.COMMAND_ALIAS:
+            return new EditCommandParser().parse(arguments);
         /*
 >>>>>>> a057b24a53797b21ed441ce9ee97a63ee45ad243
         case EditCommand.COMMAND_WORD:
