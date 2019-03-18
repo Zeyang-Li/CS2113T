@@ -21,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.TaskBook;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -72,17 +71,6 @@ public class CommandTestUtil {
 //   public static final EditCommand.EditPersonDescriptor DESC_AMY;
 //   public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
-/*    static {
-        DESC_CS2113 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2113)
-                .withStartDate(VALID_STARTDATE_CS2113).withStartTime(VALID_STARTDATE_CS2113)
-                .withEndDate(VALID_ENDDATE_CS2113).withEndTime(VALID_ENDTIME_CS2113)
-                .withDescription(VALID_DESCRIPTION_CS2113).withTags(VALID_TAG_CS2113).build();
-        DESC_CS2101 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2101)
-                .withStartDate(VALID_STARTDATE_CS2101).withStartTime(VALID_STARTDATE_CS2101)
-                .withEndDate(VALID_ENDDATE_CS2101).withEndTime(VALID_ENDTIME_CS2101)
-                .withDescription(VALID_DESCRIPTION_CS2101).withTags(VALID_TAG_CS2101).build();
-    }
-*/
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>

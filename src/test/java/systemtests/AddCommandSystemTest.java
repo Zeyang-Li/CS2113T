@@ -84,8 +84,8 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
         assertCommandSuccess(command, toAdd);
 
         /* Case: add to empty task book -> added */
-        deleteAllTasks();
-        assertCommandSuccess(CS2113);
+        //deleteAllTasks();
+        //assertCommandSuccess(CS2113);
 
         /* Case: add a task with tags, command with parameters in random order -> added */
         toAdd = CS2101;
