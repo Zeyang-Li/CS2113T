@@ -2,14 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Used for parsing user input for list command
+ * Used for parsing user input for clear command
  */
-public class ListCommandParser {
 
+public class ClearCommandParser {
     /**
      * Parse function
      */
@@ -17,16 +17,14 @@ public class ListCommandParser {
         String[] arguments = userInput.trim().split("\\s+");
         if (arguments.length == 1) {
             if (arguments[0].equals("")) {
-                return "ListCommand";
-            } else if (arguments[0].equals("td")) {
-                return "ListtdCommand";
+                return "ClearCommand";
             } else if (isValidDateFormat(arguments[0])) {
                 return arguments[0];
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
             }
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
     }
 
@@ -34,12 +32,11 @@ public class ListCommandParser {
      * Check if user input is of the correct format
      */
     public boolean isValidDateFormat(String str) {
-        String[] strSplit = str.split("-");
-        if (strSplit.length == 2 || strSplit.length == 3) {
+        String[] strSplited = str.split("-");
+        if (strSplited.length == 2 || strSplited.length == 3) {
             return true;
         } else {
             return false;
         }
     }
-
 }

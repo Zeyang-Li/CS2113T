@@ -21,32 +21,32 @@ public class ListDateCommand extends Command {
             + "3. DATE: list 25-03-19    "
             + "list all the tasks which are before/after 25th March, 2019\n";
     public static final String MESSAGE_SUCCESS = "Listed tasks on %1$s";
-    private String specified_date;
+    private String specifiedDate;
 
     /**
      * Constructor for ListDateCommand
      */
     public ListDateCommand(String date) {
-        this.specified_date = date;
+        this.specifiedDate = date;
     }
 
     /**
      * A boolean function that help predicate to select specific tasks.
      */
     private boolean meetRequirement(Task task) {
-        String[] date_info = specified_date.split("-");
-        if (date_info.length == 3) {
+        String[] dateInfo = specifiedDate.split("-");
+        if (dateInfo.length == 3) {
             final String taskDate = task.getStartDate().value;
-            if (taskDate.equals(specified_date)) {
+            if (taskDate.equals(specifiedDate)) {
                 return true;
             } else {
                 return false;
             }
-        } else if (date_info.length == 2) {
+        } else if (dateInfo.length == 2) {
 
             final String taskDate = task.getStartDate().value;
-            String[] split_date = taskDate.split("-");
-            if (split_date[1].equals(date_info[0]) && split_date[2].equals(date_info[1])) {
+            String[] splitDate = taskDate.split("-");
+            if (splitDate[1].equals(dateInfo[0]) && splitDate[2].equals(dateInfo[1])) {
                 return true;
             } else {
                 return false;
@@ -62,6 +62,6 @@ public class ListDateCommand extends Command {
 
         Predicate<Task> predicate = task -> meetRequirement(task);
         model.updateFilteredTaskList(predicate);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, specified_date));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, specifiedDate));
     }
 }

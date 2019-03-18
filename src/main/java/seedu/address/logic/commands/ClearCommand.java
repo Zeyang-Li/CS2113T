@@ -16,6 +16,11 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String COMMAND_ALIAS = "c";
     public static final String MESSAGE_SUCCESS = "Tasketch has been cleared!";
+    public static final String MESSAGE_USAGE = "clear : clear tasks\n"
+            + "Parameters: none or DATE\n"
+            + "Example: " + COMMAND_WORD + "\n"
+            + COMMAND_WORD + " 18-03-19\n"
+            + COMMAND_WORD + " 03-19\n";
 
 
     @Override
