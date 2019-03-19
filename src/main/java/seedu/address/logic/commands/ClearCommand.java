@@ -80,15 +80,17 @@ public class ClearCommand extends Command {
         final Integer specificMonth = Integer.parseInt(specificDateList[1]);
         final Integer specificDay = Integer.parseInt(specificDateList[0]);
 
-        if ((specificYear > year) ||
-                (specificMonth > month && specificYear == year) ||
-                (specificDay >= day && specificYear == year && specificMonth == month)) {
+        if ((specificYear > year)
+                || (specificMonth > month && specificYear == year)
+                || (specificDay >= day && specificYear == year && specificMonth == month)) {
             return true;
         } else {
             return false;
         }
     }
-
+    /**
+     * Boolean function that checks whether the task starts from that specific day.
+     */
     public boolean checkStartDate(Task task) {
         final String startDate = task.getStartDate().value;
         return checkDate(this.specificDate, startDate);
@@ -108,8 +110,8 @@ public class ClearCommand extends Command {
         } else if (this.specificDate.equals("before")) {
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
-            Calendar calendar=Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY,-24);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, -24);
             this.specificDate = formatter.format(calendar.getTime());
 
             List<Task> lastShownList = model.getFilteredTaskList();
