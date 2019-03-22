@@ -18,7 +18,7 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is for those who *prefer to use a desktop app for managing their daily tasks' schedule*. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+Tasketch is for those who *prefer to use a desktop app for managing their time by allocating time for each daily task. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Tasketch can get your tasks' schedule done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
@@ -59,46 +59,57 @@ Format: `help`
 
 === Adding a task: `add`/`a`
 
-Adds a task to the Tasketch +
-Format: +
-`add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [t/TAG]...`
+Adds a task to the Tasketch
+
+Format:
+
+`add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORIES] [t/TAG]...`
+
+****
+* There are only 5 valid categories and can be excluded in the command. (The details about it can be found in <<category>>.)
+* Excluding category in the command will only mean that the task will not be included into the time management.
+****
 
 [TIP]
 A task can have any number of tags (including 0)
 
 Examples:
 
-* `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
-* `add n/CS3235 sd/13-03-19 st/08.00 ed/13-03-19 et/10.00 d/Talk about network security t/important`
+* `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
+* `add n/MA1101R tutorial sd/14-03-19 st/12.00 ed/14-03-19 et/14.00 d/Tutorial 8 c/a`
+* `add n/CS3235 lecture sd/13-03-19 st/08.00 ed/13-03-19 et/10.00 d/Talk about network security t/important`
 
-=== Listing all tasks : `list`
+=== Listing all tasks : `list`/`l`
 
-Shows a list of tasks in Tasketch. +
-Alias: `l` +
-Format: +
-1.`list` +
-Usage: list all the tasks of today +
+Shows a list of tasks in Tasketch.
 
-2.`list DATE` +
-Usage: list all the tasks of that specific date +
+Format:
+
+* `list` +
+List all the tasks of today +
+
+* `list DATE` +
+List all the tasks of that specific date +
 
 Examples:
 
 * `list 02-2019` +
-Usage: list all the tasks in February, 2019
+List all the tasks in February, 2019
 * `list 20-02-2019` +
-Usage: list all the tasks in February 20th, 2019
+List all the tasks in February 20th, 2019
 * `list` +
-Usage: list all the tasks in the storage
+List all the tasks in the storage
 
-=== Editing a task : `edit`
+=== Editing a task : `edit`/`e`
 
-Edits an existing task in Tasketch. +
-Alias: `e` +
-Format: `edit TASK_ID [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]`
+Edits an existing task in Tasketch.
+
+Format:
+
+`edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
 ****
-* Edits the task with the specified `TASK_ID`. The TASK_ID refers to the taskid shown in the displayed list.
+* Edits the task with the index number shown in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing description, the existing description of the task will be removed.
@@ -106,22 +117,24 @@ Format: `edit TASK_ID [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]`
 
 Examples:
 
-* `edit 331 s/1200 e/1400 t/GET1018 tut` +
-Edits the start time and end time of the task with ID 331 to be `12:00` and `14:00` respectively. Change the topic to `GET1018 tut`.
+`edit 1 st/12.00 et/14.00 t/GET1018 tut` +
+Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018 tut`.
 
 
-=== Searching tasks by keywords: `find`
+=== Searching tasks by keywords: `find`/`f`
 
-Finds tasks whose topic or description contain any of the given keywords. +
-Alias: `f` +
-Format: `find KEYWORD [KEYWORDS] ...`
+Finds tasks whose topic or description contain any of the given keywords.
+
+Format:
+
+`search KEYWORD [MORE_KEYWORDS] ...`
 
 ****
-* The search is case insensitive. e.g `Tutorial` will match `tutorial`
-* The order of the keywords does not matter. e.g. `CS2113T tutorial` will match `tutorial CS2113T`
+* The search is case insensitive. e.g `Tutorial` will match `tutorial`.
+* The order of the keywords does not matter. e.g. `CS2113T tutorial` will match `tutorial CS2113T`.
 * Only the description is searched.
-* Only full words will be matched e.g. `tut` will not match `tutorial`
-* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2113T tutorial` will return `CS2113T lecture`, `CS3235 tutorial`
+* Only full words will be matched e.g. `tut` will not match `tutorial`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2113T tutorial` will return `CS2113T lecture`, `CS3235 tutorial`.
 ****
 
 Examples:
@@ -131,121 +144,184 @@ Returns `CS2113T lecture`
 * `f Lecture` +
 Returns `CS2113T lecture` and `CS3235 lecture`
 
-=== Deleting a task : `delete`
+=== Deleting a task : `delete`/`d`
 
-Deletes the specified task from Tasketch. +
-Alias: `d` +
-Format: `delete TASK_ID`
+Deletes the specified task from Tasketch.
+
+Format:
+
+`delete INDEX_NUMBER`
 
 ****
-* The task id will be given to each task when you add them into Tasketch
-* The task id of each task will be shown in the list
-* Deletes the task with the specified `TASK_ID`.
+* Each tasks is identified by the index number shown in the task list.
+* Deletes the task with the index number.
 ****
 
 Examples:
 
 * `list` +
-`delete 331` +
-Deletes the task with taskID 331 in Tasketch.
+`delete 1` +
+Deletes the task with index number 1 in task list.
 * `find cs2113t` +
-`delete 421` +
-Deletes the task with taskID 421 in Tasketch.
+`delete 1` +
+Deletes the task with index number 1 in task list.
 
 
-=== Clearing all tasks : `clear`
+=== Clearing all tasks : `clear`/`c`
 
-Clears all tasks of the specified date from Tasketch. +
-Alias: `c` +
-Format: +
-1. `clear` +
-Usage: clear all the tasks in Tasketch +
-2.`clear DATE` +
-Usage: clear all the tasks starting from the specified date
+Clears all tasks of the specified date from Tasketch.
+
+Format:
+
+* `clear` +
+Clear all the tasks in Tasketch
+
+* `clear DATE` +
+Clear all the tasks starting from the specified date
 
 Examples:
 
-* `clear 21-02-19` +
-Clears all the tasks which start from February 21st, 2019.
+* `clear 21-02-2019` +
+Clear all the tasks which start from February 21st, 2019.
 * `clear 02-2019` +
-Clears all the tasks which start from February, 2019.
-* `clear before` +
-Clears all the tasks which have already finished before today.
+Clear all the tasks which start from February, 2019.
 * `clear` +
-Clears all the tasks in the storage.
+Clear all the tasks in the storage.
 
 
-=== Listing entered commands : `history`
+=== Listing entered commands : `history`/`h`
 
 Lists all the commands that you have entered in reverse chronological order. +
-Format: `history`
 
-=== Undoing previous command : `undo`
+Format:
+
+`history`
+
+=== Undoing previous command : `undo`/`u`
 
 Restores the Tasetch to the state before the previous undoable command was executed. +
-Format: `undo`
+
+Format:
+
+`undo`
 
 Examples:
 
-* `delete 1` +
-`list` +
-`undo` (reverses the `delete 1` command)
-* `delete 1` +
-`clear` +
-`undo`  (reverses the `delete 1` command) +
-`undo` (reverses the `clear` command)
+* 1.`delete 1` +
+  2.`list` +
+  3.`undo` (reverses the `delete 1` command)
+* 1.`delete 1` +
+  2.`clear` +
+  3.`undo`  (reverses the `delete 1` command) +
+  4.`undo` (reverses the `clear` command)
 
 
-=== Redoing the previously undone command : `redo`
+=== Redoing the previously undone command : `redo`/`r`
 
 Reverses the most recent `undo` command. +
-Format: `redo`
+
+Format:
+
+`redo`
 
 Examples:
 
-* `delete 1` +
- `undo` (reverses the `delete 1` command) +
- `redo` (reapplies the `delete 1` command)
-* `delete 1` +
-   `redo` +
+* 1.`delete 1` +
+  2.`undo` (reverses the `delete 1` command) +
+  3.`redo` (reapplies the `delete 1` command)
+* 1.`delete 1` +
+   2.`redo` +
    The `redo` command fails as there are no undo commands executed previously.
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command)
+* 1.`delete 1` +
+2.`clear` +
+3.`undo` (reverses the `clear` command) +
+4.`undo` (reverses the `delete 1` command) +
+5.`redo` (reapplies the `delete 1` command) +
+6.`redo` (reapplies the `clear` command)
 
+=== Setting time limit to a task category : `set`
+
+Setting weekly time limit for a task category. +
+Upon adding a task to a category and leads to time limit, you will not able to add it into that category for that week.
+
+Format:
+
+`set CATEGORY TIME_LENGTH`
+
+[[category]]
+****
+* There are only 5 valid categories: +
+** a - Academic
+** e - Entertainment
+** c - Co-Curicullar Activity (CCA)
+** r - Errands
+** o - Others
+* Any inputs other than above will be invalid.
+* The length of time has to be in hour unit only. (e.g. 1 for 1 hour, 2 for 1 hour 30 minutes after round-up)
+* To modify the time limit, just use back the same command and it will update the old to the new time limit.
+****
+
+Examples:
+
+`set a 40`
+
+=== Removing time limit of a task category : `unset`
+
+Removing weekly time limit of a task category. +
+After removing the time limit, you will be able to add more tasks into that category as usual.
+
+Format:
+
+`unset CATEGORY`
+
+Examples:
+
+`unset a`
+
+=== Showing remaining time to the limit of all task categories : `show`
+
+Showing all the remaining time before reaching the limit for all the task category
+
+Format:
+
+`show`
 
 === Exiting the program : `exit`
 
 Exits the program. +
-Format: `exit`
+Format:
+
+`exit`
 
 === Saving the data
 
-Tasketch data are saved in the hard disk automatically after any command that changes the data. +
+Tasketch data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in another computer and overwrite the empty data file it creates with the file that contains the data of your previous Tasketch folder
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder
 
 == Command Summary
 
-* *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [t/TAG]...` +
+* *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORY] [t/TAG]...` +
 e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
 * *Clear* : `clear [DATE]` +
 e.g. `clear 21-02-2019`
-* *Delete* : `delete TASK_ID` +
-e.g. `delete 331`
-* *Edit* : `edit TASK_ID [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]` +
-e.g. `edit 331 s/1200 e/1400 t/GET1018 tut`
-* *Find* : `find KEYWORD [KEYWORDS]` +
-e.g. `find CS2113T`
+* *Delete* : `delete INDEX_NUMBER` +
+e.g. `delete 1`
+* *Edit* : `edit INDEX_NUMBER [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]` +
+e.g. `edit 1 s/12.00 e/14.00 t/GET1018 tut`
+* *Search* : `search KEYWORD [MORE_KEYWORDS]` +
+e.g. `search CS2113T`
 * *List* : `list [DATE]` +
 e.g. `list 02-2019`
+* *Set* : `set CATEGORY TIME_LENGTH +
+e.g. `set a 50`
+* *Unset* : `unset CATEGORY` +
+e.g. `unset a`
+* *Show* : `show`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`

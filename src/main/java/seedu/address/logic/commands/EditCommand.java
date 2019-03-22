@@ -42,8 +42,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final String COMMAND_ALIAS = "e";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
+            + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -59,14 +59,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Tasketch.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
       * @param index of the Task in the filtered Task list to edit
-      * @param editPersonDescriptor details to edit the person with
+      * @param editTaskDescriptor details to edit the person with
       */
 
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
