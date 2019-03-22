@@ -114,7 +114,7 @@ Edits the start time and end time of the task with ID 331 to be `12:00` and `14:
 
 Finds tasks whose topic or description contain any of the given keywords. +
 Alias: `f` +
-Format: `search KEYWORD [MORE_KEYWORDS] ...`
+Format: `find KEYWORD [KEYWORDS] ...`
 
 ****
 * The search is case insensitive. e.g `Tutorial` will match `tutorial`
@@ -165,12 +165,14 @@ Usage: clear all the tasks starting from the specified date
 
 Examples:
 
-* `clear 21-02-2019` +
-Clear all the tasks which start from February 21st, 2019.
+* `clear 21-02-19` +
+Clears all the tasks which start from February 21st, 2019.
 * `clear 02-2019` +
-Clear all the tasks which start from February, 2019.
+Clears all the tasks which start from February, 2019.
+* `clear before` +
+Clears all the tasks which have already finished before today.
 * `clear` +
-Clear all the tasks in the storage.
+Clears all the tasks in the storage.
 
 
 === Listing entered commands : `history`
@@ -222,13 +224,13 @@ Format: `exit`
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+Tasketch data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder
+*A*: Install the app in another computer and overwrite the empty data file it creates with the file that contains the data of your previous Tasketch folder
 
 == Command Summary
 
@@ -240,8 +242,8 @@ e.g. `clear 21-02-2019`
 e.g. `delete 331`
 * *Edit* : `edit TASK_ID [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]` +
 e.g. `edit 331 s/1200 e/1400 t/GET1018 tut`
-* *Search* : `search KEYWORD [MORE_KEYWORDS]` +
-e.g. `search CS2113T`
+* *Find* : `find KEYWORD [KEYWORDS]` +
+e.g. `find CS2113T`
 * *List* : `list [DATE]` +
 e.g. `list 02-2019`
 * *History* : `history`
