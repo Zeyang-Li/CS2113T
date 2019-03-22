@@ -106,7 +106,7 @@ Edits an existing task in Tasketch.
 
 Format:
 
-`edit TASK_ID [st/START_TIME] [et/END_TIME] [t/TOPIC] [d/DESCRIPTION]`
+`edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
 ****
 * Edits the task with the index number shown in the task list.
@@ -118,7 +118,7 @@ Format:
 Examples:
 
 `edit 1 st/12.00 et/14.00 t/GET1018 tut` +
-Edits the start time and end time of the task with ID 331 to be `12:00` and `14:00` respectively. Change the topic to `GET1018 tut`.
+Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018 tut`.
 
 
 === Searching tasks by keywords: `find`/`f`
