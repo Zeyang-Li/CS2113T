@@ -18,7 +18,7 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is for those who *prefer to use a desktop app for managing their daily tasks' schedule*. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+Tasketch is for those who *prefer to use a desktop app for managing their time by allocating time for each daily task. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Tasketch can get your tasks' schedule done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
@@ -67,7 +67,7 @@ Format:
 
 ****
 * There are only 5 valid categories and can be excluded in the command. (The details about it can be found in <<category>>.)
-* Excluding category in the command will only mean that it will not be monitored.
+* Excluding category in the command will only mean that the task will not be included into the time management.
 ****
 
 [TIP]
