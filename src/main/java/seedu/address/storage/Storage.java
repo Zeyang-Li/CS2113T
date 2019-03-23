@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyDaysKeeper;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -12,7 +13,7 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends TaskBookStorage, UserPrefsStorage {
+public interface Storage extends TaskBookStorage, DaysKeeperStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage {
 
     @Override
     void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
+
+    @Override
+    Path getDaysKeeperFilePath();
+
+    @Override
+    Optional<ReadOnlyDaysKeeper> readDaysKeeper() throws DataConversionException, IOException;
+
+    @Override
+    void saveDaysKeeper(ReadOnlyDaysKeeper daysKeeper) throws IOException;
 
 }

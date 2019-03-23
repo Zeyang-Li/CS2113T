@@ -14,7 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path taskBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path taskBookFilePath = Paths.get("data" , "taskbook.json");
+    private Path daysKeeperFilePath = Paths.get("data" , "dayskeeper.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setTaskBookFilePath(newUserPrefs.getTaskBookFilePath());
+        setDaysKeeperFilePath(newUserPrefs.getDaysKeeperFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +53,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return taskBookFilePath;
     }
 
+    public Path getDaysKeeperFilePath() {
+        return daysKeeperFilePath;
+    }
+
     public void setTaskBookFilePath(Path taskBookFilePath) {
         requireNonNull(taskBookFilePath);
         this.taskBookFilePath = taskBookFilePath;
+    }
+
+    public void setDaysKeeperFilePath(Path daysKeeperFilePath) {
+        requireNonNull(daysKeeperFilePath);
+        this.daysKeeperFilePath = daysKeeperFilePath;
     }
 
     @Override
@@ -68,19 +79,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && taskBookFilePath.equals(o.taskBookFilePath);
+                && taskBookFilePath.equals(o.taskBookFilePath)
+                && daysKeeperFilePath.equals(o.daysKeeperFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, taskBookFilePath);
+        return Objects.hash(guiSettings, taskBookFilePath, daysKeeperFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + taskBookFilePath);
+        sb.append("\nLocal taskBook data file location : " + taskBookFilePath);
+        sb.append("\nLocal daysKeeper data file location : " + daysKeeperFilePath);
         return sb.toString();
     }
 
