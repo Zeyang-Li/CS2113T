@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
         history = new CommandHistory();
         taskBookParser = new TaskBookParser();
 
-        // Set addressBookModified to true whenever the models' address book is modified.
+        // Set taskBookModified to true whenever the models' task book is modified.
         model.getTaskBook().addListener(observable -> taskBookModified = true);
     }
 
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
         }
 
         if (taskBookModified) {
-            logger.info("Address book modified, saving to file.");
+            logger.info("Task book modified, saving to file.");
             try {
                 storage.saveTaskBook(model.getTaskBook());
             } catch (IOException ioe) {

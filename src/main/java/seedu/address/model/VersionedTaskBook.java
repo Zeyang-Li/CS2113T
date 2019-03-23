@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@code AddressBook} that keeps track of its own history.
+ * {@code TaskBook} that keeps track of its own history.
  */
 public class VersionedTaskBook extends TaskBook {
 
@@ -20,7 +20,7 @@ public class VersionedTaskBook extends TaskBook {
     }
 
     /**
-     * Saves a copy of the current {@code AddressBook} state at the end of the state list.
+     * Saves a copy of the current {@code TaskBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
@@ -35,7 +35,7 @@ public class VersionedTaskBook extends TaskBook {
     }
 
     /**
-     * Restores the address book to its previous state.
+     * Restores the task book to its previous state.
      */
     public void undo() {
         if (!canUndo()) {
@@ -46,7 +46,7 @@ public class VersionedTaskBook extends TaskBook {
     }
 
     /**
-     * Restores the address book to its previously undone state.
+     * Restores the task book to its previously undone state.
      */
     public void redo() {
         if (!canRedo()) {
@@ -57,14 +57,14 @@ public class VersionedTaskBook extends TaskBook {
     }
 
     /**
-     * Returns true if {@code undo()} has address book states to undo.
+     * Returns true if {@code undo()} has task book states to undo.
      */
     public boolean canUndo() {
         return currentStatePointer > 0;
     }
 
     /**
-     * Returns true if {@code redo()} has address book states to redo.
+     * Returns true if {@code redo()} has task book states to redo.
      */
     public boolean canRedo() {
         return currentStatePointer < taskBookStateList.size() - 1;
@@ -95,7 +95,7 @@ public class VersionedTaskBook extends TaskBook {
      */
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
-            super("Current state pointer at start of addressBookState list, unable to undo.");
+            super("Current state pointer at start of taskBookState list, unable to undo.");
         }
     }
 
@@ -104,7 +104,7 @@ public class VersionedTaskBook extends TaskBook {
      */
     public static class NoRedoableStateException extends RuntimeException {
         private NoRedoableStateException() {
-            super("Current state pointer at end of addressBookState list, unable to redo.");
+            super("Current state pointer at end of taskBookState list, unable to redo.");
         }
     }
 }
