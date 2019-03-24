@@ -96,7 +96,7 @@ public class CommandBox extends UiPart<Region> {
     private void autoCompleteInputCommand() {
         String text = commandTextField.getText();
         String completedtext = getCompletedtext(text);
-        commandTextField.setText(completedtext);
+        commandTextField.setText(completedtext);	
     }
 
     private String getCompletedtext(String text) {
@@ -110,9 +110,8 @@ public class CommandBox extends UiPart<Region> {
         int length = text.length();
         float highestRatio = 0;
         String highestRatioCommand = null;
-        //List<Float> SimilarityRatioForEachCommand = new ArrayList<>();
         for (String commands: commandlist) {
-            if (text.equals(commands.substring(0, length))) {
+            if (length <= commands.length() && text.equals(commands.substring(0, length))) {
                 return commands;
             } else if (highestRatio == 0 || highestRatio < getSimilarityRatio(text, commands)) {
                 highestRatio = getSimilarityRatio(text, commands);
@@ -130,41 +129,40 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Compare input text with the command to get the similarity of them.
      */
-    private float compare(String text, String commands) {
-        int[][] d;
-        int n = text.length();
-        int m = commands.length();
-        int i;
-        int j;
+    private float compare(String text, String command) {
+        int[][] difference;
+        int textLength = text.length();
+        int commandLength = command.length();
         char ch1;
         char ch2;
         int temp;
-        if (n == 0) {
-            return m;
+        if (textLength == 0) {
+            return commandLength;
         }
-        if (m == 0) {
-            return n;
+        if (commandLength == 0) {
+            return textLength;
         }
-        d = new int[n + 1][m + 1];
-        for (i = 0; i <= n; i++) {
-            d[i][0] = i;
+        difference = new int[textLength + 1][commandLength + 1];
+        for (int i = 0; i <= textLength; i++) {
+        	difference[i][0] = i;
         }
-        for (j = 0; j <= m; j++) {
-            d[0][j] = j;
+        for (int j = 0; j <= commandLength; j++) {
+        	difference[0][j] = j;
         }
-        for (i = 1; i <= n; i++) {
+        for (int i = 1; i <= textLength; i++) {
             ch1 = text.charAt(i - 1);
-            for (j = 1; j <= m; j++) {
-                ch2 = commands.charAt(j - 1);
+            for (int j = 1; j <= commandLength; j++) {
+                ch2 = command.charAt(j - 1);
                 if (ch1 == ch2 || ch1 == ch2 + 32 || ch1 + 32 == ch2) {
                     temp = 0;
                 } else {
                     temp = 1;
                 }
-                d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + temp);
+                difference[i][j] = min(difference[i - 1][j] + 1,
+                		               difference[i][j - 1] + 1, difference[i - 1][j - 1] + temp);
             }
         }
-        return d[n][m];
+        return difference[textLength][commandLength];
     }
 
     private int min(int one, int two, int three) {
