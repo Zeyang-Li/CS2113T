@@ -99,7 +99,6 @@ public class RemindCommand extends Command{
 
                 List<Task> categoriedTasks =
                         CategoryExtractor.findTaskOfSpecifiedCategory(originalTasks, splitedInput[0]);
-                
                 if (splitedInput[1].equals("start")) {
 
                     model.sortByStart();
