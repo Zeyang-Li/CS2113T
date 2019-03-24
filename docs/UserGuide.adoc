@@ -18,7 +18,7 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is for those who *prefer to use a desktop app for managing their daily tasks' schedule*. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+Tasketch is for those who *prefer to use a desktop app for managing their time by allocating time for each daily task. More importantly, Tasketch is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Tasketch can get your tasks' schedule done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
@@ -67,7 +67,8 @@ Format:
 
 ****
 * There are only 5 valid categories and can be excluded in the command. (The details about it can be found in <<category>>.)
-* Excluding category in the command will only mean that the task will not be monitored.
+* Excluding category in the command will only mean that the task will not be included into the time management.
+
 ****
 
 [TIP]
@@ -106,7 +107,7 @@ Edits an existing task in Tasketch.
 
 Format:
 
-`edit TASK_ID [st/START_TIME] [et/END_TIME] [t/TOPIC] [d/DESCRIPTION]`
+`edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
 ****
 * Edits the task with the index number shown in the task list.
@@ -118,7 +119,7 @@ Format:
 Examples:
 
 `edit 1 st/12.00 et/14.00 t/GET1018 tut` +
-Edits the start time and end time of the task with ID 331 to be `12:00` and `14:00` respectively. Change the topic to `GET1018 tut`.
+Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018 tut`.
 
 
 === Searching tasks by keywords: `find`/`f`
@@ -226,22 +227,22 @@ Format:
 
 Examples:
 
-* 1.`delete 1` +
-  2.`undo` (reverses the `delete 1` command) +
-  3.`redo` (reapplies the `delete 1` command)
-* 1.`delete 1` +
-   2.`redo` +
+* `delete 1` +
+  `undo` (reverses the `delete 1` command) +
+  `redo` (reapplies the `delete 1` command)
+* `delete 1` +
+  `redo` +
    The `redo` command fails as there are no undo commands executed previously.
-* 1.`delete 1` +
-2.`clear` +
-3.`undo` (reverses the `clear` command) +
-4.`undo` (reverses the `delete 1` command) +
-5.`redo` (reapplies the `delete 1` command) +
-6.`redo` (reapplies the `clear` command)
+* `delete 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete 1` command) +
+`redo` (reapplies the `delete 1` command) +
+`redo` (reapplies the `clear` command)
 
 === Setting time limit to a task category : `set`
 
-Setting weekly time limit for a task category. +
+Sets weekly time limit for a task category. +
 Upon adding a task to a category and leads to time limit, you will not able to add it into that category for that week.
 
 Format:
@@ -261,26 +262,26 @@ Format:
 * To modify the time limit, just use back the same command and it will update the old to the new time limit.
 ****
 
-Examples:
+Example:
 
 `set a 40`
 
 === Removing time limit of a task category : `unset`
 
-Removing weekly time limit of a task category. +
+Removes weekly time limit of a task category. +
 After removing the time limit, you will be able to add more tasks into that category as usual.
 
 Format:
 
 `unset CATEGORY`
 
-Examples:
+Example:
 
 `unset a`
 
 === Showing remaining time to the limit of all task categories : `show`
 
-Showing all the remaining time before reaching the limit for all the task category
+Shows all the remaining time before reaching the limit for all the task category
 
 Format:
 
@@ -289,6 +290,7 @@ Format:
 === Exiting the program : `exit`
 
 Exits the program. +
+
 Format:
 
 `exit`
@@ -297,6 +299,21 @@ Format:
 
 Tasketch data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
+=== Getting wrong command suggestions
+Suggests to users what they have typed wrongly automatically, by giving a list of closest approximations of word through the message box after pressing enter. +
+
+****
+* The input is not case sensitive, hence it would increase the chance of getting a closer approximation of the correct command!
+* This feature tolerates a maximum of two wrong alphabets.
+* This feature allows user to type in a command which has the same alphabets with one of the correct command word but in different order. The system can give suggestion even if the user type in the reverse command word.
+****
+
+Examples：
+
+* If the user wanted to type `clear` but he typed `clarr` instead, the system will tell the user that it is an unknown command, and would suggest the command `clear` instead.
+* If the user wanted to type `exit` but he typed `ecot` instead, the system will tell the user that it is an unknown command, and would suggest the command `exit` and `edit` instead.
+* If the user wanted to type `history` but he typed `hsitryo` instead, the system will tell the user that it is an unknown command, and would suggest the command `history` instead.
 
 == FAQ
 

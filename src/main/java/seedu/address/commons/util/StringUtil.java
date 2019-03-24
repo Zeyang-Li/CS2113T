@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -64,5 +65,33 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Joins the elements of the provided array into a single String
+     * containing the provided list of elements.
+     * @param array  the array of values to join together, may be null
+     * @param separator  the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 2.0
+     */
+    public static String join(final List<String> array, final String separator) {
+        if (array == null) {
+            return null;
+        }
+        final int arraySize = array.size();
+        if (arraySize <= 0) {
+            return null;
+        }
+        final StringBuilder buf = new StringBuilder(arraySize);
+        for (int i = 0; i < arraySize; i++) {
+            if (i > 0) {
+                buf.append(separator);
+            }
+            if (array.get(i) != null) {
+                buf.append(array.get(i));
+            }
+        }
+        return buf.toString();
     }
 }

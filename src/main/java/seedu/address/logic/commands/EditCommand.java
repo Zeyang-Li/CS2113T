@@ -55,6 +55,13 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Study "
             + PREFIX_DESCRIPTION + "Study for the whole day";
+    public static final String COMMAND_PARAMETERS = "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "DECRIPTION] "
+            + "[" + PREFIX_STARTDATE + "STRATDATE] "
+            + "[" + PREFIX_STARTTIME + "STARTTIME] "
+            + "[" + PREFIX_ENDDATE + "ENDDATE] "
+            + "[" + PREFIX_ENDTIME + "ENDTIME]...\n";
 
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
