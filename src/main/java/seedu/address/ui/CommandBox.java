@@ -7,7 +7,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -18,6 +31,25 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+
+
+    private static final String[] CommandList;
+
+    static {
+        CommandList = new String[] {
+            AddCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD,
+            HistoryCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD,
+            RedoCommand.COMMAND_WORD,
+            UndoCommand.COMMAND_WORD,
+        };
+    }
 
     private final CommandExecutor commandExecutor;
     private final List<String> history;
@@ -45,16 +77,98 @@ public class CommandBox extends UiPart<Region> {
             // As up and down buttons will alter the position of the caret,
             // consuming it causes the caret's position to remain unchanged
             keyEvent.consume();
-
             navigateToPreviousInput();
             break;
         case DOWN:
             keyEvent.consume();
             navigateToNextInput();
             break;
+        case TAB:
+            keyEvent.consume();
+            autoCompleteInputCommand();
+            break;
+
         default:
             // let JavaFx handle the keypress
         }
+    }
+
+    private void autoCompleteInputCommand() {
+        String text = commandTextField.getText();
+        String completedtext = getCompletedtext(text);
+        commandTextField.setText(completedtext);
+    }
+
+    private String getCompletedtext(String text) {
+        return getMostSimilarCommand(text, CommandList);
+    }
+
+    /**
+     * Get the most similar command with the text field input.
+     */
+    private String getMostSimilarCommand(String text, String[] commandlist) {
+        int length = text.length();
+        float highestRatio = 0;
+        String highestRatioCommand = null;
+        //List<Float> SimilarityRatioForEachCommand = new ArrayList<>();
+        for (String commands: commandlist) {
+            if (text.equals(commands.substring(0, length))) {
+                return commands;
+            } else if (highestRatio == 0 || highestRatio < getSimilarityRatio(text, commands)) {
+                highestRatio = getSimilarityRatio(text, commands);
+                highestRatioCommand = commands;
+            }
+        }
+        return highestRatioCommand;
+    }
+
+    private float getSimilarityRatio(String text, String commands) {
+        int max = Math.max(text.length(), commands.length());
+        return 1 - (float) compare(text, commands) / max;
+    }
+
+    /**
+     * Compare input text with the command to get the similarity of them.
+     */
+    private float compare(String text, String commands) {
+        int[][] d;
+        int n = text.length();
+        int m = commands.length();
+        int i;
+        int j;
+        char ch1;
+        char ch2;
+        int temp;
+        if (n == 0) {
+            return m;
+        }
+        if (m == 0) {
+            return n;
+        }
+        d = new int[n + 1][m + 1];
+        for (i = 0; i <= n; i++) {
+            d[i][0] = i;
+        }
+        for (j = 0; j <= m; j++) {
+            d[0][j] = j;
+        }
+        for (i = 1; i <= n; i++) {
+            ch1 = text.charAt(i - 1);
+            for (j = 1; j <= m; j++) {
+                ch2 = commands.charAt(j - 1);
+                if (ch1 == ch2 || ch1 == ch2 + 32 || ch1 + 32 == ch2) {
+                    temp = 0;
+                } else {
+                    temp = 1;
+                }
+                d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + temp);
+            }
+        }
+        return d[n][m];
+    }
+
+    private int min(int one, int two, int three) {
+        return (one = one < two ? one : two) < three ? one : three;
     }
 
     /**
