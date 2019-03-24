@@ -96,7 +96,7 @@ public class CommandBox extends UiPart<Region> {
     private void autoCompleteInputCommand() {
         String text = commandTextField.getText();
         String completedtext = getCompletedtext(text);
-        commandTextField.setText(completedtext);	
+        commandTextField.setText(completedtext); 
     }
 
     private String getCompletedtext(String text) {
@@ -117,6 +117,7 @@ public class CommandBox extends UiPart<Region> {
                 highestRatio = getSimilarityRatio(text, commands);
                 highestRatioCommand = commands;
             }
+            System.out.println(getSimilarityRatio(text, commands));
         }
         return highestRatioCommand;
     }
