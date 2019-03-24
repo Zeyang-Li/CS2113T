@@ -44,6 +44,37 @@ public class WrongCommandSuggestion implements Suggestion {
     }
 
     /**
+     * Check the alphabets occurrence in command input and stores it as a String.
+     * Returns a string of the a;phabet occurrence.
+     * @param userCommand A {@code String} object of the user's command input
+     * @return A {@code String} object containing the suggestion header and suggested similar command.
+     */
+    public String checkOcc(String userCommand) {
+        String result = "";
+        char[][] resultArr = new char[26][2];
+        int count = 0;
+        char [] stringArr = userCommand.toCharArray();
+        for (char check = 'a'; check <= 'z'; check++) {
+            resultArr[count][0] = check;
+            resultArr[count][1] = '0';
+            count++;
+        }
+        for (int i = 0; i < stringArr.length; i++) {
+            for (int j = 0; j < 26; j++) {
+                if (stringArr[i] == resultArr[j][0]) {
+                    resultArr[j][1]++;
+                }
+            }
+        }
+        for (int j = 0; j < 26; j++) {
+            if (resultArr[j][1] != '0') {
+                result = result + resultArr[j][0] + resultArr[j][1];
+            }
+        }
+        return result;
+    }
+
+    /**
      * Parses the command input and passes it to the getNearestCommand for comparison of commands.
      * Returns formatted string of the suggestion header and closest matched command, else returns nothing.
      * @param userCommand A {@code String} object of the user's command input
@@ -51,8 +82,22 @@ public class WrongCommandSuggestion implements Suggestion {
      */
     public List<String> getSuggestions(String userCommand) {
         String userCommandInLowerCase = userCommand.toLowerCase();
-        List<String> suggestedCommand = getNearestCommands(userCommandInLowerCase);
-        return suggestedCommand;
+        String alphabetOcc = checkOcc(userCommandInLowerCase);
+        ArrayList<String> suggestion = new ArrayList<>();
+
+        for (String commands: CommandList) {
+            String commandOcc = checkOcc(commands);
+            if (commandOcc.equals(alphabetOcc)) {
+                suggestion.add(commands);
+            }
+        }
+
+        if (suggestion.isEmpty()) {
+            List<String> suggestedCommand = getNearestCommands(userCommandInLowerCase);
+            return suggestedCommand;
+        } else {
+            return suggestion;
+        }
     }
 
     private List<String> getNearestCommands(String userCommand) {
