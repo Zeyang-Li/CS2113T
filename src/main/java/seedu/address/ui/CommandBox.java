@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -8,9 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -86,6 +87,8 @@ public class CommandBox extends UiPart<Region> {
         case TAB:
             keyEvent.consume();
             autoCompleteInputCommand();
+            break;
+
         default:
             // let JavaFx handle the keypress
         }
@@ -125,8 +128,11 @@ public class CommandBox extends UiPart<Region> {
         return 1 - (float) compare(text, commands) / max;
     }
 
+    /**
+     * Compare input text with the command to get the similarity of them. 
+     */
     private float compare(String text, String commands) {
-        int d[][];
+    	int[][] d;
         int n = text.length();
         int m = commands.length();
         int i;
