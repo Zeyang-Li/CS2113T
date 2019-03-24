@@ -241,7 +241,7 @@ Examples:
 
 === Setting time limit to a task category : `set`
 
-Setting weekly time limit for a task category. +
+Sets weekly time limit for a task category. +
 Upon adding a task to a category and leads to time limit, you will not able to add it into that category for that week.
 
 Format:
@@ -261,26 +261,26 @@ Format:
 * To modify the time limit, just use back the same command and it will update the old to the new time limit.
 ****
 
-Examples:
+Example:
 
 `set a 40`
 
 === Removing time limit of a task category : `unset`
 
-Removing weekly time limit of a task category. +
+Removes weekly time limit of a task category. +
 After removing the time limit, you will be able to add more tasks into that category as usual.
 
 Format:
 
 `unset CATEGORY`
 
-Examples:
+Example:
 
 `unset a`
 
 === Showing remaining time to the limit of all task categories : `show`
 
-Showing all the remaining time before reaching the limit for all the task category
+Shows all the remaining time before reaching the limit for all the task category
 
 Format:
 
@@ -289,6 +289,7 @@ Format:
 === Exiting the program : `exit`
 
 Exits the program. +
+
 Format:
 
 `exit`
@@ -297,6 +298,19 @@ Format:
 
 Tasketch data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
+=== Getting wrong command suggestions
+Suggests to users what they have typed wrongly automatically, by giving a list of closest approximations of word through the message box after pressing enter. +
+
+****
+* The input is not case sensitive, hence it would increase the chance of getting a closer approximation of the correct command!
+* This feature tolerates a maximum of two wrong alphabets.
+****
+
+Examples：
+
+* If you wanted to type `clear` but the user typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
+* If you wanted to type `exit` but the user typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
 
 == FAQ
 
