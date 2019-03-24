@@ -62,14 +62,13 @@ public class WrongCommandSuggestion implements Suggestion {
             commandEditDistances[i] = new ArrayList<>();
         }
 
-        if(userCommand.length() == 1) {
+        if (userCommand.length() == 1) {
             for (String commands: CommandList) {
                 if (commands.charAt(0) == userCommand.charAt(0)) {
                     commandEditDistances[1].add(commands);
                 }
             }
-        }
-        else {
+        }else {
             for (String commands: CommandList) {
                 int distance = new StringSimilarity().editDistance(userCommand, commands);
 

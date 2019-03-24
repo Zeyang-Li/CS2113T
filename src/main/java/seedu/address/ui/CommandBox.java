@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -9,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -21,7 +21,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -32,7 +31,7 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-    private static final String NOCOMMANDFOUND = " ";
+
 
     private static final String[] CommandList;
 
@@ -85,9 +84,8 @@ public class CommandBox extends UiPart<Region> {
             navigateToNextInput();
             break;
         case TAB:
-        	keyEvent.consume();
-        	autoCompleteInputCommand();
-
+            keyEvent.consume();
+            autoCompleteInputCommand();
         default:
             // let JavaFx handle the keypress
         }
@@ -112,9 +110,9 @@ public class CommandBox extends UiPart<Region> {
         String highestRatioCommand = null;
         //List<Float> SimilarityRatioForEachCommand = new ArrayList<>();
         for (String commands: commandlist) {
-            if(text.equals(commands.substring(0, length))) {
+            if (text.equals(commands.substring(0, length))) {
                 return commands;
-            }else if(highestRatio == 0 || highestRatio < getSimilarityRatio(text, commands)) {
+            } else if (highestRatio == 0 || highestRatio < getSimilarityRatio(text, commands)) {
                 highestRatio = getSimilarityRatio(text, commands);
                 highestRatioCommand = commands;
             }
@@ -162,7 +160,7 @@ public class CommandBox extends UiPart<Region> {
             }
         }
         return d[n][m];
-	}
+    }
 
     private int min(int one, int two, int three) {
         return (one = one < two ? one : two) < three ? one : three;
