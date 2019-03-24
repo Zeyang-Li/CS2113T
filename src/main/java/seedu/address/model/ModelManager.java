@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -29,7 +32,39 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final SimpleObjectProperty<Task> selectedTask = new SimpleObjectProperty<>();
+    public Comparator<Task> startComparator = new Comparator<Task>() {
+        @Override
+        public int compare(Task o1, Task o2) {
+            String sdO1 = o1.getStartDate().toString();
+            String sd02 = o2.getStartDate().toString();
+            String[] dateInfo1 = sdO1.split("-");
+            String[] dateInfo2 = sd02.split("-");
+            String finalDate1 = dateInfo1[2] + dateInfo1[1] + dateInfo1[0];
+            String finalDate2 = dateInfo2[2] + dateInfo2[1] + dateInfo2[0];
+            if (finalDate1.compareTo(finalDate2) != 0) {
+                return finalDate1.compareTo(finalDate2);
+            } else {
+                return o1.getStartTime().toString().compareTo(o2.getStartTime().toString());
+            }
+        }
+    };
 
+    public Comparator<Task> endComparator = new Comparator<Task>() {
+        @Override
+        public int compare(Task o1, Task o2) {
+            String sdO1 = o1.getEndDate().toString();
+            String sd02 = o2.getEndDate().toString();
+            String[] dateInfo1 = sdO1.split("-");
+            String[] dateInfo2 = sd02.split("-");
+            String finalDate1 = dateInfo1[2] + dateInfo1[1] + dateInfo1[0];
+            String finalDate2 = dateInfo2[2] + dateInfo2[1] + dateInfo2[0];
+            if (finalDate1.compareTo(finalDate2) != 0) {
+                return finalDate1.compareTo(finalDate2);
+            } else {
+                return o1.getStartTime().toString().compareTo(o2.getStartTime().toString());
+            }
+        }
+    };
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -113,6 +148,17 @@ public class ModelManager implements Model {
             versionedTaskBook.removeTask(target);
         }
     }
+
+    @Override
+    public void sortByStart() {
+        versionedTaskBook.sortTaskByDate(startComparator);
+    }
+
+    @Override
+    public void sortByEnd() {
+        versionedTaskBook.sortTaskByDate(endComparator);
+    }
+
 
     @Override
     public void addTask(Task task) {

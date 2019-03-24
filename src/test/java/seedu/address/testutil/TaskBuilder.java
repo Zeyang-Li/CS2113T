@@ -114,7 +114,7 @@ public class TaskBuilder {
 
 
     public Task build() {
-        return new Task(name, startDate, startTime, endDate, endTime, description, tags);
+        return new Task(name, startDate, startTime, endDate, endTime, description, tags, category);
     }
 
 }

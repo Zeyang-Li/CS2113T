@@ -154,4 +154,10 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static String parseCategory(String s) {
+        requireNonNull(s);
+        String trimmedCategory = s.trim();
+        return trimmedCategory;
+    }
 }

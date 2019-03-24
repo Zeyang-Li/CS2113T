@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -36,6 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "15-03-19 "
             + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
+            + PREFIX_CATEGORY + "c"
             + PREFIX_TAG + "urgent "
             + PREFIX_TAG + "duesoon\n";
 

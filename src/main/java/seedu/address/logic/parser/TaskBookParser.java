@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListDateCommand;
 import seedu.address.logic.commands.ListtdCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -101,6 +102,9 @@ public class TaskBookParser {
             } else {
                 return new ListDateCommand(key);
             }
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand(arguments);
 
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
