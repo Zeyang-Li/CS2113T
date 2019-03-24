@@ -60,13 +60,13 @@ public class WrongCommandSuggestion implements Suggestion {
             count++;
         }
         for (int i = 0; i < stringArr.length; i++) {
-            for (int j = 0; j <26; j++) {
+            for (int j = 0; j < 26; j++) {
                 if (stringArr[i] == resultArr[j][0]) {
                     resultArr[j][1]++;
                 }
             }
         }
-        for (int j = 0; j <26; j++) {
+        for (int j = 0; j < 26; j++) {
             if (resultArr[j][1] != '0') {
                 result = result + resultArr[j][0] + resultArr[j][1];
             }
