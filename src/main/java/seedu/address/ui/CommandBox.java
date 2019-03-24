@@ -33,9 +33,9 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private static final String NOCOMMANDFOUND = " ";
-    
+
     private static final String[] CommandList;
-    
+
     static {
         CommandList = new String[] {
             AddCommand.COMMAND_WORD,
@@ -51,7 +51,7 @@ public class CommandBox extends UiPart<Region> {
             UndoCommand.COMMAND_WORD,
         };
     }
-    
+
     private final CommandExecutor commandExecutor;
     private final List<String> history;
     private ListElementPointer historySnapshot;
@@ -87,12 +87,12 @@ public class CommandBox extends UiPart<Region> {
         case TAB:
         	keyEvent.consume();
         	autoCompleteInputCommand();
-        	
+
         default:
             // let JavaFx handle the keypress
         }
     }
-    
+
     private void autoCompleteInputCommand() {
         String text = commandTextField.getText();
         String completedtext = getCompletedtext(text);
