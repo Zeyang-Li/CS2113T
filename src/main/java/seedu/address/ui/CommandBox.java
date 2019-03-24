@@ -96,7 +96,7 @@ public class CommandBox extends UiPart<Region> {
     private void autoCompleteInputCommand() {
         String text = commandTextField.getText();
         String completedtext = getCompletedtext(text);
-        commandTextField.setText(completedtext); 
+        commandTextField.setText(completedtext);
     }
 
     private String getCompletedtext(String text) {
