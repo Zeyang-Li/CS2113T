@@ -129,7 +129,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Compare input text with the command to get the similarity of them. 
+     * Compare input text with the command to get the similarity of them.
      */
     private float compare(String text, String commands) {
     	int[][] d;
