@@ -29,17 +29,17 @@ public class WrongCommandSuggestion implements Suggestion {
     // Initialising the CommandList Array
     static {
         CommandList = new String[] {
-                AddCommand.COMMAND_WORD,
-                ClearCommand.COMMAND_WORD,
-                DeleteCommand.COMMAND_WORD,
-                EditCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_WORD,
-                FindCommand.COMMAND_WORD,
-                HelpCommand.COMMAND_WORD,
-                HistoryCommand.COMMAND_WORD,
-                ListCommand.COMMAND_WORD,
-                RedoCommand.COMMAND_WORD,
-                UndoCommand.COMMAND_WORD,
+            AddCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD,
+            HistoryCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD,
+            RedoCommand.COMMAND_WORD,
+            UndoCommand.COMMAND_WORD,
         };
     }
 

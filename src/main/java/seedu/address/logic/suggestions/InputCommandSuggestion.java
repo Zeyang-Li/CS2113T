@@ -105,33 +105,34 @@ public class InputCommandSuggestion implements Suggestion {
      */
     public String getCommandParameters(String command) {
         switch (command) {
-            case AddCommand.COMMAND_WORD:
-                return AddCommand.COMMAND_PARAMETERS;
 
-            case DeleteCommand.COMMAND_WORD:
-                return DeleteCommand.COMMAND_PARAMETERS;
+        case AddCommand.COMMAND_WORD:
+            return AddCommand.COMMAND_PARAMETERS;
 
-            case EditCommand.COMMAND_WORD:
-                return EditCommand.COMMAND_PARAMETERS;
+        case DeleteCommand.COMMAND_WORD:
+            return DeleteCommand.COMMAND_PARAMETERS;
 
-            case FindCommand.COMMAND_WORD:
-                return FindCommand.COMMAND_PARAMETERS;
+        case EditCommand.COMMAND_WORD:
+            return EditCommand.COMMAND_PARAMETERS;
 
-            case ClearCommand.COMMAND_WORD:
-                return ClearCommand.COMMAND_PARAMETERS;
+        case FindCommand.COMMAND_WORD:
+            return FindCommand.COMMAND_PARAMETERS;
 
-            case ListCommand.COMMAND_WORD:
-                return ListCommand.COMMAND_PARAMETERS;
+        case ClearCommand.COMMAND_WORD:
+            return ClearCommand.COMMAND_PARAMETERS;
 
-            case ExitCommand.COMMAND_WORD:
-            case HelpCommand.COMMAND_WORD:
-            case HistoryCommand.COMMAND_WORD:
-            case RedoCommand.COMMAND_WORD:
-            case UndoCommand.COMMAND_WORD:
-                return NO_REQUIRED_PARAMETERS;
+        case ListCommand.COMMAND_WORD:
+            return ListCommand.COMMAND_PARAMETERS;
 
-            default:
-                return INVALID_COMMAND_PARAMETERS;
+        case ExitCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_WORD:
+        case HistoryCommand.COMMAND_WORD:
+        case RedoCommand.COMMAND_WORD:
+        case UndoCommand.COMMAND_WORD:
+            return NO_REQUIRED_PARAMETERS;
+
+        default:
+            return INVALID_COMMAND_PARAMETERS;
         }
     }
 }
