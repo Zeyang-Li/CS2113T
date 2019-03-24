@@ -160,7 +160,7 @@ public class CommandBox extends UiPart<Region> {
                     temp = 1;
                 }
                 difference[i][j] = min(difference[i - 1][j] + 1,
-                		               difference[i][j - 1] + 1, difference[i - 1][j - 1] + temp);
+                                       difference[i][j - 1] + 1, difference[i - 1][j - 1] + temp);
             }
         }
         return difference[textLength][commandLength];
