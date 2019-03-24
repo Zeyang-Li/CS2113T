@@ -20,6 +20,11 @@ public class ListCommand extends Command {
             + "3. DATE: list 25-03-19    "
             + "list all the tasks which are before/after 25th March, 2019\n";
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
+    public static final String COMMAND_PARAMETERS = "Parameters:\n"
+            + "1. no parameters: list        list all tasks\n"
+            + "2. td: list td       list all the tasks of today\n"
+            + "3. DATE: list 25-03-19    "
+            + "list all the tasks which are before/after 25th March, 2019\n";
 
 
     @Override

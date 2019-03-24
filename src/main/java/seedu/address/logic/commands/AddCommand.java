@@ -39,6 +39,15 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "urgent "
             + PREFIX_TAG + "duesoon\n";
 
+    public static final String COMMAND_PARAMETERS = "Parameters: "
+            + PREFIX_NAME + "TASK NAME "
+            + PREFIX_STARTDATE + "START_DATE "
+            + PREFIX_STARTTIME + "START_TIME "
+            + PREFIX_ENDDATE + "END_DATE "
+            + PREFIX_ENDTIME + "END_TIME "
+            + PREFIX_DESCRIPTION + "CONTENT "
+            + "[" + PREFIX_TAG + "TAG]...\n";
+
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";
     private Task toAdd;
