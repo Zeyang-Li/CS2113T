@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -132,7 +131,7 @@ public class CommandBox extends UiPart<Region> {
      * Compare input text with the command to get the similarity of them.
      */
     private float compare(String text, String commands) {
-    	int[][] d;
+        int[][] d;
         int n = text.length();
         int m = commands.length();
         int i;
