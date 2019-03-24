@@ -145,10 +145,10 @@ public class CommandBox extends UiPart<Region> {
         }
         difference = new int[textLength + 1][commandLength + 1];
         for (int i = 0; i <= textLength; i++) {
-        	difference[i][0] = i;
+            difference[i][0] = i;
         }
         for (int j = 0; j <= commandLength; j++) {
-        	difference[0][j] = j;
+            difference[0][j] = j;
         }
         for (int i = 1; i <= textLength; i++) {
             ch1 = text.charAt(i - 1);
