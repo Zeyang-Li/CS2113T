@@ -27,6 +27,7 @@ public class ClearCommand extends Command {
             + COMMAND_WORD + " 18-03-19\n"
             + COMMAND_WORD + " 03-19\n"
             + COMMAND_WORD + " before\n";
+    public static final String COMMAND_PARAMETERS = "Parameters: none or DATE or before\n";
     public static final String MESSAGE_CLEARDATE_SUCCESS = "clear %1$d tasks which start at %2$s";
     public static final String MESSAGE_CLEARYD_SUCCESS = "clear %1$d tasks which have already ended on %2$s";
     private String specificDate;

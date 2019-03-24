@@ -22,6 +22,10 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2101 cs2113t";
+    public static final String COMMAND_PARAMETERS = COMMAND_WORD + ": Finds all tasks whose names contain any of "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " cs2101 cs2113t";
 
     private final TaskContainsKeywordsPredicate predicate;
 

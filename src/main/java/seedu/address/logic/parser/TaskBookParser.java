@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.ListtdCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.suggestions.WrongCommandSuggestion;
 
 
 //The command created for Tasketch:
@@ -34,6 +36,35 @@ public class TaskBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+
+    /**
+     * Joins the elements of the provided array into a single String
+     * containing the provided list of elements.
+     * @param array  the array of values to join together, may be null
+     * @param separator  the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 2.0
+     */
+    public static String addComma(final List<String> array, final String separator) {
+        if (array == null) {
+            return null;
+        }
+        final int arraySize = array.size();
+        if (arraySize <= 0) {
+            return null;
+        }
+        final StringBuilder buf = new StringBuilder(arraySize);
+        for (int i = 0; i < arraySize; i++) {
+            if (i > 0) {
+                buf.append(separator);
+            }
+            if (array.get(i) != null) {
+                buf.append(array.get(i));
+            }
+        }
+        return buf.toString();
+    }
 
     /**
      * Parses user input into command for execution.
@@ -106,7 +137,14 @@ public class TaskBookParser {
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            List<String> listOfCommands = new WrongCommandSuggestion().getSuggestions(commandWord);
+            if (listOfCommands == null) {
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND + "\n" + WrongCommandSuggestion.NO_SUGGESTION);
+            } else {
+                String suggestionsToString = addComma(listOfCommands, ", ");
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND + '\n'
+                        + String.format(WrongCommandSuggestion.SUGGESTION_HEADER, suggestionsToString));
+            }
         }
     }
 
