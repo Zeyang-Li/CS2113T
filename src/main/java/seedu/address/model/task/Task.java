@@ -69,7 +69,7 @@ public class Task {
         return description;
     }
 
-    public String getCategory() {return category;}
+    public String getCategory() { return category; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

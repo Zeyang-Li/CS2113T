@@ -117,7 +117,8 @@ class JsonAdaptedTask {
         final EndDate modelEndDate = new EndDate(endDate);
 
         if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT
+                    , EndTime.class.getSimpleName()));
         }
         if (!EndTime.isValidEndTime(endTime)) {
             throw new IllegalValueException(EndTime.MESSAGE_CONSTRAINTS);

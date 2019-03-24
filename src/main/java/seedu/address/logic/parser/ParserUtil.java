@@ -155,6 +155,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a String with white space into a String without white space.
+     */
     public static String parseCategory(String s) {
         requireNonNull(s);
         String trimmedCategory = s.trim();

@@ -13,17 +13,30 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-public class RemindCommand extends Command{
+/**
+ * Set a reminder of the nearest tasks for user, those tasks can be specified by task category.
+ */
+public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
     public static final String MESSAGE_USAGE = "remind: give reminds on specified requirement\n"
             + "Parameters:\n"
             + "1. start/ddl: Tasketch will give a reminding task list ordered by task start time or deadline.\n"
             + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
             + "of tasks ordered by start time or deadline.\n";
-    public String arguments;
+    private String arguments;
 
+    /**
+     * Constructor of RemindCommand.
+     */
     public RemindCommand(String userInput) {
         this.arguments = userInput;
+    }
+
+    /**
+     * Access function of arguments.
+     */
+    public String getArguments() {
+        return this.arguments;
     }
 
     /**
@@ -97,8 +110,6 @@ public class RemindCommand extends Command{
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
             } else {
 
-                List<Task> categoriedTasks =
-                        CategoryExtractor.findTaskOfSpecifiedCategory(originalTasks, splitedInput[0]);
                 if (splitedInput[1].equals("start")) {
 
                     model.sortByStart();

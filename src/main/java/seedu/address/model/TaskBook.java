@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -102,6 +101,9 @@ public class TaskBook implements ReadOnlyTaskBook {
         indicateModified();
     }
 
+    /**
+     * Sort tasks in the storage by given comparator.
+     */
     public void sortTaskByDate(Comparator<Task> comparator) {
         tasks.sortByDate(comparator);
         indicateModified();
