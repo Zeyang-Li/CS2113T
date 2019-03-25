@@ -106,7 +106,7 @@ public class TaskBook implements ReadOnlyTaskBook {
         Date targetDate = new Date(targetDateStr);
         Date editedDate = new Date(editedDateStr);
 
-        if (targetDate != editedDate ) {
+        if (targetDate != editedDate) {
             if (!dayMap.containsKey(editedDate)) {
                 dayMap.put(editedDate, new Day(editedDate));
             }

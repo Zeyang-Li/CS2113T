@@ -8,7 +8,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.task.Task;
-import seedu.address.model.day.Day;
+
 /**
  * The API of the Model component.
  */

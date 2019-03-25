@@ -135,7 +135,8 @@ class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
 
         if (categories == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Categories.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Categories.class.getSimpleName()));
         }
         if (!Categories.isValidCategories(categories)) {
             throw new IllegalValueException(Categories.MESSAGE_CONSTRAINTS);

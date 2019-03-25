@@ -67,7 +67,9 @@ public class Task {
         return description;
     }
 
-    public Categories getCategories() { return categories; }
+    public Categories getCategories() {
+        return categories;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

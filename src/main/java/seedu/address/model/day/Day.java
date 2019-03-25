@@ -2,9 +2,10 @@ package seedu.address.model.day;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.DecimalFormat;
+import java.util.InvalidPropertiesFormatException;
 import java.util.Objects;
 
+import jdk.jshell.spi.ExecutionControl;
 import seedu.address.model.task.Categories;
 import seedu.address.model.task.Task;
 
@@ -14,7 +15,7 @@ import seedu.address.model.task.Task;
  */
 public class Day {
 
-    public final double DEFAULT = 00.00;
+    public final double DE = 0;
 
     // Identity fields
     private final Date date;
@@ -30,73 +31,98 @@ public class Day {
     public Day(Date date) {
         requireAllNonNull(date);
         this.date = date;
-        this.academic = new Academic(DEFAULT);
-        this.entertainment = new Entertainment(DEFAULT);
-        this.cca = new Cca(DEFAULT);
-        this.errand = new Errand(DEFAULT);
-        this.other = new Other(DEFAULT);
+        this.academic = new Academic(DE);
+        this.entertainment = new Entertainment(DE);
+        this.cca = new Cca(DE);
+        this.errand = new Errand(DE);
+        this.other = new Other(DE);
     }
 
-    public Date getDate() { return date; }
+    public Date getDate() {
+        return date;
+    }
 
-    public Academic getAcademic() { return academic; }
+    public Academic getAcademic() {
+        return academic;
+    }
 
-    public Entertainment getEntertainment() { return entertainment; }
+    public Entertainment getEntertainment() {
+        return entertainment;
+    }
 
-    public Cca getCca() { return cca; }
+    public Cca getCca() {
+        return cca;
+    }
 
-    public Errand getErrand() { return errand; }
+    public Errand getErrand() {
+        return errand;
+    }
 
-    public Other getOther() { return other; }
+    public Other getOther() {
+        return other;
+    }
 
+    /*
+     * To add a time into the category for each task
+     */
     public void addCategory(Task task) {
 
         String timeStart = task.getEndTime().value;
         String timeEnd = task.getStartTime().value;
         String category = task.getCategories().value;
         switch(category) {
-            case Categories.CAT_ACADEMIC:
-                academic.addTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_CCA:
-                cca.addTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_ENTERTAINMENT:
-                entertainment.addTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_ERRAND:
-                errand.addTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_OTHER:
-                other.addTime(calculateTime(timeStart, timeEnd));
-                break;
+        case Categories.CAT_ACADEMIC:
+            academic.addTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_CCA:
+            cca.addTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_ENTERTAINMENT:
+            entertainment.addTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_ERRAND:
+            errand.addTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_OTHER:
+            other.addTime(calculateTime(timeStart, timeEnd));
+            break;
+        default:
+            break;
         }
     }
 
+    /*
+     * To remove a time into the category for each task
+     */
     public void removeCategory(Task task) {
 
         String timeStart = task.getEndTime().value;
         String timeEnd = task.getStartTime().value;
         String category = task.getCategories().value;
         switch(category) {
-            case Categories.CAT_ACADEMIC:
-                academic.removeTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_CCA:
-                cca.removeTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_ENTERTAINMENT:
-                entertainment.removeTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_ERRAND:
-                errand.removeTime(calculateTime(timeStart, timeEnd));
-                break;
-            case Categories.CAT_OTHER:
-                other.removeTime(calculateTime(timeStart, timeEnd));
-                break;
+        case Categories.CAT_ACADEMIC:
+            academic.removeTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_CCA:
+            cca.removeTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_ENTERTAINMENT:
+            entertainment.removeTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_ERRAND:
+            errand.removeTime(calculateTime(timeStart, timeEnd));
+            break;
+        case Categories.CAT_OTHER:
+            other.removeTime(calculateTime(timeStart, timeEnd));
+            break;
+        default:
+            break;
         }
     }
 
+    /*
+     * To edit a time into the category for each task
+     */
     public void editCategory(Task task, Task editedTask) {
 
         String taskCategory = task.getCategories().value;

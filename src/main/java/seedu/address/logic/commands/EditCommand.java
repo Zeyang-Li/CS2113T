@@ -321,9 +321,9 @@ public class EditCommand extends Command {
 
         @Override
         public String toString() {
-            return "EditTaskDescriptor [description=" + description + ", endDate=" + endDate +
-                    ", endTime=" + endTime + ", name=" + name + ", startDate=" + startDate +
-                    ", startTime=" + startTime + ", category=" + categories + "]";
+            return "EditTaskDescriptor [description=" + description + ", endDate=" + endDate
+                    + ", endTime=" + endTime + ", name=" + name + ", startDate=" + startDate
+                    + ", startTime=" + startTime + ", category=" + categories + "]";
         }
     }
 }
