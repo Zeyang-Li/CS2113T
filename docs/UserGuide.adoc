@@ -314,6 +314,22 @@ Examples：
 * If the user wanted to type `exit` but he typed `ecot` instead, the system will tell the user that it is an unknown command, and would suggest the command `exit` and `edit` instead.
 * If the user wanted to type `history` but he typed `hsitryo` instead, the system will tell the user that it is an unknown command, and would suggest the command `history` instead.
 
+=== Automatically complete input command for user
+Help users automatically correct type error and fulfill their incomplete typed command in command line.+
+
+****
+* The input is not case sensitive.
+* If user type a string that is a substring of one of the commands, then command line will fulfill the string with this command.
+* If user type a string that is not a substring of any of the commands, then command line will show the most similar command compared this string.
+* if user type a string can not match any command, then command line will show `No command matched`.
+****
+
+Examples：
+
+* If the user wanted to type `list`, he can type `li` instead, and press `tap` on keyboard. The system will automatically fulfill the command in command line with `list`.
+* If the user wanted to type `histoy`, but he type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
+* If the user wanted to type `add`, but he type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
