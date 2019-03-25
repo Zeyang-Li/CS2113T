@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private CommandBox commandBox; 
+    private CommandBox commandBox;
 
     //To check which scene to show
     private String optionPage = DEFAULT_PAGE;

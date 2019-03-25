@@ -69,7 +69,7 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Handles the key press event, {@code keyEvent}.
-     * @throws Exception 
+     * @throws Exception
      */
     @FXML
     private void handleKeyPress(KeyEvent keyEvent) throws Exception {
