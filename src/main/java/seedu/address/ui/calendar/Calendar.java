@@ -29,7 +29,7 @@ public class Calendar extends Node {
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setPrefSize(340, 200);
-        
+
         //Fill up the calendar.
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
@@ -40,9 +40,9 @@ public class Calendar extends Node {
             }
         }
 
-        Text[] weekDays = { new Text("Sun"), 
+        Text[] weekDays = { new Text("Sun"),
                 new Text("Mon"), new Text("Tues"),
-                new Text("Wed"), new Text("Thur"), 
+                new Text("Wed"), new Text("Thur"),
                 new Text("Fri"), new Text("Sat") };
 
         GridPane weekDayLabel = new GridPane();

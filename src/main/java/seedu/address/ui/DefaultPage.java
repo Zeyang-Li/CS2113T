@@ -38,7 +38,7 @@ public class DefaultPage extends UiPart<Region> {
     public DefaultPage(ObservableList<Task> taskList) {
         super(FXML);
         init();
-        
+
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
     }
@@ -52,5 +52,4 @@ public class DefaultPage extends UiPart<Region> {
         calendarAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         reminderAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
     }
-    
 }
