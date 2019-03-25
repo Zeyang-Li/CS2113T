@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyDaysKeeper;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -18,15 +17,12 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private DaysKeeperStorage daysKeeperStorage;
     private TaskBookStorage taskBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(TaskBookStorage taskBookStorage, DaysKeeperStorage daysKeeperStorage,
-                          UserPrefsStorage userPrefsStorage) {
+    public StorageManager(TaskBookStorage taskBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.daysKeeperStorage = daysKeeperStorage;
         this.taskBookStorage = taskBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -76,35 +72,6 @@ public class StorageManager implements Storage {
     public void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         taskBookStorage.saveTaskBook(taskBook, filePath);
-    }
-
-    // ================ DaysKeeper methods ==============================
-
-    @Override
-    public Path getDaysKeeperFilePath() {
-        return daysKeeperStorage.getDaysKeeperFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyDaysKeeper> readDaysKeeper() throws DataConversionException, IOException {
-        return readDaysKeeper(daysKeeperStorage.getDaysKeeperFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyDaysKeeper> readDaysKeeper(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return daysKeeperStorage.readDaysKeeper(filePath);
-    }
-
-    @Override
-    public void saveDaysKeeper(ReadOnlyDaysKeeper daysKeeper) throws IOException {
-        saveDaysKeeper(daysKeeper, daysKeeperStorage.getDaysKeeperFilePath());
-    }
-
-    @Override
-    public void saveDaysKeeper(ReadOnlyDaysKeeper daysKeeper, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        daysKeeperStorage.saveDaysKeeper(daysKeeper, filePath);
     }
 
 }

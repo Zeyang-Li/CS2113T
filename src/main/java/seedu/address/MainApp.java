@@ -16,19 +16,15 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyDaysKeeper;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.DaysKeeper;
 import seedu.address.model.TaskBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonDaysKeeperStorage;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.DaysKeeperStorage;
 import seedu.address.storage.TaskBookStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
@@ -64,8 +60,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
-        DaysKeeperStorage daysKeeperStorage = new JsonDaysKeeperStorage(userPrefs.getDaysKeeperFilePath());
-        storage = new StorageManager(taskBookStorage, daysKeeperStorage, userPrefsStorage);
+        storage = new StorageManager(taskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
