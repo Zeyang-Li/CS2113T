@@ -63,7 +63,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
- 
+
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
