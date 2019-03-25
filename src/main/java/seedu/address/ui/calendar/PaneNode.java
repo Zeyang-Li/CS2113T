@@ -22,13 +22,19 @@ public class PaneNode extends AnchorPane {
     }
 
     /**
-     * Get today.
+     * Get today. required by Travis.
      * @return
      */
     public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(LocalDate newDay) { this.day = newDay; }
+    /**
+     * Set current date.
+     * @param newDay
+     */
+    public void setDay(LocalDate newDay) { 
+        this.day = newDay;
+    }
 
 }
