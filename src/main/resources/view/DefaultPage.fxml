@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane fx:id="overallPane" dividerPositions="0.5" orientation="VERTICAL" prefHeight="424.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <SplitPane dividerPositions="0.5"  prefHeight="224.0" prefWidth="682.0">
+              <items>
+                <AnchorPane fx:id="calendarAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                <AnchorPane fx:id="reminderAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="189.0" prefWidth="292.0" />
+              </items>
+            </SplitPane>
+         </children></AnchorPane>
+    <AnchorPane fx:id="timelineAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+  </items>
+</SplitPane>

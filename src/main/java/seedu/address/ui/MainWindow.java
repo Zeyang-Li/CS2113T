@@ -25,6 +25,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final String DEFAULT_PAGE = "defaultPage";
+    private static final String PROJECT_DETAILS = "projectDetails";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -32,12 +35,16 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private DefaultPage defaultPage;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
     private StackPane browserPlaceholder;
+
+    @FXML
+    private StackPane defaultBrowserPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    //To check which scene to show
+    String optionPage = "defaultPage";
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -111,8 +121,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedTaskProperty());
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        switch (optionPage) {
+            case DEFAULT_PAGE:
+                defaultPage = new DefaultPage(logic.getFilteredTaskList());
+                defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
+                break;
+            case PROJECT_DETAILS:
+                browserPanel = new BrowserPanel(logic.selectedTaskProperty());
+                browserPlaceholder.getChildren().add(browserPanel.getRoot());
+                break;
+        }
+
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.selectedTaskProperty(),
                 logic::setSelectedTask);
@@ -170,6 +189,13 @@ public class MainWindow extends UiPart<Stage> {
 
     public TaskListPanel getTaskListPanel() {
         return taskListPanel;
+    }
+
+    /**
+     * Choose which page to show.
+     */
+    public void setScene(String value) {
+        optionPage = value;
     }
 
     /**
