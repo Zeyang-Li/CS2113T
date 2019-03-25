@@ -24,10 +24,10 @@ public class SampleDataUtil {
         return new Task[] {
             new Task(new Name("Revise CS2113T"), new StartDate("15-03-16"), new StartTime("14.00"),
                 new EndDate("25-03-19"), new EndTime("17.00"), new Description("Class diagram"),
-                getTagSet("CS2113T")),
+                getTagSet("CS2113T"), "c"),
             new Task(new Name("Do CS2101"), new StartDate("17-03-19"), new StartTime("10.00"), new EndDate("18-03-19"),
                 new EndTime("10.00"), new Description("User Guide"),
-                getTagSet("CS2101"))
+                getTagSet("CS2101"), "c")
         };
     }
 

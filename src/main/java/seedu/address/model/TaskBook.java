@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.beans.InvalidationListener;
@@ -99,6 +100,15 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.remove(key);
         indicateModified();
     }
+
+    /**
+     * Sort tasks in the storage by given comparator.
+     */
+    public void sortTaskByDate(Comparator<Task> comparator) {
+        tasks.sortByDate(comparator);
+        indicateModified();
+    }
+
 
     @Override
     public void addListener(InvalidationListener listener) {

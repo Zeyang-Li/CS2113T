@@ -24,6 +24,7 @@ public class TaskBuilder {
     public static final String DEFAULT_ENDDATE = "0315";
     public static final String DEFAULT_ENDTIME = "1700";
     public static final String DEFAULT_DESCRIPTION = "Class diagram";
+    public static final String DEFAULT_CATEGORY = "c";
 
     private Name name;
     private StartDate startDate;
@@ -32,6 +33,7 @@ public class TaskBuilder {
     private EndTime endTime;
     private Description description;
     private Set<Tag> tags;
+    private String category;
 
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -41,6 +43,7 @@ public class TaskBuilder {
         endTime = new EndTime(DEFAULT_ENDTIME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
+        category = DEFAULT_CATEGORY;
     }
 
     /**
@@ -54,6 +57,7 @@ public class TaskBuilder {
         endTime = taskToCopy.getEndTime();
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
+        category = taskToCopy.getCategory();
     }
 
     /**
@@ -69,6 +73,14 @@ public class TaskBuilder {
      */
     public TaskBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code category} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withCategory(String category) {
+        this.category = category;
         return this;
     }
 
@@ -114,7 +126,7 @@ public class TaskBuilder {
 
 
     public Task build() {
-        return new Task(name, startDate, startTime, endDate, endTime, description, tags);
+        return new Task(name, startDate, startTime, endDate, endTime, description, tags, category);
     }
 
 }

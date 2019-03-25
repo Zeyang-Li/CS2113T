@@ -68,6 +68,13 @@ public interface Model {
     void deleteTaskList(List<Task> targets);
 
     /**
+     * Sort the task list
+     */
+    void sortByStart();
+
+    void sortByEnd();
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */

@@ -32,22 +32,25 @@ class JsonAdaptedTask {
     private final String endDate;
     private final String endTime;
     private final String description;
+    private final String category;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("start date") String startDate,
-            @JsonProperty("start time") String startTime, @JsonProperty("end date") String endDate,
-            @JsonProperty("end time") String endTime, @JsonProperty("description") String description,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("start time") String startTime, @JsonProperty("end date") String endDate,
+                           @JsonProperty("end time") String endTime, @JsonProperty("description") String description,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("category") String category) {
         this.name = name;
         this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
         this.endTime = endTime;
         this.description = description;
+        this.category = category;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,6 +66,7 @@ class JsonAdaptedTask {
         endDate = source.getEndDate().value;
         endTime = source.getEndTime().value;
         description = source.getDescription().value;
+        category = source.getCategory();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -106,7 +110,8 @@ class JsonAdaptedTask {
         final StartTime modelStartTime = new StartTime(startTime);
 
         if (endDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EndDate.class.getSimpleName()));
         }
         if (!EndDate.isValidEndDate(endDate)) {
             throw new IllegalValueException(EndDate.MESSAGE_CONSTRAINTS);
@@ -114,7 +119,8 @@ class JsonAdaptedTask {
         final EndDate modelEndDate = new EndDate(endDate);
 
         if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EndTime.class.getSimpleName()));
         }
         if (!EndTime.isValidEndTime(endTime)) {
             throw new IllegalValueException(EndTime.MESSAGE_CONSTRAINTS);
@@ -132,7 +138,7 @@ class JsonAdaptedTask {
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         return new Task(modelName, modelStartDate, modelStartTime, modelEndDate, modelEndTime, modelDescription,
-                modelTags);
+                modelTags, category);
     }
 
 }

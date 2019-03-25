@@ -25,6 +25,7 @@ public class Task {
 
 
     // Data fields
+    private final String category;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -32,8 +33,8 @@ public class Task {
      * Every field must be present and not null.
      */
     public Task(Name name, StartDate startDate, StartTime startTime, EndDate endDate, EndTime endTime,
-                Description description, Set<Tag> tags) {
-        requireAllNonNull(name, startDate, endDate, startTime, endTime, description, tags);
+                Description description, Set<Tag> tags, String category) {
+        requireAllNonNull(name, startDate, endDate, startTime, endTime, description, tags, category);
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -41,6 +42,7 @@ public class Task {
         this.endTime = endTime;
         this.description = description;
         this.tags.addAll(tags);
+        this.category = category;
     }
 
     public Name getName() {
@@ -67,6 +69,8 @@ public class Task {
         return description;
     }
 
+    public String getCategory() { return category; }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -90,7 +94,8 @@ public class Task {
                 && otherTask.getStartTime().equals(getStartTime())
                 && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getEndTime().equals(getEndTime())
-                && otherTask.getDescription().equals(getDescription());
+                && otherTask.getDescription().equals(getDescription())
+                && otherTask.getCategory().equals(category);
     }
 
     /**
@@ -114,7 +119,8 @@ public class Task {
                 && otherTask.getEndDate().equals(getEndDate())
                 && otherTask.getEndTime().equals(getEndTime())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getCategory().equals(category);
     }
 
     @Override
@@ -135,6 +141,8 @@ public class Task {
                 .append(getEndDate())
                 .append(" EndTime: ")
                 .append(getEndTime())
+                .append(" Category: ")
+                .append(getCategory())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Tags: ");

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -51,7 +52,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STARTDATE + "STRATDATE] "
             + "[" + PREFIX_STARTTIME + "STARTTIME] "
             + "[" + PREFIX_ENDDATE + "ENDDATE] "
-            + "[" + PREFIX_ENDTIME + "ENDTIME]...\n"
+            + "[" + PREFIX_ENDTIME + "ENDTIME]"
+            + "[" + PREFIX_CATEGORY + "...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Study "
             + PREFIX_DESCRIPTION + "Study for the whole day";
@@ -122,10 +124,11 @@ public class EditCommand extends Command {
         EndDate updatedEndDate = editTaskDescriptor.getEndDate().orElse(personToEdit.getEndDate());
         EndTime updatedEndTime = editTaskDescriptor.getEndTime().orElse(personToEdit.getEndTime());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(personToEdit.getTags());
+        String updatedCategory = editTaskDescriptor.getCategory().orElse(personToEdit.getCategory());
 
         System.out.println(editTaskDescriptor.getName());
         return new Task(updatedName, updatedStartDate, updatedStartTime,
-                            updatedEndDate, updatedEndTime, updatedDescription, updatedTags);
+                            updatedEndDate, updatedEndTime, updatedDescription, updatedTags, updatedCategory);
     }
 
     @Override
@@ -161,13 +164,13 @@ public class EditCommand extends Command {
         private StartDate startDate;
         private StartTime startTime;
         private Set<Tag> tags = new HashSet<>();
-
+        private String category;
 
         public EditTaskDescriptor() {}
 
 
         public EditTaskDescriptor(Description description, EndDate endDate, EndTime endTime,
-                            Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
+                            Name name, StartDate startDate, StartTime startTime, Set<Tag> tags, String category) {
             super();
             this.description = description;
             this.endDate = endDate;
@@ -176,6 +179,7 @@ public class EditCommand extends Command {
             this.startDate = startDate;
             this.startTime = startTime;
             this.tags = tags;
+            this.category = category;
         }
 
         /**
@@ -190,13 +194,14 @@ public class EditCommand extends Command {
             setStartDate(toCopy.startDate);
             setStartTime(toCopy.startTime);
             setTags(toCopy.tags);
+            setCategory(toCopy.category);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, endDate, endTime, startDate, startTime);
+            return CollectionUtil.isAnyNonNull(name, description, endDate, endTime, startDate, startTime, category);
         }
 
         /**
@@ -282,6 +287,16 @@ public class EditCommand extends Command {
         public void setStartTime(StartTime startTime) {
             this.startTime = startTime;
         }
+
+        /**
+         * @param category the category to set
+         */
+        public void setCategory(String category) { this.category = category; }
+
+        /**
+         * @return the category
+         */
+        public Optional<String> getCategory() { return Optional.ofNullable(category); }
 
         /**
          * @return the tags
