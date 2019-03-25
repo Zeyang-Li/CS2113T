@@ -33,7 +33,7 @@ public class PaneNode extends AnchorPane {
      * Set current date.
      * @param newDay
      */
-    public void setDay(LocalDate newDay) { 
+    public void setDay(LocalDate newDay) {
         this.day = newDay;
     }
 
