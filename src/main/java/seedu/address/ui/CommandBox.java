@@ -29,9 +29,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class CommandBox extends UiPart<Region> {
 
+    public static final String NO_MATCHED_COMMAND = "No matched command!";
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-
 
     private static final String[] CommandList;
 
@@ -69,9 +69,10 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Handles the key press event, {@code keyEvent}.
+     * @throws Exception
      */
     @FXML
-    private void handleKeyPress(KeyEvent keyEvent) {
+    private void handleKeyPress(KeyEvent keyEvent) throws Exception {
         switch (keyEvent.getCode()) {
         case UP:
             // As up and down buttons will alter the position of the caret,
@@ -93,10 +94,10 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    private void autoCompleteInputCommand() {
+    private void autoCompleteInputCommand() throws Exception {
         String text = commandTextField.getText();
         String completedtext = getCompletedtext(text);
-        commandTextField.setText(completedtext);
+        replaceText(completedtext);
     }
 
     private String getCompletedtext(String text) {
@@ -117,7 +118,11 @@ public class CommandBox extends UiPart<Region> {
                 highestRatio = getSimilarityRatio(text, commands);
                 highestRatioCommand = commands;
             }
-            System.out.println(getSimilarityRatio(text, commands));
+            //System.out.println(getSimilarityRatio(text, commands));
+        }
+
+        if (highestRatio < 0.5) {
+            return NO_MATCHED_COMMAND;
         }
         return highestRatioCommand;
     }
@@ -221,6 +226,21 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles the tap button pressed event.
+     */
+    @FXML
+    private void handleCommandtapped() {
+        try {
+            commandExecutor.execute(commandTextField.getText());
+            initHistory();
+            historySnapshot.next();
+            commandTextField.setText("");
+        } catch (CommandException | ParseException e) {
+            initHistory();
+            setStyleToIndicateCommandFailure();
+        }
+    }
     /**
      * Initializes the history snapshot.
      */

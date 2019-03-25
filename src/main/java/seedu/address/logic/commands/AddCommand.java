@@ -29,6 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "END_DATE "
             + PREFIX_ENDTIME + "END_TIME "
             + PREFIX_DESCRIPTION + "CONTENT "
+            + PREFIX_CATEGORY + "CATEGORY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Revise CS2113T "
@@ -37,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "15-03-19 "
             + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
-            + PREFIX_CATEGORY + "c"
+            + PREFIX_CATEGORY + "c "
             + PREFIX_TAG + "urgent "
             + PREFIX_TAG + "duesoon\n";
 
@@ -48,6 +49,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "END_DATE "
             + PREFIX_ENDTIME + "END_TIME "
             + PREFIX_DESCRIPTION + "CONTENT "
+            + PREFIX_CATEGORY + "CATEGORY "
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
