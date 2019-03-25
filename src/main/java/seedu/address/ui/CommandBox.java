@@ -69,7 +69,7 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Handles the key press event, {@code keyEvent}.
-     * @throws Exception 
+     * @throws Exception
      */
     @FXML
     private void handleKeyPress(KeyEvent keyEvent) throws Exception {
@@ -121,8 +121,8 @@ public class CommandBox extends UiPart<Region> {
             //System.out.println(getSimilarityRatio(text, commands));
         }
 
-        if(highestRatio < 0.5) {
-        	return NO_MATCHED_COMMAND;
+        if (highestRatio < 0.5) {
+            return NO_MATCHED_COMMAND;
         }
         return highestRatioCommand;
     }

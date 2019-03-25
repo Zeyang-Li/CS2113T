@@ -29,6 +29,8 @@ public class PaneNode extends AnchorPane {
         return day;
     }
 
-    public void setDay(LocalDate newDay) { this.day = newDay; }
+    public void setDay(LocalDate newDay) {
+        this.day = newDay;
+    }
 
 }

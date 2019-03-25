@@ -291,12 +291,16 @@ public class EditCommand extends Command {
         /**
          * @param category the category to set
          */
-        public void setCategory(String category) { this.category = category; }
+        public void setCategory(String category) {
+            this.category = category;
+        }
 
         /**
          * @return the category
          */
-        public Optional<String> getCategory() { return Optional.ofNullable(category); }
+        public Optional<String> getCategory() {
+            return Optional.ofNullable(category);
+        }
 
         /**
          * @return the tags
