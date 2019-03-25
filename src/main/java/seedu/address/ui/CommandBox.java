@@ -121,8 +121,8 @@ public class CommandBox extends UiPart<Region> {
             //System.out.println(getSimilarityRatio(text, commands));
         }
 
-        if(highestRatio < 0.5) {
-        	return NO_MATCHED_COMMAND;
+        if (highestRatio < 0.5) {
+            return NO_MATCHED_COMMAND;
         }
         return highestRatioCommand;
     }
