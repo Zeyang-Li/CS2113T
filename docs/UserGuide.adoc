@@ -245,6 +245,36 @@ Examples:
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command)
 
+
+=== Reminding the users of the nearest task : `remind`
+
+Shows to the user the nearest tasks of certain category. +
+
+Format:
+
+* `remind start` +
+Reminds the users of most recently begin tasks of all categories. +
+
+* `remind ddl` +
+Remind the users of most recent deadline of all categories. +
+
+* `remind a/e/c/r/o ddl/start` +
+Remind the users of most recent start tasks or deadline of specified category.
+
+****
+* "a" - Academic +
+* "e" - Entertainment +
+* "c" - Co-Curricular Activity (CCA) +
+* "r" - Errand +
+* "o" - Other
+****
+
+Examples:
+
+* `remind e start` +
+Shows a list of nearest start tasks of "entertainment" category.
+
+
 === Setting time limit to a task category : `set`
 
 Sets weekly time limit for a task category. +
