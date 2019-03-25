@@ -66,11 +66,6 @@ public class TaskBookParser {
         case EditCommand.COMMAND_ALIAS:
             return new EditCommandParser().parse(arguments);
 
-        /*
-        case SelectCommand.COMMAND_WORD:
-        case SelectCommand.COMMAND_ALIAS:
-            return new SelectCommandParser().parse(arguments);
-        */
         case DeleteCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_ALIAS:
             return new DeleteCommandParser().parse(arguments);

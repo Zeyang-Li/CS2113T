@@ -81,6 +81,7 @@ Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/D
 ****
 * There are only 5 valid categories and can be excluded in the command. (The details about it can be found in <<category>>.)
 * Excluding category in the command will only mean that the task will not be included into the time management.
+
 ****
 
 [TIP]

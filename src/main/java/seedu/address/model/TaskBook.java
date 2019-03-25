@@ -2,22 +2,29 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
+import seedu.address.model.day.Date;
+import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the task-book level
+ * Duplicates are not allowed (by .isSameTask comparison)
  */
 public class TaskBook implements ReadOnlyTaskBook {
 
     private final UniqueTaskList tasks;
+    private final Map<Date, Day> dayMap;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -29,12 +36,13 @@ public class TaskBook implements ReadOnlyTaskBook {
      */
     {
         tasks = new UniqueTaskList();
+        dayMap = new HashMap<>();
     }
 
     public TaskBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TaskBook using the Tasks in the {@code toBeCopied}
      */
     public TaskBook(ReadOnlyTaskBook toBeCopied) {
         this();
@@ -44,8 +52,8 @@ public class TaskBook implements ReadOnlyTaskBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
      */
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
@@ -53,7 +61,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaskBook} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskBook newData) {
         requireNonNull(newData);
@@ -61,10 +69,10 @@ public class TaskBook implements ReadOnlyTaskBook {
         setTasks(newData.getTaskList());
     }
 
-    //// person-level operations
+    //// task-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task book.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -72,31 +80,60 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a task to the task book.
+     * The task must not already exist in the task book.
      */
     public void addTask(Task t) {
         tasks.add(t);
+        String dateStr = t.getStartDate().toString();
+        Date date = new Date(dateStr);
+        if (!dayMap.containsKey(date)) {
+            dayMap.put(date, new Day(date));
+        }
+        Day d = dayMap.get(date);
+        d.addCategory(t);
         indicateModified();
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
+        String targetDateStr = target.getStartDate().toString();
+        String editedDateStr = editedTask.getStartDate().toString();
+        Date targetDate = new Date(targetDateStr);
+        Date editedDate = new Date(editedDateStr);
 
+        if (targetDate != editedDate) {
+            if (!dayMap.containsKey(editedDate)) {
+                dayMap.put(editedDate, new Day(editedDate));
+            }
+            Day d = dayMap.get(editedDate);
+            d.addCategory(editedTask);
+            tasks.setTask(target, editedTask);
+            indicateModified();
+            return;
+        }
+        Day d = dayMap.get(targetDate);
+        d.editCategory(target, editedTask);
         tasks.setTask(target, editedTask);
         indicateModified();
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code TaskBook}.
+     * {@code key} must exist in the task book.
      */
     public void removeTask(Task key) {
+        String dateStr = key.getStartDate().toString();
+        Date date = new Date(dateStr);
+        if (!dayMap.containsKey(date)) {
+        }
+        Day d = dayMap.get(date);
+        d.removeCategory(key);
         tasks.remove(key);
         indicateModified();
     }
@@ -121,7 +158,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
-     * Notifies listeners that the address book has been modified.
+     * Notifies listeners that the task book has been modified.
      */
     protected void indicateModified() {
         invalidationListenerManager.callListeners(this);
@@ -132,12 +169,45 @@ public class TaskBook implements ReadOnlyTaskBook {
     @Override
     public String toString() {
         return tasks.asUnmodifiableObservableList().size() + " tasks";
-        // TODO: refine later
     }
 
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<String> getCategoryList() {
+        List<String> categories = List.of("Academic", "Cca", "Entertainment", "Errand", "Other");
+        return FXCollections.observableArrayList(categories);
+    }
+
+    @Override
+    public ObservableList<Double> getTimeList() {
+        Collection<Day> days = dayMap.values();
+        double academicTime = 0;
+        double ccaTime = 0;
+        double entertainmentTime = 0;
+        double errandTime = 0;
+        double otherTime = 0;
+
+        for (Day day : days) {
+            academicTime += day.getAcademic().getTime();
+        }
+        for (Day day : days) {
+            ccaTime += day.getCca().getTime();
+        }
+        for (Day day : days) {
+            entertainmentTime += day.getEntertainment().getTime();
+        }
+        for (Day day : days) {
+            errandTime += day.getErrand().getTime();
+        }
+        for (Day day : days) {
+            otherTime += day.getOther().getTime();
+        }
+        List<Double> timeList = List.of(academicTime, ccaTime, entertainmentTime, errandTime, otherTime);
+        return FXCollections.observableArrayList(timeList);
     }
 
     @Override

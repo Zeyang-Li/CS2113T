@@ -2,17 +2,16 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.task.Task;
+import seedu.address.model.day.Day;
 
 /**
  * An UI component that displays information of a {@code Task}.
  */
-public class TaskCard extends UiPart<Region> {
+public class DayCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "DayListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,41 +21,35 @@ public class TaskCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Task task;
+    public final Day day;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label date;
     @FXML
     private Label id;
     @FXML
-    private Label startDate;
+    private Label academic;
     @FXML
-    private Label startTime;
+    private Label cca;
     @FXML
-    private Label endDate;
+    private Label entertainment;
     @FXML
-    private Label endTime;
+    private Label errand;
     @FXML
-    private Label description;
-    @FXML
-    private Label categories;
-    @FXML
-    private FlowPane tags;
+    private Label other;
 
-    public TaskCard(Task task, int displayedIndex) {
+    public DayCard(Day day, int displayedIndex) {
         super(FXML);
-        this.task = task;
+        this.day = day;
         id.setText(displayedIndex + ". ");
-        name.setText(task.getName().fullName);
-        startDate.setText(task.getStartDate().value);
-        startTime.setText(task.getStartTime().value);
-        endDate.setText(task.getEndDate().value);
-        endTime.setText(task.getEndTime().value);
-        description.setText(task.getDescription().value);
-        categories.setText(task.getCategories().value);
-        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        date.setText(day.getDate().value);
+        academic.setText(day.getAcademic().getTimeString());
+        cca.setText(day.getCca().getTimeString());
+        entertainment.setText(day.getEntertainment().getTimeString());
+        errand.setText(day.getErrand().getTimeString());
+        other.setText(day.getOther().getTimeString());
     }
 
     @Override
@@ -67,13 +60,13 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
+        if (!(other instanceof DayCard)) {
             return false;
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
+        DayCard card = (DayCard) other;
         return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+                && day.equals(card.day);
     }
 }

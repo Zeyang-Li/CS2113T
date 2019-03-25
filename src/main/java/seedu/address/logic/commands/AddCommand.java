@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "15-03-19 "
             + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
-            + PREFIX_CATEGORY + "c "
+            + PREFIX_CATEGORY + "a "
             + PREFIX_TAG + "urgent "
             + PREFIX_TAG + "duesoon\n";
 

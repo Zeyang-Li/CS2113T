@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -32,7 +33,7 @@ class JsonAdaptedTask {
     private final String endDate;
     private final String endTime;
     private final String description;
-    private final String category;
+    private final String categories;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,24 +41,24 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("start date") String startDate,
-                           @JsonProperty("start time") String startTime, @JsonProperty("end date") String endDate,
-                           @JsonProperty("end time") String endTime, @JsonProperty("description") String description,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                           @JsonProperty("category") String category) {
+            @JsonProperty("start time") String startTime, @JsonProperty("end date") String endDate,
+            @JsonProperty("end time") String endTime, @JsonProperty("description") String description,
+            @JsonProperty("category") String categories, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
         this.endTime = endTime;
         this.description = description;
-        this.category = category;
+        this.categories = categories;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
@@ -66,16 +67,16 @@ class JsonAdaptedTask {
         endDate = source.getEndDate().value;
         endTime = source.getEndTime().value;
         description = source.getDescription().value;
-        category = source.getCategory();
+        categories = source.getCategories().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
@@ -136,9 +137,18 @@ class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
+        if (categories == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Categories.class.getSimpleName()));
+        }
+        if (!Categories.isValidCategories(categories)) {
+            throw new IllegalValueException(Categories.MESSAGE_CONSTRAINTS);
+        }
+        final Categories modelCategories = new Categories(categories);
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         return new Task(modelName, modelStartDate, modelStartTime, modelEndDate, modelEndTime, modelDescription,
-                modelTags, category);
+                modelCategories, modelTags);
     }
 
 }

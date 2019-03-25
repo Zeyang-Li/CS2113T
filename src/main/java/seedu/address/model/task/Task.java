@@ -21,28 +21,27 @@ public class Task {
     private final EndDate endDate;
     private final StartTime startTime;
     private final EndTime endTime;
-    //  private final Duration duration;
-
 
     // Data fields
-    private final String category;
     private final Description description;
+    private final Categories categories;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Task(Name name, StartDate startDate, StartTime startTime, EndDate endDate, EndTime endTime,
-                Description description, Set<Tag> tags, String category) {
-        requireAllNonNull(name, startDate, endDate, startTime, endTime, description, tags, category);
+        Description description, Categories categories, Set<Tag> tags) {
+        requireAllNonNull(name, startDate, endDate, startTime, endTime, description, categories, tags);
+
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startTime = startTime;
         this.endTime = endTime;
         this.description = description;
+        this.categories = categories;
         this.tags.addAll(tags);
-        this.category = category;
     }
 
     public Name getName() {
@@ -69,8 +68,8 @@ public class Task {
         return description;
     }
 
-    public String getCategory() {
-        return category;
+    public Categories getCategories() {
+        return categories;
     }
 
     /**
@@ -91,13 +90,7 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName())
-                && otherTask.getStartDate().equals(getStartDate())
-                && otherTask.getStartTime().equals(getStartTime())
-                && otherTask.getEndDate().equals(getEndDate())
-                && otherTask.getEndTime().equals(getEndTime())
-                && otherTask.getDescription().equals(getDescription())
-                && otherTask.getCategory().equals(category);
+                && otherTask.getName().equals(getName());
     }
 
     /**
@@ -115,20 +108,13 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getName().equals(getName())
-                && otherTask.getStartDate().equals(getStartDate())
-                && otherTask.getStartTime().equals(getStartTime())
-                && otherTask.getEndDate().equals(getEndDate())
-                && otherTask.getEndTime().equals(getEndTime())
-                && otherTask.getDescription().equals(getDescription())
-                && otherTask.getTags().equals(getTags())
-                && otherTask.getCategory().equals(category);
+        return otherTask.getName().equals(getName());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, startDate, startTime, endDate, endTime, description, tags);
+        return Objects.hash(name, startDate, startTime, endDate, endTime, description, categories, tags);
     }
 
     @Override
@@ -143,10 +129,10 @@ public class Task {
                 .append(getEndDate())
                 .append(" EndTime: ")
                 .append(getEndTime())
-                .append(" Category: ")
-                .append(getCategory())
                 .append(" Description: ")
                 .append(getDescription())
+                .append(" Category: ")
+                .append(getCategories())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -33,7 +34,7 @@ public class TaskBuilder {
     private EndTime endTime;
     private Description description;
     private Set<Tag> tags;
-    private String category;
+    private Categories category;
 
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -43,7 +44,7 @@ public class TaskBuilder {
         endTime = new EndTime(DEFAULT_ENDTIME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
-        category = DEFAULT_CATEGORY;
+        category = new Categories(DEFAULT_CATEGORY);
     }
 
     /**
@@ -57,7 +58,7 @@ public class TaskBuilder {
         endTime = taskToCopy.getEndTime();
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
-        category = taskToCopy.getCategory();
+        category = taskToCopy.getCategories();
     }
 
     /**
@@ -79,7 +80,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code category} of the {@code Task} that we are building.
      */
-    public TaskBuilder withCategory(String category) {
+    public TaskBuilder withCategory(Categories category) {
         this.category = category;
         return this;
     }
@@ -126,7 +127,7 @@ public class TaskBuilder {
 
 
     public Task build() {
-        return new Task(name, startDate, startTime, endDate, endTime, description, tags, category);
+        return new Task(name, startDate, startTime, endDate, endTime, description, category, tags);
     }
 
 }

@@ -21,7 +21,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tasketch data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -73,7 +73,7 @@ public class ModelManager implements Model {
     };
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskBook and userPrefs.
      */
     public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -198,7 +198,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTaskBook}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
@@ -281,7 +281,7 @@ public class ModelManager implements Model {
                     .anyMatch(removedTask -> selectedTask.getValue().isSameTask(removedTask));
             if (wasSelectedTaskRemoved) {
                 // Select the task that came before it in the list,
-                // or clear the selection if there is no such person.
+                // or clear the selection if there is no such task.
                 selectedTask.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }

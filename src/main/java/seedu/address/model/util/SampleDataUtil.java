@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -22,12 +23,12 @@ import seedu.address.model.task.Task;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Name("Revise CS2113T"), new StartDate("15-03-16"), new StartTime("14.00"),
-                new EndDate("25-03-19"), new EndTime("17.00"), new Description("Class diagram"),
-                getTagSet("CS2113T"), "c"),
-            new Task(new Name("Do CS2101"), new StartDate("17-03-19"), new StartTime("10.00"), new EndDate("18-03-19"),
-                new EndTime("10.00"), new Description("User Guide"),
-                getTagSet("CS2101"), "c")
+            new Task(new Name("Revise CS2113T"), new StartDate("15-03-19"), new StartTime("14.00"),
+                new EndDate("15-03-19"), new EndTime("17.00"), new Description("Class diagram"), new Categories("a"),
+                getTagSet("CS2113T")),
+            new Task(new Name("Do CS2101"), new StartDate("17-03-19"), new StartTime("10.00"), new EndDate("17-03-19"),
+                new EndTime("14.00"), new Description("User Guide"), new Categories("a"),
+                getTagSet("CS2101"))
         };
     }
 

@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -127,6 +128,20 @@ public class ParserUtil {
         return new EndTime(trimmedEndTime);
     }
 
+    /**
+     * Parses a {@code String category} into a {@code Category}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code category} is invalid.
+     */
+    public static Categories parseCategories(String categories) throws ParseException {
+        requireNonNull(categories);
+        String trimmedCategories = categories.trim();
+        if (!Categories.isValidCategories(trimmedCategories)) {
+            throw new ParseException(Categories.MESSAGE_CONSTRAINTS);
+        }
+        return new Categories(trimmedCategories);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

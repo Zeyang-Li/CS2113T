@@ -37,31 +37,31 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task book file path.
      */
     Path getTaskBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' task book file path.
      */
     void setTaskBookFilePath(Path taskBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces task book data with the data in {@code taskBook}.
      */
     void setTaskBook(ReadOnlyTaskBook taskBook);
 
-    /** Returns the AddressBook */
+    /** Returns the TaskBook */
     ReadOnlyTaskBook getTaskBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task book.
      */
     boolean hasTask(Task task);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given task.
+     * The task must exist in the task book.
      */
     void deleteTask(Task target);
 
@@ -81,60 +81,60 @@ public interface Model {
     void addTask(Task task);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
     void setTask(Task target, Task editedTask);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
-     * Returns true if the model has previous address book states to restore.
+     * Returns true if the model has previous task book states to restore.
      */
     boolean canUndoTaskBook();
 
     /**
-     * Returns true if the model has undone address book states to restore.
+     * Returns true if the model has undone task book states to restore.
      */
     boolean canRedoTaskBook();
 
     /**
-     * Restores the model's address book to its previous state.
+     * Restores the model's task book to its previous state.
      */
     void undoTaskBook();
 
     /**
-     * Restores the model's address book to its previously undone state.
+     * Restores the model's task book to its previously undone state.
      */
     void redoTaskBook();
 
     /**
-     * Saves the current address book state for undo/redo.
+     * Saves the current task book state for undo/redo.
      */
     void commitTaskBook();
 
     /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
+     * Selected task in the filtered task list.
+     * null if no task is selected.
      */
     ReadOnlyProperty<Task> selectedTaskProperty();
 
     /**
-     * Returns the selected person in the filtered person list.
-     * null if no person is selected.
+     * Returns the selected task in the filtered task list.
+     * null if no task is selected.
      */
     Task getSelectedTask();
 
     /**
-     * Sets the selected person in the filtered person list.
+     * Sets the selected task in the filtered task list.
      */
     void setSelectedTask(Task task);
 }

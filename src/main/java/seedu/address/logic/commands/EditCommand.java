@@ -25,6 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -52,8 +53,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STARTDATE + "STRATDATE] "
             + "[" + PREFIX_STARTTIME + "STARTTIME] "
             + "[" + PREFIX_ENDDATE + "ENDDATE] "
-            + "[" + PREFIX_ENDTIME + "ENDTIME]"
-            + "[" + PREFIX_CATEGORY + "...\n"
+            + "[" + PREFIX_ENDTIME + "ENDTIME] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Study "
             + PREFIX_DESCRIPTION + "Study for the whole day";
@@ -63,7 +64,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STARTDATE + "STRATDATE] "
             + "[" + PREFIX_STARTTIME + "STARTTIME] "
             + "[" + PREFIX_ENDDATE + "ENDDATE] "
-            + "[" + PREFIX_ENDTIME + "ENDTIME]...\n";
+            + "[" + PREFIX_ENDTIME + "ENDTIME] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY]...\n";
 
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
@@ -123,12 +125,12 @@ public class EditCommand extends Command {
         StartTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(personToEdit.getStartTime());
         EndDate updatedEndDate = editTaskDescriptor.getEndDate().orElse(personToEdit.getEndDate());
         EndTime updatedEndTime = editTaskDescriptor.getEndTime().orElse(personToEdit.getEndTime());
+        Categories updatedCategories = editTaskDescriptor.getCategories().orElse(personToEdit.getCategories());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(personToEdit.getTags());
-        String updatedCategory = editTaskDescriptor.getCategory().orElse(personToEdit.getCategory());
 
         System.out.println(editTaskDescriptor.getName());
-        return new Task(updatedName, updatedStartDate, updatedStartTime,
-                            updatedEndDate, updatedEndTime, updatedDescription, updatedTags, updatedCategory);
+        return new Task(updatedName, updatedStartDate, updatedStartTime, updatedEndDate, updatedEndTime,
+                updatedDescription, updatedCategories, updatedTags);
     }
 
     @Override
@@ -156,7 +158,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
 
-
+        private Categories categories;
         private Description description;
         private EndDate endDate;
         private EndTime endTime;
@@ -168,10 +170,11 @@ public class EditCommand extends Command {
 
         public EditTaskDescriptor() {}
 
-
         public EditTaskDescriptor(Description description, EndDate endDate, EndTime endTime,
                             Name name, StartDate startDate, StartTime startTime, Set<Tag> tags, String category) {
+
             super();
+            this.categories = categories;
             this.description = description;
             this.endDate = endDate;
             this.endTime = endTime;
@@ -188,13 +191,13 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
+            setCategories(toCopy.categories);
             setDescription(toCopy.description);
             setEndDate(toCopy.endDate);
             setEndTime(toCopy.endTime);
             setStartDate(toCopy.startDate);
             setStartTime(toCopy.startTime);
             setTags(toCopy.tags);
-            setCategory(toCopy.category);
         }
 
         /**
@@ -289,17 +292,17 @@ public class EditCommand extends Command {
         }
 
         /**
-         * @param category the category to set
+         * @param categories the category to set
          */
-        public void setCategory(String category) {
-            this.category = category;
+        public void setCategories(Categories categories) {
+            this.categories = categories;
         }
 
         /**
          * @return the category
          */
-        public Optional<String> getCategory() {
-            return Optional.ofNullable(category);
+        public Optional<Categories> getCategories() {
+            return Optional.ofNullable(categories);
         }
 
         /**
@@ -320,9 +323,8 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return "EditTaskDescriptor [description=" + description + ", endDate=" + endDate
-                    + ", endTime=" + endTime + ", name=" + name + ", "
-                    + "startDate=" + startDate + ", startTime="
-                    + startTime + "]";
+                    + ", endTime=" + endTime + ", name=" + name + ", startDate=" + startDate
+                    + ", startTime=" + startTime + ", category=" + categories + "]";
         }
     }
 }
