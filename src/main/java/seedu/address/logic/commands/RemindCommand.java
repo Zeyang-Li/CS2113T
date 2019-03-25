@@ -70,7 +70,7 @@ public class RemindCommand extends Command {
      * A predicate function decide which task to choose
      */
     private boolean meetRequirement(Task task, String givenVategory) {
-        if (task.getCategory().equals(givenVategory)) {
+        if (task.getCategories().equals(givenVategory)) {
 
             return true;
         } else {
