@@ -57,14 +57,14 @@ type either `clear` or `c`.
 [[category]]
 ****
 * There are only 5 valid categories for each task: +
-** a - Academic
-** e - Entertainment
-** c - Co-Curicullar Activity (CCA)
-** r - Errands
-** o - Others
-* Any inputs other than above will be invalid.
-* The length of time has to be in hour unit only. (e.g. 1 for 1 hour, 2 for 1 hour 30 minutes after round-up)
-* To modify the time limit, just use back the same command and it will update the old to the new time limit.
+*** a - Academic
+*** e - Entertainment
+*** c - Co-Curicullar Activity (CCA)
+*** r - Errands
+*** o - Others
+** Any inputs other than above will be invalid.
+** The length of time has to be in hour unit only. (e.g. 1 for 1 hour, 2 for 1 hour 30 minutes after round-up)
+** To modify the time limit, just use back the same command and it will update the old to the new time limit.
 ****
 ====
 
@@ -122,9 +122,7 @@ Lists all the tasks in the storage
 
 Edits an existing task in Tasketch.
 
-Format:
-
-`edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
+Format: `edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
 ****
 * Edits the task with the index number shown in the task list.
@@ -143,9 +141,7 @@ Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00
 
 Finds tasks whose topic or description contain any of the given keywords.
 
-Format:
-
-`search KEYWORD [MORE_KEYWORDS] ...`
+Format: `search KEYWORD [MORE_KEYWORDS] ...`
 
 ****
 * The search is case insensitive. e.g `Tutorial` will match `tutorial`.
@@ -166,9 +162,7 @@ Returns `CS2113T lecture` and `CS3235 lecture`
 
 Deletes the specified task from Tasketch.
 
-Format:
-
-`delete INDEX_NUMBER`
+Format: `delete INDEX_NUMBER`
 
 ****
 * Each tasks is identified by the index number shown in the task list.
@@ -213,17 +207,13 @@ Clears all the tasks in the storage.
 
 Lists all the commands that you have entered in reverse chronological order. +
 
-Format:
-
-`history`
+Format: `history`
 
 === Undoing previous command : `undo`/`u`
 
 Restores the Tasetch to the state before the previous undoable command was executed. +
 
-Format:
-
-`undo`
+Format: `undo`
 
 Examples:
 
@@ -240,9 +230,7 @@ Examples:
 
 Reverses the most recent `undo` command. +
 
-Format:
-
-`redo`
+Format: `redo`
 
 Examples:
 
@@ -264,9 +252,7 @@ Examples:
 Sets weekly time limit for a task category. +
 Upon adding a task to a category and leads to time limit, you will not able to add it into that category for that week.
 
-Format:
-
-`set CATEGORY TIME_LENGTH`
+Format: `set CATEGORY TIME_LENGTH`
 
 Example:
 
@@ -278,9 +264,7 @@ Sets the time limit to 40 hours for the academic category.
 Removes weekly time limit of a task category. +
 After removing the time limit, you will be able to add more tasks into that category as usual.
 
-Format:
-
-`unset CATEGORY`
+Format: `unset CATEGORY`
 
 Example:
 
@@ -290,17 +274,13 @@ Example:
 
 Shows all the remaining time before reaching the limit for all the task category
 
-Format:
-
-`show`
+Format: `show`
 
 === Exiting the program : `exit`
 
 Exits the program. +
 
-Format:
-
-`exit`
+Format: `exit`
 
 === Saving the data
 
