@@ -123,18 +123,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         switch (optionPage) {
-            case DEFAULT_PAGE:
-                defaultPage = new DefaultPage(logic.getFilteredTaskList());
-                defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
-                break;
-            case PROJECT_DETAILS:
-                browserPanel = new BrowserPanel(logic.selectedTaskProperty());
-                browserPlaceholder.getChildren().add(browserPanel.getRoot());
-                break;
-            default:
-                defaultPage = new DefaultPage(logic.getFilteredTaskList());
-                defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
-                break;
+        case DEFAULT_PAGE:
+            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
+            break;
+
+        case PROJECT_DETAILS:
+            browserPanel = new BrowserPanel(logic.selectedTaskProperty());
+            browserPlaceholder.getChildren().add(browserPanel.getRoot());
+            break;
+
+        default:
+            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
+            break;
         }
 
 

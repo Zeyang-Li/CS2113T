@@ -13,11 +13,21 @@ public class PaneNode extends AnchorPane {
 
     private LocalDate day;
 
+    /**
+     * Initialize.
+     * @param children
+     */
     public PaneNode(Node... children) {
         super(children);
     }
 
-    public LocalDate getDay() { return day; }
+    /**
+     * Get today.
+     * @return
+     */
+    public LocalDate getDay() { 
+        return day; 
+    }
 
     public void setDay(LocalDate newDay) { this.day = newDay; }
 
