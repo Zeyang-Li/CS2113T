@@ -329,25 +329,21 @@ Examples：
 * If the user wanted to type `exit` but he typed `ecot` instead, the system will tell the user that it is an unknown command, and would suggest the command `exit` and `edit` instead.
 * If the user wanted to type `history` but he typed `hsitryo` instead, the system will tell the user that it is an unknown command, and would suggest the command `history` instead.
 
-=== Getting auto-completed command words
-Receives a suggestion of the most similar correct command word while typing in users' command. Press the `TAB` key while typing a command halfway to get a suggestion on the most possible command without having to navigate to the help window.
-
-If there are two commands that are equally similar to hat has typed in by the user, the system will automatically fill in one of them.
+=== Automatically complete input command for user
+Help users automatically correct type error and fulfill their incomplete typed command in command line.+
 
 ****
-* The input is case sensitive.
-* If there are a few mistakes in what is typed by the user, press `TAB` will automatically correct the command for users.
-* However if the user type in some random alphabets, and press `TAB`, the system will not auto complete the commands for users.
+* The input is not case sensitive.
+* If user type a string that is a substring of one of the commands, then command line will fulfill the string with this command.
+* If user type a string that is not a substring of any of the commands, then command line will show the most similar command compared this string.
+* if user type a string can not match any command, then command line will show `No command matched`.
 ****
 
-Examples:
+Examples：
 
-* While typing `his` to get `history` command, press `TAB`. +
-The `history` command will automatically be filled in.
-* While typing `ez`, press `TAB`. +
-The `edit` command will automatically be filled in even if `exit` command is equally similar to `ez`.
-* While typing `hosdfqwehfjnihef`, and press `TAB`. +
-The system will not auto-complete a command for the user.
+* If the user wanted to type `list`, he can type `li` instead, and press `tap` on keyboard. The system will automatically fulfill the command in command line with `list`.
+* If the user wanted to type `histoy`, but he type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
+* If the user wanted to type `add`, but he type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
 
 == FAQ
 
