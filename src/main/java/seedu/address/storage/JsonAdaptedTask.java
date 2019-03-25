@@ -44,6 +44,7 @@ class JsonAdaptedTask {
             @JsonProperty("start time") String startTime, @JsonProperty("end date") String endDate,
             @JsonProperty("end time") String endTime, @JsonProperty("description") String description,
             @JsonProperty("category") String categories, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -110,7 +111,8 @@ class JsonAdaptedTask {
         final StartTime modelStartTime = new StartTime(startTime);
 
         if (endDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EndDate.class.getSimpleName()));
         }
         if (!EndDate.isValidEndDate(endDate)) {
             throw new IllegalValueException(EndDate.MESSAGE_CONSTRAINTS);
@@ -118,7 +120,8 @@ class JsonAdaptedTask {
         final EndDate modelEndDate = new EndDate(endDate);
 
         if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EndTime.class.getSimpleName()));
         }
         if (!EndTime.isValidEndTime(endTime)) {
             throw new IllegalValueException(EndTime.MESSAGE_CONSTRAINTS);

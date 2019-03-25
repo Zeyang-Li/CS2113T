@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -136,6 +137,15 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.remove(key);
         indicateModified();
     }
+
+    /**
+     * Sort tasks in the storage by given comparator.
+     */
+    public void sortTaskByDate(Comparator<Task> comparator) {
+        tasks.sortByDate(comparator);
+        indicateModified();
+    }
+
 
     @Override
     public void addListener(InvalidationListener listener) {

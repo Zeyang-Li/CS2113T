@@ -31,8 +31,9 @@ public class Task {
      * Every field must be present and not null.
      */
     public Task(Name name, StartDate startDate, StartTime startTime, EndDate endDate, EndTime endTime,
-                Description description, Categories categories, Set<Tag> tags) {
+        Description description, Categories categories, Set<Tag> tags) {
         requireAllNonNull(name, startDate, endDate, startTime, endTime, description, categories, tags);
+
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

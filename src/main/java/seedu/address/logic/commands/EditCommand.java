@@ -166,13 +166,13 @@ public class EditCommand extends Command {
         private StartDate startDate;
         private StartTime startTime;
         private Set<Tag> tags = new HashSet<>();
-
+        private String category;
 
         public EditTaskDescriptor() {}
 
+        public EditTaskDescriptor(Description description, EndDate endDate, EndTime endTime,
+                            Name name, StartDate startDate, StartTime startTime, Set<Tag> tags, String category) {
 
-        public EditTaskDescriptor(Categories categories, Description description, EndDate endDate, EndTime endTime,
-                            Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
             super();
             this.categories = categories;
             this.description = description;
@@ -182,6 +182,7 @@ public class EditCommand extends Command {
             this.startDate = startDate;
             this.startTime = startTime;
             this.tags = tags;
+            this.category = category;
         }
 
         /**
@@ -203,7 +204,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, endDate, endTime, startDate, startTime);
+            return CollectionUtil.isAnyNonNull(name, description, endDate, endTime, startDate, startTime, category);
         }
 
         /**
@@ -291,17 +292,17 @@ public class EditCommand extends Command {
         }
 
         /**
-         * @return the category
-         */
-        public Optional<Categories> getCategories() {
-            return Optional.ofNullable(categories);
-        }
-
-        /**
          * @param categories the category to set
          */
         public void setCategories(Categories categories) {
             this.categories = categories;
+        }
+
+        /**
+         * @return the category
+         */
+        public Optional<Categories> getCategories() {
+            return Optional.ofNullable(categories);
         }
 
         /**

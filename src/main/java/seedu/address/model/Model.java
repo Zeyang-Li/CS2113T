@@ -68,8 +68,15 @@ public interface Model {
     void deleteTaskList(List<Task> targets);
 
     /**
-     * Adds the given task.
-     * {@code task} must not already exist in the task book.
+     * Sort the task list
+     */
+    void sortByStart();
+
+    void sortByEnd();
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
      */
     void addTask(Task task);
 

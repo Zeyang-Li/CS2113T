@@ -25,6 +25,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final String DEFAULT_PAGE = "defaultPage";
+    private static final String PROJECT_DETAILS = "projectDetails";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -32,12 +35,20 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private DefaultPage defaultPage;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
+
+    //To check which scene to show
+    private String optionPage = DEFAULT_PAGE;
 
     @FXML
     private StackPane browserPlaceholder;
+
+    @FXML
+    private StackPane defaultBrowserPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,6 +64,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -111,8 +123,23 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedTaskProperty());
-        browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        switch (optionPage) {
+        case DEFAULT_PAGE:
+            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
+            break;
+
+        case PROJECT_DETAILS:
+            browserPanel = new BrowserPanel(logic.selectedTaskProperty());
+            browserPlaceholder.getChildren().add(browserPanel.getRoot());
+            break;
+
+        default:
+            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
+            break;
+        }
+
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.selectedTaskProperty(),
                 logic::setSelectedTask);
@@ -124,7 +151,8 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath(), logic.getTaskBook());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand, logic.getHistory());
+        commandBox = new CommandBox(this::executeCommand, logic.getHistory());
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -173,6 +201,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Choose which page to show.
+     */
+    public void setScene(String value) {
+        optionPage = value;
+    }
+
+    /**
+     * Get current page.
+     * @return
+     */
+    public String getPage() {
+        return this.optionPage;
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -182,7 +225,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
