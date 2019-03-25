@@ -3,65 +3,62 @@ package seedu.address.model.day;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Day's entertainment in the task book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Entertainment {
+public class Entertainment extends Category {
 
-    private final String time;
-    private final String limit;
-    public static final String MESSAGE_TIME_CONSTRAINTS =
-            "Time should only contain numbers & '.', 2 digits'.'2digits, ie: 13.00";
-    public static final String MESSAGE_LIMIT_CONSTRAINTS =
-            "Limit should only contain numbers & '.', 2 digits'.'2digits, ie: 13.00";
-    public static final String VALIDATION_REGEX = "\\d{2}" + "." + "\\d{2}";
+    private double time;
+    //public static final String MESSAGE_TIME_CONSTRAINTS =
+            //"Time should only contain numbers & '.', 2 digits'.'2digits, ie: 13.00";
+    //public static final String VALIDATION_REGEX = "\\d{2}" + "." + "\\d{2}";
 
     /**
      * Constructs a {@code Entertainment}.
      *
      * @param time A valid time.
-     * @param limit A valid limit.
      */
-    public Entertainment(String time, String limit) {
-        requireNonNull(time);
-        requireNonNull(limit);
-        checkArgument(isValidTime(time), MESSAGE_TIME_CONSTRAINTS);
-        checkArgument(isValidLimit(limit), MESSAGE_LIMIT_CONSTRAINTS);
+    public Entertainment(double time) {
+        //requireNonNull(time);
+        //checkArgument(isValidTime(time), MESSAGE_TIME_CONSTRAINTS);
         this.time = time;
-        this.limit = limit;
     }
 
     /**
      * Returns true if a given string is a valid start time.
      */
-    public static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+    //public static boolean isValidTime(String test) {
+        //return test.matches(VALIDATION_REGEX);
+    //}
+
+    public void addTime(double result) {
+        time += result;
     }
 
-    public static boolean isValidLimit(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public void removeTime(double result) {
+        time -= result;
     }
 
-    public String getTime() {
+    public double getTime() {
         return time;
     }
 
-    public String getLimit() {
-        return limit;
+    public String getTimeString() {
+        return String.valueOf(time);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Entertainment // instanceof handles nulls
-                && time.equals(((Entertainment) other).time) // state check
-                && limit.equals(((Entertainment) other).limit));
+                && time == (((Entertainment) other).time)); // state check
     }
 
     @Override
     public int hashCode() {
-        return (time + limit).hashCode();
+        return Objects.hash(time);
     }
 
 }
