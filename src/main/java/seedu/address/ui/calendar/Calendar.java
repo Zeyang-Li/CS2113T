@@ -1,7 +1,5 @@
 package seedu.address.ui.calendar;
 
-import javafx.geometry.Pos;
-
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -41,7 +39,7 @@ public class Calendar extends Node {
                 allCalendarDays.add(newGrid);
             }
         }
-        
+
         Text[] weekDays = { new Text("Sun"), 
                 new Text("Mon"), new Text("Tues"),
                 new Text("Wed"), new Text("Thur"), 
