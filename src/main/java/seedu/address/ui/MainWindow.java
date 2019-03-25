@@ -40,6 +40,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    //To check which scene to show
+    private String optionPage = DEFAULT_PAGE;
+
     @FXML
     private StackPane browserPlaceholder;
 
@@ -60,9 +63,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-
-    //To check which scene to show
-    String optionPage = "defaultPage";
+ 
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -130,6 +131,10 @@ public class MainWindow extends UiPart<Stage> {
                 browserPanel = new BrowserPanel(logic.selectedTaskProperty());
                 browserPlaceholder.getChildren().add(browserPanel.getRoot());
                 break;
+            default:
+                defaultPage = new DefaultPage(logic.getFilteredTaskList());
+                defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
+                break;
         }
 
 
@@ -196,6 +201,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void setScene(String value) {
         optionPage = value;
+    }
+
+    /**
+     * Get current page.
+     * @return
+     */
+    public String getPage() {
+        return this.optionPage;
     }
 
     /**

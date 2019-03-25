@@ -54,6 +54,10 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(SEARCH_PAGE_URL + task.getName().fullName);
     }
 
+    /**
+     * Load selected page.
+     * @param url
+     */
     public void loadPage(String url) {
         //System.out.println(url);
         Platform.runLater(() -> browser.getEngine().load(url));

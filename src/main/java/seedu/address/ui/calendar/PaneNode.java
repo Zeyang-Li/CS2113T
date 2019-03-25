@@ -1,9 +1,10 @@
 package seedu.address.ui.calendar;
 
+import java.time.LocalDate;
+
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
-import java.time.LocalDate;
 
 /**
  * This is each single date grid.
@@ -17,5 +18,7 @@ public class PaneNode extends AnchorPane {
     }
 
     public LocalDate getDay() { return day; }
+
     public void setDay(LocalDate newDay) { this.day = newDay; }
+
 }
