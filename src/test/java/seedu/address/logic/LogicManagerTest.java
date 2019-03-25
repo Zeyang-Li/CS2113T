@@ -33,6 +33,7 @@ import seedu.address.model.task.Task;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.TaskBuilder;
 
 
 public class LogicManagerTest {
