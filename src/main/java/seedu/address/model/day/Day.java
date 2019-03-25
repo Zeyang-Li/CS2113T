@@ -3,6 +3,7 @@ package seedu.address.model.day;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
 import seedu.address.model.task.Categories;
 import seedu.address.model.task.Task;
 
@@ -127,8 +128,7 @@ public class Day {
 
         if (taskCategory == editedTaskCategory) {
             addCategory(editedTask);
-        }
-        else if (taskCategory != editedTaskCategory) {
+        } else if (taskCategory != editedTaskCategory) {
             removeCategory(task);
             addCategory(editedTask);
         }
