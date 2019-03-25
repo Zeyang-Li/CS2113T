@@ -38,17 +38,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STARTDATE, PREFIX_STARTTIME, PREFIX_ENDDATE,
-<<<<<<< HEAD
                         PREFIX_ENDTIME, PREFIX_DESCRIPTION, PREFIX_CATEGORY, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STARTDATE, PREFIX_STARTTIME, PREFIX_ENDDATE,
                 PREFIX_ENDTIME, PREFIX_DESCRIPTION, PREFIX_CATEGORY, PREFIX_TAG)
-=======
-                        PREFIX_ENDTIME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_CATEGORY);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STARTDATE, PREFIX_STARTTIME, PREFIX_ENDDATE,
-                PREFIX_ENDTIME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_CATEGORY)
->>>>>>> 144efa34cc8984c5dbf515f3449e28b6b64b01a5
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -59,17 +52,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         EndDate endDate = ParserUtil.parseEndDate(argMultimap.getValue(PREFIX_ENDDATE).get());
         EndTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-<<<<<<< HEAD
         Categories categories = ParserUtil.parseCategories(argMultimap.getValue(PREFIX_CATEGORY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Task task = new Task(name, startDate, startTime, endDate, endTime, description, categories, tagList);
-=======
-        String category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Task task = new Task(name, startDate, startTime, endDate, endTime, description, tagList, category);
->>>>>>> 144efa34cc8984c5dbf515f3449e28b6b64b01a5
 
         return new AddCommand(task);
     }
