@@ -32,7 +32,7 @@ image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
+.  Some examples you can try:
 
 * *`list`* : lists all the tasks you have added
 * **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
@@ -259,14 +259,13 @@ Sets the time limit to 40 hours for the academic category.
 
 === Removing time limit of a task category : `unset`
 
-Removes weekly time limit of a task category. +
-After removing the time limit, you will be able to add more tasks into that category as usual.
+Removes weekly time limit of a task category. After removing the time limit, you will be able to add more tasks into that category as usual.
 
 Format: `unset CATEGORY`
 
 Example:
 
-`unset a`
+* `unset a`
 
 === Showing remaining time to the limit of all task categories : `show`
 
@@ -317,7 +316,7 @@ Examples:
 The `history` command will automatically be filled in.
 * While typing `ez`, press `TAB`. +
 The `edit` command will automatically be filled in even if `exit` command is equally similar to `ez`.
-* While typing `hosdfqwehfjnihef`, and press `TAB`.+
+* While typing `hosdfqwehfjnihef`, and press `TAB`. +
 The system will not auto-complete a command for the user.
 
 == FAQ
