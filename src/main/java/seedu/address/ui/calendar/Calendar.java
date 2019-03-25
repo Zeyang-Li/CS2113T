@@ -1,9 +1,8 @@
 package seedu.address.ui.calendar;
 
-import java.util.ArrayList;
-
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.ArrayList;
 
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
