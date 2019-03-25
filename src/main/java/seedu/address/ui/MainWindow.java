@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox; 
 
     //To check which scene to show
     private String optionPage = DEFAULT_PAGE;
@@ -150,7 +151,8 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath(), logic.getTaskBook());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand, logic.getHistory());
+        commandBox = new CommandBox(this::executeCommand, logic.getHistory());
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -223,7 +225,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
