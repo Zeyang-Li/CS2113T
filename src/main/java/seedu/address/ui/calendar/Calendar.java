@@ -1,16 +1,16 @@
 package seedu.address.ui.calendar;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+
+import java.util.ArrayList;
+
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
-import java.time.LocalDate;
-import java.time.YearMonth;
-
-import java.util.ArrayList;
 
 /**
  * The real implementation for calendar will be here.
@@ -34,16 +34,16 @@ public class Calendar extends Node {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 PaneNode newGrid = new PaneNode();
-                newGrid.setPrefSize(48,40);
+                newGrid.setPrefSize(48, 40);
                 calendar.add(newGrid, j, i);
                 allCalendarDays.add(newGrid);
             }
         }
 
         Text[] weekDays = { new Text("Sun"),
-                new Text("Mon"), new Text("Tues"),
-                new Text("Wed"), new Text("Thur"),
-                new Text("Fri"), new Text("Sat") };
+                            new Text("Mon"), new Text("Tues"),
+                            new Text("Wed"), new Text("Thur"),
+                            new Text("Fri"), new Text("Sat") };
 
         GridPane weekDayLabel = new GridPane();
         weekDayLabel.setPrefWidth(340);
@@ -71,7 +71,7 @@ public class Calendar extends Node {
      */
     public void showCalendar(YearMonth yearMonth) {
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
-        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY") ) {
+        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
             calendarDate = calendarDate.minusDays(1);
         }
 
