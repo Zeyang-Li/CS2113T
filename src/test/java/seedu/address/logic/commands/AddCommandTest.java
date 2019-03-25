@@ -25,7 +25,6 @@ import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskBook;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandTest {
 
