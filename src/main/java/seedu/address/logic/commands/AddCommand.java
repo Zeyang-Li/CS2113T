@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -28,6 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "END_DATE "
             + PREFIX_ENDTIME + "END_TIME "
             + PREFIX_DESCRIPTION + "CONTENT "
+            + PREFIX_CATEGORY + "CATEGORY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Revise CS2113T "
@@ -36,6 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "15-03-19 "
             + PREFIX_ENDTIME + "17.00 "
             + PREFIX_DESCRIPTION + "Class diagram "
+            + PREFIX_CATEGORY + "a "
             + PREFIX_TAG + "urgent "
             + PREFIX_TAG + "duesoon\n";
 
@@ -46,6 +49,7 @@ public class AddCommand extends Command {
             + PREFIX_ENDDATE + "END_DATE "
             + PREFIX_ENDTIME + "END_TIME "
             + PREFIX_DESCRIPTION + "CONTENT "
+            + PREFIX_CATEGORY + "CATEGORY "
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
