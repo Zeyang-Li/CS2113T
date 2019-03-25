@@ -171,7 +171,7 @@ public class EditCommand extends Command {
         public EditTaskDescriptor() {}
 
 
-        public EditTaskDescriptor(Categories Categories, Description description, EndDate endDate, EndTime endTime,
+        public EditTaskDescriptor(Categories categories, Description description, EndDate endDate, EndTime endTime,
                             Name name, StartDate startDate, StartTime startTime, Set<Tag> tags) {
             super();
             this.categories = categories;
