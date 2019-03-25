@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.YearMonth;
+
 import javafx.collections.ObservableList;
 
 import javafx.fxml.FXML;
@@ -11,7 +13,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
 import seedu.address.ui.calendar.Calendar;
 
-import java.time.YearMonth;
 
 /**
  * Default page contains calendar, reminder and timeline.
