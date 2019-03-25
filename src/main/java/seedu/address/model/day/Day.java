@@ -1,8 +1,8 @@
 package seedu.address.model.day;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import java.util.Objects;
 
+import java.util.Objects;
 import seedu.address.model.task.Categories;
 import seedu.address.model.task.Task;
 
@@ -84,7 +84,8 @@ public class Day {
             other.addTime(calculateTime(timeStart, timeEnd));
             break;
         default:
-            break; }
+            break;
+        }
     }
 
     /**
@@ -112,7 +113,8 @@ public class Day {
             other.removeTime(calculateTime(timeStart, timeEnd));
             break;
         default:
-            break; }
+            break;
+        }
     }
 
     /**
@@ -132,6 +134,9 @@ public class Day {
         }
     }
 
+    /**
+     * To calculate time into the category for each task
+     */
     public double calculateTime(String start, String end) {
 
         Double result = Double.valueOf(start) - Double.valueOf(end);
