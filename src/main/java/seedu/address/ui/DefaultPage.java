@@ -53,4 +53,22 @@ public class DefaultPage extends UiPart<Region> {
         calendarAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         reminderAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
     }
+
+    /**
+     * Set the desired month.
+     */
+    public void setMonth(String month) {
+        Calendar c = new Calendar(YearMonth.now());
+        //System.out.println(month);
+        if(month.equals("Viewing next month's calendar!")) {
+            c.nextMonth();
+            //System.out.println(month);
+        }
+        if(month.equals("Viewing previous month's calendar!")) {
+            c.previousMonth();
+            //System.out.println(month);
+        }
+        calendarAnchorPane.getChildren().clear();
+        calendarAnchorPane.getChildren().add(c.getView());
+    }
 }
