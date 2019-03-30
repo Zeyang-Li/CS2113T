@@ -60,7 +60,7 @@ public interface Logic {
      * @param month
      */
     void setMonth(String month);
-    
+
     /**
      * Selected person in the filtered person list.
      * null if no person is selected.

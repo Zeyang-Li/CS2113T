@@ -28,7 +28,7 @@ public class MonthCommand extends Command {
     public MonthCommand(String c) throws ParseException {
         //System.out.println(c);
         if(c.equals(" +")) {
-            this.parameter = "next";    
+            this.parameter = "next";
         } else if(c.equals(" -")) {
             this.parameter = "previous";
         } else {

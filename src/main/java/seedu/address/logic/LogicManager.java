@@ -98,7 +98,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void setMonth(String month) { model.setMonth(month); }
-    
+
     @Override
     public ReadOnlyProperty<Task> selectedTaskProperty() {
         return model.selectedTaskProperty();
