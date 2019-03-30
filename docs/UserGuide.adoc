@@ -275,6 +275,19 @@ Examples:
 * `remind e start` +
 Shows a list of nearest start tasks of "entertainment" category.
 
+=== Set the calendar to desired month : `month`
+
+Shows the desired month to the user. +
+
+Format:
+
+* `month +` +
+Changes the current calendar to next month. +
+
+* `month -` +
+Changes the current calendar to previous month. +
+
+
 
 === Setting time limit to a task category : `set`
 
