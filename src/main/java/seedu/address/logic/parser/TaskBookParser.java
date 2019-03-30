@@ -84,7 +84,7 @@ public class TaskBookParser {
             return new MonthCommandParser().parse(arguments);
 
         case RemindCommand.COMMAND_WORD:
-        return new RemindCommand(arguments);
+            return new RemindCommand(arguments);
 
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:

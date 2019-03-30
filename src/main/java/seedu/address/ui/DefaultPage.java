@@ -60,11 +60,11 @@ public class DefaultPage extends UiPart<Region> {
     public void setMonth(String month) {
         Calendar c = new Calendar(YearMonth.now());
         //System.out.println(month);
-        if(month.equals("Viewing next month's calendar!")) {
+        if (month.equals("Viewing next month's calendar!")) {
             c.nextMonth();
             //System.out.println(month);
         }
-        if(month.equals("Viewing previous month's calendar!")) {
+        if (month.equals("Viewing previous month's calendar!")) {
             c.previousMonth();
             //System.out.println(month);
         }
