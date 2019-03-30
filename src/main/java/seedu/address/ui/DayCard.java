@@ -45,11 +45,11 @@ public class DayCard extends UiPart<Region> {
         this.day = day;
         id.setText(displayedIndex + ". ");
         date.setText(day.getDate().value);
-        academic.setText(day.getAcademic().getTimeString());
-        cca.setText(day.getCca().getTimeString());
-        entertainment.setText(day.getEntertainment().getTimeString());
-        errand.setText(day.getErrand().getTimeString());
-        other.setText(day.getOther().getTimeString());
+        academic.setText(day.getAcademic().time);
+        cca.setText(day.getCca().time);
+        entertainment.setText(day.getEntertainment().time);
+        errand.setText(day.getErrand().time);
+        other.setText(day.getOther().time);
     }
 
     @Override

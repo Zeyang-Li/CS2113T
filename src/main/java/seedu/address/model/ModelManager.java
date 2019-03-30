@@ -17,7 +17,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
+import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -29,7 +31,10 @@ public class ModelManager implements Model {
     private final VersionedTaskBook versionedTaskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Day> filteredDays;
     private final SimpleObjectProperty<Task> selectedTask = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Day> selectedDay = new SimpleObjectProperty<>();
+
     private Comparator<Task> startComparator = new Comparator<Task>() {
         @Override
         public int compare(Task o1, Task o2) {
@@ -85,6 +90,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(versionedTaskBook.getTaskList());
         filteredTasks.addListener(this::ensureSelectedTaskIsValid);
+        filteredDays = new FilteredList<>(versionedTaskBook.getDayList());
+        filteredDays.addListener(this::ensureSelectedDayIsValid);
     }
 
     public ModelManager() {
@@ -185,6 +192,7 @@ public class ModelManager implements Model {
     public void addTask(Task task) {
         versionedTaskBook.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
     }
 
     @Override
@@ -211,6 +219,23 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    //=========== Filtered Day List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Day} backed by the internal list of
+     * {@code versionedTaskBook}
+     */
+    @Override
+    public ObservableList<Day> getFilteredDayList() {
+        return filteredDays;
+    }
+
+    @Override
+    public void updateFilteredDayList(Predicate<Day> predicate) {
+        requireNonNull(predicate);
+        filteredDays.setPredicate(predicate);
+    }
+
     //=========== Undo/Redo =================================================================================
 
     @Override
@@ -224,9 +249,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoTaskBook() {
-        versionedTaskBook.undo();
-    }
+    public void undoTaskBook() { versionedTaskBook.undo(); }
 
     @Override
     public void redoTaskBook() {
@@ -258,6 +281,26 @@ public class ModelManager implements Model {
         selectedTask.setValue(task);
     }
 
+    //=========== Selected day ===========================================================================
+
+    @Override
+    public ReadOnlyProperty<Day> selectedDayProperty() {
+        return selectedDay;
+    }
+
+    //@Override
+    //public Day getSelectedDay() {
+        //return selectedDay.getValue();
+    //}
+
+    @Override
+    public void setSelectedDay(Day day) {
+        if (day != null && !filteredDays.contains(day)) {
+            throw new DayNotFoundException();
+        }
+        selectedDay.setValue(day);
+    }
+
     /**
      * Ensures {@code selectedTask} is a valid task in {@code filteredTasks}.
      */
@@ -287,6 +330,35 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Ensures {@code selectedDay} is a valid day in {@code filteredDays}.
+     */
+    private void ensureSelectedDayIsValid(ListChangeListener.Change<? extends Day> change) {
+        while (change.next()) {
+            if (selectedTask.getValue() == null) {
+                // null is always a valid selected day, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedDayReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedDay.getValue());
+            if (wasSelectedDayReplaced) {
+                // Update selectedDay to its new value.
+                int index = change.getRemoved().indexOf(selectedDay.getValue());
+                selectedDay.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedDayRemoved = change.getRemoved().stream()
+                    .anyMatch(removedDay -> selectedDay.getValue().isSameDay(removedDay));
+            if (wasSelectedDayRemoved) {
+                // Select the day that came before it in the list,
+                // or clear the selection if there is no such task.
+                selectedDay.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -304,7 +376,9 @@ public class ModelManager implements Model {
         return versionedTaskBook.equals(other.versionedTaskBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks)
-                && Objects.equals(selectedTask.get(), other.selectedTask.get());
+                && filteredDays.equals(other.filteredDays)
+                && Objects.equals(selectedTask.get(), other.selectedTask.get())
+                && Objects.equals(selectedDay.get(), other.selectedDay.get());
     }
 
 }

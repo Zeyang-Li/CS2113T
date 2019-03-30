@@ -2,19 +2,18 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
+import seedu.address.model.day.UniqueDayList;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
@@ -24,7 +23,8 @@ import seedu.address.model.task.UniqueTaskList;
 public class TaskBook implements ReadOnlyTaskBook {
 
     private final UniqueTaskList tasks;
-    private final Map<Date, Day> dayMap;
+    private final UniqueDayList days;
+    private Map<Date, Day> dayMap;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -36,6 +36,7 @@ public class TaskBook implements ReadOnlyTaskBook {
      */
     {
         tasks = new UniqueTaskList();
+        days = new UniqueDayList();
         dayMap = new HashMap<>();
     }
 
@@ -55,9 +56,31 @@ public class TaskBook implements ReadOnlyTaskBook {
      * Replaces the contents of the task list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
      */
-    public void setTasks(List<Task> tasks) {
+    public void setDatas(List<Task> tasks, List<Day> days, Map<Date, Day> dayMap) {
         this.tasks.setTasks(tasks);
+        this.days.setDays(days);
+        this.dayMap = dayMap;
+        resetDayMap(tasks);
         indicateModified();
+    }
+
+    public void resetDayMap(List<Task> tasks) {
+        dayMap.clear();
+        days.clear();
+        for (int i = 0; i <= tasks.size() - 1; i++) {
+            Task t = tasks.get(i);
+            String dateStr = t.getStartDate().toString();
+            Date date = new Date(dateStr);
+            if (!dayMap.containsKey(date)) {
+                dayMap.put(date, new Day(date));
+                Day a = dayMap.get(date);
+                days.add(a);
+            }
+            Day d = dayMap.get(date);
+            days.remove(d);
+            d.addCategory(t);
+            addDay(d);
+        }
     }
 
     /**
@@ -66,7 +89,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void resetData(ReadOnlyTaskBook newData) {
         requireNonNull(newData);
 
-        setTasks(newData.getTaskList());
+        setDatas(newData.getTaskList(), newData.getDayList(), newData.getDayMap());
     }
 
     //// task-level operations
@@ -80,6 +103,15 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
+     * Returns true if a day with the same identity as {@code day} exists in the task book.
+     */
+    public boolean hasDay(Day day) {
+        requireNonNull(day);
+        return days.contains(day);
+    }
+
+
+    /**
      * Adds a task to the task book.
      * The task must not already exist in the task book.
      */
@@ -89,9 +121,18 @@ public class TaskBook implements ReadOnlyTaskBook {
         Date date = new Date(dateStr);
         if (!dayMap.containsKey(date)) {
             dayMap.put(date, new Day(date));
+            Day a = dayMap.get(date);
+            days.add(a);
         }
         Day d = dayMap.get(date);
+        days.remove(d);
         d.addCategory(t);
+        addDay(d);
+        indicateModified();
+    }
+
+    public void addDay(Day d) {
+        days.add(d);
         indicateModified();
     }
 
@@ -102,24 +143,34 @@ public class TaskBook implements ReadOnlyTaskBook {
      */
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
+        tasks.setTask(target, editedTask);
         String targetDateStr = target.getStartDate().toString();
         String editedDateStr = editedTask.getStartDate().toString();
         Date targetDate = new Date(targetDateStr);
         Date editedDate = new Date(editedDateStr);
 
-        if (targetDate != editedDate) {
+        if (!targetDate.equals(editedDate)) {
             if (!dayMap.containsKey(editedDate)) {
                 dayMap.put(editedDate, new Day(editedDate));
             }
-            Day d = dayMap.get(editedDate);
-            d.addCategory(editedTask);
-            tasks.setTask(target, editedTask);
+            Day eD = dayMap.get(editedDate);
+            days.add(eD);
+            days.remove(eD);
+            eD.addCategory(editedTask);
+            days.add(eD);
+
+            Day tD = dayMap.get(targetDate);
+            days.remove(tD);
+            tD.removeCategory(target);
+            days.add(tD);
+
             indicateModified();
             return;
         }
-        Day d = dayMap.get(targetDate);
-        d.editCategory(target, editedTask);
-        tasks.setTask(target, editedTask);
+        Day tD = dayMap.get(targetDate);
+        days.remove(tD);
+        tD.editCategory(target, editedTask);
+        addDay(tD);
         indicateModified();
     }
 
@@ -133,7 +184,11 @@ public class TaskBook implements ReadOnlyTaskBook {
         if (!dayMap.containsKey(date)) {
         }
         Day d = dayMap.get(date);
+        days.remove(d);
         d.removeCategory(key);
+        if (d.isDayEmpty() == false) {
+            days.add(d);
+        }
         tasks.remove(key);
         indicateModified();
     }
@@ -168,7 +223,8 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     @Override
     public String toString() {
-        return tasks.asUnmodifiableObservableList().size() + " tasks";
+        return tasks.asUnmodifiableObservableList().size() + " tasks" + days.asUnmodifiableObservableList().size()
+                + " days";
     }
 
     @Override
@@ -177,6 +233,16 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     @Override
+    public ObservableList<Day> getDayList() {
+        return days.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public Map<Date, Day> getDayMap() {
+        return this.dayMap;
+    }
+
+    /*@Override
     public ObservableList<String> getCategoryList() {
         List<String> categories = List.of("Academic", "Cca", "Entertainment", "Errand", "Other");
         return FXCollections.observableArrayList(categories);
@@ -209,7 +275,7 @@ public class TaskBook implements ReadOnlyTaskBook {
         List<Double> timeList = List.of(academicTime, ccaTime, entertainmentTime, errandTime, otherTime);
         return FXCollections.observableArrayList(timeList);
     }
-
+    */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

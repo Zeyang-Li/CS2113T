@@ -59,12 +59,15 @@
             </padding>
           </StackPane>
           -->
-          <StackPane fx:id="defaultBrowserPlaceholder" prefWidth="340" >
+          <StackPane fx:id="defaultBrowserPlaceholder" prefWidth="340">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
           </StackPane>
-               <VBox prefHeight="200.0" prefWidth="100.0" />
+               <VBox prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <StackPane fx:id="dayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                  </children></VBox>
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
+import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 
 /**
@@ -20,8 +21,10 @@ import seedu.address.model.task.Task;
 class JsonSerializableTaskBook {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_DAY = "Days list contains duplicate day(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedDay> days = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTaskBook} with the given tasks.
@@ -38,6 +41,7 @@ class JsonSerializableTaskBook {
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        days.addAll(source.getDayList().stream().map(JsonAdaptedDay::new).collect(Collectors.toList()));
     }
 
     /**
