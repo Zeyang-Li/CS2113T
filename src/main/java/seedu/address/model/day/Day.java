@@ -65,7 +65,9 @@ public class Day {
         return errand;
     }
 
-    public Other getOther() { return other; }
+    public Other getOther() {
+        return other;
+    }
 
     /**
      * To add a time into the category for each task
@@ -157,7 +159,12 @@ public class Day {
      * To check whether each categories for a task is empty
      */
     public boolean isDayEmpty() {
-        double academicTime, ccaTime, entertainmentTime, errandTime, otherTime;
+        double academicTime;
+        double ccaTime;
+        double entertainmentTime;
+        double errandTime;
+        double otherTime;
+
         academicTime = academic.getTimeDouble();
         ccaTime = cca.getTimeDouble();
         entertainmentTime = entertainment.getTimeDouble();

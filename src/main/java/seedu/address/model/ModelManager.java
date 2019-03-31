@@ -244,10 +244,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean canRedoTaskBook() { return versionedTaskBook.canRedo(); }
+    public boolean canRedoTaskBook() {
+        return versionedTaskBook.canRedo();
+    }
 
     @Override
-    public void undoTaskBook() { versionedTaskBook.undo(); }
+    public void undoTaskBook() {
+        versionedTaskBook.undo();
+    }
 
     @Override
     public void redoTaskBook() {
