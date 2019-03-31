@@ -288,11 +288,6 @@ public class ModelManager implements Model {
         return selectedDay;
     }
 
-    //@Override
-    //public Day getSelectedDay() {
-        //return selectedDay.getValue();
-    //}
-
     @Override
     public void setSelectedDay(Day day) {
         if (day != null && !filteredDays.contains(day)) {

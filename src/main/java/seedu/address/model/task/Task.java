@@ -42,6 +42,7 @@ public class Task {
         this.description = description;
         this.categories = categories;
         this.tags.addAll(tags);
+
     }
 
     public Name getName() {
@@ -81,7 +82,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks of the same topic have at least one other identity field that is the same.
+     * Returns true if both tasks of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
