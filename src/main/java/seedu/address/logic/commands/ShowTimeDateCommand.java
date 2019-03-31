@@ -19,7 +19,7 @@ public class ShowTimeDateCommand extends Command {
             + "1. no parameters: showtime        show all days\n"
             + "2. DATE: showtime 25-03-19    "
             + "show the day 25th March, 2019\n";
-    public static final String MESSAGE_SUCCESS = "Listed tasks on %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed days on %1$s";
     private String specifiedDate;
 
     /**
@@ -35,6 +35,7 @@ public class ShowTimeDateCommand extends Command {
     private boolean meetRequirement(Day day) {
 
         String[] dateInfo = specifiedDate.split("-");
+
         if (dateInfo.length == 3) {
 
             final String taskDate = day.getDate().value;
@@ -48,7 +49,7 @@ public class ShowTimeDateCommand extends Command {
             final String taskDate = day.getDate().value;
             String[] splitDate = taskDate.split("-");
 
-            if (splitDate[1].equals(dateInfo[0]) && splitDate[2].equals(dateInfo[1])) {
+            if (splitDate[0].equals(dateInfo[0]) && splitDate[1].equals(dateInfo[1])) {
                 return true;
             } else {
                 return false;
