@@ -49,7 +49,7 @@ public class ListDateCommand extends Command {
             final String taskDate = task.getStartDate().value;
             String[] splitDate = taskDate.split("-");
 
-            if (splitDate[1].equals(dateInfo[0]) && splitDate[2].equals(dateInfo[1])) {
+            if (splitDate[0].equals(dateInfo[0]) && splitDate[1].equals(dateInfo[1])) {
                 return true;
             } else {
                 return false;
