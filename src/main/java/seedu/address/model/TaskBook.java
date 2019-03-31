@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
-import seedu.address.model.task.Task;
 import seedu.address.model.day.UniqueDayList;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
@@ -64,6 +64,10 @@ public class TaskBook implements ReadOnlyTaskBook {
         indicateModified();
     }
 
+    /**
+     * Reset the dayMap after reset data
+     * @param tasks
+     */
     public void resetDayMap(List<Task> tasks) {
         dayMap.clear();
         days.clear();
@@ -131,6 +135,10 @@ public class TaskBook implements ReadOnlyTaskBook {
         indicateModified();
     }
 
+    /**
+     * Add day into uniqueDayList
+     * @param d
+     */
     public void addDay(Day d) {
         days.add(d);
         indicateModified();
@@ -242,40 +250,6 @@ public class TaskBook implements ReadOnlyTaskBook {
         return this.dayMap;
     }
 
-    /*@Override
-    public ObservableList<String> getCategoryList() {
-        List<String> categories = List.of("Academic", "Cca", "Entertainment", "Errand", "Other");
-        return FXCollections.observableArrayList(categories);
-    }
-
-    @Override
-    public ObservableList<Double> getTimeList() {
-        Collection<Day> days = dayMap.values();
-        double academicTime = 0;
-        double ccaTime = 0;
-        double entertainmentTime = 0;
-        double errandTime = 0;
-        double otherTime = 0;
-
-        for (Day day : days) {
-            academicTime += day.getAcademic().getTime();
-        }
-        for (Day day : days) {
-            ccaTime += day.getCca().getTime();
-        }
-        for (Day day : days) {
-            entertainmentTime += day.getEntertainment().getTime();
-        }
-        for (Day day : days) {
-            errandTime += day.getErrand().getTime();
-        }
-        for (Day day : days) {
-            otherTime += day.getOther().getTime();
-        }
-        List<Double> timeList = List.of(academicTime, ccaTime, entertainmentTime, errandTime, otherTime);
-        return FXCollections.observableArrayList(timeList);
-    }
-    */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

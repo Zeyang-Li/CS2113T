@@ -10,7 +10,7 @@ public class Cca extends Category {
     public static final String MESSAGE_CONSTRAINTS =
             "Cca time should only contain numbers & '.', ie: 3.0";
     public static final String VALIDATION_REGEX = "\\d" + "\\." + "\\d";
-    public String time;
+    private String value;
 
     /**
      * Constructs a {@code Academic}.
@@ -18,7 +18,7 @@ public class Cca extends Category {
      * @param time A valid time.
      */
     public Cca(String time) {
-        this.time = time;
+        value = time;
     }
 
     /**
@@ -28,28 +28,39 @@ public class Cca extends Category {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Adding time after update
+     * @param result
+     * @return value
+     */
     public String addTime(double result) {
-        double t = Double.parseDouble(time);
+        double t = Double.parseDouble(value);
         t += result;
-        time = String.valueOf(t);
-        return time;
+        value = String.valueOf(t);
+        return value;
     }
 
+    /**
+     * Deducting time after update
+     * @param result
+     * @return value
+     */
     public String removeTime(double result) {
-        double t = Double.parseDouble(time);
+        double t = Double.parseDouble(value);
         t -= result;
-        time = String.valueOf(t);
-        return time;
+        value = String.valueOf(t);
+        return value;
     }
+
 
     public String getTime() {
-        return time;
+        return value;
     }
 
     public double getTimeDouble() {
         double t;
         double scale = Math.pow(10, 2);
-        t = Double.parseDouble(time);
+        t = Double.parseDouble(value);
 
         return Math.round(t * scale) / scale;
     }
@@ -58,12 +69,12 @@ public class Cca extends Category {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Cca // instanceof handles nulls
-                && time == ((Cca) other).time); // state check
+                && value.equals(((Cca) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(time);
+        return Objects.hash(value);
     }
 
 }

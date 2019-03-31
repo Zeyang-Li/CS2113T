@@ -48,11 +48,11 @@ class JsonAdaptedDay {
      */
     public JsonAdaptedDay(Day source) {
         date = source.getDate().value;
-        academic = source.getAcademic().time;
-        cca = source.getCca().time;
-        entertainment = source.getEntertainment().time;
-        errand = source.getErrand().time;
-        other = source.getOther().time;
+        academic = source.getAcademic().getTime();
+        cca = source.getCca().getTime();
+        entertainment = source.getEntertainment().getTime();
+        errand = source.getErrand().getTime();
+        other = source.getOther().getTime();
     }
 
     /**

@@ -35,8 +35,12 @@ public class EndDate {
             String[] spiltDate = test.split("-");
             int day = Integer.parseInt(spiltDate[0]);
             int month = Integer.parseInt(spiltDate[1]);
-            if (day < 1 || day > 31) { return false; }
-            if (month < 1 || month > 12) { return false; }
+            if (day < 1 || day > 31) {
+                return false;
+            }
+            if (month < 1 || month > 12) {
+                return false;
+            }
             return true;
         }
         return false;

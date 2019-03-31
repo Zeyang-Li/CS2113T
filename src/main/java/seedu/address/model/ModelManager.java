@@ -18,8 +18,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.day.Day;
-import seedu.address.model.task.Task;
 import seedu.address.model.day.exceptions.DayNotFoundException;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -244,9 +244,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean canRedoTaskBook() {
-        return versionedTaskBook.canRedo();
-    }
+    public boolean canRedoTaskBook() { return versionedTaskBook.canRedo(); }
 
     @Override
     public void undoTaskBook() { versionedTaskBook.undo(); }

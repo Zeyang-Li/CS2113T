@@ -75,7 +75,9 @@ public class AddCommand extends Command {
      */
     public boolean isSameDate(Task task) {
         String date = task.getStartDate().value;
-        if (date.equals(task.getEndDate().value)) { return true; }
+        if (date.equals(task.getEndDate().value)) {
+            return true;
+        }
         return false;
     }
 
@@ -87,7 +89,9 @@ public class AddCommand extends Command {
         double end = task.getEndTime().getTimeDouble(time);
         time = task.getStartTime().value;
         double start = task.getStartTime().getTimeDouble(time);
-        if (end > start) { return true; }
+        if (end > start) {
+            return true;
+        }
         return false;
     }
 

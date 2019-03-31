@@ -8,8 +8,8 @@ import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
 import seedu.address.model.day.Academic;
 import seedu.address.model.day.Cca;
-import seedu.address.model.day.Day;
 import seedu.address.model.day.Date;
+import seedu.address.model.day.Day;
 import seedu.address.model.day.Entertainment;
 import seedu.address.model.day.Errand;
 import seedu.address.model.day.Other;
@@ -57,9 +57,6 @@ public class SampleDataUtil {
         for (Task sampleTask : getSampleTasks()) {
             sampleTb.addTask(sampleTask);
         }
-        //for (Day sampleDay : getSampleDays()) {
-            //sampleTb.addDay(sampleDay);
-        //}
         return sampleTb;
     }
 

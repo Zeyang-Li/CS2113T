@@ -36,8 +36,12 @@ public class StartTime {
             String[] splitTime = test.split("\\.");
             int hour = Integer.parseInt(splitTime[0]);
             int minute = Integer.parseInt(splitTime[1]);
-            if (hour < 0 || hour > 23) { return false; }
-            if (minute < 0 || minute > 59) { return false; }
+            if (hour < 0 || hour > 23) {
+                return false;
+            }
+            if (minute < 0 || minute > 59) {
+                return false;
+            }
             return true;
         }
         return false;
