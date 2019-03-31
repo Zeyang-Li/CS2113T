@@ -60,6 +60,12 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
+     * Set the month on calendar.
+     * @param month
+     */
+    void setMonth(String month);
+
+     /**
      * Selected task in the filtered task list.
      * null if no task is selected.
      *

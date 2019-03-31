@@ -160,4 +160,9 @@ public interface Model {
      * Sets the selected day in the filtered day list.
      */
     void setSelectedDay(Day day);
+
+    /**
+     * Set the current month in GUI.
+     */
+    void setMonth(String month);
 }

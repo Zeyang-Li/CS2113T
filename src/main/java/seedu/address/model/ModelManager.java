@@ -112,9 +112,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GuiSettings getGuiSettings() {
-        return userPrefs.getGuiSettings();
-    }
+    public GuiSettings getGuiSettings() { return userPrefs.getGuiSettings(); }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
@@ -283,6 +281,7 @@ public class ModelManager implements Model {
         selectedTask.setValue(task);
     }
 
+
     //=========== Selected day ===========================================================================
 
     @Override
@@ -297,6 +296,9 @@ public class ModelManager implements Model {
         }
         selectedDay.setValue(day);
     }
+
+    @Override
+    public void setMonth(String month) {}
 
     /**
      * Ensures {@code selectedTask} is a valid task in {@code filteredTasks}.
