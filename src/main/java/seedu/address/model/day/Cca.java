@@ -9,7 +9,7 @@ public class Cca extends Category {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Cca time should only contain numbers & '.', ie: 3.0";
-    public static final String VALIDATION_REGEX = "\\d" + "." + "\\d";
+    public static final String VALIDATION_REGEX = "\\d" + "\\." + "\\d";
     public String time;
 
     /**

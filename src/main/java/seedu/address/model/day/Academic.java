@@ -9,7 +9,7 @@ public class Academic extends Category {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Academic time should only contain numbers & '.', ie: 1.0";
-    public static final String VALIDATION_REGEX = "\\d*" + "." + "\\d*";
+    public static final String VALIDATION_REGEX = "\\d*" + "\\." + "\\d*";
     public String time;
 
     /**

@@ -136,7 +136,7 @@ public class Day {
         if (taskCategory.equals(editedTaskCategory)) {
             removeCategory(task);
             addCategory(editedTask);
-        } else if (taskCategory != editedTaskCategory) {
+        } else {
             removeCategory(task);
             addCategory(editedTask);
         }
