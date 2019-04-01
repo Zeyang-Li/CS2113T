@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
+    private DayListPanel dayListPanel;
     private DefaultPage defaultPage;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
@@ -58,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane dayListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -125,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         switch (optionPage) {
         case DEFAULT_PAGE:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
             defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
             break;
 
@@ -135,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
             break;
 
         default:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
             defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
             break;
         }
@@ -144,6 +148,10 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.selectedTaskProperty(),
                 logic::setSelectedTask);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        //dayListPanel = new DayListPanel(logic.getFilteredDayList(), logic.selectedDayProperty(),
+        //logic::setSelectedDay);
+        //dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -227,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             defaultPage.setMonth(commandResult.getFeedbackToUser());
             defaultPage.setTimeline(commandResult.getFeedbackToUser());
+            defaultPage.setReminder(logic);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -236,7 +245,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (IllegalArgumentException | CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

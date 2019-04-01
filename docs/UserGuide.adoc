@@ -357,7 +357,8 @@ Help users automatically correct type error and fulfill their incomplete typed c
 * The input is not case sensitive.
 * If user type a string that is a substring of one of the commands, then command line will fulfill the string with this command.
 * If user type a string that is not a substring of any of the commands, then command line will show the most similar command compared this string.
-* if user type a string can not match any command, then command line will show `No command matched`.
+* If user type a string can not match any command, then command line will show `No command matched`.
+* If user type a command correctly, then press 'TAB', command line will fulfill the format string of parameters for this command.
 ****
 
 Examples：
@@ -365,6 +366,7 @@ Examples：
 * If the user wanted to type `list`, he can type `li` instead, and press `tap` on keyboard. The system will automatically fulfill the command in command line with `list`.
 * If the user wanted to type `histoy`, but he type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
 * If the user wanted to type `add`, but he type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
+* If the user type `edit` correctly and press `tap` on keyboard, The system will automatically fulfill the command line with `edit n/task name  sd/start_date  st/start_time  ed/end_date  et/end_time  d/content`.
 
 == FAQ
 

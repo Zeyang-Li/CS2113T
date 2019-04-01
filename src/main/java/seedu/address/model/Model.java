@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -7,6 +8,9 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 
 /**
@@ -15,6 +19,8 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    Predicate<Day> PREDICATE_SHOW_ALL_DAYS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -75,8 +81,8 @@ public interface Model {
     void sortByEnd();
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given task.
+     * {@code task} must not already exist in the task book.
      */
     void addTask(Task task);
 
@@ -90,11 +96,20 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the filtered day list */
+    ObservableList<Day> getFilteredDayList();
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered day list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDayList(Predicate<Day> predicate);
 
     /**
      * Returns true if the model has previous task book states to restore.
@@ -128,6 +143,12 @@ public interface Model {
     ReadOnlyProperty<Task> selectedTaskProperty();
 
     /**
+     * Selected day in the filtered day list.
+     * null if no day is selected.
+     */
+    ReadOnlyProperty<Day> selectedDayProperty();
+
+    /**
      * Returns the selected task in the filtered task list.
      * null if no task is selected.
      */
@@ -139,7 +160,40 @@ public interface Model {
     void setSelectedTask(Task task);
 
     /**
+     * Sets the selected day in the filtered day list.
+     */
+    void setSelectedDay(Day day);
+
+    /**
      * Set the current month in GUI.
      */
     void setMonth(String month);
+
+    //=========== Import/ Export ==============================================================================
+    /**
+     * Imports the persons from a xml at {@code importFilePath}.
+     */
+    void importTasksFromTaskBook(Path importFilePath) throws IOException, DataConversionException;
+
+    /**
+     * Adds all the persons in {@code addressBookImported} to the current address book.
+     * @return hasChanged is true if the addressBook is modified, returns false otherwise.
+     */
+    boolean addTasksToTaskBook(ReadOnlyTaskBook addressBookToImported);
+
+    /**
+     * Exports the current filtered person list to a xml file at {@code exportFilePath}.
+     */
+    void exportFilteredTaskBook(Path exportFilePath) throws IOException, IllegalValueException;
+
+    /**
+     * Exports the current address book state to a .csv file.
+     */
+    void exportTaskBook() throws IOException;
+
+    /**
+     * Exports the given person to a .csv file.
+     */
+    void exportTask(Task task) throws IOException;
+
 }

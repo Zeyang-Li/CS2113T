@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
@@ -17,11 +18,13 @@ import seedu.address.model.task.Task;
  * An Immutable TaskBook that is serializable to JSON format.
  */
 @JsonRootName(value = "taskbook")
-class JsonSerializableTaskBook {
+public class JsonSerializableTaskBook {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_DAY = "Days list contains duplicate day(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedDay> days = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTaskBook} with the given tasks.
@@ -38,6 +41,14 @@ class JsonSerializableTaskBook {
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        days.addAll(source.getDayList().stream().map(JsonAdaptedDay::new).collect(Collectors.toList()));
+    }
+
+    /**
+     * Conversion with filtered tasks instead of the whole task book.
+     */
+    public JsonSerializableTaskBook(ObservableList<Task> filteredPersons) {
+        tasks.addAll(filteredPersons.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -56,5 +67,15 @@ class JsonSerializableTaskBook {
         }
         return taskBook;
     }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
+        if (!(other instanceof JsonSerializableTaskBook)) {
+            return false;
+        }
+        return tasks.equals(((JsonSerializableTaskBook) other).tasks);
+    }
 }

@@ -34,7 +34,7 @@
       <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" />
       <Label fx:id="endTime" styleClass="cell_small_label" text="\$endTime" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-         <Label fx:id="categories" text="\$categories" />
+         <Label fx:id="categories" styleClass="cell_small_label" text="\$categories" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

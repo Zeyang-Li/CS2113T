@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
+
+import javafx.collections.ObservableList;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -69,8 +69,8 @@ public class RemindCommand extends Command {
     /**
      * A predicate function decide which task to choose
      */
-    private boolean meetRequirement(Task task, String givenVategory) {
-        if (task.getCategories().equals(givenVategory)) {
+    private boolean meetRequirement(Task task, String givenCategory) {
+        if (task.getCategories().value.equals(givenCategory)) {
 
             return true;
         } else {
@@ -83,12 +83,10 @@ public class RemindCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
 
         requireNonNull(model);
-        List<Task> tasks = model.getFilteredTaskList();
 
         String trimmedArguments = arguments.trim();
         String[] splitedInput = trimmedArguments.split("\\s");
-        List<Task> originalTasks = model.getFilteredTaskList();
-        List<Task> sortedTasks = new ArrayList<Task>();
+        ObservableList<Task> originalTasks = model.getFilteredTaskList();
 
         if (splitedInput.length == 1) {
             if (!isValidTime(splitedInput[0])) {
@@ -113,7 +111,6 @@ public class RemindCommand extends Command {
                 if (splitedInput[1].equals("start")) {
 
                     model.sortByStart();
-
                 } else {
 
                     model.sortByEnd();

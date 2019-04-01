@@ -16,7 +16,7 @@ public class ListCommandParser {
      */
     public Command parse(String userInput) throws ParseException {
         String[] arguments = userInput.trim().split("\\s+");
-        if (arguments.length == 1 ) {
+        if (arguments.length == 1) {
             if (arguments[0].equals("") || arguments[0].equals("td") || isValidDateFormat(arguments[0])) {
                 return new ListCommand(arguments);
             } else {
