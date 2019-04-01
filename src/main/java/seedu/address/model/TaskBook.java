@@ -56,10 +56,10 @@ public class TaskBook implements ReadOnlyTaskBook {
      * Replaces the contents of the task list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
      */
-    public void setDatas(List<Task> tasks, List<Day> days, Map<Date, Day> dayMap) {
+    public void setDatas(List<Task> tasks, List<Day> days) {
         this.tasks.setTasks(tasks);
         this.days.setDays(days);
-        this.dayMap = dayMap;
+        this.dayMap = new HashMap<>();
         resetDayMap(tasks);
         indicateModified();
     }
@@ -73,17 +73,22 @@ public class TaskBook implements ReadOnlyTaskBook {
         days.clear();
         for (int i = 0; i <= tasks.size() - 1; i++) {
             Task t = tasks.get(i);
-            String dateStr = t.getStartDate().toString();
-            Date date = new Date(dateStr);
-            if (!dayMap.containsKey(date)) {
-                dayMap.put(date, new Day(date));
-                Day a = dayMap.get(date);
-                days.add(a);
+            String dateS = t.getStartDate().toString();
+            String dateE = t.getEndDate().toString();
+            if (dateS.equalsIgnoreCase(dateE)) {
+                Date date = new Date(dateS);
+                if (!dayMap.containsKey(date)) {
+                    dayMap.put(date, new Day(date));
+                    Day a = dayMap.get(date);
+                    days.add(a);
+                }
+                Day d = dayMap.get(date);
+                dayMap.remove(date, d);
+                days.remove(d);
+                d.addCategory(t);
+                dayMap.put(date, d);
+                addDay(d);
             }
-            Day d = dayMap.get(date);
-            days.remove(d);
-            d.addCategory(t);
-            addDay(d);
         }
     }
 
@@ -93,7 +98,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void resetData(ReadOnlyTaskBook newData) {
         requireNonNull(newData);
 
-        setDatas(newData.getTaskList(), newData.getDayList(), newData.getDayMap());
+        setDatas(newData.getTaskList(), newData.getDayList());
     }
 
     //// task-level operations
@@ -121,17 +126,23 @@ public class TaskBook implements ReadOnlyTaskBook {
      */
     public void addTask(Task t) {
         tasks.add(t);
-        String dateStr = t.getStartDate().toString();
-        Date date = new Date(dateStr);
-        if (!dayMap.containsKey(date)) {
-            dayMap.put(date, new Day(date));
-            Day a = dayMap.get(date);
-            days.add(a);
+        String dateS = t.getStartDate().toString();
+        String dateE = t.getEndDate().toString();
+        if (dateS.equalsIgnoreCase(dateE)) {
+            Date date = new Date(dateS);
+            if (!dayMap.containsKey(date)) {
+                dayMap.put(date, new Day(date));
+                Day a = dayMap.get(date);
+                days.add(a);
+            }
+            Day d = dayMap.get(date);
+            dayMap.remove(date, d);
+            days.remove(d);
+            d.addCategory(t);
+            dayMap.put(date, d);
+            addDay(d);
+            return;
         }
-        Day d = dayMap.get(date);
-        days.remove(d);
-        d.addCategory(t);
-        addDay(d);
         indicateModified();
     }
 
@@ -152,34 +163,68 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
         tasks.setTask(target, editedTask);
-        String targetDateStr = target.getStartDate().toString();
-        String editedDateStr = editedTask.getStartDate().toString();
-        Date targetDate = new Date(targetDateStr);
-        Date editedDate = new Date(editedDateStr);
+        String targetDateS = target.getStartDate().toString();
+        String targetDateE = target.getEndDate().toString();
+        String editedDateS = editedTask.getStartDate().toString();
+        String editedDateE = editedTask.getEndDate().toString();
 
-        if (!targetDate.equals(editedDate)) {
-            if (!dayMap.containsKey(editedDate)) {
-                dayMap.put(editedDate, new Day(editedDate));
+        if (targetDateE.equalsIgnoreCase(targetDateS) && !editedDateE.equalsIgnoreCase(editedDateS)) {
+            Date date = new Date(targetDateS);
+            if (!dayMap.containsKey(date)) {
             }
-            Day eD = dayMap.get(editedDate);
-            days.add(eD);
-            days.remove(eD);
-            eD.addCategory(editedTask);
-            days.add(eD);
-
-            Day tD = dayMap.get(targetDate);
-            days.remove(tD);
-            tD.removeCategory(target);
-            days.add(tD);
-
+            Day d = dayMap.get(date);
+            days.remove(d);
+            dayMap.remove(date, d);
+            d.removeCategory(target);
+            if (!d.isDayEmpty()) {
+                days.add(d);
+                dayMap.put(date, d);
+            }
             indicateModified();
-            return;
+        } else if (!targetDateE.equalsIgnoreCase(targetDateS) && editedDateE.equalsIgnoreCase(editedDateS)) {
+            Date date = new Date(editedDateS);
+            if (!dayMap.containsKey(date)) {
+                dayMap.put(date, new Day(date));
+                Day a = dayMap.get(date);
+                dayMap.remove(date, a);
+                days.add(a);
+                dayMap.put(date, a);
+            }
+            Day d = dayMap.get(date);
+            dayMap.remove(date);
+            days.remove(d);
+            d.addCategory(editedTask);
+            addDay(d);
+            dayMap.put(date, d);
+            indicateModified();
+        } else if (targetDateE.equalsIgnoreCase(targetDateS) && editedDateE.equalsIgnoreCase(editedDateS)){
+            Date targetDS = new Date(targetDateS);
+            Date editedDS = new Date(editedDateS);
+
+            if (!targetDS.equals(editedDS)) {
+                if (!dayMap.containsKey(editedDS)) {
+                    dayMap.put(editedDS, new Day(editedDS));
+                }
+                Day eD = dayMap.get(editedDS);
+                days.add(eD);
+                days.remove(eD);
+                eD.addCategory(editedTask);
+                days.add(eD);
+
+                Day tD = dayMap.get(targetDS);
+                days.remove(tD);
+                tD.removeCategory(target);
+                days.add(tD);
+
+                indicateModified();
+                return;
+            }
+            Day tD = dayMap.get(targetDS);
+            days.remove(tD);
+            tD.editCategory(target, editedTask);
+            addDay(tD);
+            indicateModified();
         }
-        Day tD = dayMap.get(targetDate);
-        days.remove(tD);
-        tD.editCategory(target, editedTask);
-        addDay(tD);
-        indicateModified();
     }
 
     /**
@@ -187,15 +232,21 @@ public class TaskBook implements ReadOnlyTaskBook {
      * {@code key} must exist in the task book.
      */
     public void removeTask(Task key) {
-        String dateStr = key.getStartDate().toString();
-        Date date = new Date(dateStr);
-        if (!dayMap.containsKey(date)) {
-        }
-        Day d = dayMap.get(date);
-        days.remove(d);
-        d.removeCategory(key);
-        if (d.isDayEmpty() == false) {
-            days.add(d);
+        String dateS = key.getStartDate().toString();
+        String dateE = key.getEndDate().toString();
+        if (dateS.equalsIgnoreCase(dateE)) {
+            Date date = new Date(dateS);
+            if (!dayMap.containsKey(date)) {
+            }
+            Day d = dayMap.get(date);
+            days.remove(d);
+            d.removeCategory(key);
+            if (!d.isDayEmpty()) {
+                days.add(d);
+            }
+            tasks.remove(key);
+            indicateModified();
+            return;
         }
         tasks.remove(key);
         indicateModified();
