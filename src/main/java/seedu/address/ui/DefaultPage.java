@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
 import java.time.YearMonth;
+import java.util.Date;
 
 import javafx.collections.ObservableList;
 
@@ -47,7 +49,10 @@ public class DefaultPage extends UiPart<Region> {
         init();
         this.logic = logic;
         this.all = taskList;
-        this.day = "03-04-19";
+
+        this.day = getDay();
+        this.logic = logic;
+
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
@@ -87,9 +92,10 @@ public class DefaultPage extends UiPart<Region> {
      * @param feedback
      */
     public void setTimeline(String feedback) {
-        this.day = feedback.split(" ")[2];
+        this.day = feedback.split(" ")[3];
+        //System.out.println(day);
         timelineAnchorPane.getChildren().clear();
-        timelineAnchorPane.getChildren().add(new TimePane(all, day));
+        timelineAnchorPane.getChildren().add(new TimePane(all, day).getView());
         //System.out.println(day);
     }
 
@@ -99,7 +105,10 @@ public class DefaultPage extends UiPart<Region> {
      * @return
      */
     public String getDay() {
-        return " ";
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
+        String formattedToday = formatter.format(today);
+        return formattedToday;
     }
 
     public void setReminder(Logic logic) {
