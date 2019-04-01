@@ -287,7 +287,14 @@ Changes the current calendar to next month. +
 * `month -` +
 Changes the current calendar to previous month. +
 
+=== Show the timeline : `timeline`
 
+Shows the timeline to the user. +
+
+Format:
+
+* `timeline` +
+Shows the timeline. +
 
 === Setting time limit to a task category : `set`
 

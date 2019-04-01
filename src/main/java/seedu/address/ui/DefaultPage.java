@@ -42,7 +42,7 @@ public class DefaultPage extends UiPart<Region> {
         super(FXML);
         init();
         this.all = taskList;
-        this.day = "01-04-19";
+        this.day = "03-04-19";
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
@@ -85,5 +85,14 @@ public class DefaultPage extends UiPart<Region> {
         timelineAnchorPane.getChildren().clear();
         timelineAnchorPane.getChildren().add(new TimePane(all, day));
         //System.out.println(day);
+    }
+
+    /**
+     * This returns the current date.
+     * To be updated.
+     * @return
+     */
+    public String getDay() {
+        return "";
     }
 }

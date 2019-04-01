@@ -13,16 +13,17 @@ import javafx.scene.text.Text;
 public class Timeline {
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;
-    private Text[] taskNames = {new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" ")};
+    private Text[] taskNames = {new Text("Cate"), new Text(" "), new Text(" "), new Text(" "), 
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
+            new Text(" "), new Text(" "), new Text(" "), new Text(" ")};
 
     public Timeline(PreTask[] pre) {
         this.tasks = pre;
         sort();
+        oneTimeline.setSpacing(13);
         //==========Set up a seperate line==========
         prepLine();
         //==========Set up Titles==========
@@ -55,11 +56,11 @@ public class Timeline {
     private void prepTitle() {
         GridPane taskNameLine = new GridPane();
         taskNameLine.setPrefWidth(800);
-
+        //taskNameLine.setGridLinesVisible(true);
         int col = 1;
         for (Text n : taskNames) {
             AnchorPane aGrid = new AnchorPane();
-            aGrid.setPrefSize(60, 20);
+            aGrid.setPrefSize(100, 5);
             aGrid.getChildren().add(n);
             aGrid.setStyle("-fx-text-inner-color: white;");
             taskNameLine.add(aGrid, col, 0);
@@ -72,7 +73,7 @@ public class Timeline {
      * This method will prepare the real timeline.
      */
     private void prepTimeline() {
-
+        
     }
 
     /**
@@ -93,7 +94,12 @@ public class Timeline {
             }
         }
         for (int i = 0; i < total; i++) {
-            taskNames[Math.round(tasks[i].getStart())] = new Text(tasks[i].getTitle()); 
+            int time = (Math.round(tasks[i].getStart()) + 20)%24;
+            if(time > 21) {
+                System.out.println(time);
+                continue;
+            }
+            taskNames[(Math.round(tasks[i].getStart()) + 20)%24] = new Text(tasks[i].getTitle()); 
             //System.out.println(tasks[i].getStart());
         }
     }
