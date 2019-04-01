@@ -83,7 +83,7 @@ public class Timeline {
     private void sort() {
         int total = getSize();
         //System.out.println(total);
-        
+
         for (int i = 0; i < total; i++) {
             for(int j = 0;j < total - i - 1; j++) {
                 if(tasks[j].getStart() > tasks[j + 1].getStart()) {
@@ -99,7 +99,7 @@ public class Timeline {
                 System.out.println(time);
                 continue;
             }
-            taskNames[(Math.round(tasks[i].getStart()) + 20)%24] = new Text(tasks[i].getTitle()); 
+            taskNames[(Math.round(tasks[i].getStart()) + 20)%24] = new Text(tasks[i].getTitle());
             //System.out.println(tasks[i].getStart());
         }
     }

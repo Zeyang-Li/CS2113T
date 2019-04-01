@@ -12,7 +12,7 @@ public class PreTask {
         this.start = s;
         this.end = e;
     }
-    
+
     public String getTitle() {
         return title;
     }
@@ -25,5 +25,4 @@ public class PreTask {
     public float getEnd() {
         return end;
     }
-    
 }

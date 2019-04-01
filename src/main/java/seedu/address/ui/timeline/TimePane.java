@@ -132,7 +132,7 @@ public class TimePane extends AnchorPane {
             if (t.getCate().equals(cate)) {
                 //System.out.println("Sofarsogood 33");
 
-                filtered[count] = new PreTask(t.getTitle(), 
+                filtered[count] = new PreTask(t.getTitle(),
                                               t.getCate(),
                                               t.getStart(),
                                               t.getEnd());
@@ -141,7 +141,7 @@ public class TimePane extends AnchorPane {
         }
         return filtered;
     }
-    
+
     private float parse(String time) {
         return Float.parseFloat(time);
     }
