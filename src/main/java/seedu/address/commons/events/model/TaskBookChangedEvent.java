@@ -3,6 +3,9 @@ package seedu.address.commons.events.model;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.ReadOnlyTaskBook;
 
+/**
+ * keep track if the task book is changed.
+ */
 public class TaskBookChangedEvent extends BaseEvent {
 
     public final ReadOnlyTaskBook data;
