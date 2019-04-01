@@ -107,38 +107,40 @@ public class CommandBox extends UiPart<Region> {
             // let JavaFx handle the keypress
         }
     }
-
+    
+    /**
+     * Show the format string of parameter for commands in Command line.
+     */
     private void showParameterForCommand(String text) {
-    	String completedtext = null;
+        String completedtext = null;
 		switch (text) {
-            case "add":
-                completedtext = text + " " + ADD_COMMAND_FORMATSTRING;
-                replaceText(completedtext);
-                break;
-            case "clear":
-                completedtext = text + " " + CLEAR_COMMAND_FORMATSTRING;
-                replaceText(completedtext);
-                break;
-            case "delete":
-                completedtext = text + " " + DELETE_COMMAND_FORMATSTRING;
-                replaceText(completedtext);
-                break;
-            case "edit":
-                completedtext = text + " " + EDIT_COMMAND_FORMATSTRING;
-                replaceText(completedtext);
-                break;
-            case "find":
-                completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
-                replaceText(completedtext);
-                break;
-            case "list":
-                completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
-                replaceText(completedtext);
-                break;
-            default:
+        case "add":
+            completedtext = text + " " + ADD_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "clear":
+            completedtext = text + " " + CLEAR_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "delete":
+            completedtext = text + " " + DELETE_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "edit":
+            completedtext = text + " " + EDIT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "find":
+            completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "list":
+            completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        default:
         }
     }
-
 
     private void autoCompleteInputCommand() throws Exception {
         String text = commandTextField.getText();
