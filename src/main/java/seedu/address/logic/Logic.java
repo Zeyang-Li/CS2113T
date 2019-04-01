@@ -65,7 +65,7 @@ public interface Logic {
      */
     void setMonth(String month);
 
-     /**
+    /**
      * Selected task in the filtered task list.
      * null if no task is selected.
      * @see seedu.address.model.Model#selectedTaskProperty()
