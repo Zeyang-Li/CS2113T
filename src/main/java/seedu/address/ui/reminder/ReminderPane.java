@@ -22,19 +22,27 @@ public class ReminderPane extends AnchorPane {
         addTask();
     }
 
+    /**
+     * Add task to UI.
+     */
     public void addTask() {
         int i = 1;
-        for(Task task : logic.getFilteredTaskList()) {
+        for (Task task : logic.getFilteredTaskList()) {
             TaskCard taskCard = new TaskCard(task, i++);
             vbox.getChildren().add(taskCard.getRoot());
         }
     }
 
-    public Logic getLogic(){
+    /**
+     * Get logic.
+     */
+    public Logic getLogic() {
         return this.logic;
     }
 
-
+    /**
+     * Get view.
+     */
     public VBox getView() {
         return this.vbox;
     }
