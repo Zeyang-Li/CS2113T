@@ -47,7 +47,6 @@ public class DefaultPage extends UiPart<Region> {
         init();
         this.all = taskList;
         this.day = "03-04-19";
-<<<<<<< HEAD
         this.logic = logic;
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
@@ -55,15 +54,13 @@ public class DefaultPage extends UiPart<Region> {
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
-=======
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
         this.logic = logic;
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
-        timelineAnchorPane.getChildren().add(new TimePane(taskList).getView());
->>>>>>> 31d15838c46f811cd543e611730e83a9123f46ba
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
         reminderAnchorPane.getChildren().add(new ReminderPane(logic).getView());
     }
 
