@@ -10,8 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class StartTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should only contain numbers & '.', 2 digits'.'2digits, ie: 13.00";
-    public static final String VALIDATION_REGEX = "\\d{2}" + "." + "\\d{2}";
+            "Time should only contain numbers & '.', 2 digits'.'2digits, ie: 13.00\n"
+            + "Hours should only contain numbers range from 00 to 23\n"
+            + "Minutes should only contain numbers range from 00 to 59";
+    public static final String VALIDATION_REGEX = "\\d{2}" + "\\." + "\\d{2}";
 
     public final String value;
 
@@ -30,7 +32,30 @@ public class StartTime {
      * Returns true if a given string is a valid start time.
      */
     public static boolean isValidStartTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            String[] splitTime = test.split("\\.");
+            int hour = Integer.parseInt(splitTime[0]);
+            int minute = Integer.parseInt(splitTime[1]);
+            if (hour < 0 || hour > 23) {
+                return false;
+            }
+            if (minute < 0 || minute > 59) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get double version of time.
+     */
+    public double getTimeDouble(String time) {
+        double t;
+        double scale = Math.pow(10, 2);
+        t = Double.parseDouble(time);
+
+        return Math.round(t * scale) / scale;
     }
 
     @Override

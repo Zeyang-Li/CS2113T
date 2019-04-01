@@ -93,7 +93,7 @@ public class ParserUtil {
         requireNonNull(endDate);
         String trimmedEndDate = endDate.trim();
         if (!EndDate.isValidEndDate(trimmedEndDate)) {
-            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(EndDate.MESSAGE_CONSTRAINTS);
         }
         return new EndDate(trimmedEndDate);
     }

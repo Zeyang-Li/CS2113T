@@ -10,7 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should only contain numbers & -, 2 digits-2 digits-2digits, ie: 12-03-19";
+            "Date should only contain numbers & -, 2 digits-2 digits-2digits, ie: 12-03-19\n"
+            + "Day should only contain numbers range from 01 to 31\n"
+            + "Month should only contain numbers range from 01 to 12";
     public static final String VALIDATION_REGEX = "\\d{2}" + "-" + "\\d{2}" + "-" + "\\d{2}";
     public final String value;
 
@@ -29,7 +31,19 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            String[] spiltDate = test.split("-");
+            int day = Integer.parseInt(spiltDate[0]);
+            int month = Integer.parseInt(spiltDate[1]);
+            if (day < 1 || day > 31) {
+                return false;
+            }
+            if (month < 1 || month > 12) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override

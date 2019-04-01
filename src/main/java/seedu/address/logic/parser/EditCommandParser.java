@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -37,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
-                        PREFIX_STARTDATE, PREFIX_STARTTIME, PREFIX_ENDDATE, PREFIX_ENDTIME, PREFIX_TAG);
+                        PREFIX_STARTDATE, PREFIX_STARTTIME, PREFIX_ENDDATE, PREFIX_ENDTIME, PREFIX_CATEGORY,
+                        PREFIX_TAG);
         Index index;
 
         try {
@@ -62,10 +64,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setStartTime(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_ENDDATE).isPresent()) {
-            editPersonDescriptor.setEndDate(ParserUtil.parseEndDate(argMultimap.getValue(PREFIX_STARTTIME).get()));
+            editPersonDescriptor.setEndDate(ParserUtil.parseEndDate(argMultimap.getValue(PREFIX_ENDDATE).get()));
         }
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
-            editPersonDescriptor.setEndTime(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
+            editPersonDescriptor.setEndTime(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            editPersonDescriptor.setCategories(ParserUtil.parseCategories(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
