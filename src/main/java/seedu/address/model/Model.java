@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -7,6 +8,8 @@ import java.util.function.Predicate;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 
@@ -165,4 +168,32 @@ public interface Model {
      * Set the current month in GUI.
      */
     void setMonth(String month);
+
+    //=========== Import/ Export ==============================================================================
+    /**
+     * Imports the persons from a xml at {@code importFilePath}.
+     */
+    void importTasksFromTaskBook(Path importFilePath) throws IOException, DataConversionException;
+
+    /**
+     * Adds all the persons in {@code addressBookImported} to the current address book.
+     * @return hasChanged is true if the addressBook is modified, returns false otherwise.
+     */
+    boolean addTasksToTaskBook(ReadOnlyTaskBook addressBookToImported);
+
+    /**
+     * Exports the current filtered person list to a xml file at {@code exportFilePath}.
+     */
+    void exportFilteredTaskBook(Path exportFilePath) throws IOException, IllegalValueException;
+
+    /**
+     * Exports the current address book state to a .csv file.
+     */
+    void exportTaskBook() throws IOException;
+
+    /**
+     * Exports the given person to a .csv file.
+     */
+    void exportTask(Task task) throws IOException;
+
 }

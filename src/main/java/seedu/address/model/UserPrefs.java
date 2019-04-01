@@ -15,6 +15,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path taskBookFilePath = Paths.get("data" , "taskbook.json");
+    private Path daysKeeperFilePath = Paths.get("data" , "dayskeeper.json");
+    private Path exportCsvFilePath = Paths.get("data", "tasketch.json");
+
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -56,6 +59,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.taskBookFilePath = taskBookFilePath;
     }
 
+
+    public Path getExportCsvFilePath() {
+        return exportCsvFilePath;
+    }
+
+    public void setDaysKeeperFilePath(Path daysKeeperFilePath) {
+        requireNonNull(daysKeeperFilePath);
+        this.daysKeeperFilePath = daysKeeperFilePath;
+    }
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,6 +82,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
+                && taskBookFilePath.equals(o.taskBookFilePath)
+                && daysKeeperFilePath.equals(o.daysKeeperFilePath)
+                && exportCsvFilePath.equals(o.exportCsvFilePath)
                 && taskBookFilePath.equals(o.taskBookFilePath);
     }
 

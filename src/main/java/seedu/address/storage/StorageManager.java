@@ -5,7 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.google.common.eventbus.Subscribe;
+
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.TaskBookChangedEvent;
+import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -73,5 +77,20 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         taskBookStorage.saveTaskBook(taskBook, filePath);
     }
+    @Override
+    public void backupTaskBook(ReadOnlyTaskBook taskBook) throws IOException {
+        taskBookStorage.backupTaskBook(taskBook);
+    }
 
+
+    @Override
+    @Subscribe
+    public void handleTaskBookChangedEvent(TaskBookChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event, "Local data changed, saving to file"));
+        try {
+            saveTaskBook(event.data);
+        } catch (IOException e) {
+            new DataSavingExceptionEvent(e);
+        }
+    }
 }
