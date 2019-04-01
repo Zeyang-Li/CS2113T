@@ -29,7 +29,7 @@ public class TimelineCommand extends Command {
             + "into a timeline and displays them according to categories.\n"
             + "Parameters: [date]...\n"
             + "Example: " + COMMAND_WORD + "15-03-19";
-    public static final String MESSAGE_SUCCESS = "Tasks arranged in timeline!";
+    public static final String MESSAGE_SUCCESS = "Tasks on %1$s are arranged in timeline!";
     public static final String MESSAGE_ILLEGAL = "Incorrect date format. [dd-mm-yys]";
 
     private String parameter;
@@ -58,15 +58,16 @@ public class TimelineCommand extends Command {
         Date today = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
         String formattedToday = formatter.format(today);
+        //System.out.println(formattedToday);
 
         if (parameter.equals("")) {
             Predicate<Task> predicate = task -> filter(task, formattedToday);
-            model.updateFilteredTaskList(predicate);
-            return new CommandResult(MESSAGE_SUCCESS);
+            //model.updateFilteredTaskList(predicate);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, formattedToday));
         } else {
             Predicate<Task> predicate = task -> filter(task, this.parameter);
-            model.updateFilteredTaskList(predicate);
-            return new CommandResult(MESSAGE_SUCCESS);
+            //model.updateFilteredTaskList(predicate);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, parameter));
         }
     }
 }

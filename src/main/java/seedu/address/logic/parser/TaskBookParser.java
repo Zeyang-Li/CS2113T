@@ -8,20 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.HistoryCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MonthCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.RemindCommand;
-import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.suggestions.WrongCommandSuggestion;
 
@@ -83,8 +70,12 @@ public class TaskBookParser {
         case MonthCommand.COMMAND_ALIAS:
             return new MonthCommandParser().parse(arguments);
 
+        case TimelineCommand.COMMAND_WORD:
+        case TimelineCommand.COMMAND_ALIAS:
+            return new TimelineCommandParser().parse(arguments);
+
         case RemindCommand.COMMAND_WORD:
-            return new RemindCommand(arguments);
+        return new RemindCommand(arguments);
 
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:

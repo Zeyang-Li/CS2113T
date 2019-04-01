@@ -20,6 +20,8 @@ import seedu.address.ui.timeline.TimePane;
 public class DefaultPage extends UiPart<Region> {
 
     private static final String FXML = "DefaultPage.fxml";
+    private String day;
+    private ObservableList<Task> all;
 
     @FXML
     private SplitPane overallPane;
@@ -39,10 +41,11 @@ public class DefaultPage extends UiPart<Region> {
     public DefaultPage(ObservableList<Task> taskList) {
         super(FXML);
         init();
-
+        this.all = taskList;
+        this.day = "01-04-19";
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
-        timelineAnchorPane.getChildren().add(new TimePane(taskList).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
     }
 
     /**
@@ -71,5 +74,16 @@ public class DefaultPage extends UiPart<Region> {
         }
         calendarAnchorPane.getChildren().clear();
         calendarAnchorPane.getChildren().add(c.getView());
+    }
+
+    /**
+     * Set the desired timeline to that day.
+     * @param feedback
+     */
+    public void setTimeline(String feedback) {
+        this.day = feedback.split(" ")[2];
+        timelineAnchorPane.getChildren().clear();
+        timelineAnchorPane.getChildren().add(new TimePane(all, day));
+        //System.out.println(day);
     }
 }
