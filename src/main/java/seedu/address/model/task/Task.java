@@ -133,7 +133,7 @@ public class Task {
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Category: ")
-                .append(getCategories())
+                .append(getCategories().value)
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
