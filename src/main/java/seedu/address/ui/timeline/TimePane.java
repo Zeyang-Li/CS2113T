@@ -69,7 +69,7 @@ public class TimePane extends AnchorPane {
 
         //==========Set up each timeline for 4 categories==========
         PreTask[] filteredDate = filterDate(taskList, d);
-        for (int i = 0; i < 5 ;i++) {
+        for (int i = 0; i < 5; i++) {
             PreTask[] filteredCate = filterCate(filteredDate, category[i]);
             Timeline t = new Timeline(filteredCate);
             vbox.getChildren().add(t.getOneTimeline());
@@ -115,7 +115,7 @@ public class TimePane extends AnchorPane {
         int count = 0;
         //System.out.println("Sofarsogood 11");
         for (PreTask t : taskList) {
-             try  {
+             try {
                  t.getCate();
              } catch (NullPointerException ep) {
                  break;

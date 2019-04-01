@@ -40,7 +40,7 @@ public class Timeline {
         heading.setFill(Color.GRAY);
 
         //Setting the properties of the rectangle
-        heading.setWidth(730.0f);
+        heading.setWidth(850.0f);
         heading.setHeight(1.0f);
 
         //Setting the height and width of the arc
@@ -55,7 +55,7 @@ public class Timeline {
      */
     private void prepTitle() {
         GridPane taskNameLine = new GridPane();
-        taskNameLine.setPrefWidth(800);
+        taskNameLine.setPrefWidth(850);
         //taskNameLine.setGridLinesVisible(true);
         int col = 1;
         for (Text n : taskNames) {
