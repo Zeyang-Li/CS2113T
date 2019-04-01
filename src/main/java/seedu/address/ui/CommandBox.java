@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
-import static seedu.address.logic.commands.CommandFormatString.addCommandFormatString;
-import static seedu.address.logic.commands.CommandFormatString.clearCommandFormatString;
-import static seedu.address.logic.commands.CommandFormatString.deleteCommandFormatString;
-import static seedu.address.logic.commands.CommandFormatString.editCommandFormatString;
-import static seedu.address.logic.commands.CommandFormatString.findCommandFormatString;
-import static seedu.address.logic.commands.CommandFormatString.listCommandFormatString;
+import static seedu.address.logic.commands.CommandFormatString.ADD_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.CLEAR_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.DELETE_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.EDIT_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
 
 import java.util.Arrays;
 import java.util.List;
@@ -95,13 +95,12 @@ public class CommandBox extends UiPart<Region> {
             break;
         case TAB:
             keyEvent.consume();
-            if(Arrays.asList(CommandList).contains(commandTextField.getText())) {
-            	showParameterForCommand(commandTextField.getText());
+            if (Arrays.asList(CommandList).contains(commandTextField.getText())) {
+                showParameterForCommand(commandTextField.getText());
             }
             else {
                 autoCompleteInputCommand();
             }
-
             break;
 
         default:
@@ -112,36 +111,36 @@ public class CommandBox extends UiPart<Region> {
     private void showParameterForCommand(String text) {
     	String completedtext = null;
 		switch (text) {
-		    case "add":
-		    	completedtext = text + " " + addCommandFormatString;
-		    	replaceText(completedtext);
-		        break;
-		    case "clear":
-		    	completedtext = text + " " + clearCommandFormatString;
-		    	replaceText(completedtext);
+            case "add":
+                completedtext = text + " " + ADD_COMMAND_FORMATSTRING;
+                replaceText(completedtext);
                 break;
-		    case "delete":
-		    	completedtext = text + " " + deleteCommandFormatString;
-		    	replaceText(completedtext);
+            case "clear":
+                completedtext = text + " " + CLEAR_COMMAND_FORMATSTRING;
+                replaceText(completedtext);
                 break;
-		    case "edit":
-		    	completedtext = text + " " + editCommandFormatString;
-		    	replaceText(completedtext);
+            case "delete":
+                completedtext = text + " " + DELETE_COMMAND_FORMATSTRING;
+                replaceText(completedtext);
                 break;
-		    case "find":
-		    	completedtext = text + " " + findCommandFormatString;
-		    	replaceText(completedtext);
+            case "edit":
+                completedtext = text + " " + EDIT_COMMAND_FORMATSTRING;
+                replaceText(completedtext);
                 break;
-		    case "list":
-		    	completedtext = text + " " + listCommandFormatString;
-		    	replaceText(completedtext);
+            case "find":
+                completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
+                replaceText(completedtext);
+                break;
+            case "list":
+                completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
+                replaceText(completedtext);
                 break;
             default:
-		}
-	}
+        }
+    }
 
 
-	private void autoCompleteInputCommand() throws Exception {
+    private void autoCompleteInputCommand() throws Exception {
         String text = commandTextField.getText();
         String completedtext = getCompletedtext(text);
         replaceText(completedtext);
