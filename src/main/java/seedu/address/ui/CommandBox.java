@@ -97,8 +97,7 @@ public class CommandBox extends UiPart<Region> {
             keyEvent.consume();
             if (Arrays.asList(CommandList).contains(commandTextField.getText())) {
                 showParameterForCommand(commandTextField.getText());
-            }
-            else {
+            } else {
                 autoCompleteInputCommand();
             }
             break;
@@ -113,7 +112,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void showParameterForCommand(String text) {
         String completedtext = null;
-		switch (text) {
+        switch (text) {
         case "add":
             completedtext = text + " " + ADD_COMMAND_FORMATSTRING;
             replaceText(completedtext);
@@ -138,6 +137,7 @@ public class CommandBox extends UiPart<Region> {
             completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
+
         default:
         }
     }
