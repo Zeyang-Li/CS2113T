@@ -15,6 +15,7 @@ import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.ShowTimeCommand;
 import seedu.address.logic.commands.UndoCommand;
 
 
@@ -44,6 +45,7 @@ public class InputCommandSuggestion implements Suggestion {
         commandList.insert(ListCommand.COMMAND_WORD);
         commandList.insert(RedoCommand.COMMAND_WORD);
         commandList.insert(UndoCommand.COMMAND_WORD);
+        commandList.insert(ShowTimeCommand.COMMAND_WORD);
     }
 
     /**
@@ -135,6 +137,9 @@ public class InputCommandSuggestion implements Suggestion {
 
         case ListCommand.COMMAND_WORD:
             return ListCommand.COMMAND_PARAMETERS;
+
+        case ShowTimeCommand.COMMAND_WORD:
+            return ShowTimeCommand.COMMAND_PARAMETERS;
 
         case ExitCommand.COMMAND_WORD:
         case ExportAllCommand.COMMAND_WORD:

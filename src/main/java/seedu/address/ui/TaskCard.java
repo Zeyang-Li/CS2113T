@@ -55,7 +55,7 @@ public class TaskCard extends UiPart<Region> {
         endDate.setText(task.getEndDate().value);
         endTime.setText(task.getEndTime().value);
         description.setText(task.getDescription().value);
-        categories.setText(task.getCategories().value);
+        categories.setText(task.getCategories().fullName);
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

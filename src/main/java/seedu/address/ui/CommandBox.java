@@ -1,5 +1,13 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.CommandFormatString.ADD_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.CLEAR_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.DELETE_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.EDIT_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
+
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -10,6 +18,7 @@ import javafx.scene.layout.Region;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -86,11 +95,50 @@ public class CommandBox extends UiPart<Region> {
             break;
         case TAB:
             keyEvent.consume();
-            autoCompleteInputCommand();
+            if (Arrays.asList(CommandList).contains(commandTextField.getText())) {
+                showParameterForCommand(commandTextField.getText());
+            } else {
+                autoCompleteInputCommand();
+            }
             break;
 
         default:
             // let JavaFx handle the keypress
+        }
+    }
+
+    /**
+     * Show the format string of parameter for commands in Command line.
+     */
+    private void showParameterForCommand(String text) {
+        String completedtext = null;
+        switch (text) {
+        case "add":
+            completedtext = text + " " + ADD_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "clear":
+            completedtext = text + " " + CLEAR_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "delete":
+            completedtext = text + " " + DELETE_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "edit":
+            completedtext = text + " " + EDIT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "find":
+            completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "list":
+            completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+
+        default:
         }
     }
 

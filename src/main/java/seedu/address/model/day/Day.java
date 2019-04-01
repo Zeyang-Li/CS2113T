@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
  */
 public class Day {
 
-    public final double dafault = 0;
+    public final String dafault = "0.0";
 
     // Identity fields
     private final Date date;
@@ -34,6 +34,15 @@ public class Day {
         this.cca = new Cca(dafault);
         this.errand = new Errand(dafault);
         this.other = new Other(dafault);
+    }
+
+    public Day(Date date, Academic academic, Entertainment entertainment, Cca cca, Errand errand, Other other) {
+        this.date = date;
+        this.academic = academic;
+        this.entertainment = entertainment;
+        this.cca = cca;
+        this.errand = errand;
+        this.other = other;
     }
 
     public Date getDate() {
@@ -65,8 +74,8 @@ public class Day {
      */
     public void addCategory(Task task) {
 
-        String timeStart = task.getEndTime().value;
-        String timeEnd = task.getStartTime().value;
+        String timeStart = task.getStartTime().value;
+        String timeEnd = task.getEndTime().value;
         String category = task.getCategories().value;
         switch(category) {
         case Categories.CAT_ACADEMIC:
@@ -94,8 +103,8 @@ public class Day {
      */
     public void removeCategory(Task task) {
 
-        String timeStart = task.getEndTime().value;
-        String timeEnd = task.getStartTime().value;
+        String timeStart = task.getStartTime().value;
+        String timeEnd = task.getEndTime().value;
         String category = task.getCategories().value;
         switch(category) {
         case Categories.CAT_ACADEMIC:
@@ -126,9 +135,10 @@ public class Day {
         String taskCategory = task.getCategories().value;
         String editedTaskCategory = editedTask.getCategories().value;
 
-        if (taskCategory == editedTaskCategory) {
+        if (taskCategory.equals(editedTaskCategory)) {
+            removeCategory(task);
             addCategory(editedTask);
-        } else if (taskCategory != editedTaskCategory) {
+        } else {
             removeCategory(task);
             addCategory(editedTask);
         }
@@ -139,10 +149,33 @@ public class Day {
      */
     public double calculateTime(String start, String end) {
 
-        Double result = Double.valueOf(start) - Double.valueOf(end);
+        Double result = Double.valueOf(end) - Double.valueOf(start);
         double scale = Math.pow(10, 2);
 
         return Math.round(result * scale) / scale;
+    }
+
+    /**
+     * To check whether each categories for a task is empty
+     */
+    public boolean isDayEmpty() {
+        double academicTime;
+        double ccaTime;
+        double entertainmentTime;
+        double errandTime;
+        double otherTime;
+
+        academicTime = academic.getTimeDouble();
+        ccaTime = cca.getTimeDouble();
+        entertainmentTime = entertainment.getTimeDouble();
+        errandTime = errand.getTimeDouble();
+        otherTime = other.getTimeDouble();
+
+        if (academicTime == 0 && ccaTime == 0 && entertainmentTime == 0 && errandTime == 0 && otherTime == 0) {
+            return true;
+        }
+        return false;
+
     }
 
     /**
@@ -187,15 +220,15 @@ public class Day {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDate())
                 .append(" AcademicTime: ")
-                .append(getAcademic().getTimeString())
+                .append(getAcademic().getTime())
                 .append(" EntertainmentTime: ")
-                .append(getEntertainment().getTimeString())
+                .append(getEntertainment().getTime())
                 .append(" CcaTime: ")
-                .append(getCca().getTimeString())
+                .append(getCca().getTime())
                 .append(" ErrandTime: ")
-                .append(getErrand().getTimeString())
+                .append(getErrand().getTime())
                 .append(" OtherTime: ")
-                .append(getOther().getTimeString());
+                .append(getOther().getTime());
         return builder.toString();
     }
 }

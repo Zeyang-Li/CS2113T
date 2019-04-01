@@ -12,7 +12,7 @@ import javafx.scene.layout.Region;
 
 import seedu.address.model.task.Task;
 import seedu.address.ui.calendar.Calendar;
-
+import seedu.address.ui.timeline.TimePane;
 
 /**
  * Default page contains calendar, reminder and timeline.
@@ -42,6 +42,7 @@ public class DefaultPage extends UiPart<Region> {
 
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList).getView());
     }
 
     /**

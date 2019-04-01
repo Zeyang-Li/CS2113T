@@ -35,7 +35,7 @@ public class TaskListPanel extends UiPart<Region> {
         selectedTask.addListener((observable, oldValue, newValue) -> {
             logger.fine("Selected task changed to: " + newValue);
 
-            // Don't modify selection if we are already selecting the selected person,
+            // Don't modify selection if we are already selecting the selected task,
             // otherwise we would have an infinite loop.
             if (Objects.equals(taskListView.getSelectionModel().getSelectedItem(), newValue)) {
                 return;

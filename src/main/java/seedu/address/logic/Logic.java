@@ -9,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,14 +26,17 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaskBook.
      *
      * @see seedu.address.model.Model#getTaskBook()
      */
     ReadOnlyTaskBook getTaskBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of days */
+    ObservableList<Day> getFilteredDayList();
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
@@ -41,7 +45,7 @@ public interface Logic {
     ObservableList<String> getHistory();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task book file path.
      */
     Path getTaskBookFilePath();
 
@@ -62,17 +66,31 @@ public interface Logic {
     void setMonth(String month);
 
     /**
-     * Selected person in the filtered person list.
-     * null if no person is selected.
-     *
+     * Selected task in the filtered task list.
+     * null if no task is selected.
      * @see seedu.address.model.Model#selectedTaskProperty()
      */
     ReadOnlyProperty<Task> selectedTaskProperty();
 
     /**
-     * Sets the selected person in the filtered person list.
+     * Selected day in the filtered day list.
+     * null if no day is selected.
+     *
+     * @see seedu.address.model.Model#selectedDayProperty()
+     */
+    ReadOnlyProperty<Day> selectedDayProperty();
+
+    /**
+     * Sets the selected task in the filtered task list.
      *
      * @see seedu.address.model.Model#setSelectedTask(Task)
      */
     void setSelectedTask(Task task);
+
+    /**
+     * Sets the selected day in the filtered day list.
+     *
+     * @see seedu.address.model.Model#setSelectedDay(Day)
+     */
+    void setSelectedDay(Day day);
 }

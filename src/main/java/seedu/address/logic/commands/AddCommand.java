@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
@@ -25,9 +27,9 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "TASK NAME "
             + PREFIX_STARTDATE + "START_DATE "
-            + PREFIX_STARTTIME + "START_TIME "
+            + PREFIX_STARTTIME + "START_TIME(24-hr format) "
             + PREFIX_ENDDATE + "END_DATE "
-            + PREFIX_ENDTIME + "END_TIME "
+            + PREFIX_ENDTIME + "END_TIME(24-hr format) "
             + PREFIX_DESCRIPTION + "CONTENT "
             + PREFIX_CATEGORY + "CATEGORY "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -45,23 +47,66 @@ public class AddCommand extends Command {
     public static final String COMMAND_PARAMETERS = "Parameters: "
             + PREFIX_NAME + "TASK NAME "
             + PREFIX_STARTDATE + "START_DATE "
-            + PREFIX_STARTTIME + "START_TIME "
+            + PREFIX_STARTTIME + "START_TIME(24-hr format) "
             + PREFIX_ENDDATE + "END_DATE "
-            + PREFIX_ENDTIME + "END_TIME "
+            + PREFIX_ENDTIME + "END_TIME(24-hr format) "
             + PREFIX_DESCRIPTION + "CONTENT "
             + PREFIX_CATEGORY + "CATEGORY "
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Start Date & Start Time must be before End Date & End Time!";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Adding daily task, End Time must be after Start Time!";
     private Task toAdd;
+    private String specifiedDate;
 
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
     public AddCommand(Task task) {
+        String startD = task.getStartDate().value;
+        String endD = task.getEndDate().value;
         requireNonNull(task);
+        if (startD.equalsIgnoreCase(endD)) {
+            checkArgument(isTimeValid(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
+        } else {
+            checkArgument(isValidDate(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DATE_CONSTRAINTS));
+        }
         toAdd = task;
+    }
+
+    /**
+     * Returns true if both date of a task is the same.
+     */
+    public boolean isValidDate(Task task) {
+        String[] dateS = task.getStartDate().value.split("-");
+        String[] dateE = task.getEndDate().value.split("-");
+
+        if (Integer.parseInt(dateS[0]) > Integer.parseInt(dateE[0])) {
+            return false;
+        }
+        if (Integer.parseInt(dateS[1]) > Integer.parseInt(dateE[1])) {
+            return false;
+        }
+        if (Integer.parseInt(dateS[2]) > Integer.parseInt(dateE[2])) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if endTime of a task is the same.
+     */
+    public boolean isTimeValid(Task task) {
+        String time = task.getEndTime().value;
+        double end = task.getEndTime().getTimeDouble(time);
+        time = task.getStartTime().value;
+        double start = task.getStartTime().getTimeDouble(time);
+        if (end > start) {
+            return true;
+        }
+        return false;
     }
 
     @Override

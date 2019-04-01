@@ -16,9 +16,11 @@ public class Categories {
     public static final String CAT_OTHER = "o";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Category should only contain 1 alphabet";
+            "Category should contains 1 alphabet\n"
+            + "Should be a (academic), c (cca), e (entertainment), r (errand), o (other)";
     public static final String VALIDATION_REGEX = "[acero]";
     public final String value;
+    public final String fullName;
 
     /**
      * Constructs a {@code Categories}.
@@ -29,6 +31,19 @@ public class Categories {
         requireNonNull(categories);
         checkArgument(isValidCategories(categories), MESSAGE_CONSTRAINTS);
         value = categories;
+        if (value.equalsIgnoreCase(CAT_ACADEMIC)) {
+            fullName = "Academic";
+        } else if (value.equalsIgnoreCase(CAT_CCA)) {
+            fullName = "Cca";
+        } else if (value.equalsIgnoreCase(CAT_ENTERTAINMENT)) {
+            fullName = "Entertainment";
+        } else if (value.equalsIgnoreCase(CAT_ERRAND)) {
+            fullName = "Errand";
+        } else if (value.equalsIgnoreCase(CAT_OTHER)) {
+            fullName = "Other";
+        } else {
+            fullName = "Invalid";
+        }
     }
 
     /**
