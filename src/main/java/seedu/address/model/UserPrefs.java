@@ -84,7 +84,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings.equals(o.guiSettings)
                 && taskBookFilePath.equals(o.taskBookFilePath)
                 && daysKeeperFilePath.equals(o.daysKeeperFilePath)
-                && exportCsvFilePath.equals(o.exportCsvFilePath);
+                && exportCsvFilePath.equals(o.exportCsvFilePath)
                 && taskBookFilePath.equals(o.taskBookFilePath);
     }
 
