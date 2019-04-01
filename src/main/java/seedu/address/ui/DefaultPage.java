@@ -22,6 +22,8 @@ import seedu.address.ui.timeline.TimePane;
 public class DefaultPage extends UiPart<Region> {
 
     private static final String FXML = "DefaultPage.fxml";
+    private String day;
+    private ObservableList<Task> all;
 
     @FXML
     private SplitPane overallPane;
@@ -43,10 +45,22 @@ public class DefaultPage extends UiPart<Region> {
     public DefaultPage(ObservableList<Task> taskList, Logic logic) {
         super(FXML);
         init();
+        this.all = taskList;
+        this.day = "03-04-19";
         this.logic = logic;
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
-        timelineAnchorPane.getChildren().add(new TimePane(taskList).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
+        //Show the calendar
+        calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
+        //Show the calendar
+        calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
+        this.logic = logic;
+        //Show the calendar
+        calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
         reminderAnchorPane.getChildren().add(new ReminderPane(logic).getView());
     }
 
@@ -76,6 +90,26 @@ public class DefaultPage extends UiPart<Region> {
         }
         calendarAnchorPane.getChildren().clear();
         calendarAnchorPane.getChildren().add(c.getView());
+    }
+
+    /**
+     * Set the desired timeline to that day.
+     * @param feedback
+     */
+    public void setTimeline(String feedback) {
+        this.day = feedback.split(" ")[2];
+        timelineAnchorPane.getChildren().clear();
+        timelineAnchorPane.getChildren().add(new TimePane(all, day));
+        //System.out.println(day);
+    }
+
+    /**
+     * This returns the current date.
+     * To be updated.
+     * @return
+     */
+    public String getDay() {
+        return " ";
     }
 
     public void setReminder(Logic logic) {

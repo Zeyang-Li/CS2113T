@@ -25,6 +25,7 @@ import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.ShowTimeCommand;
+import seedu.address.logic.commands.TimelineCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.suggestions.WrongCommandSuggestion;
@@ -86,6 +87,10 @@ public class TaskBookParser {
         case MonthCommand.COMMAND_WORD:
         case MonthCommand.COMMAND_ALIAS:
             return new MonthCommandParser().parse(arguments);
+
+        case TimelineCommand.COMMAND_WORD:
+        case TimelineCommand.COMMAND_ALIAS:
+            return new TimelineCommandParser().parse(arguments);
 
         case RemindCommand.COMMAND_WORD:
             return new RemindCommand(arguments);

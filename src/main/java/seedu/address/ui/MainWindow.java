@@ -234,6 +234,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             defaultPage.setMonth(commandResult.getFeedbackToUser());
+            defaultPage.setTimeline(commandResult.getFeedbackToUser());
             defaultPage.setReminder(logic);
             if (commandResult.isShowHelp()) {
                 handleHelp();
