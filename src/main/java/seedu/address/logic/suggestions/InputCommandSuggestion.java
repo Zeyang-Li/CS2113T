@@ -7,9 +7,12 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportAllCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -31,10 +34,13 @@ public class InputCommandSuggestion implements Suggestion {
         commandList.insert(ClearCommand.COMMAND_WORD);
         commandList.insert(DeleteCommand.COMMAND_WORD);
         commandList.insert(EditCommand.COMMAND_WORD);
+        commandList.insert(ExportAllCommand.COMMAND_WORD);
+        commandList.insert(ExportCommand.COMMAND_WORD);
         commandList.insert(ExitCommand.COMMAND_WORD);
         commandList.insert(FindCommand.COMMAND_WORD);
         commandList.insert(HelpCommand.COMMAND_WORD);
         commandList.insert(HistoryCommand.COMMAND_WORD);
+        commandList.insert(ImportCommand.COMMAND_WORD);
         commandList.insert(ListCommand.COMMAND_WORD);
         commandList.insert(RedoCommand.COMMAND_WORD);
         commandList.insert(UndoCommand.COMMAND_WORD);
@@ -115,16 +121,23 @@ public class InputCommandSuggestion implements Suggestion {
         case EditCommand.COMMAND_WORD:
             return EditCommand.COMMAND_PARAMETERS;
 
+        case ExportCommand.COMMAND_WORD:
+            return  ExportCommand.COMMAND_PARAMETERS;
+
         case FindCommand.COMMAND_WORD:
             return FindCommand.COMMAND_PARAMETERS;
 
         case ClearCommand.COMMAND_WORD:
             return ClearCommand.COMMAND_PARAMETERS;
 
+        case ImportCommand.COMMAND_WORD:
+            return ImportCommand.COMMAND_PARAMETERS;
+
         case ListCommand.COMMAND_WORD:
             return ListCommand.COMMAND_PARAMETERS;
 
         case ExitCommand.COMMAND_WORD:
+        case ExportAllCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_WORD:
