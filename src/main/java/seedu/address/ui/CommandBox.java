@@ -41,7 +41,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String NO_MATCHED_COMMAND = "No matched command!";
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-    
+
     private static final String[] CommandList;
 
     static {
@@ -96,7 +96,7 @@ public class CommandBox extends UiPart<Region> {
         case TAB:
             keyEvent.consume();
             if(Arrays.asList(CommandList).contains(commandTextField.getText())) {
-            	showParameterForCommand(commandTextField.getText()); 
+            	showParameterForCommand(commandTextField.getText());
             }
             else {
                 autoCompleteInputCommand();
