@@ -326,7 +326,7 @@ Manage tasks faster than a typical mouse/GUI driven apps
 1. Role:User
 2. Benefit: User can change the information of the task
 
-==== View the next coming task
+==== View the next coming tasks
 
 1. Role:User
 2. Benefit: User will know what to prepare next
@@ -372,7 +372,7 @@ Manage tasks faster than a typical mouse/GUI driven apps
 1. Role:User
 2. Benefit: User can separate different tasks
 
-==== Seach tasks by classification
+==== Search tasks by classification
 
 1. Role:User
 2. Benefit: User can see different tasks based on the classification
@@ -498,6 +498,15 @@ Manage tasks faster than a typical mouse/GUI driven apps
 .. TaskBook shows a list of tasks of that month
 
 	Use case ends.
+
+=== Reminder feature
+1. MSS
+. User request for a reminder.
+.. TaskBook shows a list of tasks which have nearest start time or deadline.
+
+2. Extension
+. User request for a reminder of certain category of tasks.
+.. TaskBook shows a list of tasks with the specified category which have nearest start time or deadline.
 
 === Exit
 1. MSS

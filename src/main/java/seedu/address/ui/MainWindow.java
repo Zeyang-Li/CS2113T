@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         switch (optionPage) {
         case DEFAULT_PAGE:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
             defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
             break;
 
@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
             break;
 
         default:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
             defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
             break;
         }
@@ -234,6 +234,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             defaultPage.setMonth(commandResult.getFeedbackToUser());
+            defaultPage.setReminder(logic);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

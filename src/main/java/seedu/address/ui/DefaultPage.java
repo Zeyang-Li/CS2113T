@@ -10,8 +10,10 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
+import seedu.address.logic.Logic;
 import seedu.address.model.task.Task;
 import seedu.address.ui.calendar.Calendar;
+import seedu.address.ui.reminder.ReminderPane;
 import seedu.address.ui.timeline.TimePane;
 
 /**
@@ -36,13 +38,16 @@ public class DefaultPage extends UiPart<Region> {
     @FXML
     private AnchorPane upperPartAnchorPane;
 
-    public DefaultPage(ObservableList<Task> taskList) {
+    private Logic logic;
+
+    public DefaultPage(ObservableList<Task> taskList, Logic logic) {
         super(FXML);
         init();
-
+        this.logic = logic;
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList).getView());
+        reminderAnchorPane.getChildren().add(new ReminderPane(logic).getView());
     }
 
     /**
@@ -71,5 +76,11 @@ public class DefaultPage extends UiPart<Region> {
         }
         calendarAnchorPane.getChildren().clear();
         calendarAnchorPane.getChildren().add(c.getView());
+    }
+
+    public void setReminder(Logic logic) {
+        ReminderPane r = new ReminderPane(logic);
+        reminderAnchorPane.getChildren().clear();
+        reminderAnchorPane.getChildren().add(r.getView());
     }
 }

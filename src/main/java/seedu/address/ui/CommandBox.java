@@ -28,6 +28,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.UndoCommand;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -55,6 +56,7 @@ public class CommandBox extends UiPart<Region> {
             HelpCommand.COMMAND_WORD,
             HistoryCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
+            RemindCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD,
         };
