@@ -56,6 +56,12 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
+     * Set the month on calendar.
+     * @param month
+     */
+    void setMonth(String month);
+
+    /**
      * Selected person in the filtered person list.
      * null if no person is selected.
      *

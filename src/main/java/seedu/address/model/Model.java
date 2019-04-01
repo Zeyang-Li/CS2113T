@@ -137,4 +137,9 @@ public interface Model {
      * Sets the selected task in the filtered task list.
      */
     void setSelectedTask(Task task);
+
+    /**
+     * Set the current month in GUI.
+     */
+    void setMonth(String month);
 }
