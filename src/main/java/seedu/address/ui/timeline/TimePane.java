@@ -1,10 +1,5 @@
 package seedu.address.ui.timeline;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.fasterxml.jackson.databind.node.NullNode;
-
 import javafx.collections.ObservableList;
 
 import javafx.scene.layout.AnchorPane;
@@ -76,7 +71,6 @@ public class TimePane extends AnchorPane {
         PreTask[] filteredDate = filterDate(taskList, d);
         for (int i = 0; i < 5 ;i++) {
             PreTask[] filteredCate = filterCate(filteredDate, category[i]);
-            //System.out.println(filteredCate[0].getTitle());
             Timeline t = new Timeline(filteredCate);
             vbox.getChildren().add(t.getOneTimeline());
         }
@@ -92,13 +86,12 @@ public class TimePane extends AnchorPane {
         PreTask[] filteredDate = new PreTask[1000];
         int count = 0;
         for (Task t : taskList) {
-            try{
+            try {
                 t.getCategories();
             } catch (NullPointerException ep) {
                 break;
             }
-            //System.out.println(t.getStartDate().toString());
-            //System.out.println(day);
+
             if (t.getStartDate().toString().equals(day)) {
                 filteredDate[count] = new PreTask(t.getName().toString(),
                         t.getCategories().toString(),
@@ -122,7 +115,7 @@ public class TimePane extends AnchorPane {
         int count = 0;
         //System.out.println("Sofarsogood 11");
         for (PreTask t : taskList) {
-             try{
+             try  {
                  t.getCate();
              } catch (NullPointerException ep) {
                  break;

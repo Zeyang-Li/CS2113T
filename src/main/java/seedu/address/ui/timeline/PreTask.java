@@ -1,5 +1,8 @@
 package seedu.address.ui.timeline;
 
+/**
+ * This class is to store processed data.
+ */
 public class PreTask {
     private String title;
     private String cate;

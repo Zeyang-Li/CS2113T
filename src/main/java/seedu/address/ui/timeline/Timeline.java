@@ -14,11 +14,11 @@ public class Timeline {
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;
     private Text[] taskNames = {new Text("Cate"), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
-            new Text(" "), new Text(" "), new Text(" "), new Text(" ")};
+                                new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+                                new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+                                new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+                                new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+                                new Text(" "), new Text(" "), new Text(" "), new Text(" ")};
 
     public Timeline(PreTask[] pre) {
         this.tasks = pre;
@@ -84,8 +84,8 @@ public class Timeline {
         //System.out.println(total);
 
         for (int i = 0; i < total; i++) {
-            for(int j = 0;j < total - i - 1; j++) {
-                if(tasks[j].getStart() > tasks[j + 1].getStart()) {
+            for (int j = 0; j < total - i - 1; j++) {
+                if (tasks[j].getStart() > tasks[j + 1].getStart()) {
                     PreTask t = tasks[j];
                     tasks[j] = tasks[j + 1];
                     tasks[j + 1] = t;
@@ -94,7 +94,7 @@ public class Timeline {
         }
         for (int i = 0; i < total; i++) {
             int time = (Math.round(tasks[i].getStart()) + 20) % 24;
-            if(time > 21) {
+            if (time > 21) {
                 System.out.println(time);
                 continue;
             }
@@ -109,8 +109,8 @@ public class Timeline {
      */
     private int getSize() {
         int i;
-        for (i = 0; true ;i++) {
-            try{
+        for (i = 0; true; i++) {
+            try {
                 tasks[i].getCate();
             } catch (NullPointerException np) {
                 break;
