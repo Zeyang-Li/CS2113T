@@ -16,7 +16,7 @@ public class TimePane extends AnchorPane {
     private VBox vbox = new VBox();
 
     public TimePane(ObservableList<Task> taskList) {
-        vbox.setSpacing(10);
+        vbox.setSpacing(20);
 
 
         Text[] timePoints = { new Text("6:00"),

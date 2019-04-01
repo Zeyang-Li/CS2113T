@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
  * Individual Timeline.
  */
 public class Timeline {
-    VBox oneTimeline = new VBox();
+    private VBox oneTimeline = new VBox();
 
     public Timeline(float start, float length) {
         Rectangle rectangle = new Rectangle();
