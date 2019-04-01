@@ -17,7 +17,7 @@ public class ShowTimeCommandParser {
     public Command parse(String userInput) throws ParseException {
         String[] arguments = userInput.trim().split("\\s+");
         if (arguments.length == 1) {
-            if (arguments[0].equals("")|| arguments[0].equals("st") || isValidDateFormat(arguments[0])) {
+            if (arguments[0].equals("") || arguments[0].equals("st") || isValidDateFormat(arguments[0])) {
                 return new ShowTimeCommand(arguments);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowTimeCommand.MESSAGE_USAGE));

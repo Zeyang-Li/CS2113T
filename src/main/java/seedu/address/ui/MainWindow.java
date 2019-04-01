@@ -150,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         //dayListPanel = new DayListPanel(logic.getFilteredDayList(), logic.selectedDayProperty(),
-                //logic::setSelectedDay);
+        //logic::setSelectedDay);
         //dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

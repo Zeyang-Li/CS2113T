@@ -112,7 +112,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public GuiSettings getGuiSettings() { return userPrefs.getGuiSettings(); }
+    public GuiSettings getGuiSettings() {
+        return userPrefs.getGuiSettings();
+    }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {

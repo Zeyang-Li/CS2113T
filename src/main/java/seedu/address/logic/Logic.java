@@ -68,7 +68,6 @@ public interface Logic {
      /**
      * Selected task in the filtered task list.
      * null if no task is selected.
-     *
      * @see seedu.address.model.Model#selectedTaskProperty()
      */
     ReadOnlyProperty<Task> selectedTaskProperty();

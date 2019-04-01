@@ -69,7 +69,7 @@ public class ShowTimeCommand extends Command {
 
             model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
             return new CommandResult(MESSAGE_SUCCESS1);
-        }else {
+        } else {
 
             specifiedDate = arguments[0];
             Predicate<Day> predicate = day -> meetRequirementDate(day);
