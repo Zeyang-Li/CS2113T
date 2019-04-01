@@ -19,7 +19,7 @@ public class TimePane extends AnchorPane {
         vbox.setSpacing(10);
 
 
-        Text[] timePoints = { new Text("6:00"), 
+        Text[] timePoints = { new Text("6:00"),
                               new Text("8:00"), new Text("10:00"),
                               new Text("12:00"), new Text("14:00"),
                               new Text("16:00"), new Text("18:00"),
