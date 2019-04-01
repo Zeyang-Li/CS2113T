@@ -25,7 +25,7 @@ public class Timeline {
         rectangle.setArcHeight(10.0);
         oneTimeline.getChildren().add(rectangle);
     }
-    
+
     public VBox getOneTimeline() {
         return oneTimeline;
     }

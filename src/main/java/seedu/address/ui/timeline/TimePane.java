@@ -10,10 +10,10 @@ import javafx.scene.text.Text;
  */
 public class TimePane extends AnchorPane {
     VBox vbox = new VBox();
-    
+
     public TimePane() {
         vbox.setSpacing(10);
-        
+
 
         Text[] timePoints = { new Text("6:00"),
                 new Text("8:00"), new Text("10:00"),
@@ -41,9 +41,8 @@ public class TimePane extends AnchorPane {
         vbox.getChildren().add(timelineLable);
 
     }
-    
+
     public VBox getView() {
         return vbox;
     }
-    
 }
