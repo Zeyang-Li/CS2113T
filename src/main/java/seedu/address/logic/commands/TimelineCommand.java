@@ -34,7 +34,7 @@ public class TimelineCommand extends Command {
     public TimelineCommand(String args) throws ParseException{
         this.parameter = args;
     }
-    
+
     private boolean filter(Task task, String d) {
         if (task.getStartDate().value.equals(d)) {
             return true;

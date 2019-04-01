@@ -21,5 +21,4 @@ public class TimelineCommandParser implements Parser<TimelineCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimelineCommand.MESSAGE_ILLEGAL), pe);
         }
     }
-    
 }

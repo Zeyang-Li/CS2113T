@@ -36,7 +36,7 @@ public class TimePane extends AnchorPane {
         }
         //---------------------------------------
         Timeline tl1 = new Timeline(150.0f,730.0f);
-        
+
         vbox.getChildren().add(tl1.getOneTimeline());
         vbox.getChildren().add(timelineLable);
 

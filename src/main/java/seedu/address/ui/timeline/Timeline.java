@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class Timeline {
     VBox oneTimeline = new VBox();
-    
+
     public Timeline(float start, float length) {
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(Color.WHITESMOKE);
