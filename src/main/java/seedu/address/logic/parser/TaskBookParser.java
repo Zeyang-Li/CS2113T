@@ -22,7 +22,6 @@ import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.ShowTimeCommand;
-import seedu.address.logic.commands.ShowTimeDateCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.suggestions.WrongCommandSuggestion;
@@ -90,12 +89,7 @@ public class TaskBookParser {
 
         case ShowTimeCommand.COMMAND_WORD:
         case ShowTimeCommand.COMMAND_ALIAS:
-            key = new ShowTimeCommandParser().parse(arguments);
-            if (key.equals("ShowTimeCommand")) {
-                return new ShowTimeCommand();
-            } else {
-                return new ShowTimeDateCommand(key);
-            }
+            return new ShowTimeCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
