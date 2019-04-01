@@ -13,11 +13,11 @@ import javafx.scene.text.Text;
 public class Timeline {
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;
-    private Text[] taskNames = {new Text("Cate"), new Text(" "), new Text(" "), new Text(" "), 
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
-            new Text(" "), new Text(" "), new Text(" "), new Text(" "), 
+    private Text[] taskNames = {new Text("Cate"), new Text(" "), new Text(" "), new Text(" "),
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
+            new Text(" "), new Text(" "), new Text(" "), new Text(" "),
             new Text(" "), new Text(" "), new Text(" "), new Text(" ")};
 
     public Timeline(PreTask[] pre) {
@@ -73,7 +73,6 @@ public class Timeline {
      * This method will prepare the real timeline.
      */
     private void prepTimeline() {
-        
     }
 
     /**
@@ -94,12 +93,12 @@ public class Timeline {
             }
         }
         for (int i = 0; i < total; i++) {
-            int time = (Math.round(tasks[i].getStart()) + 20)%24;
+            int time = (Math.round(tasks[i].getStart()) + 20) % 24;
             if(time > 21) {
                 System.out.println(time);
                 continue;
             }
-            taskNames[(Math.round(tasks[i].getStart()) + 20)%24] = new Text(tasks[i].getTitle());
+            taskNames[(Math.round(tasks[i].getStart()) + 20) % 24] = new Text(tasks[i].getTitle());
             //System.out.println(tasks[i].getStart());
         }
     }
