@@ -124,7 +124,7 @@ public class InputCommandSuggestion implements Suggestion {
             return EditCommand.COMMAND_PARAMETERS;
 
         case ExportCommand.COMMAND_WORD:
-            return  ExportCommand.COMMAND_PARAMETERS;
+            return ExportCommand.COMMAND_PARAMETERS;
 
         case FindCommand.COMMAND_WORD:
             return FindCommand.COMMAND_PARAMETERS;

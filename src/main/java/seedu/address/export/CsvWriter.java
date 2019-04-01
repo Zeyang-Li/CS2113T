@@ -32,7 +32,8 @@ public class CsvWriter {
     private static final int INDEX_TASK_DESCRIPTION = 5;
     private static final int INDEX_TASK_CATEGRORIES = 6;
 
-    private final String[] header = { "Name", "StartDate", "StartTime", "EndDate", "EndTime", "Description", "Categories" };
+    private final String[] header = { "Name", "StartDate", "StartTime", "EndDate", "EndTime",
+            "Description", "Categories" };
     private final ObservableList<Task> listOfTasks;
     private final Path outputFilepath;
     private final Task task;

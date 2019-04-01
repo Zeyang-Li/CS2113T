@@ -50,7 +50,7 @@ public class ImportManager implements Import {
 
         Optional<JsonSerializableTaskBook> jsonTaskBook = JsonFileStorage.loadDataFromSaveFile(filePath);
         try {
-            if(jsonTaskBook.isPresent()) {
+            if (jsonTaskBook.isPresent()) {
                 return Optional.of(jsonTaskBook.get().toModelType());
             } else {
                 return Optional.empty();

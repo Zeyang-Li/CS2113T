@@ -30,7 +30,7 @@ public class JsonFileStorage {
      */
     public static Optional<JsonSerializableTaskBook> loadDataFromSaveFile(Path file) throws DataConversionException,
             FileNotFoundException {
-            return JsonUtil.readJsonFile(file, JsonSerializableTaskBook.class);
+        return JsonUtil.readJsonFile(file, JsonSerializableTaskBook.class);
 
     }
 
