@@ -107,7 +107,7 @@ public class CommandBox extends UiPart<Region> {
             // let JavaFx handle the keypress
         }
     }
-    
+
     /**
      * Show the format string of parameter for commands in Command line.
      */
