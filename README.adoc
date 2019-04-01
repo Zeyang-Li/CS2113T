@@ -11,15 +11,14 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* Tasketch is an application that helps you to manage your daily tasks.
+* Tasketch is an application that helps you to manage your daily time by managing your tasks.
 * Tasketch is a CLI (Command Line Interface) application with GUI output so that you can have best of the both worlds.
 * Tasketch is a Java application that you can run on any machine with Java Runtime Environment installed.
 * What makes Tasketch special:
-** Add to-do tasks on daily basis
-** List the tasks based on the order of priority
-** Each task has a task_ID which helps the user to identify tasks clearly
-** Write reflection for a task
-** Remind users of the upcoming tasks
+** Daily Time Planner monitors your time spent on different task categories for a day
+** Reminder reminds you of the important tasks
+** Command Suggestion suggests you the possible commands that you can enter
+** Auto Complete Command helps you to enter commands faster and easier
 
 == Site Map
 
