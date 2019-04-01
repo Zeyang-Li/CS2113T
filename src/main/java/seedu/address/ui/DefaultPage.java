@@ -89,9 +89,10 @@ public class DefaultPage extends UiPart<Region> {
      * @param feedback
      */
     public void setTimeline(String feedback) {
-        this.day = feedback.split(" ")[2];
+        this.day = feedback.split(" ")[3];
+        //System.out.println(day);
         timelineAnchorPane.getChildren().clear();
-        timelineAnchorPane.getChildren().add(new TimePane(all, day));
+        timelineAnchorPane.getChildren().add(new TimePane(all, day).getView());
         //System.out.println(day);
     }
 
