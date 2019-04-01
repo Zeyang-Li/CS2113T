@@ -115,16 +115,15 @@ public class TimePane extends AnchorPane {
         int count = 0;
         //System.out.println("Sofarsogood 11");
         for (PreTask t : taskList) {
-             try {
-                 t.getCate();
-             } catch (NullPointerException ep) {
-                 break;
-             }
+            try {
+                t.getCate();
+            } catch (NullPointerException ep) {
+                break;
+            }
 
             //System.out.println(t.getCategories().toString().equals(cate));
             if (t.getCate().equals(cate)) {
                 //System.out.println("Sofarsogood 33");
-
                 filtered[count] = new PreTask(t.getTitle(),
                                               t.getCate(),
                                               t.getStart(),
