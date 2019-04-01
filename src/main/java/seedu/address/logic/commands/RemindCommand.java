@@ -86,7 +86,6 @@ public class RemindCommand extends Command {
 
         String trimmedArguments = arguments.trim();
         String[] splitedInput = trimmedArguments.split("\\s");
-        ObservableList<Task> originalTasks = model.getFilteredTaskList();
 
         if (splitedInput.length == 1) {
             if (!isValidTime(splitedInput[0])) {
