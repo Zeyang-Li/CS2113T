@@ -91,7 +91,6 @@ public class TimePane extends AnchorPane {
             } catch (NullPointerException ep) {
                 break;
             }
-
             if (t.getStartDate().toString().equals(day)) {
                 filteredDate[count] = new PreTask(t.getName().toString(),
                         t.getCategories().toString(),
