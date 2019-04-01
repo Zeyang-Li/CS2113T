@@ -14,13 +14,13 @@ public class Timeline {
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(Color.WHITESMOKE);
 
-        //Setting the properties of the rectangle 
+        //Setting the properties of the rectangle
         rectangle.setX(150.0f);
         rectangle.setY(75.0f);
         rectangle.setWidth(length);
         rectangle.setHeight(10.0f);
 
-        //Setting the height and width of the arc 
+        //Setting the height and width of the arc
         rectangle.setArcWidth(10.0);
         rectangle.setArcHeight(10.0);
         oneTimeline.getChildren().add(rectangle);
