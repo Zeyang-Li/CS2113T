@@ -5,6 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.TimelineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * This is the Timeline parser.
+ */
 public class TimelineCommandParser implements Parser<TimelineCommand> {
 
     /**

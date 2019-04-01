@@ -42,7 +42,7 @@ public class DefaultPage extends UiPart<Region> {
 
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
-        timelineAnchorPane.getChildren().add(new TimePane().getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList).getView());
     }
 
     /**

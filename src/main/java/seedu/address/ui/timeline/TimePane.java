@@ -1,26 +1,30 @@
 package seedu.address.ui.timeline;
 
+import javafx.collections.ObservableList;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import seedu.address.model.task.Task;
+
 /**
  * This is the overall arrangement of timeline pane.
  */
 public class TimePane extends AnchorPane {
-    VBox vbox = new VBox();
+    private VBox vbox = new VBox();
 
-    public TimePane() {
+    public TimePane(ObservableList<Task> taskList) {
         vbox.setSpacing(10);
 
 
-        Text[] timePoints = { new Text("6:00"),
-                new Text("8:00"), new Text("10:00"),
-                new Text("12:00"), new Text("14:00"),
-                new Text("16:00"), new Text("18:00"),
-                new Text("20:00"), new Text("22:00"),
-                new Text("0:00"), new Text("2:00")};
+        Text[] timePoints = { new Text("6:00"), 
+                              new Text("8:00"), new Text("10:00"),
+                              new Text("12:00"), new Text("14:00"),
+                              new Text("16:00"), new Text("18:00"),
+                              new Text("20:00"), new Text("22:00"),
+                              new Text("0:00"), new Text("2:00")};
 
         GridPane timelineLable = new GridPane();
         timelineLable.setPrefWidth(800);
@@ -35,7 +39,7 @@ public class TimePane extends AnchorPane {
             col++;
         }
         //---------------------------------------
-        Timeline tl1 = new Timeline(150.0f,730.0f);
+        Timeline tl1 = new Timeline(150.0f, 730.0f);
 
         vbox.getChildren().add(tl1.getOneTimeline());
         vbox.getChildren().add(timelineLable);
@@ -43,6 +47,6 @@ public class TimePane extends AnchorPane {
     }
 
     public VBox getView() {
-        return vbox;
+        return this.vbox;
     }
 }

@@ -12,6 +12,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+/**
+ * This is the Timeline command.
+ */
 public class TimelineCommand extends Command {
 
     public static final String COMMAND_WORD = "timeline";
@@ -31,10 +34,16 @@ public class TimelineCommand extends Command {
 
     private String parameter;
 
-    public TimelineCommand(String args) throws ParseException{
+    public TimelineCommand(String args) throws ParseException {
         this.parameter = args;
     }
 
+    /**
+     * This filters the tasks.
+     * @param task
+     * @param d
+     * @return
+     */
     private boolean filter(Task task, String d) {
         if (task.getStartDate().value.equals(d)) {
             return true;
@@ -43,7 +52,6 @@ public class TimelineCommand extends Command {
         }
     }
 
-
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
         requireNonNull(model);
@@ -51,7 +59,7 @@ public class TimelineCommand extends Command {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
         String formattedToday = formatter.format(today);
 
-        if(parameter.equals("")) {
+        if (parameter.equals("")) {
             Predicate<Task> predicate = task -> filter(task, formattedToday);
             model.updateFilteredTaskList(predicate);
             return new CommandResult(MESSAGE_SUCCESS);
