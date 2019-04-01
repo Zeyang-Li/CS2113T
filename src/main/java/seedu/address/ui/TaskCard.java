@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
 import seedu.address.model.task.Task;
 
 /**
@@ -55,7 +56,7 @@ public class TaskCard extends UiPart<Region> {
         endDate.setText(task.getEndDate().value);
         endTime.setText(task.getEndTime().value);
         description.setText(task.getDescription().value);
-        categories.setText(task.getCategories().value);
+        categories.setText(task.getCategories().fullName);
         task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

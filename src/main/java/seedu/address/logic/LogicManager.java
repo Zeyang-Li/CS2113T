@@ -15,6 +15,7 @@ import seedu.address.logic.parser.TaskBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
@@ -77,6 +78,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Day> getFilteredDayList() {
+        return model.getFilteredDayList();
+    }
+
+    @Override
     public ObservableList<String> getHistory() {
         return history.getHistory();
     }
@@ -97,7 +103,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void setMonth(String month) { model.setMonth(month); }
+    public void setMonth(String month) {
+        model.setMonth(month);
+    }
 
     @Override
     public ReadOnlyProperty<Task> selectedTaskProperty() {
@@ -105,7 +113,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyProperty<Day> selectedDayProperty() {
+        return model.selectedDayProperty();
+    }
+
+    @Override
     public void setSelectedTask(Task task) {
         model.setSelectedTask(task);
+    }
+
+    @Override
+    public void setSelectedDay(Day day) {
+        model.setSelectedDay(day);
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.address.logic.CommandHistory;
@@ -28,6 +29,7 @@ public class RedoCommand extends Command {
 
         model.redoTaskBook();
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

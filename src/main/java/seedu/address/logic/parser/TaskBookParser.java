@@ -14,14 +14,18 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportAllCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.TimelineCommand;
+import seedu.address.logic.commands.ShowTimeCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.suggestions.WrongCommandSuggestion;
@@ -91,6 +95,10 @@ public class TaskBookParser {
         case RemindCommand.COMMAND_WORD:
             return new RemindCommand(arguments);
 
+        case ShowTimeCommand.COMMAND_WORD:
+        case ShowTimeCommand.COMMAND_ALIAS:
+            return new ShowTimeCommandParser().parse(arguments);
+
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
             return new HistoryCommand();
@@ -108,6 +116,16 @@ public class TaskBookParser {
         case RedoCommand.COMMAND_WORD:
         case RedoCommand.COMMAND_ALIAS:
             return new RedoCommand();
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
+
+        case ExportAllCommand.COMMAND_WORD:
+            return new ExportAllCommand();
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
+
         default:
             List<String> listOfCommands = new WrongCommandSuggestion().getSuggestions(commandWord);
             if (listOfCommands == null) {

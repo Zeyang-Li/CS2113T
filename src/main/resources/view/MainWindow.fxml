@@ -59,7 +59,7 @@
             </padding>
           </StackPane>
           -->
-          <StackPane fx:id="defaultBrowserPlaceholder" prefWidth="340" >
+          <StackPane fx:id="defaultBrowserPlaceholder" prefWidth="340">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>

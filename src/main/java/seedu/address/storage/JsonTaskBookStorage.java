@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -22,9 +23,11 @@ public class JsonTaskBookStorage implements TaskBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonTaskBookStorage.class);
 
     private Path filePath;
+    private Path backupPath;
 
     public JsonTaskBookStorage(Path filePath) {
         this.filePath = filePath;
+        this.backupPath = Paths.get(filePath.toString() + ".backup");
     }
 
     public Path getTaskBookFilePath() {
@@ -76,5 +79,11 @@ public class JsonTaskBookStorage implements TaskBookStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTaskBook(taskBook), filePath);
     }
-
+    /**
+     * Similar to {@link #backupTaskBook(ReadOnlyTaskBook)}
+     */
+    @Override
+    public void backupTaskBook(ReadOnlyTaskBook taskBook) throws IOException {
+        saveTaskBook(taskBook, backupPath);
+    }
 }

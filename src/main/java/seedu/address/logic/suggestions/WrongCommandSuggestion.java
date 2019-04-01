@@ -8,9 +8,12 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportAllCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -33,10 +36,13 @@ public class WrongCommandSuggestion implements Suggestion {
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
+            ExportAllCommand.COMMAND_WORD,
+            ExportCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             HistoryCommand.COMMAND_WORD,
+            ImportCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD,
