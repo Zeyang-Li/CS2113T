@@ -56,29 +56,43 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";
-    public static final String MESSAGE_DATE_CONSTRAINTS = "End Date must be same with Start Date";
-    public static final String MESSAGE_TIME_CONSTRAINTS = "End Time must be after Start Time";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Start Date & Start Time must be before End Date & End Time!";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Adding daily task, End Time must be after Start Time!";
     private Task toAdd;
+    private String specifiedDate;
 
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
     public AddCommand(Task task) {
+        String startD = task.getStartDate().value;
+        String endD = task.getEndDate().value;
         requireNonNull(task);
-        checkArgument(isSameDate(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DATE_CONSTRAINTS));
-        checkArgument(isTimeValid(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
+        if (startD.equalsIgnoreCase(endD)) {
+            checkArgument(isTimeValid(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
+        } else {
+            checkArgument(isValidDate(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DATE_CONSTRAINTS));
+        }
         toAdd = task;
     }
 
     /**
      * Returns true if both date of a task is the same.
      */
-    public boolean isSameDate(Task task) {
-        String date = task.getStartDate().value;
-        if (date.equals(task.getEndDate().value)) {
-            return true;
+    public boolean isValidDate(Task task) {
+        String[] dateS = task.getStartDate().value.split("-");
+        String[] dateE = task.getEndDate().value.split("-");
+
+        if (Integer.parseInt(dateS[0]) > Integer.parseInt(dateE[0])) {
+            return false;
         }
-        return false;
+        if (Integer.parseInt(dateS[1]) > Integer.parseInt(dateE[1])) {
+            return false;
+        }
+        if (Integer.parseInt(dateS[2]) > Integer.parseInt(dateE[2])) {
+            return false;
+        }
+        return true;
     }
 
     /**
