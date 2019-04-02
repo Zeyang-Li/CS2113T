@@ -406,18 +406,18 @@ Use case resumes at step 1
 . User request clear all
 . TaskBook removes all the tasks in Tasketch.
 
-	Use case ends
+Use case ends
 
-2. Extension
+Extension
 . User request clear [Date]
 . TaskBook removes the tasks which start from that day.
 
-	Use case ends.
+Use case ends.
 
 . User request clear [Month]
 . TaskBook removes the tasks which start from that month.
 
-	Use case ends.
+Use case ends.
 
 [discrete]
 === List tasks by time period
@@ -427,23 +427,23 @@ Use case resumes at step 1
 . User request list of all tasks
 . TaskBook shows a list of tasks of the current day by default.
 
-	Use case ends.
+Use case ends.
 
-2. Extension
+Extension
 . User request list all
 .. TaskBook shows a list of all the tasks.
 
-	Use case ends.
+Use case ends.
 
 . User request list [Date]
 .. TaskBook shows a list of tasks of that specific date.
 
-	Use case ends.
+Use case ends.
 
 . User request list [Month]
 .. TaskBook shows a list of tasks of that month
 
-	Use case ends.
+Use case ends.
 
 [discrete]
 === Reminder feature
@@ -453,7 +453,7 @@ Use case resumes at step 1
 . User request for a reminder.
 .. TaskBook shows a list of tasks which have nearest start time or deadline.
 
-2. Extension
+Extension
 . User request for a reminder of certain category of tasks.
 .. TaskBook shows a list of tasks with the specified category which have nearest start time or deadline.
 
@@ -465,7 +465,7 @@ Use case resumes at step 1
 . User requests help
 . TaskBook shows a list of commands with the examples of their usage
 
-	Use case ends.
+Use case ends.
 
 [discrete]
 === Exit
@@ -475,7 +475,7 @@ Use case resumes at step 1
 . User request for exiting the program
 . TaskBook saves all the changes and exits.
 
-	Use case ends.
+Use case ends.
 
 [appendix]
 == Non-functional requirements
