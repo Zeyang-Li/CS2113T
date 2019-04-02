@@ -124,7 +124,7 @@ public class TimePane extends AnchorPane {
             //System.out.println(t.getCategories().toString().equals(cate));
             if (t.getCate().equals(cate)) {
                 //System.out.println("Sofarsogood 33");
-                filtered[count] = new PreTask(t.getTitle(), 
+                filtered[count] = new PreTask(t.getTitle(),
                         t.getCate(),
                         t.getStart(),
                         t.getEnd());
