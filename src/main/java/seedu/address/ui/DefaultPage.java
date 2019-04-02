@@ -89,7 +89,8 @@ public class DefaultPage extends UiPart<Region> {
      * @param feedback
      */
     public void setTimeline(String feedback) {
-        if (feedback.split(" ")[0] != "Timeline") {
+        if (!feedback.split(" ")[0].equals("Timeline")) {
+            //System.out.println("not");
             return;
         }
         this.day = feedback.split(" ")[3];
