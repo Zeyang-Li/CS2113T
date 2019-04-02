@@ -149,10 +149,6 @@ public class MainWindow extends UiPart<Stage> {
                 logic::setSelectedTask);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        //dayListPanel = new DayListPanel(logic.getFilteredDayList(), logic.selectedDayProperty(),
-        //logic::setSelectedDay);
-        //dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 

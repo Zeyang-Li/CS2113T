@@ -18,31 +18,20 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
-This user guide is introducing the features of Tasketch and show to the users how to use all the command lines. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too. +
 
-== Quick Start
+This application is designed for the busy NUS students who have many tasks, assignments and datelines everyday. +
 
-.  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
-.  Copy the file to the folder you want to use as the home folder for your Tasketch.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
-+
-image::Ui.png[width="790"]
-+
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some examples you can try:
+Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the
+benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively. +
 
-* *`list`* : lists all the tasks you have added
-* **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
-* **`delete`**`3` : deletes the task with index 3 in Tasketch.
-* *`exit`* : exits the app
+This user guide will introduce the features of Tasketch and show you how to use all the command lines. +
+Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
-.  Refer to <<Features>> for details of each command.
-
-[[Features]]
-== Features
+== How to use this guide
+There are several terms which we use throughout the guide. To make your understanding clearer, you can read the following
+section to ensure that you are able to use this user guide to the fullest.
 
 ====
 *Command Format*
@@ -62,39 +51,84 @@ type either `clear` or `c`.
 *** c - Co-Curicullar Activity (CCA)
 *** r - Errands
 *** o - Others
-** Any inputs other than above will be invalid.
-** The length of time has to be in hour unit only. (e.g. 1 for 1 hour, 2 for 1 hour 30 minutes after round-up)
-** To modify the time limit, just use back the same command and it will update the old to the new time limit.
+** Any inputs other than the above will be invalid.
+** The time duration displayed for each category is in hours and minutes unit. (e.g. 1.0 for 1 hour, 1.15 for 1 hour 15 minutes)
 ****
 ====
 
-=== Viewing help : `help`
+== Quick Start
 
-Format: `help`
+.  Ensure you have Java version `9` or later installed in your Computer.
+.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
+.  Copy the file to the folder you want to use as the home folder for your Tasketch.
+.  Double-click the file to start the app. The GUI should appear in a few seconds.
++
+image::Ui.png[width="790"]
++
+.  Type the command in the command box and press kbd:[Enter] to execute it. +
+e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
+.  Some examples you can try:
+
+* *`list`* : lists all the tasks you have added
+* **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
+* **`delete`**`3` : deletes the task with index 3 in Tasketch.
+* *`exit`* : exits the app
+
+== Daily Time Planner
+
+This feature will help you to monitor your time spent on different tasks in a day. By looking at the time spent on
+different tasks, it aims to help you to plan your time better so that you will not spend most time on specific type
+of a task.
 
 === Adding a task: `add`/`a`
 
-Adds a task to the Tasketch
+To get started, you will need to add a task into Tasketch. The format is as below. +
 
-Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORIES] [t/TAG]...`
+When you are adding a task, the app will ensure that there will be no duplicate names added. This is to ensure that
+there is no confusion in the task names.
+
+Adding a task with the same start date and end date means that it is a daily task, will be monitored by the Daily Time
+Planner. Different dates means it is a long period task, thus will not be considered as daily task.
+
+The app will not able to verify the correctness for the number of days in different months, so you have to ensure that
+the date exists in that particular month. However, the app will able to differentiate the maximum number of days and months.
+This means that you will never be able to enter more than 31 days and more than 12 months in the start date and end date. +
+Should you enter different start date and end date, the app will ensure that your end date is after the start date.
+
+As for start time and end time, the app is smart enough to inform you when you have entered invalid time, such as 24.00,
+as this is incorrect. You will not able to enter hours beyond 23 and minutes beyond 59. The app will also ensure
+that the end time is after start time too. This to ensure the time spent/duration calculation (end time - start time)
+will result correct values.
+
+You will also need to specify the type of category of the task that you are adding for the Daily Time Planner to monitor
+your time effectively.
+
+If any of the above is violated, the app will alert you that it is an invalid command with the corrected format shown to
+you.
 
 ****
-* There are only 5 valid categories and can be excluded in the command. (The details about it can be found in <<category>>.)
-* Excluding category in the command will only mean that the task will not be included into the time management.
+* There are only 5 valid categories. (The details about it can be found in <<category>>.)
 
 ****
 
 [TIP]
 A task can have any number of tags (including 0)
 
+Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION c/CATEGORIES [t/TAG]...`
+
 Examples:
 
 * `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control` +
 Adds a task named CS2113 task in the app. It starts at 12:00 on March 13rd, 2019 and it ends at 14:00 on the same day. The description for this task is to talk about version control.
-* `add n/MA1101R tutorial sd/14-03-19 st/12.00 ed/14-03-19 et/14.00 d/Tutorial 8 c/a`
+* `add n/MA1101R tutorial sd/14-03-19 st/12.00 ed/14-03-19 et/14.00 d/Tutorial 8 c/a` +
 Adds a task named MA1101R tutorial. It starts at 12:00 on March 14th, 2019 and ends at 14:00 on the same day. Its description is tutorial and it category is academic.
-* `add n/CS3235 lecture sd/13-03-19 st/08.00 ed/13-03-19 et/10.00 d/Talk about network security t/important`
+* `add n/CS3235 lecture sd/13-03-19 st/08.00 ed/13-03-19 et/10.00 d/Talk about network security t/important` +
 Adds a task named CS3235 lecture. It starts at 8:00 in March 3rd, 2019 and ends at 10:00. Its description is to talk about network security. The tag for it is 'important'.
+
+Result: +
+You should see the task added into the task list on the left of the app. +
+The time duration on that task will be calculated in the back and the time should be reflected in the day list on the right
+of the app (UI in development)
 
 === Listing all tasks : `list`/`l`
 
@@ -119,7 +153,20 @@ Lists all the tasks in the storage
 
 === Editing a task : `edit`/`e`
 
-Edits an existing task in Tasketch.
+Sometimes, you might have added a task information wrongly or wish to change its information. This command will allow you to
+edit all existing tasks in Tasketch.
+
+Since the Daily Time Planner only includes tasks that start and end on the same date. Editing the start date and end date
+of a task will also lead to some changes.
+
+1. Changing from same start and end date to different dates will remove the task from Daily Time Planner, its corresponding
+time duration will also be deducted.
+
+2. Changing from different start and end date to same dates will make it a daily task, thus to be included into the Daily
+Time Planner, its corresponding time duration will also be added.
+
+3. Maintaining the same start and end dates but changed the start or end time of a task. Its time duration changes will
+also be updated in the Daily Time Planner.
 
 Format: `edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
@@ -180,7 +227,7 @@ Deletes the task with index number 1 in task list.
 
 === Clearing all tasks : `clear`/`c`
 
-Clears all tasks of the specified date from Tasketch.
+If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
 Format:
 
@@ -201,6 +248,9 @@ Clears all the tasks which finished before today.
 * `clear` +
 Clears all the tasks in the storage.
 
+Result: +
+The tasks of your date choice should be cleared from the task list on the left of the app. +
+The correspond time duration for those tasks will be deducted from the Daily Time Planner.
 
 === Listing entered commands : `history`/`h`
 
@@ -246,6 +296,29 @@ Examples:
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command)
 
+=== Showing time spent on all task categories : `showTime`
+(UI in development)
+
+To help you to plan and make full use of your daily time better, simply use this command to see all the time planned on
+all 5 categories for every day.
+
+==== Showing all the days
+If you want to the time planned for everyday, just use this command.
+
+Format: `showTime`
+
+Result: +
+You should see a list of days with all the category times on the right side of the app.
+
+==== Showing a particular day
+If you want to see only one specific day, simply add the date that you wish to see behind the command.
+
+Format: `showTime DATE`
+
+Result: +
+You should see a day of your choice with all the category times on the right side of the app, if the date exists.
+
+== Reminder
 
 === Reminding the users of the nearest task : `remind`
 
@@ -275,6 +348,8 @@ Examples:
 * `remind e start` +
 Shows a list of nearest start tasks of "entertainment" category.
 
+== View calender
+
 === Set the calendar to desired month : `month`
 
 Shows the desired month to the user. +
@@ -285,58 +360,12 @@ Format:
 Changes the current calendar to next month. +
 
 * `month -` +
-Changes the current calendar to previous month. +
+Changes the current calendar to previous month.
 
-=== Show the timeline : `timeline`
 
-Shows the timeline to the user. +
-
-Format:
-
-* `timeline` +
-Shows the timeline. +
-
-=== Setting time limit to a task category : `set`
-
-Sets weekly time limit for a task category. +
-Upon adding a task to a category and leads to time limit, you will not able to add it into that category for that week.
-
-Format: `set CATEGORY TIME_LENGTH`
-
-Example:
-
-* `set a 40` +
-Sets the time limit to 40 hours for the academic category.
-
-=== Removing time limit of a task category : `unset`
-
-Removes weekly time limit of a task category. After removing the time limit, you will be able to add more tasks into that category as usual.
-
-Format: `unset CATEGORY`
-
-Example:
-
-* `unset a`
-
-=== Showing remaining time to the limit of all task categories : `show`
-
-Shows all the remaining time before reaching the limit for all the task category
-
-Format: `show`
-
-=== Exiting the program : `exit`
-
-Exits the program. +
-
-Format: `exit`
-
-=== Saving the data
-
-Tasketch data is saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
-
-=== Getting wrong command suggestions
-Suggests to users what they have typed wrongly automatically, by giving a list of closest approximations of word through the message box after pressing enter. +
+== Getting wrong command suggestions
+There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
+by giving a list of closest approximations of word through the message box after pressing `enter`. +
 
 ****
 * The input is not case sensitive, hence it would increase the chance of getting a closer approximation of the correct command!
@@ -346,27 +375,42 @@ Suggests to users what they have typed wrongly automatically, by giving a list o
 
 Examples：
 
-* If the user wanted to type `clear` but he typed `clarr` instead, the system will tell the user that it is an unknown command, and would suggest the command `clear` instead.
-* If the user wanted to type `exit` but he typed `ecot` instead, the system will tell the user that it is an unknown command, and would suggest the command `exit` and `edit` instead.
-* If the user wanted to type `history` but he typed `hsitryo` instead, the system will tell the user that it is an unknown command, and would suggest the command `history` instead.
+* If you want to type `clear` but typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
+* If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
+* If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
 
-=== Automatically complete input command for user
-Help users automatically correct type error and fulfill their incomplete typed command in command line.+
+== Automatically complete input command for user
+If you type something wrongly, the app will automatically correct type error and fulfill their incomplete typed command in command line.
 
 ****
 * The input is not case sensitive.
-* If user type a string that is a substring of one of the commands, then command line will fulfill the string with this command.
-* If user type a string that is not a substring of any of the commands, then command line will show the most similar command compared this string.
-* If user type a string can not match any command, then command line will show `No command matched`.
-* If user type a command correctly, then press 'TAB', command line will fulfill the format string of parameters for this command.
+* If you type a string that is a substring of one of the commands, then command line will fulfill the string with this command.
+* If you type a string that is not a substring of any of the commands, then command line will show the most similar command compared this string.
+* if you type a string can not match any command, then command line will show `No command matched`.
 ****
 
 Examples：
 
-* If the user wanted to type `list`, he can type `li` instead, and press `tap` on keyboard. The system will automatically fulfill the command in command line with `list`.
-* If the user wanted to type `histoy`, but he type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
-* If the user wanted to type `add`, but he type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
-* If the user type `edit` correctly and press `tap` on keyboard, The system will automatically fulfill the command line with `edit n/task name  sd/start_date  st/start_time  ed/end_date  et/end_time  d/content`.
+* If you want to type `list`, you can type `li` instead, and press `tap` on keyboard. The system will automatically fulfill the command in command line with `list`.
+* If you want to type `histoy`, but you type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
+* If you want to type `add`, but you type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
+
+== Viewing help : `help`
+
+In case you are clueless, you can always use this command get help on all the commands available and their functions.
+
+Format: `help`
+
+== Exiting the program : `exit`
+
+If you are done using the app, you just use this command to exit and close the app.
+
+Format: `exit`
+
+=== Saving the data
+
+Tasketch data is saved in the hard disk automatically after any command that changes the data. +
+There is no need to save manually.
 
 == FAQ
 
@@ -376,7 +420,7 @@ Examples：
 == Command Summary
 
 * *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORY] [t/TAG]...` +
-e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
+e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a`
 * *Clear* : `clear [DATE]` +
 e.g. `clear 21-02-2019`
 * *Delete* : `delete INDEX_NUMBER` +
@@ -387,11 +431,8 @@ e.g. `edit 1 s/12.00 e/14.00 t/GET1018 tut`
 e.g. `search CS2113T`
 * *List* : `list [DATE]` +
 e.g. `list 02-2019`
-* *Set* : `set CATEGORY TIME_LENGTH +
-e.g. `set a 50`
-* *Unset* : `unset CATEGORY` +
-e.g. `unset a`
-* *Show* : `show`
+* *Showtime* : `showtime [DATE]`
+e.g. `showtime 13-02-2019`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
