@@ -20,14 +20,14 @@ public class Timeline {
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" "),
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" ")};
 
-    public Timeline(PreTask[] pre) {
+    public Timeline(PreTask[] pre, String c) {
         this.tasks = pre;
         sort();
         oneTimeline.setSpacing(13);
         //==========Set up a seperate line==========
         prepLine();
         //==========Set up Titles==========
-        prepTitle();
+        prepTitle(c);
         //==========Set up Timelines==========
         prepTimeline();
     }
@@ -53,16 +53,17 @@ public class Timeline {
     /**
      * This method will prepare the name of the task.
      */
-    private void prepTitle() {
+    private void prepTitle(String c) {
         GridPane taskNameLine = new GridPane();
         taskNameLine.setPrefWidth(850);
         //taskNameLine.setGridLinesVisible(true);
         int col = 1;
+        taskNames[0] = new Text(getCate(c));
         for (Text n : taskNames) {
             AnchorPane aGrid = new AnchorPane();
             aGrid.setPrefSize(100, 5);
+            n.setStyle("-fx-text-inner-color: white;\"");
             aGrid.getChildren().add(n);
-            aGrid.setStyle("-fx-text-inner-color: white;");
             taskNameLine.add(aGrid, col, 0);
             col++;
         }
@@ -73,6 +74,7 @@ public class Timeline {
      * This method will prepare the real timeline.
      */
     private void prepTimeline() {
+
     }
 
     /**
@@ -117,6 +119,25 @@ public class Timeline {
             }
         }
         return i;
+    }
+
+    /**
+     * Get cate
+     * @return
+     */
+    private String getCate(String s) {
+        switch (s) {
+        case "a":
+            return "Academic";
+        case "c":
+            return "CCA";
+        case "e":
+            return "Entertain";
+        case "r":
+            return "Errands";
+        default:
+            return "Other";
+        }
     }
 
     public VBox getOneTimeline() {

@@ -17,6 +17,14 @@ endif::[]
 
 By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
+== Introduction
+=== What is Tasketch
+
+Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+
+This developer guide is introducing the development structure of Tasketch and provide a better understanding of how this project works. Jump to the <<Quick Start>> to get started. Enjoy!
+
+
 == Setting up
 
 === Prerequisites

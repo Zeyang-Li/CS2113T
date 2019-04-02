@@ -1,45 +1,44 @@
-= John Doe - Project Portfolio
+= Zhang Jingchen - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: AddressBook - Level 4
+== PROJECT: Tasketch
 
 ---
 
 == Overview
 
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+This user guide is introducing the features of Tasketch and show to the users how to use all the command lines. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: Enhance visual feedback with timeline feature.
+** What it does: It helps the user to visually view the time they should spend on each task.
+** Justification: This feature improves the product significantly because people tend to believe what they see, it is good to have a vivid picture of the whole timeline.
+** Highlights: This feature helps the user to better manage their tasks.
+** Credits: _{I use Shibo's idea on filtering the desired tasks so that I can display the tasks according to different categories on the timeline}_
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Minor enhancement*: morphed the find and history command that allows the user to easily locate a task and see history commands.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** The UI designer and the person in charge.
+*** Managed releases `v1.0` - `v1.4` (2 releases) on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Updated the GUI arrangement and corresponding features (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/83[#83], https://github.com/CS2113-AY1819S2-T09-2/main/pull/91[#91], https://github.com/CS2113-AY1819S2-T09-2/main/pull/96[#96])
+*** Updated previous commands (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/51[#51], https://github.com/CS2113-AY1819S2-T09-2/main/pull/45[#45])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Updated UserGuide and DeveloperGuide ()
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+*** Some parts of the history feature I added was referenced by several other class mates (https://github.com[1], https://github.com[2])
 ** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** Google is always the best friend. :)
 
 _{you can add/remove categories in the list above}_
 
@@ -50,9 +49,70 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[tag=undoredo]
 
-//include::../UserGuide.adoc[tag=dataencryption]
+=== Set the calendar to desired month : `month`
+
+Shows the desired month to the user. +
+
+Format:
+
+* `month +` +
+Changes the current calendar to next month. +
+
+* `month -` +
+Changes the current calendar to previous month. +
+
+=== Show the timeline : `timeline`
+
+Shows the timeline to the user. +
+
+Format:
+
+* `timeline` +
+Shows the timeline. +
+
+
+=== Searching tasks by keywords: `find`/`f`
+
+Finds tasks whose topic or description contain any of the given keywords.
+
+Format: `search KEYWORD [MORE_KEYWORDS] ...`
+
+****
+* The search is case insensitive. e.g `Tutorial` will match `tutorial`.
+* The order of the keywords does not matter. e.g. `CS2113T tutorial` will match `tutorial CS2113T`.
+* Only the description is searched.
+* Only full words will be matched e.g. `tut` will not match `tutorial`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2113T tutorial` will return `CS2113T lecture`, `CS3235 tutorial`.
+****
+
+Examples:
+
+* `find CS2113T` +
+Returns `CS2113T lecture`
+* `f Lecture` +
+Returns `CS2113T lecture` and `CS3235 lecture`
+
+=== Deleting a task : `delete`/`d`
+
+Deletes the specified task from Tasketch.
+
+Format: `delete INDEX_NUMBER`
+
+****
+* Each tasks is identified by the index number shown in the task list.
+* Deletes the task with the index number.
+****
+
+Examples:
+
+* `list` +
+`delete 1` +
+Deletes the task with index number 1 in task list.
+* `find cs2113t` +
+`delete 1` +
+Deletes the task with index number 1 in task list.
+
 
 == Contributions to the Developer Guide
 
