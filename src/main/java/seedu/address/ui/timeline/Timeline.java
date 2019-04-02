@@ -19,7 +19,7 @@ public class Timeline {
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" "),
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" "),
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" ")};
-    
+
     public Timeline(PreTask[] pre, String c) {
         this.tasks = pre;
         sort();
@@ -74,7 +74,7 @@ public class Timeline {
      * This method will prepare the real timeline.
      */
     private void prepTimeline() {
-        
+
     }
 
     /**
@@ -139,7 +139,7 @@ public class Timeline {
                 return "Other";
         }
     }
-    
+
     public VBox getOneTimeline() {
         return oneTimeline;
     }

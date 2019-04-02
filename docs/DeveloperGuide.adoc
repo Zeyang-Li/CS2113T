@@ -17,6 +17,9 @@ endif::[]
 
 By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
+== Introduction
+=== What is Tasketch 
+
 == Setting up
 
 === Prerequisites
