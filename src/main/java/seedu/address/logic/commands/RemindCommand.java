@@ -5,8 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -86,7 +84,6 @@ public class RemindCommand extends Command {
 
         String trimmedArguments = arguments.trim();
         String[] splitedInput = trimmedArguments.split("\\s");
-        ObservableList<Task> originalTasks = model.getFilteredTaskList();
 
         if (splitedInput.length == 1) {
             if (!isValidTime(splitedInput[0])) {

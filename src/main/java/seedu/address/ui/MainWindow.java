@@ -232,6 +232,7 @@ public class MainWindow extends UiPart<Stage> {
             defaultPage.setMonth(commandResult.getFeedbackToUser());
             defaultPage.setTimeline(commandResult.getFeedbackToUser());
             defaultPage.setReminder(logic);
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

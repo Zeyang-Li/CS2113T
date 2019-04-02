@@ -47,9 +47,12 @@ public class DefaultPage extends UiPart<Region> {
     public DefaultPage(ObservableList<Task> taskList, Logic logic) {
         super(FXML);
         init();
+        this.logic = logic;
         this.all = taskList;
+
         this.day = getDay();
         this.logic = logic;
+
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
@@ -120,3 +123,4 @@ public class DefaultPage extends UiPart<Region> {
         reminderAnchorPane.getChildren().add(r.getView());
     }
 }
+
