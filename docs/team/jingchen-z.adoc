@@ -57,6 +57,70 @@ include::../UserGuide.adoc[tag=find]
 
 include::../UserGuide.adoc[tag=delete]
 
+=== Set the calendar to desired month : `month`
+
+Shows the desired month to the user. +
+
+Format:
+
+* `month +` +
+Changes the current calendar to next month. +
+
+* `month -` +
+Changes the current calendar to previous month. +
+
+=== Show the timeline : `timeline`
+
+Shows the timeline to the user. +
+
+Format:
+
+* `timeline` +
+Shows the timeline. +
+
+
+=== Searching tasks by keywords: `find`/`f`
+
+Finds tasks whose topic or description contain any of the given keywords.
+
+Format: `search KEYWORD [MORE_KEYWORDS] ...`
+
+****
+* The search is case insensitive. e.g `Tutorial` will match `tutorial`.
+* The order of the keywords does not matter. e.g. `CS2113T tutorial` will match `tutorial CS2113T`.
+* Only the description is searched.
+* Only full words will be matched e.g. `tut` will not match `tutorial`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2113T tutorial` will return `CS2113T lecture`, `CS3235 tutorial`.
+****
+
+Examples:
+
+* `find CS2113T` +
+Returns `CS2113T lecture`
+* `f Lecture` +
+Returns `CS2113T lecture` and `CS3235 lecture`
+
+=== Deleting a task : `delete`/`d`
+
+Deletes the specified task from Tasketch.
+
+Format: `delete INDEX_NUMBER`
+
+****
+* Each tasks is identified by the index number shown in the task list.
+* Deletes the task with the index number.
+****
+
+Examples:
+
+* `list` +
+`delete 1` +
+Deletes the task with index number 1 in task list.
+* `find cs2113t` +
+`delete 1` +
+Deletes the task with index number 1 in task list.
+
+
 == Contributions to the Developer Guide
 
 |===
