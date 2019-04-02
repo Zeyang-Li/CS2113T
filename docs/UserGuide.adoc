@@ -296,7 +296,7 @@ Examples:
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command)
 
-=== Showing time spent on all task categories : `showTime`
+=== Showing time planned for all task categories : `showTime`
 (UI in development)
 
 To help you to plan and make full use of your daily time better, simply use this command to see all the time planned on
