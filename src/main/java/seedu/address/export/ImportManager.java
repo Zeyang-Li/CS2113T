@@ -1,0 +1,63 @@
+package seedu.address.export;
+
+import static java.util.Objects.requireNonNull;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.storage.JsonFileStorage;
+import seedu.address.storage.JsonSerializableTaskBook;
+
+/**
+ * Manages importing of TaskBook data.
+ */
+public class ImportManager implements Import {
+
+    private static final Logger logger = LogsCenter.getLogger(ImportManager.class);
+
+    private Path importPath;
+
+    public ImportManager(Path filePath) {
+        this.importPath = filePath;
+    }
+
+    public Path getImportPath() {
+        return importPath;
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException {
+        return readTaskBook(importPath);
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskBook> readTaskBook(Path filePath) throws DataConversionException,
+            FileNotFoundException {
+        requireNonNull(filePath);
+
+        if (!Files.exists(filePath)) {
+            logger.info("TaskBook file " + filePath + " not found");
+            return Optional.empty();
+        }
+
+        Optional<JsonSerializableTaskBook> jsonTaskBook = JsonFileStorage.loadDataFromSaveFile(filePath);
+        try {
+            if (jsonTaskBook.isPresent()) {
+                return Optional.of(jsonTaskBook.get().toModelType());
+            } else {
+                return Optional.empty();
+            }
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
+}

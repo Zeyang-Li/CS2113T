@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         switch (optionPage) {
         case DEFAULT_PAGE:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
             defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
             break;
 
@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
             break;
 
         default:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList());
+            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
             defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
             break;
         }
@@ -148,10 +148,6 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.selectedTaskProperty(),
                 logic::setSelectedTask);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        //dayListPanel = new DayListPanel(logic.getFilteredDayList(), logic.selectedDayProperty(),
-        //logic::setSelectedDay);
-        //dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -234,6 +230,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             defaultPage.setMonth(commandResult.getFeedbackToUser());
+            defaultPage.setTimeline(commandResult.getFeedbackToUser());
+            defaultPage.setReminder(logic);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

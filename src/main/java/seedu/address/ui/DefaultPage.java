@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
 import java.time.YearMonth;
+import java.util.Date;
 
 import javafx.collections.ObservableList;
 
@@ -10,9 +12,11 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
+import seedu.address.logic.Logic;
 import seedu.address.model.task.Task;
 import seedu.address.ui.calendar.Calendar;
-
+import seedu.address.ui.reminder.ReminderPane;
+import seedu.address.ui.timeline.TimePane;
 
 /**
  * Default page contains calendar, reminder and timeline.
@@ -20,6 +24,8 @@ import seedu.address.ui.calendar.Calendar;
 public class DefaultPage extends UiPart<Region> {
 
     private static final String FXML = "DefaultPage.fxml";
+    private String day;
+    private ObservableList<Task> all;
 
     @FXML
     private SplitPane overallPane;
@@ -36,12 +42,18 @@ public class DefaultPage extends UiPart<Region> {
     @FXML
     private AnchorPane upperPartAnchorPane;
 
-    public DefaultPage(ObservableList<Task> taskList) {
+    private Logic logic;
+
+    public DefaultPage(ObservableList<Task> taskList, Logic logic) {
         super(FXML);
         init();
-
+        this.all = taskList;
+        this.day = getDay();
+        this.logic = logic;
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
+        timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
+        reminderAnchorPane.getChildren().add(new ReminderPane(logic).getView());
     }
 
     /**
@@ -70,5 +82,41 @@ public class DefaultPage extends UiPart<Region> {
         }
         calendarAnchorPane.getChildren().clear();
         calendarAnchorPane.getChildren().add(c.getView());
+    }
+
+    /**
+     * Set the desired timeline to that day.
+     * @param feedback
+     */
+    public void setTimeline(String feedback) {
+        if (feedback.split(" ")[0] != "Timeline") {
+            return;
+        }
+        this.day = feedback.split(" ")[3];
+        if (feedback.split(" ")[3] == " ") {
+            this.day = feedback.split(" ")[2];
+        }
+        //System.out.println(day);
+        timelineAnchorPane.getChildren().clear();
+        timelineAnchorPane.getChildren().add(new TimePane(all, day).getView());
+        //System.out.println(day);
+    }
+
+    /**
+     * This returns the current date.
+     * To be updated.
+     * @return
+     */
+    public String getDay() {
+        Date today = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
+        String formattedToday = formatter.format(today);
+        return formattedToday;
+    }
+
+    public void setReminder(Logic logic) {
+        ReminderPane r = new ReminderPane(logic);
+        reminderAnchorPane.getChildren().clear();
+        reminderAnchorPane.getChildren().add(r.getView());
     }
 }

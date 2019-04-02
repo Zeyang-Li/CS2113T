@@ -3,10 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -17,6 +19,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.TaskBookChangedEvent;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.export.CsvWriter;
+import seedu.address.export.Export;
+import seedu.address.export.ExportManager;
+import seedu.address.export.Import;
+import seedu.address.export.ImportManager;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.task.Task;
@@ -159,6 +169,9 @@ public class ModelManager implements Model {
         return versionedTaskBook;
     }
 
+    private void indicateTaskBookChanged() {
+        new TaskBookChangedEvent(versionedTaskBook);
+    }
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -331,6 +344,52 @@ public class ModelManager implements Model {
         }
     }
 
+
+    //=========== Import/ Export ==============================================================================
+    @Override
+    public void importTasksFromTaskBook(Path importFilePath) throws IOException, DataConversionException {
+        Import importManager = new ImportManager(importFilePath);
+        ReadOnlyTaskBook taskBookImported = importManager.readTaskBook().orElseThrow(IOException::new);
+        boolean hasChanged = addTasksToTaskBook(taskBookImported);
+
+        if (hasChanged) {
+            updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            indicateTaskBookChanged();
+        }
+    }
+    @Override
+    public boolean addTasksToTaskBook(ReadOnlyTaskBook addressBookImported) {
+        ObservableList<Task> tasks = addressBookImported.getTaskList();
+        AtomicBoolean hasChanged = new AtomicBoolean(false);
+        tasks.forEach((task) -> {
+            // TODO: explain why this instead of addPerson() above in developer guide (indicate ab changed at the end)
+            if (!hasTask(task)) {
+                hasChanged.set(true);
+                versionedTaskBook.addTask(task);
+            }
+        });
+        return hasChanged.get();
+    }
+
+    @Override
+    public void exportFilteredTaskBook(Path exportFilePath) throws IOException, IllegalValueException {
+        Export export = new ExportManager(getFilteredTaskList(), exportFilePath);
+        export.saveFilteredTasks();
+    }
+
+    @Override
+    public void exportTaskBook() throws IOException {
+        CsvWriter csvWriter = new CsvWriter(versionedTaskBook.getTaskList(), userPrefs.getExportCsvFilePath());
+        csvWriter.write();
+    }
+
+    @Override
+    public void exportTask(Task task) throws IOException {
+        requireNonNull(task);
+        CsvWriter csvWriter = new CsvWriter(task, userPrefs.getExportCsvFilePath());
+        csvWriter.write();
+    }
+
     /**
      * Ensures {@code selectedDay} is a valid day in {@code filteredDays}.
      */
@@ -359,6 +418,7 @@ public class ModelManager implements Model {
             }
         }
     }
+
 
     @Override
     public boolean equals(Object obj) {

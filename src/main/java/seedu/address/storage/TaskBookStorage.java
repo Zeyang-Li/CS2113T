@@ -42,4 +42,12 @@ public interface TaskBookStorage {
      */
     void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException;
 
+    /**
+     * Backup the given {@link ReadOnlyTaskBook} to a temporary local backup file.
+     * @param taskBook cannot be null.
+     * @throws IOException
+     */
+    void backupTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
+
+
 }
