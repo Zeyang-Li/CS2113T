@@ -160,7 +160,7 @@ Since the Daily Time Planner only includes tasks that start and end on the same 
 of a task will also lead to some changes.
 
 1. Changing from same start and end date to different dates will remove the task from Daily Time Planner, its corresponding
-time duration will also be deducted. 
+time duration will also be deducted.
 
 2. Changing from different start and end date to same dates will make it a daily task, thus to be included into the Daily
 Time Planner, its corresponding time duration will also be added.
