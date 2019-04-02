@@ -294,13 +294,49 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+// tag::suggestiom[]
+=== Suggestion feature
+==== Current Implementation
+
+The suggestion mechanism is facilitated by 'Suggestion'.
+
+// end::suggestion[]
+
+// tag::reminder[]
+=== Reminder feature
+==== Current Implementation
+
+
+// end::reminder[]
+
+// tag::month/timeline[]
+=== month/timeline feature
+==== Current Implementation
+
+
+// end::month/timeline[]
+
+// tag::timeplanner[]
+=== timeplanner feature
+==== Current Implementation
+
+
+// end::timeplanned[]
+
+// tag::import/export[]
+=== import/export feature
+==== Current Implementation
+
+
+// end::import/export[]
+
 
 [appendix]
 == Product Scope
 
 *Target user profile*:
 
-* NUS students who need to manage time due to multiple tasks, assignments and datelines
+* NUS students who need to manage time due to multiple CCAs, tasks, assignments and datelines
 * Prefers typing over mouse input
 * Is reasonably comfortable using CLI apps
 
@@ -319,7 +355,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` | user | add task | manage multiple tasks
 |`* * *` | user | delete task | get rid of a task that no longer want to do
 |`* * *` | user | edit task | change the all the information of the task
-|`* * *` | user | clear tasks | remove all the completed tasks of a day or a month
+|`* * *` | user | clear tasks | remove all the completed tasks of a day or a month or all the finished tasks
 |`* * *` | user | find tasks | check the full information of the task when forgetting the task description
 |`* * *` | user | list tasks | know what task is on that day
 |`* * *` | user | record total time spent on each classified task type | see how much time they spend on a specific
