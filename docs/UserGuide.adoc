@@ -18,35 +18,20 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is an application that helps those who need to manage their time by managing time for each daily task. +
+Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too. +
 
-Besides, it also helps you to be awared of all the tasks dateline too. +
+This application is designed for the busy NUS students who have many tasks, assignments and datelines everyday. +
 
-This user guide is introducing the features of Tasketch and show to the users how to use all the command lines. +
+Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the
+benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively. +
+
+This user guide will introduce the features of Tasketch and show you how to use all the command lines. +
 Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
-== Quick Start
-
-.  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
-.  Copy the file to the folder you want to use as the home folder for your Tasketch.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
-+
-image::Ui.png[width="790"]
-+
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some examples you can try:
-
-* *`list`* : lists all the tasks you have added
-* **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
-* **`delete`**`3` : deletes the task with index 3 in Tasketch.
-* *`exit`* : exits the app
-
-.  Refer to <<Features>> for details of each command.
-
-[[Features]]
-== Things to Take Note
+== How to use this guide
+There are several terms which we use throughout the guide. To make your understanding clearer, you can read the following
+section to ensure that you are able to use this user guide to the fullest.
 
 ====
 *Command Format*
@@ -67,9 +52,27 @@ type either `clear` or `c`.
 *** r - Errands
 *** o - Others
 ** Any inputs other than the above will be invalid.
-** The length of time is in hours and minutes unit. (e.g. 1.0 for 1 hour, 1.15 for 1 hour 15 minutes)
+** The time duration displayed for each category is in hours and minutes unit. (e.g. 1.0 for 1 hour, 1.15 for 1 hour 15 minutes)
 ****
 ====
+
+== Quick Start
+
+.  Ensure you have Java version `9` or later installed in your Computer.
+.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
+.  Copy the file to the folder you want to use as the home folder for your Tasketch.
+.  Double-click the file to start the app. The GUI should appear in a few seconds.
++
+image::Ui.png[width="790"]
++
+.  Type the command in the command box and press kbd:[Enter] to execute it. +
+e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
+.  Some examples you can try:
+
+* *`list`* : lists all the tasks you have added
+* **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
+* **`delete`**`3` : deletes the task with index 3 in Tasketch.
+* *`exit`* : exits the app
 
 == Daily Time Planner
 
@@ -92,7 +95,7 @@ the date exists in that particular month. However, the app will able to differen
 This means that you will never be able to enter more than 31 days and more than 12 months in the start date and end date. +
 Should you enter different start date and end date, the app will ensure that your end date is after the start date.
 
-As for start time and end time, the app is smart enough to inform you when you are entered invalid time, such as 24.00,
+As for start time and end time, the app is smart enough to inform you when you have entered invalid time, such as 24.00,
 as this is incorrect. You will not able to enter hours beyond 23 and minutes beyond 59. The app will also ensure
 that the end time is after start time too. This to ensure the time spent/duration calculation (end time - start time)
 will result correct values.
@@ -123,8 +126,9 @@ Adds a task named MA1101R tutorial. It starts at 12:00 on March 14th, 2019 and e
 Adds a task named CS3235 lecture. It starts at 8:00 in March 3rd, 2019 and ends at 10:00. Its description is to talk about network security. The tag for it is 'important'.
 
 Result: +
-You should see the task added into the list on the left of the app. The time spent on that task will be calculated in
-the back 
+You should see the task added into the task list on the left of the app. +
+The time duration on that task will be calculated in the back and the time should be reflected in the day list on the right
+of the app (UI in development)
 
 === Listing all tasks : `list`/`l`
 
@@ -149,20 +153,20 @@ Lists all the tasks in the storage
 
 === Editing a task : `edit`/`e`
 
-Sometimes, you might added a task information wrongly or wish to change its information. This command will allow you to
+Sometimes, you might have added a task information wrongly or wish to change its information. This command will allow you to
 edit all existing tasks in Tasketch.
 
 Since the Daily Time Planner only includes tasks that start and end on the same date. Editing the start date and end date
 of a task will also lead to some changes.
 
 1. Changing from same start and end date to different dates will remove the task from Daily Time Planner, its corresponding
-time will also be deducted.
+time duration will also be deducted.
 
 2. Changing from different start and end date to same dates will make it a daily task, thus to be included into the Daily
-Time Planner, its corresponding time will also be added.
+Time Planner, its corresponding time duration will also be added.
 
-3. Maintaining the same start and end dates but changed the start or end time of a task. Its time changes will also be
-updated in the Daily Time Planner.
+3. Maintaining the same start and end dates but changed the start or end time of a task. Its time duration changes will
+also be updated in the Daily Time Planner.
 
 Format: `edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
@@ -223,7 +227,7 @@ Deletes the task with index number 1 in task list.
 
 === Clearing all tasks : `clear`/`c`
 
-Clears all tasks of the specified date from Tasketch.
+If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
 Format:
 
@@ -244,6 +248,9 @@ Clears all the tasks which finished before today.
 * `clear` +
 Clears all the tasks in the storage.
 
+Result: +
+The tasks of your date choice should be cleared from the task list on the left of the app. +
+The correspond time duration for those tasks will be deducted from the Daily Time Planner.
 
 === Listing entered commands : `history`/`h`
 
@@ -290,19 +297,26 @@ Examples:
 `redo` (reapplies the `clear` command)
 
 === Showing time spent on all task categories : `showTime`
+(UI in development)
 
-To help you to plan and make full use of your daily time better, simply use this command to see all the time spent on
+To help you to plan and make full use of your daily time better, simply use this command to see all the time planned on
 all 5 categories for every day.
+
+==== Showing all the days
+If you want to the time planned for everyday, just use this command.
 
 Format: `showTime`
 
-Result: You should see a list of days with all the category times.
+Result: +
+You should see a list of days with all the category times on the right side of the app.
 
+==== Showing a particular day
 If you want to see only one specific day, simply add the date that you wish to see behind the command.
 
 Format: `showTime DATE`
 
-Result: You should see a day of your choice with all the category times, if the date exists.
+Result: +
+You should see a day of your choice with all the category times on the right side of the app, if the date exists.
 
 == Reminder
 
@@ -347,6 +361,7 @@ Changes the current calendar to next month. +
 
 * `month -` +
 Changes the current calendar to previous month.
+
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
@@ -405,7 +420,7 @@ There is no need to save manually.
 == Command Summary
 
 * *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORY] [t/TAG]...` +
-e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control`
+e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a`
 * *Clear* : `clear [DATE]` +
 e.g. `clear 21-02-2019`
 * *Delete* : `delete INDEX_NUMBER` +
@@ -416,11 +431,8 @@ e.g. `edit 1 s/12.00 e/14.00 t/GET1018 tut`
 e.g. `search CS2113T`
 * *List* : `list [DATE]` +
 e.g. `list 02-2019`
-* *Set* : `set CATEGORY TIME_LENGTH +
-e.g. `set a 50`
-* *Unset* : `unset CATEGORY` +
-e.g. `unset a`
-* *Show* : `show`
+* *Showtime* : `showtime [DATE]`
+e.g. `showtime 13-02-2019`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
