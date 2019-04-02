@@ -119,7 +119,7 @@ public class TimePane extends AnchorPane {
                 t.getCate();
             } catch (NullPointerException ep) {
                 break;
-        }
+            }
 
             //System.out.println(t.getCategories().toString().equals(cate));
             if (t.getCate().equals(cate)) {

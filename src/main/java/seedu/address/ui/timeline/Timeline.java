@@ -127,16 +127,16 @@ public class Timeline {
      */
     private String getCate(String s) {
         switch (s) {
-            case "a":
-                return "Academic";
-            case "c":
-                return "CCA";
-            case "e":
-                return "Entertain";
-            case "r":
-                return "Errands";
-            default:
-                return "Other";
+        case "a":
+            return "Academic";
+        case "c":
+            return "CCA";
+        case "e":
+            return "Entertain";
+        case "r":
+            return "Errands";
+        default:
+            return "Other";
         }
     }
 
