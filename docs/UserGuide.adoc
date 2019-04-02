@@ -76,7 +76,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 == Daily Time Planner
 
-This feature will help you to monitor your time spent on different tasks in a day. By looking at the time spent on
+This feature will help you to monitor the time planned for different tasks in a day. By looking at the time spent on
 different tasks, it aims to help you to plan your time better so that you will not spend most time on specific type
 of a task.
 
