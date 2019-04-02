@@ -128,7 +128,7 @@ Adds a task named CS3235 lecture. It starts at 8:00 in March 3rd, 2019 and ends 
 Result: +
 You should see the task added into the task list on the left of the app. +
 The time duration on that task will be calculated in the back and the time should be reflected in the day list on the right
-of the app (UI in development)
+of the app (UI in development, can be verified in taskbook.json)
 
 === Listing all tasks : `list`/`l`
 
@@ -160,7 +160,7 @@ Since the Daily Time Planner only includes tasks that start and end on the same 
 of a task will also lead to some changes.
 
 1. Changing from same start and end date to different dates will remove the task from Daily Time Planner, its corresponding
-time duration will also be deducted.
+time duration will also be deducted. 
 
 2. Changing from different start and end date to same dates will make it a daily task, thus to be included into the Daily
 Time Planner, its corresponding time duration will also be added.
@@ -182,6 +182,9 @@ Examples:
 * `edit 1 st/12.00 et/14.00 t/GET1018 tut` +
 Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018 tut`.
 
+Result: +
+The information edited for that task will be updated and shown in the task list. +
+The day related to that edited task will be updated and shown in the day list. (UI in development, can be verified in taskbook.json)
 
 === Searching tasks by keywords: `find`/`f`
 
