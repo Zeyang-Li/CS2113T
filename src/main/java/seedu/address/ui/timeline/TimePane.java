@@ -68,7 +68,7 @@ public class TimePane extends AnchorPane {
         vbox.getChildren().add(timelineLabel);
 
         //==========Set up each timeline for 4 categories==========
-        String[] cate = {"a","c","e","r","o"};
+        String[] cate = {"a", "c", "e", "r", "o"};
         PreTask[] filteredDate = filterDate(taskList, d);
         for (int i = 0; i < 5; i++) {
             PreTask[] filteredCate = filterCate(filteredDate, category[i]);
@@ -119,25 +119,23 @@ public class TimePane extends AnchorPane {
                 t.getCate();
             } catch (NullPointerException ep) {
                 break;
-            }
+        }
 
             //System.out.println(t.getCategories().toString().equals(cate));
             if (t.getCate().equals(cate)) {
                 //System.out.println("Sofarsogood 33");
-                filtered[count] = new PreTask(t.getTitle(),
-                                              t.getCate(),
-                                              t.getStart(),
-                                              t.getEnd());
+                filtered[count] = new PreTask(t.getTitle(), 
+                        t.getCate(),
+                        t.getStart(),
+                        t.getEnd());
                 count++;
             }
         }
         return filtered;
     }
-
     private float parse(String time) {
         return Float.parseFloat(time);
     }
-
     public VBox getView() {
         return this.vbox;
     }
