@@ -311,7 +311,7 @@ Examples:
 * `remind e start` +
 Shows a list of nearest start tasks of "entertainment" category.
 
-== View calender
+== View calender & timeline
 
 === Set the calendar to desired month : `month`
 
@@ -325,6 +325,21 @@ Changes the current calendar to next month. +
 * `month -` +
 Changes the current calendar to previous month.
 
+=== Shows the timeline of a specific day to the user : `timeline` +
+
+* `timeline` +
+Shows the timeline of today by default. +
+
+* `timeline [DATE]` +
+Shows the timeline of that date. +
+
+Examples:
+
+* `timeline` +
+Shows the timeline for today.
+
+* `timeline 01-04-19` +
+Shows the whole timeline for 1st April 2019.
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,

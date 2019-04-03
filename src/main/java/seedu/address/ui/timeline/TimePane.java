@@ -29,7 +29,7 @@ public class TimePane extends AnchorPane {
      * @param d
      */
     public void showTimeline(ObservableList<Task> taskList, String d) {
-        vbox.setSpacing(12);
+        vbox.setSpacing(0);
         //=========Set up time points==========
         Text[] timePoints = { new Text(" "), new Text("6:00"),
                               new Text("8:00"), new Text("10:00"),
@@ -52,20 +52,30 @@ public class TimePane extends AnchorPane {
         }
         //==========Set up a rectangle==========
         Rectangle heading = new Rectangle();
-        heading.setFill(Color.BLACK);
+        heading.setFill(Color.WHITE);
 
         //Setting the properties of the rectangle
         heading.setX(150.0f);
         heading.setY(75.0f);
-        heading.setWidth(850.0f);
+        heading.setWidth(920.0f);
         heading.setHeight(10.0f);
 
+        Rectangle heading2 = new Rectangle();
+        heading2.setFill(Color.WHITE);
+        /*
+        //Setting the properties of the rectangle
+        heading2.setX(150.0f);
+        heading2.setY(75.0f);
+        heading2.setWidth(920.0f);
+        heading2.setHeight(5.0f);
+        */
         //Setting the height and width of the arc
         //heading.setArcWidth(10.0);
         //heading.setArcHeight(10.0);
         //Add to the view
         vbox.getChildren().add(heading);
         vbox.getChildren().add(timelineLabel);
+        //vbox.getChildren().add(heading2);
 
         //==========Set up each timeline for 4 categories==========
         String[] cate = {"a", "c", "e", "r", "o"};
