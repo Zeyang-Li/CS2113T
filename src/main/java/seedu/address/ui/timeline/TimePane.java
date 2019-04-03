@@ -1,6 +1,5 @@
 package seedu.address.ui.timeline;
 
-
 import javafx.collections.ObservableList;
 
 import javafx.scene.layout.AnchorPane;
