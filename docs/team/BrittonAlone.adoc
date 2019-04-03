@@ -1,47 +1,43 @@
-= John Doe - Project Portfolio
+= Jin Shibo - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: AddressBook - Level 4
+== PROJECT: Tasketch
 
 ---
 
 == Overview
 
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+My teammates and I developed Tasketch for those who need to manage their time by allocating time for each daily task. More importantly, our Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI)
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: I have added *the reminder feature* to our Tasketch.
+** What it does: Sometimes student tend to forget important deadline of their tasks or start time of their CCA events and etc. The reminder will show a list of tasks in time order for them to conveniently view what tasks are coming soon so that they will know what to prepare first.
+** Justification: For busy university students, it is almost impossible for them to remember every start time or deadlines of their activities. A reminder is a common requirement of them to easily view these time in order. This feature significantly improves the users' using experience by meeting this requirement.
+** Highlights: This feature implement a very useful method sort() in model API which can be used to implement other features.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Minor enhancement*: I made an enhancement to the list command of the previous version. In the previous version, list command can only list all the tasks in the storage. After enhancement, it support the usage like *list td* to list all the tasks of today so that user will know what need to be done today easily. It also support *list [DATE]*, which show a list of tasks on the specified date.
+
+
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=BrittonAlone&tabRepo=CS2113-AY1819S2-T09-2_main_master[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=BrittonAlone&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** Managed releases `v1.3` on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Updated the GUI for reminder.
+*** Wrote additional tests for existing features.
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Did improvement to UserGuide according to new features.
+*** Did improvement to DeveloperGuide according to new features
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** PRs reviewed.
+*** The filterlist() function of the new list commands I added was adopted by my teammates.
 
-_{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
 
@@ -50,9 +46,56 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[tag=undoredo]
+=== Listing all tasks : `list`/`l`
 
-//include::../UserGuide.adoc[tag=dataencryption]
+Shows a list of tasks in Tasketch.
+
+Format:
+
+* `list` +
+Lists all the tasks of today +
+
+* `list DATE` +
+Lists all the tasks of that specific date +
+
+Examples:
+
+* `list 02-2019` +
+Lists all the tasks in February, 2019
+* `list 20-02-2019` +
+Lists all the tasks in February 20th, 2019
+* `list` +
+Lists all the tasks in the storage
+
+=== Reminding the users of the nearest task : `remind`
+
+Shows to the user the nearest tasks of certain category. +
+
+Format:
+
+* `remind start` +
+Reminds the users of most recently begin tasks of all categories. +
+
+* `remind ddl` +
+Remind the users of most recent deadline of all categories. +
+
+* `remind a/e/c/r/o ddl/start` +
+Remind the users of most recent start tasks or deadline of specified category.
+
+****
+* "a" - Academic +
+* "e" - Entertainment +
+* "c" - Co-Curricular Activity (CCA) +
+* "r" - Errand +
+* "o" - Other
+****
+
+Examples:
+
+* `remind e start` +
+Shows a list of nearest start tasks of "entertainment" category.
+
+
 
 == Contributions to the Developer Guide
 

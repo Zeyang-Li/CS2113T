@@ -35,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private DayListPanel dayListPanel;
     private DefaultPage defaultPage;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
@@ -149,10 +148,6 @@ public class MainWindow extends UiPart<Stage> {
                 logic::setSelectedTask);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        //dayListPanel = new DayListPanel(logic.getFilteredDayList(), logic.selectedDayProperty(),
-        //logic::setSelectedDay);
-        //dayListPanelPlaceholder.getChildren().add(dayListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -236,6 +231,7 @@ public class MainWindow extends UiPart<Stage> {
             defaultPage.setMonth(commandResult.getFeedbackToUser());
             defaultPage.setTimeline(commandResult.getFeedbackToUser());
             defaultPage.setReminder(logic);
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

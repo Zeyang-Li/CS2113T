@@ -15,7 +15,7 @@ endif::[]
 * Tasketch is a CLI (Command Line Interface) application with GUI output so that you can have best of the both worlds.
 * Tasketch is a Java application that you can run on any machine with Java Runtime Environment installed.
 * What makes Tasketch special:
-** Daily Time Planner monitors your time spent on different task categories for a day.
+** Daily Time Planner monitors your time planned for different task categories of a day.
 ** Reminder reminds you of the important tasks.
 ** Command Suggestion suggests you the possible commands that you can enter.
 ** Auto Complete Command helps you to enter commands faster and easier.

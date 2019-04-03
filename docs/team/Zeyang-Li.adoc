@@ -1,4 +1,4 @@
-= Zeyang-Li - Project Portfolio
+= Zeyang Li - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -9,39 +9,48 @@
 
 == Overview
 
-Tasketch is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to clear all tasks or clear tasks which start from one specific date or month, undo and redo the previous command*
-** What it does: What it does: allows the user to exit the programme and to clear some tasks that are no longer needed on the daily basis or the monthly basis or even clear all tasks in the storage. Besides, it also allow users to undo and redo the previous command.
-** Justification: This feature improves the product significantly because a user can make clear a branch of tasks in the app and recover form the previous command in case users have mad a mistake.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: +
+   1. Added the ability to clear tasks which start from one specific date or month and also clear all tasks that are finished before today. +
+   2. Added the ability to give users suggestion when they type the command words wrongly. +
+   3. Still working on the import and export feature.
+** What it does: +
+    a. It allows the user to clear some tasks that are no longer needed on the daily basis or the monthly basis or even clear all finished tasks in the storage. +
+    b. It is more user friendly because the system will be smart to guess what is the most similar command with the wrongly typed command word. +
+    c. It will also allow the users to import or export the tasks in Json file.
+** Justification: +
+    This feature improves the product significantly because a user can make clear a branch of tasks in the app. And when users have forgot or typed wrongly a command word, it will give suggestions to them. Also, it allows the app to be able to linked with the outside files.
+** Highlights: +
+    This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+** Credits: +
+ _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* *Minor enhancement*: the ability to open help window and to exit the program.
+* *Minor enhancement*: +
+ Changed a bit of the ability to open help window, to exit the program and to undo and redo the previous command.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://github.com/CS2113-AY1819S2-T09-2/main/tree/master/src/main/java/seedu/address/export[Export code]] [https://github.com/CS2113-AY1819S2-T09-2/main/tree/master/src/main/java/seedu/address/commons/events[Events code]][https://github.com/CS2113-AY1819S2-T09-2/main/tree/master/src/main/java/seedu/address/logic/suggestions[Suggestion code]][https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/src/main/java/seedu/address/logic/parser/ClearCommandParser.java[Clear Command Parser]][https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/src/main/java/seedu/address/logic/commands/ClearCommand.java[Clear Command]][https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=Zeyang-Li&tabRepo=CS2113-AY1819S2-T09-2_main_master[RepoSence Report]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.1` - `v1.2` (3 releases) on GitHub
+*** Managed releases `v1.1` - `v1.3` (2 releases) on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Updated the clear command (Pull requests https://github.com[#33], https://github.com[#34])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Did cosmetic tweaks to existing contents of the User Guide, developer guide, Readme: https://github.com[#14]
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com[#28], https://github.com[#31], https://github.com[#32], https://github.com[#35], https://github.com[#52], https://github.com[#58], https://github.com[#65]
 *** Contributed to forum discussions (examples:  https://github.com[])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+*** Some parts of the input suggestion feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
 ** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** bring in a third party library (opencsv) to the project (https://github.com[#42])
 
-_{you can add/remove categories in the list above}_
+
 
 == Contributions to the User Guide
 
@@ -50,19 +59,148 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
+==== Clearing all tasks : `clear`/`c`
+
+If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
+
+Format:
+
+* `clear` +
+Clears all the tasks in Tasketch
+
+* `clear DATE` +
+Clears all the tasks starting from the specified date
+
+Examples:
+
+* `clear 21-02-2019` +
+Clears all the tasks which start from February 21st, 2019.
+* `clear 02-2019` +
+Clears all the tasks which start from February, 2019.
+* `clear before` +
+Clears all the tasks which finished before today.
+* `clear` +
+Clears all the tasks in the storage.
+
+Result: +
+The tasks of your date choice should be cleared from the task list on the left of the app. +
+The correspond time duration for those tasks will be deducted from the Daily Time Planner.
+
+
+=== Import/Export
+This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
+the product to export what you have in the Tasketch to a json file if you want.
+
+
+==== Export tasks displayed: `export`
+You can save all tasks or filtered tasks into a json file. It can be used with `list` or `find`. +
+Format: `export FILENAME.json`
+
+Examples:
+
+* `find Revise` +
+  `export revise.json` +
+   Exports all tasks which are named with keyword "Revise".
+* `list 13-03-19` +
+  `export 13-03-19.json` +
+   Exports all tasks which starts on March 13, 2019.
+*  `export` +
+   Exports all tasks which are shown on the left list.
+
+[NOTE]
+====
+1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
+2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+====
+
+==== Import tasks: `import`
+If you have a classmate who have the same module with you, and you forget to add any related
+task into Tasketch. There are a brunch of tasks in this module. In this case, you do not
+need to add them one by one. Instead, you can simply ask your friend to export all tasks about this module and send the
+file to you. What you have to do is just simply import it.
+
+Format: `import FILENAME.json`
+
+Examples:
+
+* `import revise.json` +
+   Imports all tasks in revise.json into Tasketch.
+
+[NOTE]
+====
+1.  The file to import must be placed in `<DIRECTORY OF YOUR JAR FILE>/data/`
+2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
+====
+
+=== Versioned Tasketch
+This feature will help you to check all the commands you have typed into Tasketch. Besides, it gives you a chance to
+regret your previous attempts when playing with Tasketch.
+
+==== Listing entered commands : `history`/`h`
+
+Lists all the commands that you have entered in reverse chronological order. +
+
+Format: `history`
+
+==== Undoing previous command : `undo`/`u`
+
+Restores the Tasetch to the state before the previous undoable command was executed. +
+
+Format: `undo`
+
+Examples:
+
+* `delete 1` +
+  `list` +
+  `undo` (reverses the `delete 1` command)
+* `delete 1` +
+  `clear` +
+  `undo`  (reverses the `delete 1` command) +
+  `undo` (reverses the `clear` command)
+
+
+==== Redoing the previously undone command : `redo`/`r`
+
+Reverses the most recent `undo` command. +
+
+Format: `redo`
+
+Examples:
+
+* `delete 1` +
+  `undo` (reverses the `delete 1` command) +
+  `redo` (reapplies the `delete 1` command)
+* `delete 1` +
+  `redo` +
+   The `redo` command fails as there are no undo commands executed previously.
+* `delete 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete 1` command) +
+`redo` (reapplies the `delete 1` command) +
+`redo` (reapplies the `clear` command)
+
+
+=== Viewing help : `help`
+
+In case you are clueless, you can always use this command get help on all the commands available and their functions.
+
+Format: `help`
+
+=== Exiting the program : `exit`
+
+If you are done using the app, you just use this command to exit and close the app.
+
+Format: `exit`
+
+
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-//include::../DeveloperGuide.adoc[tag=undoredo]
-
-//include::../DeveloperGuide.adoc[tag=dataencryption]
 
 
-== PROJECT: PowerPointLabs
+== PROJECT: Tasketch
 
----
-
-_{Optionally, you may include other projects in your portfolio.}_

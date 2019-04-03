@@ -20,12 +20,12 @@ import seedu.address.model.task.Task;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-    public static final String COMMAND_PARAMETERS = "Parameters: FILENAME (must end with .xml)\n";
-    public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " import.xml";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Import the persons in the file specified to the "
-            + "address book.\n" + COMMAND_PARAMETERS + COMMAND_EXAMPLE;
+    public static final String COMMAND_PARAMETERS = "Parameters: FILENAME (must end with .json)\n";
+    public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " import.json";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Import the tasks in the file specified to "
+            + "Tasketch.\n" + COMMAND_PARAMETERS + COMMAND_EXAMPLE;
 
-    public static final String MESSAGE_IMPORT_SUCCESS = "Imported %1$s persons.";
+    public static final String MESSAGE_IMPORT_SUCCESS = "Imported %1$s task(s).";
 
     private static final String MESSAGE_FAILURE = "Import failed! Error: %1$s";
     private static final String MESSAGE_INVALID_LIST_SIZE = "Invalid list size.";
@@ -43,9 +43,9 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        ReadOnlyTaskBook readOnlyAddressBook = model.getTaskBook();
-        ObservableList<Task> personList = readOnlyAddressBook.getTaskList();
-        int initialNumberOfPersons = personList.size();
+        ReadOnlyTaskBook readOnlyTasksBook = model.getTaskBook();
+        ObservableList<Task> taskList = readOnlyTasksBook.getTaskList();
+        int initialNumberOfPersons = taskList.size();
 
         if (!isFileExists(filePath)) {
             throw new CommandException(MESSAGE_FILE_NOT_FOUND);
@@ -59,11 +59,11 @@ public class ImportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_FAILURE, dce));
         }
 
-        int finalNumberOfPersons = personList.size();
-        int personsImported = calculateImportedEntries(initialNumberOfPersons, finalNumberOfPersons);
+        int finalNumberOfTasks = taskList.size();
+        int tasksImported = calculateImportedEntries(initialNumberOfPersons, finalNumberOfTasks);
 
         model.commitTaskBook();
-        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, personsImported));
+        return new CommandResult(String.format(MESSAGE_IMPORT_SUCCESS, tasksImported));
     }
 
     /**
