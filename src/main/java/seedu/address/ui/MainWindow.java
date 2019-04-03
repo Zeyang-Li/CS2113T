@@ -35,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private DayListPanel dayListPanel;
     private DefaultPage defaultPage;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;

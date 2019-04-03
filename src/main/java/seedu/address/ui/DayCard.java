@@ -32,13 +32,23 @@ public class DayCard extends UiPart<Region> {
     @FXML
     private Label academic;
     @FXML
+    private Label aName;
+    @FXML
     private Label cca;
+    @FXML
+    private Label cName;
     @FXML
     private Label entertainment;
     @FXML
+    private Label entName;
+    @FXML
     private Label errand;
     @FXML
+    private Label errName;
+    @FXML
     private Label other;
+    @FXML
+    private Label oName;
 
     public DayCard(Day day, int displayedIndex) {
         super(FXML);
@@ -50,6 +60,11 @@ public class DayCard extends UiPart<Region> {
         entertainment.setText(day.getEntertainment().getTime());
         errand.setText(day.getErrand().getTime());
         other.setText(day.getOther().getTime());
+        aName.setText("Academic: ");
+        cName.setText("Cca: ");
+        entName.setText("Entertainment: ");
+        errName.setText("Errand: ");
+        oName.setText("Other: ");
     }
 
     @Override
