@@ -25,7 +25,7 @@ is important.
 * *Minor enhancement*: added restriction and checks on the `add` command to ensure no invalid data being entered into the
 Tasketch, as well as ensuring the Daily Time Planner works correctly after the command being parsed.
 
-* *Code contributed*: [https://github.com/CS2113-AY1819S2-T09-2/main/commit/c32d4c5b5a218ba50dfeb315b3757dc19ad99a94[Daily Time Planner code]][https://github.com/CS2113-AY1819S2-T09-2/main/commit/fd905013aa33b2effad033e0d4609a3007bcf431[Date and Time Check code]][https://github.com/CS2113-AY1819S2-T09-2/main/pull/36[Morphing to Tasketch code]]
+* *Code contributed*: [https://github.com/CS2113-AY1819S2-T09-2/main/commit/c32d4c5b5a218ba50dfeb315b3757dc19ad99a94[Daily Time Planner code]][https://github.com/CS2113-AY1819S2-T09-2/main/commit/fd905013aa33b2effad033e0d4609a3007bcf431[Date and Time Check code]][https://github.com/CS2113-AY1819S2-T09-2/main/pull/36[Morphing to Tasketch code]][https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=cheah%20zhi%20kang&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=Zeyang-Li&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[RepoSense]]
 
 
 * *Other contributions*:
