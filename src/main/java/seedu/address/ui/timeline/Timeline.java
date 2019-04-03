@@ -87,7 +87,7 @@ public class Timeline {
         time.setPrefWidth(850);
         //time.setGridLinesVisible(true);
         int[] timeInterval = markTimeInterval(pre);
-        
+
         for (int i = 0; i < timeInterval.length; i++) {
             System.out.print(timeInterval[i]);
             switch (timeInterval[i]) {

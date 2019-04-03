@@ -1,5 +1,7 @@
 package seedu.address.ui.timeline;
 
+import java.awt.*;
+
 import javafx.collections.ObservableList;
 
 import javafx.scene.layout.AnchorPane;
@@ -7,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import seedu.address.model.task.Task;
@@ -59,7 +62,7 @@ public class TimePane extends AnchorPane {
         heading.setY(75.0f);
         heading.setWidth(920.0f);
         heading.setHeight(10.0f);
-        
+
         Rectangle heading2 = new Rectangle();
         heading2.setFill(Color.WHITE);
         /*
