@@ -2,6 +2,7 @@ package seedu.address.ui.timeline;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -29,7 +30,7 @@ public class Timeline {
         //==========Set up Titles==========
         prepTitle(c);
         //==========Set up Timelines==========
-        prepTimeline();
+        prepTimeline(pre);
     }
 
     /**
@@ -62,7 +63,7 @@ public class Timeline {
         for (Text n : taskNames) {
             AnchorPane aGrid = new AnchorPane();
             aGrid.setPrefSize(100, 5);
-            n.setStyle("-fx-text-inner-color: white;\"");
+            n.setStyle("-fx-text-inner-color: white;");
             aGrid.getChildren().add(n);
             taskNameLine.add(aGrid, col, 0);
             col++;
@@ -73,8 +74,83 @@ public class Timeline {
     /**
      * This method will prepare the real timeline.
      */
-    private void prepTimeline() {
+    private void prepTimeline(PreTask[] pre) {
+        GridPane time = new GridPane();
+        time.setPrefWidth(850);
+        //time.setGridLinesVisible(true);
+        int[] timeInterval = markTimeInterval(pre);
+        
+        for (int i = 0; i < timeInterval.length; i++) {
+            System.out.print(timeInterval[i]);
+            switch (timeInterval[i]) {
+                case 1:
+                    Rectangle rect1 = new Rectangle();
+                    rect1.setFill(Color.WHITE);
+                    rect1.setHeight(10);
+                    rect1.setWidth(50);
+                    time.add(rect1, i, 0);
+                    break;
+                case 2:
+                    Region rect2 = new Region();
+                    rect2.setPrefSize(50, 10);
+                    rect2.setStyle("-fx-background-color: white; -fx-background-radius: 10 0 0 10");
+                    time.add(rect2, i, 0);
+                    break;
+                case 3:
+                    Region rect3 = new Region();
+                    rect3.setPrefSize(50, 10);
+                    rect3.setStyle("-fx-background-color: white; -fx-background-radius: 0 10 10 0");
+                    time.add(rect3, i, 0);
+                    break;
+                case 5:
+                    Rectangle rect4 = new Rectangle();
+                    rect4.setFill(Color.WHITE);
+                    rect4.setHeight(10);
+                    rect4.setWidth(50);
+                    rect4.setArcWidth(10.0);
+                    rect4.setArcHeight(10.0);
+                    time.add(rect4, i, 0);
+                    break;
+                default:
+                    AnchorPane aGrid = new AnchorPane();
+                    aGrid.setPrefSize(50, 5);
+                    aGrid.getChildren().add(new Text(" "));
+                    time.add(aGrid, i, 0);
+                    break;
+            }
+        }
+        System.out.println("");
+        oneTimeline.getChildren().add(time);
+    }
 
+    /**
+     * Marks time intervals to fill in.
+     * @return
+     */
+    private int[] markTimeInterval(PreTask[] pre) {
+        int timeInterval[] = new int[24];
+        int start = 0;
+        int end = 0;
+        for (PreTask t : pre) {
+            try {
+                t.getStart();
+            } catch (NullPointerException np) {
+                //System.out.println("null");
+                return timeInterval;
+            }
+            start = (Math.round(t.getStart()) + 20)%24;
+            end = (Math.round(t.getEnd()) + 20) % 24;
+            if(start == end) {
+                timeInterval[start] = 5;
+                continue;
+            }
+            for (int i = 0; i < end - start; i++) {
+                timeInterval[i + start + 1] = 1;
+            }
+            timeInterval[(start + 1) % 24] = 2;
+            timeInterval[(end + 1) % 24] = 3;
+        }
+        return timeInterval;
     }
 
     /**
@@ -97,7 +173,7 @@ public class Timeline {
         for (int i = 0; i < total; i++) {
             int time = (Math.round(tasks[i].getStart()) + 20) % 24;
             if (time > 21) {
-                System.out.println(time);
+                //System.out.println(time);
                 continue;
             }
             taskNames[(Math.round(tasks[i].getStart()) + 20) % 24] = new Text(tasks[i].getTitle());
@@ -128,15 +204,15 @@ public class Timeline {
     private String getCate(String s) {
         switch (s) {
         case "a":
-            return "Academic";
+            return "Academic ";
         case "c":
-            return "CCA";
+            return "CCA      ";
         case "e":
             return "Entertain";
         case "r":
-            return "Errands";
+            return "Errands  ";
         default:
-            return "Other";
+            return "Other    ";
         }
     }
 

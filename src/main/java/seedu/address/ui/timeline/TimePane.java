@@ -29,7 +29,7 @@ public class TimePane extends AnchorPane {
      * @param d
      */
     public void showTimeline(ObservableList<Task> taskList, String d) {
-        vbox.setSpacing(12);
+        vbox.setSpacing(10);
         //=========Set up time points==========
         Text[] timePoints = { new Text(" "), new Text("6:00"),
                               new Text("8:00"), new Text("10:00"),
