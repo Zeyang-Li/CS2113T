@@ -67,7 +67,7 @@ public class Timeline {
             AnchorPane aGrid = new AnchorPane();
             aGrid.setPrefSize(100, 5);
             //n.setBoundsType(TextBoundsType.VISUAL);
-            n.setStyle("-fx-padding: 0 0 0 0;" 
+            n.setStyle("-fx-padding: 0 0 0 0;"
                        + "-fx-font-size: 14px;");
             n.setFill(Color.WHITE);
             n.setTextAlignment(TextAlignment.RIGHT);
