@@ -7,6 +7,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextBoundsType;
 
 /**
  * Individual Timeline.
@@ -14,6 +16,7 @@ import javafx.scene.text.Text;
 public class Timeline {
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;
+    private String cate;
     private Text[] taskNames = {new Text("Cate"), new Text(" "), new Text(" "), new Text(" "),
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" "),
                                 new Text(" "), new Text(" "), new Text(" "), new Text(" "),
@@ -23,6 +26,7 @@ public class Timeline {
 
     public Timeline(PreTask[] pre, String c) {
         this.tasks = pre;
+        this.cate = c;
         sort();
         oneTimeline.setSpacing(13);
         //==========Set up a seperate line==========
@@ -63,7 +67,11 @@ public class Timeline {
         for (Text n : taskNames) {
             AnchorPane aGrid = new AnchorPane();
             aGrid.setPrefSize(100, 5);
-            n.setStyle("-fx-text-inner-color: white;");
+            //n.setBoundsType(TextBoundsType.VISUAL);
+            n.setStyle("-fx-padding: 0 0 0 0;   \n" +
+                       "-fx-font-size: 14px;");
+            n.setFill(Color.WHITE);
+            n.setTextAlignment(TextAlignment.RIGHT);
             aGrid.getChildren().add(n);
             taskNameLine.add(aGrid, col, 0);
             col++;
@@ -84,36 +92,28 @@ public class Timeline {
             System.out.print(timeInterval[i]);
             switch (timeInterval[i]) {
                 case 1:
-                    Rectangle rect1 = new Rectangle();
-                    rect1.setFill(Color.WHITE);
-                    rect1.setHeight(10);
-                    rect1.setWidth(50);
-                    time.add(rect1, i, 0);
+                    Region rect1 = new Region();
+                    rect1.setPrefSize(40, 10);
+                    time.add(setColor(rect1, timeInterval[i]), i, 0);
                     break;
                 case 2:
                     Region rect2 = new Region();
-                    rect2.setPrefSize(50, 10);
-                    rect2.setStyle("-fx-background-color: white; -fx-background-radius: 10 0 0 10");
-                    time.add(rect2, i, 0);
+                    rect2.setPrefSize(40, 10);
+                    time.add(setColor(rect2, timeInterval[i]), i, 0);
                     break;
                 case 3:
                     Region rect3 = new Region();
-                    rect3.setPrefSize(50, 10);
-                    rect3.setStyle("-fx-background-color: white; -fx-background-radius: 0 10 10 0");
-                    time.add(rect3, i, 0);
+                    rect3.setPrefSize(40, 10);
+                    time.add(setColor(rect3, timeInterval[i]), i, 0);
                     break;
-                case 5:
-                    Rectangle rect4 = new Rectangle();
-                    rect4.setFill(Color.WHITE);
-                    rect4.setHeight(10);
-                    rect4.setWidth(50);
-                    rect4.setArcWidth(10.0);
-                    rect4.setArcHeight(10.0);
-                    time.add(rect4, i, 0);
+                case 4:
+                    Region rect4 = new Region();
+                    rect4.setPrefSize(40, 10);
+                    time.add(setColor(rect4, timeInterval[i]), i, 0);
                     break;
                 default:
                     AnchorPane aGrid = new AnchorPane();
-                    aGrid.setPrefSize(50, 5);
+                    aGrid.setPrefSize(40, 5);
                     aGrid.getChildren().add(new Text(" "));
                     time.add(aGrid, i, 0);
                     break;
@@ -141,7 +141,7 @@ public class Timeline {
             start = (Math.round(t.getStart()) + 20)%24;
             end = (Math.round(t.getEnd()) + 20) % 24;
             if(start == end) {
-                timeInterval[start] = 5;
+                timeInterval[start] = 4;
                 continue;
             }
             for (int i = 0; i < end - start; i++) {
@@ -216,6 +216,123 @@ public class Timeline {
         }
     }
 
+    /**
+     * Set the color of each timeline to be different.
+     * @param r
+     * @return
+     */
+    private Region setColor(Region r, int i) {
+        switch (cate) {
+            case "a":
+                switch (i) {
+                    case 1:
+                        r.setStyle("-fx-background-color: #39b9fd; -fx-background-radius: 0 0 0 0");
+                        return r;
+                    case 2:
+                        r.setStyle("-fx-background-color: #39b9fd; -fx-background-radius: 10 0 0 10");
+                        return r;
+                    case 3:
+                        r.setStyle("-fx-background-color: #39b9fd; -fx-background-radius: 0 10 10 0");
+                        return r;
+                    case 4:
+                        r.setStyle("-fx-background-color: #39b9fd; -fx-background-radius: 10 10 10 10");
+                        return r;
+                    default:
+                        r.setStyle("-fx-background-color: #39b9fd; -fx-background-radius: 0 0 0 0");
+                        return r;
+                }
+            case "c":
+                switch (i) {
+                    case 1:
+                        r.setStyle("-fx-background-color: #3bd979; -fx-background-radius: 0 0 0 0");
+                        return r;
+                    case 2:
+                        r.setStyle("-fx-background-color: #3bd979; -fx-background-radius: 10 0 0 10");
+                        return r;
+                    case 3:
+                        r.setStyle("-fx-background-color: #3bd979; -fx-background-radius: 0 10 10 0");
+                        return r;
+                    case 4:
+                        r.setStyle("-fx-background-color: #3bd979; -fx-background-radius: 10 10 10 10");
+                        return r;
+                    default:
+                        r.setStyle("-fx-background-color: #3bd979; -fx-background-radius: 0 0 0 0");
+                        return r;
+                }
+            case "e":
+                switch (i) {
+                    case 1:
+                        r.setStyle("-fx-background-color: #fc4429; -fx-background-radius: 0 0 0 0");
+                        return r;
+                    case 2:
+                        r.setStyle("-fx-background-color: #fc4429; -fx-background-radius: 10 0 0 10");
+                        return r;
+                    case 3:
+                        r.setStyle("-fx-background-color: #fc4429; -fx-background-radius: 0 10 10 0");
+                        return r;
+                    case 4:
+                        r.setStyle("-fx-background-color: #fc4429; -fx-background-radius: 10 10 10 10");
+                        return r;
+                    default:
+                        r.setStyle("-fx-background-color: #fc4429; -fx-background-radius: 0 0 0 0");
+                        return r;
+                }
+            case "r":
+                switch (i) {
+                    case 1:
+                        r.setStyle("-fx-background-color: #ffa741; -fx-background-radius: 0 0 0 0");
+                        return r;
+                    case 2:
+                        r.setStyle("-fx-background-color: #ffa741; -fx-background-radius: 10 0 0 10");
+                        return r;
+                    case 3:
+                        r.setStyle("-fx-background-color: #ffa741; -fx-background-radius: 0 10 10 0");
+                        return r;
+                    case 4:
+                        r.setStyle("-fx-background-color: #ffa741; -fx-background-radius: 10 10 10 10");
+                        return r;
+                    default:
+                        r.setStyle("-fx-background-color: #ffa741; -fx-background-radius: 0 0 0 0");
+                        return r;
+                }
+            case "o":
+                switch (i) {
+                    case 1:
+                        r.setStyle("-fx-background-color: #ded38c; -fx-background-radius: 0 0 0 0");
+                        return r;
+                    case 2:
+                        r.setStyle("-fx-background-color: #ded38c; -fx-background-radius: 10 0 0 10");
+                        return r;
+                    case 3:
+                        r.setStyle("-fx-background-color: #ded38c; -fx-background-radius: 0 10 10 0");
+                        return r;
+                    case 4:
+                        r.setStyle("-fx-background-color: #ded38c; -fx-background-radius: 10 10 10 10");
+                        return r;
+                    default:
+                        r.setStyle("-fx-background-color: #ded38c; -fx-background-radius: 0 0 0 0");
+                        return r;
+                }
+            default:
+                switch (i) {
+                    case 1:
+                        r.setStyle("-fx-background-color: white; -fx-background-radius: 0 0 0 0");
+                        return r;
+                    case 2:
+                        r.setStyle("-fx-background-color: white; -fx-background-radius: 10 0 0 10");
+                        return r;
+                    case 3:
+                        r.setStyle("-fx-background-color: white; -fx-background-radius: 0 10 10 0");
+                        return r;
+                    case 4:
+                        r.setStyle("-fx-background-color: white; -fx-background-radius: 10 10 10 10");
+                        return r;
+                    default:
+                        r.setStyle("-fx-background-color: white; -fx-background-radius: 0 0 0 0");
+                        return r;
+                }
+        }
+    }
     public VBox getOneTimeline() {
         return oneTimeline;
     }
