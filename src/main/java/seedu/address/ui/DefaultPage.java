@@ -56,7 +56,7 @@ public class DefaultPage extends UiPart<Region> {
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
-        reminderAnchorPane.getChildren().add(new ReminderPane(logic).getView());
+        reminderAnchorPane.getChildren().add(new ReminderPane(logic, logic.getFilteredTaskList()).getView());
     }
 
     /**
@@ -119,7 +119,7 @@ public class DefaultPage extends UiPart<Region> {
     }
 
     public void setReminder(Logic logic) {
-        ReminderPane r = new ReminderPane(logic);
+        ReminderPane r = new ReminderPane(logic, logic.getFilteredTaskList());
         reminderAnchorPane.getChildren().clear();
         reminderAnchorPane.getChildren().add(r.getView());
     }
