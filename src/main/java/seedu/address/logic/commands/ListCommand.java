@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -50,6 +51,7 @@ public class ListCommand extends Command {
 
             Predicate<Task> predicate = task -> meetRequirementTd(task);
             model.updateFilteredTaskList(predicate);
+            //ObservableList<Task> test = model.getFilteredTaskList();
             return new CommandResult(MESSAGE_SUCCESS2);
         } else {
 
