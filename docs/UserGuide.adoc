@@ -88,7 +88,7 @@ When you are adding a task, the app will ensure that there will be no duplicate 
 there is no confusion in the task names.
 
 Adding a task with the same start date and end date means that it is a daily task, will be monitored by the Daily Time
-Planner. Different dates means it is a long period task, thus will not be considered as daily task.
+Planner. Different dates means it is a long period task, thus will not be considered as daily task but can still be added.
 
 The app will not able to verify the correctness for the number of days in different months, so you have to ensure that
 the date exists in that particular month. However, the app will able to differentiate the maximum number of days and months.
