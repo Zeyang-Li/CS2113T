@@ -94,7 +94,7 @@ public class DefaultPage extends UiPart<Region> {
             return;
         }
         this.day = feedback.split(" ")[3];
-        if (feedback.split(" ")[3] == " ") {
+        if (!feedback.split(" ")[3].contains("-")) {
             this.day = feedback.split(" ")[2];
         }
         //System.out.println(day);

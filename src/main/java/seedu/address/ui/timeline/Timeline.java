@@ -88,7 +88,7 @@ public class Timeline {
         int[] timeInterval = markTimeInterval(pre);
 
         for (int i = 0; i < timeInterval.length; i++) {
-            System.out.print(timeInterval[i]);
+            //System.out.print(timeInterval[i]);
             switch (timeInterval[i]) {
             case 1:
                 Region rect1 = new Region();
@@ -118,7 +118,7 @@ public class Timeline {
                 break;
             }
         }
-        System.out.println("");
+        //System.out.println("");
         oneTimeline.getChildren().add(time);
     }
 
