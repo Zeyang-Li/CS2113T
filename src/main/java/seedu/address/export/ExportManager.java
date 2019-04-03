@@ -36,7 +36,6 @@ public class ExportManager implements Export {
     }
 
 
-    // TODO: add header in the interface header, refer to XmlAddressBookStorage
     /**
      * Saves the {@code filteredTasks} to the {@code exportPath}.
      * @throws IOException if there was any problem writing to the file.

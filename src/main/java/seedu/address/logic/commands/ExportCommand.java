@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Exports the listed persons in the address book to a xml file.
+ * Exports the listed tasks in the taskbook to a xml file.
  */
 public class ExportCommand extends Command {
 

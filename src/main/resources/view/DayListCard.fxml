@@ -27,11 +27,26 @@
         </Label>
         <Label fx:id="date" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <Label fx:id="academic" styleClass="cell_small_label" text="\$academic" />
-      <Label fx:id="cca" styleClass="cell_small_label" text="\$cca" />
-      <Label fx:id="entertainment" styleClass="cell_small_label" text="\$entertainment" />
-      <Label fx:id="errand" styleClass="cell_small_label" text="\$errand" />
-      <Label fx:id="other" styleClass="cell_small_label" text="\$other" />
+      <Label fx:id="academic" styleClass="cell_small_label" text="\$academic">
+            <graphic>
+               <Label fx:id="aName" text="\$acaName" />
+            </graphic></Label>
+      <Label fx:id="cca" styleClass="cell_small_label" text="\$cca">
+            <graphic>
+               <Label fx:id="cName" text="\$ccaName" />
+            </graphic></Label>
+      <Label fx:id="entertainment" styleClass="cell_small_label" text="\$entertainment">
+            <graphic>
+               <Label fx:id="entName" text="\$entName" />
+            </graphic></Label>
+      <Label fx:id="errand" styleClass="cell_small_label" text="\$errand">
+            <graphic>
+               <Label fx:id="errName" text="\$errName" />
+            </graphic></Label>
+      <Label fx:id="other" styleClass="cell_small_label" text="\$other">
+            <graphic>
+               <Label fx:id="oName" text="\$otherName" />
+            </graphic></Label>
     </VBox>
       <rowConstraints>
          <RowConstraints />
