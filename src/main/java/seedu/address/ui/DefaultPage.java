@@ -12,6 +12,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
+import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.model.task.Task;
 import seedu.address.ui.calendar.Calendar;
@@ -26,6 +27,7 @@ public class DefaultPage extends UiPart<Region> {
     private static final String FXML = "DefaultPage.fxml";
     private String day;
     private ObservableList<Task> all;
+    private DayListPanel dayListPanel;
 
     @FXML
     private SplitPane overallPane;
@@ -35,6 +37,9 @@ public class DefaultPage extends UiPart<Region> {
 
     @FXML
     private AnchorPane reminderAnchorPane;
+
+    @FXML
+    private StackPane dayListPane;
 
     @FXML
     private AnchorPane timelineAnchorPane;
@@ -52,11 +57,14 @@ public class DefaultPage extends UiPart<Region> {
 
         this.day = getDay();
         this.logic = logic;
+        this.dayListPanel = new DayListPanel(logic.getFilteredDayList(), logic.selectedDayProperty(),
+                logic::setSelectedDay);
 
         //Show the calendar
         calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
         reminderAnchorPane.getChildren().add(new ReminderPane(logic).getView());
+        dayListPane.getChildren().add(dayListPanel.getRoot());
     }
 
     /**
@@ -67,6 +75,7 @@ public class DefaultPage extends UiPart<Region> {
         timelineAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.4));
         calendarAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         reminderAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
+        dayListPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
     }
 
     /**
