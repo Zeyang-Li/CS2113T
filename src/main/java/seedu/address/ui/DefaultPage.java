@@ -71,8 +71,8 @@ public class DefaultPage extends UiPart<Region> {
      * Set each window to proper fixed size.
      */
     private void init() {
-        upperPartAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.55));
-        timelineAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.45));
+        upperPartAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.5));
+        timelineAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.5));
         calendarAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         reminderAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         dayListPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));

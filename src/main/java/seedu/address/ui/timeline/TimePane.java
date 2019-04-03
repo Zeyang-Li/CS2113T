@@ -60,22 +60,21 @@ public class TimePane extends AnchorPane {
         heading.setWidth(920.0f);
         heading.setHeight(10.0f);
 
-        Rectangle heading2 = new Rectangle();
-        heading2.setFill(Color.WHITE);
-        /*
+        Rectangle bottom = new Rectangle();
+        bottom.setFill(Color.WHITE);
+        
         //Setting the properties of the rectangle
-        heading2.setX(150.0f);
-        heading2.setY(75.0f);
-        heading2.setWidth(920.0f);
-        heading2.setHeight(5.0f);
-        */
+        bottom.setX(150.0f);
+        bottom.setY(75.0f);
+        bottom.setWidth(920.0f);
+        bottom.setHeight(3.0f);
+
         //Setting the height and width of the arc
         //heading.setArcWidth(10.0);
         //heading.setArcHeight(10.0);
         //Add to the view
         vbox.getChildren().add(heading);
         vbox.getChildren().add(timelineLabel);
-        //vbox.getChildren().add(heading2);
 
         //==========Set up each timeline for 4 categories==========
         String[] cate = {"a", "c", "e", "r", "o"};
@@ -85,6 +84,7 @@ public class TimePane extends AnchorPane {
             Timeline t = new Timeline(filteredCate, cate[i]);
             vbox.getChildren().add(t.getOneTimeline());
         }
+        vbox.getChildren().add(bottom);
     }
 
     /**
