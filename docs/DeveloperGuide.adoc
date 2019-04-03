@@ -223,7 +223,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
-=== Undo/Redo feature
+=== Versioned Tasketch feature
 ==== Current Implementation
 
 The undo/redo mechanism is facilitated by `VersionedTaskBook`.
@@ -318,21 +318,21 @@ The suggestion mechanism is facilitated by 'Suggestion'.
 // end::reminder[]
 
 // tag::month/timeline[]
-=== month/timeline feature
+=== Month/Timeline feature
 ==== Current Implementation
 
 
 // end::month/timeline[]
 
 // tag::timeplanner[]
-=== timeplanner feature
+=== Timeplanner feature
 ==== Current Implementation
 
 
 // end::timeplanned[]
 
 // tag::import/export[]
-=== import/export feature
+=== Import/Export feature
 ==== Current Implementation
 
 
