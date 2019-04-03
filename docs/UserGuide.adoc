@@ -128,7 +128,7 @@ Adds a task named CS3235 lecture. It starts at 8:00 in March 3rd, 2019 and ends 
 Result: +
 You should see the task added into the task list on the left of the app. +
 The time duration on that task will be calculated in the back and the time should be reflected in the day list on the right
-of the app (UI in development, can be verified in taskbook.json)
+of the app.
 
 === Clearing all tasks : `clear`/`c`
 
@@ -210,7 +210,7 @@ Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00
 
 Result: +
 The information edited for that task will be updated and shown in the task list. +
-The day related to that edited task will be updated and shown in the day list. (UI in development, can be verified in taskbook.json)
+The day related to that edited task will be updated and shown in the day list on the right of the app.
 
 === Searching tasks by keywords: `find`/`f`
 
@@ -241,6 +241,7 @@ Shows a list of tasks in Tasketch.
 
 Format:
 
+
 * `list` +
 Lists all the tasks of today +
 
@@ -256,8 +257,10 @@ Lists all the tasks in February 20th, 2019
 * `list` +
 Lists all the tasks in the storage
 
+Result: +
+You should see the state of Tasketch before the last `undo` command that you have executed.
+
 === Showing time planned for all task categories : `showTime`
-(UI in development)
 
 To help you to plan and make full use of your daily time better, simply use this command to see all the time planned on
 all 5 categories for every day.
