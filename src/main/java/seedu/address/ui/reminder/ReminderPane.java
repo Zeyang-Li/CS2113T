@@ -3,14 +3,12 @@ package seedu.address.ui.reminder;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import seedu.address.logic.Logic;
 import seedu.address.model.task.Task;
 import seedu.address.ui.TaskCard;
-import seedu.address.ui.TaskListPanel;
 
 /**
  * The UI part of remind feature.
@@ -35,7 +33,7 @@ public class ReminderPane extends AnchorPane {
      */
     public void addTask() {
         int i = 1;
-        for(Task task : taskList) {
+        for (Task task : taskList) {
             taskListView.getItems().add(new TaskCard(task, i++));
         }
         taskListView.setCellFactory(listView -> new TaskListViewCell());
@@ -62,6 +60,9 @@ public class ReminderPane extends AnchorPane {
         return this.vbox;
     }
 
+    /**
+     * Travis
+     */
     class TaskListViewCell extends ListCell<TaskCard> {
         @Override
         protected void updateItem(TaskCard taskCard, boolean empty) {
