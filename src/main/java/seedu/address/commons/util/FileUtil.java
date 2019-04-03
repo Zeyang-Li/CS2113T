@@ -12,14 +12,14 @@ import java.nio.file.Paths;
 public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
-    private static final String XML_FILE_EXTENSION = ".xml";
+    private static final String JSON_FILE_EXTENSION = ".json";
 
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
+     * Returns true if {@code path} can be converted into a {@code Path}},
      * otherwise returns false.
      * @param path A string representing the file path. Cannot be null.
      */
@@ -38,15 +38,15 @@ public class FileUtil {
      * @param filename A string representing the file path. Cannot be null.
      */
     public static boolean isValidXmlFilename(String filename) {
-        if (filename.length() <= XML_FILE_EXTENSION.length()) {
+        if (filename.length() <= JSON_FILE_EXTENSION.length()) {
             return false;
         }
 
         // Compares the filename extension with the expected xml file extension
-        int indexOfExtension = filename.length() - XML_FILE_EXTENSION.length();
+        int indexOfExtension = filename.length() - JSON_FILE_EXTENSION.length();
         String fileExtension = filename.substring(indexOfExtension);
         String lowercaseFileExtension = fileExtension.toLowerCase();
-        return lowercaseFileExtension.equals(XML_FILE_EXTENSION);
+        return lowercaseFileExtension.equals(JSON_FILE_EXTENSION);
     }
 
     /**

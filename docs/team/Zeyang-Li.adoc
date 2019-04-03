@@ -59,7 +59,7 @@ for all the tasks in a daily manner. It also helps you to be aware of all the ta
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-===== Clearing all tasks : `clear`/`c`
+==== Clearing all tasks : `clear`/`c`
 
 If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
@@ -85,6 +85,62 @@ Clears all the tasks in the storage.
 Result: +
 The tasks of your date choice should be cleared from the task list on the left of the app. +
 The correspond time duration for those tasks will be deducted from the Daily Time Planner.
+
+
+=== Import/Export
+This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
+the product to export what you have in the Tasketch to a json file if you want.
+
+
+==== Export tasks displayed: `export`
+You can save all tasks or filtered tasks into a json file. It can be used with `list` or `find`. +
+Format: `export FILENAME.json`
+
+Examples:
+
+* `find Revise` +
+  `export revise.json` +
+   Exports all tasks which are named with keyword "Revise".
+* `list 13-03-19` +
+  `export 13-03-19.json` +
+   Exports all tasks which starts on March 13, 2019.
+*  `export` +
+   Exports all tasks which are shown on the left list.
+
+[NOTE]
+====
+1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
+2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+====
+
+==== Import tasks: `import`
+If you have a classmate who have the same module with you, and you forget to add any related
+task into Tasketch. There are a brunch of tasks in this module. In this case, you do not
+need to add them one by one. Instead, you can simply ask your friend to export all tasks about this module and send the
+file to you. What you have to do is just simply import it.
+
+Format: `import FILENAME.json`
+
+Examples:
+
+* `import revise.json` +
+   Imports all tasks in revise.json into Tasketch.
+
+[NOTE]
+====
+1.  The file to import must be placed in `<DIRECTORY OF YOUR JAR FILE>/data/`
+2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
+====
+
+=== Versioned Tasketch
+This feature will help you to check all the commands you have typed into Tasketch. Besides, it gives you a chance to
+regret your previous attempts when playing with Tasketch.
+
+==== Listing entered commands : `history`/`h`
+
+Lists all the commands that you have entered in reverse chronological order. +
+
+Format: `history`
 
 ==== Undoing previous command : `undo`/`u`
 
@@ -124,29 +180,14 @@ Examples:
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command)
 
-==== Getting wrong command suggestions
-There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
-by giving a list of closest approximations of word through the message box after pressing `enter`. +
 
-****
-* The input is not case sensitive, hence it would increase the chance of getting a closer approximation of the correct command!
-* This feature tolerates a maximum of two wrong alphabets.
-* This feature allows user to type in a command which has the same alphabets with one of the correct command word but in different order. The system can give suggestion even if the user type in the reverse command word.
-****
-
-Examples：
-
-* If you want to type `clear` but typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
-* If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
-* If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
-
-==== Viewing help : `help`
+=== Viewing help : `help`
 
 In case you are clueless, you can always use this command get help on all the commands available and their functions.
 
 Format: `help`
 
-==== Exiting the program : `exit`
+=== Exiting the program : `exit`
 
 If you are done using the app, you just use this command to exit and close the app.
 

@@ -130,26 +130,52 @@ You should see the task added into the task list on the left of the app. +
 The time duration on that task will be calculated in the back and the time should be reflected in the day list on the right
 of the app (UI in development, can be verified in taskbook.json)
 
-=== Listing all tasks : `list`/`l`
+=== Clearing all tasks : `clear`/`c`
 
-Shows a list of tasks in Tasketch.
+If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
 Format:
 
-* `list` +
-Lists all the tasks of today +
+* `clear` +
+Clears all the tasks in Tasketch
 
-* `list DATE` +
-Lists all the tasks of that specific date +
+* `clear DATE` +
+Clears all the tasks starting from the specified date
 
 Examples:
 
-* `list 02-2019` +
-Lists all the tasks in February, 2019
-* `list 20-02-2019` +
-Lists all the tasks in February 20th, 2019
+* `clear 21-02-2019` +
+Clears all the tasks which start from February 21st, 2019.
+* `clear 02-2019` +
+Clears all the tasks which start from February, 2019.
+* `clear before` +
+Clears all the tasks which finished before today.
+* `clear` +
+Clears all the tasks in the storage.
+
+Result: +
+The tasks of your date choice should be cleared from the task list on the left of the app. +
+The correspond time duration for those tasks will be deducted from the Daily Time Planner.
+
+=== Deleting a task : `delete`/`d`
+
+Deletes the specified task from Tasketch.
+
+Format: `delete INDEX_NUMBER`
+
+****
+* Each tasks is identified by the index number shown in the task list.
+* Deletes the task with the index number.
+****
+
+Examples:
+
 * `list` +
-Lists all the tasks in the storage
+`delete 1` +
+Deletes the task with index number 1 in task list.
+* `find cs2113t` +
+`delete 1` +
+ Deletes the task with index number 1 in task list.
 
 === Editing a task : `edit`/`e`
 
@@ -207,97 +233,28 @@ Returns `CS2113T lecture`
 * `f Lecture` +
 Returns `CS2113T lecture` and `CS3235 lecture`
 
-=== Deleting a task : `delete`/`d`
-
-Deletes the specified task from Tasketch.
-
-Format: `delete INDEX_NUMBER`
-
-****
-* Each tasks is identified by the index number shown in the task list.
-* Deletes the task with the index number.
-****
-
-Examples:
-
-* `list` +
-`delete 1` +
-Deletes the task with index number 1 in task list.
-* `find cs2113t` +
-`delete 1` +
-Deletes the task with index number 1 in task list.
 
 
-=== Clearing all tasks : `clear`/`c`
+=== Listing all tasks : `list`/`l`
 
-If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
+Shows a list of tasks in Tasketch.
 
 Format:
 
-* `clear` +
-Clears all the tasks in Tasketch
+* `list` +
+Lists all the tasks of today +
 
-* `clear DATE` +
-Clears all the tasks starting from the specified date
-
-Examples:
-
-* `clear 21-02-2019` +
-Clears all the tasks which start from February 21st, 2019.
-* `clear 02-2019` +
-Clears all the tasks which start from February, 2019.
-* `clear before` +
-Clears all the tasks which finished before today.
-* `clear` +
-Clears all the tasks in the storage.
-
-Result: +
-The tasks of your date choice should be cleared from the task list on the left of the app. +
-The correspond time duration for those tasks will be deducted from the Daily Time Planner.
-
-=== Listing entered commands : `history`/`h`
-
-Lists all the commands that you have entered in reverse chronological order. +
-
-Format: `history`
-
-=== Undoing previous command : `undo`/`u`
-
-Restores the Tasetch to the state before the previous undoable command was executed. +
-
-Format: `undo`
+* `list DATE` +
+Lists all the tasks of that specific date +
 
 Examples:
 
-* `delete 1` +
-  `list` +
-  `undo` (reverses the `delete 1` command)
-* `delete 1` +
-  `clear` +
-  `undo`  (reverses the `delete 1` command) +
-  `undo` (reverses the `clear` command)
-
-
-=== Redoing the previously undone command : `redo`/`r`
-
-Reverses the most recent `undo` command. +
-
-Format: `redo`
-
-Examples:
-
-* `delete 1` +
-  `undo` (reverses the `delete 1` command) +
-  `redo` (reapplies the `delete 1` command)
-* `delete 1` +
-  `redo` +
-   The `redo` command fails as there are no undo commands executed previously.
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command)
+* `list 02-2019` +
+Lists all the tasks in February, 2019
+* `list 20-02-2019` +
+Lists all the tasks in February 20th, 2019
+* `list` +
+Lists all the tasks in the storage
 
 === Showing time planned for all task categories : `showTime`
 (UI in development)
@@ -394,9 +351,103 @@ If you type something wrongly, the app will automatically correct type error and
 
 Examples：
 
-* If you want to type `list`, you can type `li` instead, and press `tap` on keyboard. The system will automatically fulfill the command in command line with `list`.
+* If you want to type `list`, you can type `li` instead, and press `TAB` on keyboard. The system will automatically fulfill the command in command line with `list`.
 * If you want to type `histoy`, but you type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
 * If you want to type `add`, but you type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
+
+== Import/Export
+This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
+the product to export what you have in the Tasketch to a json file if you want.
+
+
+=== Export tasks displayed: `export`
+You can save all tasks or filtered tasks into a json file. It can be used with `list` or `find`. +
+Format: `export FILENAME.json`
+
+Examples:
+
+* `find Revise` +
+  `export revise.json` +
+   Exports all tasks which are named with keyword "Revise".
+* `list 13-03-19` +
+  `export 13-03-19.json` +
+   Exports all tasks which starts on March 13, 2019.
+*  `export` +
+   Exports all tasks which are shown on the left list.
+
+[NOTE]
+====
+1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
+2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+====
+
+=== Import tasks: `import`
+If you have a classmate who have the same module with you, and you forget to add any related
+task into Tasketch. There are a brunch of tasks in this module. In this case, you do not
+need to add them one by one. Instead, you can simply ask your friend to export all tasks about this module and send the
+file to you. What you have to do is just simply import it.
+
+Format: `import FILENAME.json`
+
+Examples:
+
+* `import revise.json` +
+   Imports all tasks in revise.json into Tasketch.
+
+[NOTE]
+====
+1.  The file to import must be placed in `<DIRECTORY OF YOUR JAR FILE>/data/`
+2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
+====
+
+== Versioned Tasketch
+This feature will help you to check all the commands you have typed into Tasketch. Besides, it gives you a chance to
+regret your previous attempts when playing with Tasketch.
+
+=== Listing entered commands : `history`/`h`
+
+Lists all the commands that you have entered in reverse chronological order. +
+
+Format: `history`
+
+=== Undoing previous command : `undo`/`u`
+
+Restores the Tasetch to the state before the previous undoable command was executed. +
+
+Format: `undo`
+
+Examples:
+
+* `delete 1` +
+  `list` +
+  `undo` (reverses the `delete 1` command)
+* `delete 1` +
+  `clear` +
+  `undo`  (reverses the `delete 1` command) +
+  `undo` (reverses the `clear` command)
+
+
+=== Redoing the previously undone command : `redo`/`r`
+
+Reverses the most recent `undo` command. +
+
+Format: `redo`
+
+Examples:
+
+* `delete 1` +
+  `undo` (reverses the `delete 1` command) +
+  `redo` (reapplies the `delete 1` command)
+* `delete 1` +
+  `redo` +
+   The `redo` command fails as there are no undo commands executed previously.
+* `delete 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete 1` command) +
+`redo` (reapplies the `delete 1` command) +
+`redo` (reapplies the `clear` command)
+
 
 == Viewing help : `help`
 
