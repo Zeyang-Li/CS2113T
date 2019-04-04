@@ -61,7 +61,7 @@ public class DefaultPage extends UiPart<Region> {
                 logic::setSelectedDay);
 
         //Show the calendar
-        calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now()).getView());
+        calendarAnchorPane.getChildren().add(new Calendar(YearMonth.now(), taskList).getView());
         timelineAnchorPane.getChildren().add(new TimePane(taskList, day).getView());
         reminderAnchorPane.getChildren().add(new ReminderPane(logic, logic.getRemindTaskList()).getView());
         dayListPane.getChildren().add(dayListPanel.getRoot());
@@ -72,8 +72,8 @@ public class DefaultPage extends UiPart<Region> {
      * Set each window to proper fixed size.
      */
     private void init() {
-        upperPartAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.55));
-        timelineAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.45));
+        upperPartAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.5));
+        timelineAnchorPane.maxHeightProperty().bind(overallPane.heightProperty().multiply(0.5));
         calendarAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         reminderAnchorPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
         dayListPane.maxWidthProperty().bind(upperPartAnchorPane.widthProperty().multiply(0.5));
@@ -83,7 +83,7 @@ public class DefaultPage extends UiPart<Region> {
      * Set the desired month.
      */
     public void setMonth(String month) {
-        Calendar c = new Calendar(YearMonth.now());
+        Calendar c = new Calendar(YearMonth.now(), all);
         //System.out.println(month);
         if (month.equals("Viewing next month's calendar!")) {
             c.nextMonth();
@@ -134,4 +134,3 @@ public class DefaultPage extends UiPart<Region> {
         reminderAnchorPane.getChildren().add(r.getView());
     }
 }
-
