@@ -35,6 +35,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the list of tasks */
     ObservableList<Task> getRemindTaskList();
 
     /** Returns an unmodifiable view of the filtered list of days */

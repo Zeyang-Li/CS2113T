@@ -3,10 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Comparator;
 import java.util.function.Predicate;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,7 +23,7 @@ public class RemindCommand extends Command {
             + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
             + "of tasks ordered by start time or deadline.\n";
     private String arguments;
-    public ObservableList<Task> shownTaskList;
+    private ObservableList<Task> shownTaskList;
 
     /**
      * Constructor of RemindCommand.
@@ -55,6 +53,9 @@ public class RemindCommand extends Command {
         }
     }
 
+    public ObservableList<Task> getShownTaskList() {
+        return this.shownTaskList;
+    }
     /**
      * A boolean function to verify user's input
      */

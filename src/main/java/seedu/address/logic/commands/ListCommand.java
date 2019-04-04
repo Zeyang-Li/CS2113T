@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
