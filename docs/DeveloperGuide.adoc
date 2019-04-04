@@ -157,7 +157,7 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` data and feedback to user so that the UI can be updated with the modified data.
 
 [[Design-Logic]]
 === Logic component
@@ -386,6 +386,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` | user | clear tasks | remove all the completed tasks of a day or a month or all the finished tasks
 |`* * *` | user | find tasks | check the full information of the task when forgetting the task description
 |`* * *` | user | list tasks | know what task is on that day
+|`* * *` | user | See the calendar | know how much workload is on that day
+|`* * *` | user | Visualize the timeline | what is the time flow for the whole day
 |`* * *` | user | record total time spent on each classified task type | see how much time they spend on a specific
 task type each day
 |`* * *` | user | show summary of time planned on a day | plan future tasks more effectively
