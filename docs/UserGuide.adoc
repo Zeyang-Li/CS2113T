@@ -37,7 +37,7 @@ section to ensure that you are able to use this user guide to the fullest.
 *Command Format*
 
 * Some commands have an alias, which you can also use to execute the command e.g. to add a task to Tasketch, you can
-type either `clear` or `c`.
+type either `add` or `a`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/TASK`, `TASK` is a parameter which can be used as `add n/Do MA1101R tutorial`.
 * Parameters can be in any order e.g. if the command specifies `sd/START_DATE ed/END_DATE`, `ed/END_DATE sd/START_DATE` is also acceptable.
 * The format for dates is `dd-mm-yy`. For example: `25-03-19` means March 25th, 2019.
