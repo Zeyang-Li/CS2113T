@@ -318,11 +318,17 @@ The suggestion mechanism is facilitated by 'Suggestion'.
 // end::reminder[]
 
 // tag::month/timeline[]
-=== Month/Timeline feature
+=== Effective Visualization feature
+
 ==== Current Implementation
+There are mainly two parts in this features.
+One is calendar, the other is timeline. 
 
+These two parts will help the user better arrange their time usage by visualization of time.
 
-// end::month/timeline[]
+There are currently two commands with parameters to help achieve this, `month` and `timeline`.
+
+// end::Effective Visualization[]
 
 // tag::timeplanner[]
 === Timeplanner feature

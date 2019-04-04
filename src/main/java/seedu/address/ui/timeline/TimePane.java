@@ -62,7 +62,7 @@ public class TimePane extends AnchorPane {
 
         Rectangle bottom = new Rectangle();
         bottom.setFill(Color.WHITE);
-        
+
         //Setting the properties of the rectangle
         bottom.setX(150.0f);
         bottom.setY(75.0f);
