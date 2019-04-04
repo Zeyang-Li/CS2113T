@@ -239,22 +239,22 @@ These operations are exposed in the `Model` interface as `Model#commitTaskBook()
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `currentStatePointer` pointing to that single task book state.
+*Step 1*: The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `currentStatePointer` pointing to that single task book state.
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the task book. The `delete` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `delete 5` command executes to be saved in the `taskBookStateList`, and the `currentStatePointer` is shifted to the newly inserted task book state.
+*Step 2*: The user executes `delete 5` command to delete the 5th person in the task book. The `delete` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `delete 5` command executes to be saved in the `taskBookStateList`, and the `currentStatePointer` is shifted to the newly inserted task book state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/Do CS2113 ...` to add a new task. The `add` command also calls `Model#commitTaskBook()`, causing another modified task book state to be saved into the `taskBookStateList`.
+*Step 3*: The user executes `add n/Do CS2113 ...` to add a new task. The `add` command also calls `Model#commitTaskBook()`, causing another modified task book state to be saved into the `taskBookStateList`.
 
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitTaskBook()`, so the task book state will not be saved into the `taskBookStateList`.
 
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+*Step 4*: The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
 
@@ -270,11 +270,11 @@ The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, whic
 [NOTE]
 If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+*Step 5*: The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 image::UndoRedoNewCommand3StateListDiagram.png[width="800"]
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+*Step 6*: The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
 
@@ -305,9 +305,56 @@ image::UndoRedoActivityDiagram.png[width="650"]
 
 // tag::suggestiom[]
 === Suggestion feature
+
+The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
+
 ==== Current Implementation
 
-The suggestion mechanism is facilitated by 'Suggestion'.
+There are two kind of suggestions supported by this feature.
+
+Firstly, when a user has typed part of the command word and he forgets what is the whole correct command word, and then presses TAB. The system will suggest commands based on the current prefix string. If this command have parameters and the user types TAB again, the system will also suggest all the parameters about this command.
+
+Secondly, when a user completes entering a command (after pressing ENTER key), if the command typed is invalid, the system will suggest a similar command based on the edit distance (which will be explained later).
+
+**Input Command Suggestion**
+//to be filled
+
+**Wrong Command Suggestion**
+
+Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
+
+*Step 1*: The user would type in the command string wrongly.
+
+*Step 2*: The command would be parsed into the TaskBookParser class. Since no commands match the word exactly, it would fall into the default case.
+
+*Step 3*: The default case would extract out only the command portion of the user input, and input it into the WrongCommandSuggestion class.
+
+*Step 4*: WrongCommandSuggestion would first check the alphabets occurrence in the command word typed by users, if there is any correct command word has the same alphabets occurrence, WrongCommandSuggestion will return this command word immediately.
+
+*Step 5*: Otherwise, WrongCommandSuggestion then would then instantiate the StringSimilarity class to find the nearest match of a word.
+
+*Step 6*: editDistance in StringSimliarity class would be called to find out the edit distance between two words. These two words would be the wrong command the user has input, and the list of available commands in the whole application.
+
+*Step 7*: WrongCommandSuggestion would then compare if the edit distance of the current command is shorter than the current shortest edit distance command (which is initialised to 3 edits). If it is shorter, it would then suggest the current command.
+
+*Step 8*: WrongCommandSuggestion would then return the suggestion in a string, which would then be inputted into the CommandException, to be thrown to the LogicManager class.
+
+==== Design Considerations
+
+===== For the WrongCommandSuggestion implementation
+
+* **Alternative 1:** Compare the input command and the actual command character by character and see which command has the most matches.
+** Pros: Easy to implement.
+** Cons: Not as accurate or reliable in terms of giving a correct match of command.
+* **Alternative 2:** Use a string matching algorithm to implement the matching and difference calculation between the command and the user input.
+** Pros: Accurate prediction or suggestions from actual commands.
+** Cons: Difficult to implement, and might require more processing overhead.
+* **Alternative 3(current choice):** Combination of the two.
+** Pros: More accurate prediction.
+** Cons: More difficult to implement.
+
+===== For the InputCommandSuggestion implementation
+//to be completed
 
 // end::suggestion[]
 
@@ -354,11 +401,88 @@ These two parts will help the user better arrange their time usage by visualizat
 
 // tag::import/export[]
 === Import/Export feature
+
 ==== Current Implementation
 
+===== Import
+This operation is exposed in the Model interface as Model#importTaskBook().
+
+Given below is an example usage scenario and how the export mechanism behaves at each step.
+
+*Step 1*: The user calls the import command.
+
+*Step 2*: The LogicManager calls parseCommand with the user input.
+
+*Step 3*: The TaskBookParser is called and it returns a ImportCommand object to LogicManager.
+
+*Step 4*: The LogicManager calls execute() on the ImportCommand object
+
+*Step 5*: The Logic component then interacts with the Model component by calling importTasksFromTaskBook() of the Model interface.
+
+*Step 6*: The Model interface creates a new Import object and then pass the filePath to the ImportManager.
+
+*Step 7*: The Import object will call JsonFileStorage class to loadDataFromSaveFile.
+
+*Step 8*: The ImportManager class will call JsonFileStorage class to saveDataToFile.
+
+*Step 9*: The JsonFileStorage class will call JsonUtil class to fromJsonString.
+
+*Step 10*: The ModelManager will get a ReadOnlyTaskBook object and then it will addTasksToTaskBook.
+
+*Step 11*: If there is any new task added, the ModelManager will updateFilteredTaskList.
+
+===== Export
+
+This operation is exposed in the Model interface as Model#exportTaskBook().
+
+Given below is an example usage scenario and how the export mechanism behaves at each step.
+
+*Step 1*: The user calls the export command.
+
+*Step 2*: The LogicManager calls parseCommand with the user input.
+
+*Step 3*: The TaskBookParser is called and it returns a ExportCommand object to LogicManager.
+
+*Step 4*: The LogicManager calls execute() on the ExportCommand object
+
+*Step 5*: The Logic component then interacts with the Model component by calling exportFilteredTaskBook() of the Model interface.
+
+*Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList and the filePath to the ExportManager.
+
+*Step 7*: The Export object calls saveFilteredTasks function.
+
+*Step 8*: The ExportManager class will call JsonFileStorage class to saveDataToFile.
+
+*Step 9*: The JsonFileStorage class will call JsonUtil class to saveJsonFile.
+
+*Step 10*: The JsonUtil class will call FileUtil class to writeToFile.
+
+*Step 11*: The FileUtil class will finally call File class to write.
+
+==== Design Considerations
+// to be added
 
 // end::import/export[]
 
+=== Logging
+
+We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
+
+* The logging level can be controlled using the `logLevel` setting in the configuration file (See <<Implementation-Configuration>>)
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
+* Currently log messages are output through: `Console` and to a `.log` file.
+
+*Logging Levels*
+
+* `SEVERE` : Critical problem detected which may possibly cause the termination of the application
+* `WARNING` : Can continue, but with caution
+* `INFO` : Information showing the noteworthy actions by the App
+* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
+
+[[Implementation-Configuration]]
+=== Configuration
+
+Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
 [appendix]
 == Product Scope

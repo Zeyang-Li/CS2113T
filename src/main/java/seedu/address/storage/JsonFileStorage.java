@@ -10,7 +10,7 @@ import seedu.address.commons.util.JsonUtil;
 
 
 /**
- * Stores book data in an Json file
+ * Stores taskbook data in an Json file
  */
 public class JsonFileStorage {
     /**

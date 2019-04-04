@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandFormatString.EDIT_COMMAND_FORM
 import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 
@@ -264,7 +266,7 @@ public class CommandBox extends UiPart<Region> {
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
+    private void handleCommandEntered() throws IOException, IllegalValueException {
         try {
             commandExecutor.execute(commandTextField.getText());
             initHistory();
@@ -280,7 +282,7 @@ public class CommandBox extends UiPart<Region> {
      * Handles the tap button pressed event.
      */
     @FXML
-    private void handleCommandtapped() {
+    private void handleCommandtapped() throws IOException, IllegalValueException {
         try {
             commandExecutor.execute(commandTextField.getText());
             initHistory();
@@ -331,7 +333,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.address.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, IllegalValueException, IOException;
     }
 
 }

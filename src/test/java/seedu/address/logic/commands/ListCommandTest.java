@@ -5,9 +5,12 @@ import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,13 +33,13 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
+    public void execute_listIsNotFiltered_showsSameList() throws IOException, IllegalValueException {
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_listIsFiltered_showsEverything() throws IOException, IllegalValueException {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
