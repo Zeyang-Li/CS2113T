@@ -22,6 +22,10 @@ public class RemindCommand extends Command {
             + "1. start/ddl: Tasketch will give a reminding task list ordered by task start time or deadline.\n"
             + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
             + "of tasks ordered by start time or deadline.\n";
+    public static final String COMMAND_PARAMETERS = "Parameters:\n"
+            + "1. start/ddl: Tasketch will give a reminding task list ordered by task start time or deadline.\n"
+            + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
+            + "of tasks ordered by start time or deadline.\n";
     private String arguments;
     private ObservableList<Task> shownTaskList;
 

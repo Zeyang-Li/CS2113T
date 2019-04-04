@@ -380,23 +380,26 @@ the product to export what you have in the Tasketch to a json file if you want.
 
 === Export tasks displayed: `export`
 You can save all tasks or filtered tasks into a json file. It can be used with `list` or `find`. +
-Format: `export FILENAME.json`
+Format: `export FILENAME.json [CATEGORY]`
 
 Examples:
 
 * `find Revise` +
   `export revise.json` +
-   Exports all tasks which are named with keyword "Revise".
+   Exports all tasks which are named with keyword "Revise" in revise.json.
+* `export academic.json a` +
+   Exports all academic tasks into academic.json.
 * `list 13-03-19` +
   `export 13-03-19.json` +
-   Exports all tasks which starts on March 13, 2019.
-*  `export` +
-   Exports all tasks which are shown on the left list.
+   Exports all tasks which starts on March 13, 2019 in 13-03-19.json.
+*  `export Tasketch.json` +
+   Exports all tasks which are shown on the left list in Tasketch.json.
 
 [NOTE]
 ====
 1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
 2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+3.  If you export tasks based on categories, the left list will also change to show all tasks which are exported.
 ====
 
 === Import tasks: `import`

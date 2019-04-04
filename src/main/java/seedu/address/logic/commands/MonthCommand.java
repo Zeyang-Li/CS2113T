@@ -18,10 +18,7 @@ public class MonthCommand extends Command {
             + "next month or previous month.\n"
             + "Parameters: [+ / -]...\n"
             + "Example: " + COMMAND_WORD + " +";
-    public static final String COMMAND_PARAMETERS = COMMAND_WORD + ": Change the current calendar to "
-            + "next month or previous month.\n"
-            + "Parameters: [+ / -]...\n"
-            + "Example: " + COMMAND_WORD + " -";
+    public static final String COMMAND_PARAMETERS = "Parameters: [+ / -]...\n";
 
     public static final String MESSAGE_SUCCESS = "Viewing %s month's calendar!";
     public static final String MESSAGE_ILLEGAL = "Please type in + or - to indicate!";

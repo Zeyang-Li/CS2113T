@@ -22,7 +22,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.TaskBookChangedEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.export.CsvWriter;
 import seedu.address.export.Export;
 import seedu.address.export.ExportManager;
 import seedu.address.export.Import;
@@ -374,7 +373,6 @@ public class ModelManager implements Model {
         ObservableList<Task> tasks = addressBookImported.getTaskList();
         AtomicBoolean hasChanged = new AtomicBoolean(false);
         tasks.forEach((task) -> {
-            // TODO: explain why this instead of addPerson() above in developer guide (indicate ab changed at the end)
             if (!hasTask(task)) {
                 hasChanged.set(true);
                 versionedTaskBook.addTask(task);
@@ -387,19 +385,6 @@ public class ModelManager implements Model {
     public void exportFilteredTaskBook(Path exportFilePath) throws IOException, IllegalValueException {
         Export export = new ExportManager(getFilteredTaskList(), exportFilePath);
         export.saveFilteredTasks();
-    }
-
-    @Override
-    public void exportTaskBook() throws IOException {
-        CsvWriter csvWriter = new CsvWriter(versionedTaskBook.getTaskList(), userPrefs.getExportCsvFilePath());
-        csvWriter.write();
-    }
-
-    @Override
-    public void exportTask(Task task) throws IOException {
-        requireNonNull(task);
-        CsvWriter csvWriter = new CsvWriter(task, userPrefs.getExportCsvFilePath());
-        csvWriter.write();
     }
 
     /**

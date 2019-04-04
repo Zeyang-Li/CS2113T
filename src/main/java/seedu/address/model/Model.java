@@ -17,7 +17,9 @@ import seedu.address.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     Predicate<Day> PREDICATE_SHOW_ALL_DAYS = unused -> true;
@@ -57,7 +59,9 @@ public interface Model {
      */
     void setTaskBook(ReadOnlyTaskBook taskBook);
 
-    /** Returns the TaskBook */
+    /**
+     * Returns the TaskBook
+     */
     ReadOnlyTaskBook getTaskBook();
 
     /**
@@ -85,6 +89,7 @@ public interface Model {
     ObservableList<Task> getRemindTaskList();
 
     ObservableList<Task> getAllTaskList();
+
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task book.
@@ -98,20 +103,27 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
-    /** Returns an unmodifiable view of the filtered task list */
+    /**
+     * Returns an unmodifiable view of the filtered task list
+     */
     ObservableList<Task> getFilteredTaskList();
 
-    /** Returns an unmodifiable view of the filtered day list */
+
+    /**
+     * Returns an unmodifiable view of the filtered day list
+     */
     ObservableList<Day> getFilteredDayList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
      * Updates the filter of the filtered day list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDayList(Predicate<Day> predicate);
@@ -175,6 +187,7 @@ public interface Model {
     void setMonth(String month);
 
     //=========== Import/ Export ==============================================================================
+
     /**
      * Imports the persons from a xml at {@code importFilePath}.
      */
@@ -182,6 +195,7 @@ public interface Model {
 
     /**
      * Adds all the persons in {@code addressBookImported} to the current address book.
+     *
      * @return hasChanged is true if the addressBook is modified, returns false otherwise.
      */
     boolean addTasksToTaskBook(ReadOnlyTaskBook addressBookToImported);
@@ -191,14 +205,5 @@ public interface Model {
      */
     void exportFilteredTaskBook(Path exportFilePath) throws IOException, IllegalValueException;
 
-    /**
-     * Exports the current address book state to a .csv file.
-     */
-    void exportTaskBook() throws IOException;
-
-    /**
-     * Exports the given person to a .csv file.
-     */
-    void exportTask(Task task) throws IOException;
 
 }
