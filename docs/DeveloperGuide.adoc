@@ -326,13 +326,20 @@ One is calendar, the other is timeline.
 
 These two parts will help the user better arrange their time usage by visualization of time.
 
-There are currently two commands with parameters to help achieve this, `month` and `timeline`.
+* **There are currently two commands with parameters to help achieve this, `month` and `timeline`.**
 
-** Implementation for Timeline: Using javafx and segment each part of the browserPanel.
+** **Implementation for Calendar: ** Using `GridPane` to separate the whole calendar area into 35 grids.
 
-*** First, separate the whole browserPanel into 2 parts: 'upperPane' and 'timelinePane'.
-*** Second, separate the 'upperPane' into calendarPane and reminderPane.
-*** The whole implementation of `timeline` is in 'timelinePane' using javafx.
+*** Each one of the 35 grids is filled with PaneNode which is defined as area for a day.
+
+
+***
+
+** **Implementation for Timeline:** Using javafx and segment each part of the browserPanel.
+
+*** First, separate the whole `browserPanel` into 2 parts: `upperPane` and `timelinePane`.
+*** Second, separate the `upperPane` into `calendarPane` and `reminderPane`.
+*** The whole implementation of `timeline` is in `timelinePane` using javafx.
 *** The overall structure is javafx VBox, which is a vertical arrangement structure.
 *** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
 
