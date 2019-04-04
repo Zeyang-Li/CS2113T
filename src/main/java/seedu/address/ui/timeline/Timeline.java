@@ -92,27 +92,27 @@ public class Timeline {
             switch (timeInterval[i]) {
             case 1:
                 Region rect1 = new Region();
-                rect1.setPrefSize(40, 10);
+                rect1.setPrefSize(50, 10);
                 time.add(setColor(rect1, timeInterval[i]), i, 0);
                 break;
             case 2:
                 Region rect2 = new Region();
-                rect2.setPrefSize(40, 10);
+                rect2.setPrefSize(50, 10);
                 time.add(setColor(rect2, timeInterval[i]), i, 0);
                 break;
             case 3:
                 Region rect3 = new Region();
-                rect3.setPrefSize(40, 10);
+                rect3.setPrefSize(50, 10);
                 time.add(setColor(rect3, timeInterval[i]), i, 0);
                 break;
             case 4:
                 Region rect4 = new Region();
-                rect4.setPrefSize(40, 10);
+                rect4.setPrefSize(50, 10);
                 time.add(setColor(rect4, timeInterval[i]), i, 0);
                 break;
             default:
                 AnchorPane aGrid = new AnchorPane();
-                aGrid.setPrefSize(40, 5);
+                aGrid.setPrefSize(50, 5);
                 aGrid.getChildren().add(new Text(" "));
                 time.add(aGrid, i, 0);
                 break;
@@ -139,15 +139,15 @@ public class Timeline {
             }
             start = (Math.round(t.getStart()) + 20) % 24;
             end = (Math.round(t.getEnd()) + 20) % 24;
-            if (start == end) {
+            if ((end - start) <= 1) {
                 timeInterval[start] = 4;
                 continue;
             }
             for (int i = 0; i < end - start; i++) {
                 timeInterval[i + start + 1] = 1;
             }
-            timeInterval[(start + 1) % 24] = 2;
-            timeInterval[(end + 1) % 24] = 3;
+            timeInterval[(start) % 24] = 2;
+            timeInterval[(end) % 24] = 3;
         }
         return timeInterval;
     }
