@@ -157,7 +157,7 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` data and feedback to user so that the UI can be updated with the modified data.
 
 [[Design-Logic]]
 === Logic component
@@ -322,18 +322,24 @@ The suggestion mechanism is facilitated by 'Suggestion'.
 === Effective Visualization feature
 
 ==== Current Implementation
-There are mainly two parts in this features.
-One is calendar, the other is timeline.
+There are mainly two parts in this features, **calendar** and **timeline arrangement**
 
 These two parts will help the user better arrange their time usage by visualization of time.
 
-There are currently two commands with parameters to help achieve this, `month` and `timeline`.
+* **There are currently two commands with parameters to help achieve this, `month` and `timeline`.**
 
-** Implementation for Timeline: Using javafx and segment each part of the browserPanel.
+** **Implementation for Calendar: ** Using `GridPane` to separate the whole calendar area into 35 grids.
 
-*** First, separate the whole browserPanel into 2 parts: 'upperPane' and 'timelinePane'.
-*** Second, separate the 'upperPane' into calendarPane and reminderPane.
-*** The whole implementation of `timeline` is in 'timelinePane' using javafx.
+*** Each one of the 35 grids is filled with PaneNode which is defined as area for a day.
+*** PaneNode extends AnchorPane.
+
+***
+
+** **Implementation for Timeline:** Using javafx and segment each part of the browserPanel.
+
+*** First, separate the whole `browserPanel` into 2 parts: `upperPane` and `timelinePane`.
+*** Second, separate the `upperPane` into `calendarPane` and `reminderPane`.
+*** The whole implementation of `timeline` is in `timelinePane` using javafx.
 *** The overall structure is javafx VBox, which is a vertical arrangement structure.
 *** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
 
@@ -381,6 +387,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` | user | clear tasks | remove all the completed tasks of a day or a month or all the finished tasks
 |`* * *` | user | find tasks | check the full information of the task when forgetting the task description
 |`* * *` | user | list tasks | know what task is on that day
+|`* * *` | user | See the calendar | know how much workload is on that day
+|`* * *` | user | Visualize the timeline | what is the time flow for the whole day
 |`* * *` | user | record total time spent on each classified task type | see how much time they spend on a specific
 task type each day
 |`* * *` | user | show summary of time planned on a day | plan future tasks more effectively
