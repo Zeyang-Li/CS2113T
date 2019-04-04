@@ -80,6 +80,11 @@ public interface Model {
 
     void sortByEnd();
 
+    void setRemindList(ObservableList<Task> remindList);
+
+    ObservableList<Task> getRemindTaskList();
+
+    ObservableList<Task> getAllTaskList();
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task book.

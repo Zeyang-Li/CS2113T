@@ -50,6 +50,7 @@ public class ListCommand extends Command {
 
             Predicate<Task> predicate = task -> meetRequirementTd(task);
             model.updateFilteredTaskList(predicate);
+            //ObservableList<Task> test = model.getFilteredTaskList();
             return new CommandResult(MESSAGE_SUCCESS2);
         } else {
 
