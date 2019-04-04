@@ -19,22 +19,22 @@ public class PreTask {
         this.end = e;
     }
     public void setDay(String s) { this.day = s; }
-    
+
     public void setMonth(String s) { this.month = s; }
-    
+
     public void setYear(String s) { this.year = s; }
 
 
     public String getTitle() {
         return title;
     }
-    
+
     public String getCate() {
         return cate;
     }
-    
+
     public String getDat() { return day; }
-    
+
     public String getMonth() { return month; }
     public String getYear() { return year; }
     public float getStart() {
