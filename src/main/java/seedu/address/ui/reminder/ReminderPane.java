@@ -34,7 +34,9 @@ public class ReminderPane extends AnchorPane {
     public void addTask() {
         int i = 1;
         for (Task task : taskList) {
-            taskListView.getItems().add(new TaskCard(task, i++));
+            TaskCard t = new TaskCard(task, i++);
+            t.setUrgent(i - 1);
+            taskListView.getItems().add(t);
         }
         taskListView.setCellFactory(listView -> new TaskListViewCell());
         vbox.getChildren().addAll(taskListView);
