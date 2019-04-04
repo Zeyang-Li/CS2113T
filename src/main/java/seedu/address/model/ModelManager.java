@@ -134,20 +134,6 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    /**
-     * @return startComparator.
-     */
-    public Comparator<Task> getStartComparator() {
-        return startComparator;
-    }
-
-    /**
-     * @return endComparator.
-     */
-    public Comparator<Task> getEndComparator() {
-        return endComparator;
-    }
-
     @Override
     public Path getTaskBookFilePath() {
         return userPrefs.getTaskBookFilePath();

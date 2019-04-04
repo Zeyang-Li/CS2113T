@@ -76,20 +76,28 @@ public class TaskBook implements ReadOnlyTaskBook {
             String dateS = t.getStartDate().toString();
             String dateE = t.getEndDate().toString();
             if (dateS.equalsIgnoreCase(dateE)) {
-                Date date = new Date(dateS);
-                if (!dayMap.containsKey(date)) {
-                    dayMap.put(date, new Day(date));
-                    Day a = dayMap.get(date);
-                    days.add(a);
-                }
-                Day d = dayMap.get(date);
-                dayMap.remove(date, d);
-                days.remove(d);
-                d.addCategory(t);
-                dayMap.put(date, d);
-                addDay(d);
+                addingDay(t, dateS);
             }
         }
+    }
+
+    /**
+     * Adding day into dayMap and days
+     * @param dateS
+     */
+    public void addingDay(Task t, String dateS) {
+        Date date = new Date(dateS);
+        if (!dayMap.containsKey(date)) {
+            dayMap.put(date, new Day(date));
+            Day a = dayMap.get(date);
+            days.add(a);
+        }
+        Day d = dayMap.get(date);
+        dayMap.remove(date, d);
+        days.remove(d);
+        d.addCategory(t);
+        dayMap.put(date, d);
+        addDay(d);
     }
 
     /**
@@ -112,15 +120,6 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
-     * Returns true if a day with the same identity as {@code day} exists in the task book.
-     */
-    public boolean hasDay(Day day) {
-        requireNonNull(day);
-        return days.contains(day);
-    }
-
-
-    /**
      * Adds a task to the task book.
      * The task must not already exist in the task book.
      */
@@ -129,18 +128,7 @@ public class TaskBook implements ReadOnlyTaskBook {
         String dateS = t.getStartDate().toString();
         String dateE = t.getEndDate().toString();
         if (dateS.equalsIgnoreCase(dateE)) {
-            Date date = new Date(dateS);
-            if (!dayMap.containsKey(date)) {
-                dayMap.put(date, new Day(date));
-                Day a = dayMap.get(date);
-                days.add(a);
-            }
-            Day d = dayMap.get(date);
-            dayMap.remove(date, d);
-            days.remove(d);
-            d.addCategory(t);
-            dayMap.put(date, d);
-            addDay(d);
+            addingDay(t, dateS);
             return;
         }
         indicateModified();
