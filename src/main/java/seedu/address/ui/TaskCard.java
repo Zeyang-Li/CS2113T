@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.address.model.task.Task;
 
 /**
@@ -77,4 +76,23 @@ public class TaskCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
     }
+
+    /**
+     * Set tags to urgent;
+     */
+    public void setUrgent(int i) {
+        //name.set(Font.createFont("Verdana", ))
+        if (i == 1) {
+            cardPane.setStyle("-fx-background-color: #dc5712;");
+        } else if (i == 2) {
+            cardPane.setStyle("-fx-background-color: #e58308;");
+        } else if (i == 3) {
+            cardPane.setStyle("-fx-background-color: #f4d000;");
+        } else if (i == 4) {
+            cardPane.setStyle("-fx-background-color: #8a977b;");
+        } else if (i == 5) {
+            cardPane.setStyle("-fx-background-color: #b6c29a;");
+        }
+    }
 }
+
