@@ -172,8 +172,8 @@ public class Calendar extends Node {
             String year = date.split("-")[2];
             //System.out.print(Integer.parseInt(year)-17);
             if (!checkdate(Integer.parseInt(year) - 17,
-            Integer.parseInt(month) - 1,
-            Integer.parseInt(day) - 1)) {
+                Integer.parseInt(month) - 1,
+                Integer.parseInt(day) - 1)) {
                 continue;
             }
             numOfTasks[Integer.parseInt(year) - 17][Integer.parseInt(month)][Integer.parseInt(day)] += 1;
