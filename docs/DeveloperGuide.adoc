@@ -321,8 +321,7 @@ The suggestion mechanism is facilitated by 'Suggestion'.
 === Effective Visualization feature
 
 ==== Current Implementation
-There are mainly two parts in this features.
-One is calendar, the other is timeline.
+There are mainly two parts in this features, **calendar** and **timeline arrangement**
 
 These two parts will help the user better arrange their time usage by visualization of time.
 
@@ -331,7 +330,7 @@ These two parts will help the user better arrange their time usage by visualizat
 ** **Implementation for Calendar: ** Using `GridPane` to separate the whole calendar area into 35 grids.
 
 *** Each one of the 35 grids is filled with PaneNode which is defined as area for a day.
-
+*** PaneNode extends AnchorPane.
 
 ***
 
