@@ -1,15 +1,10 @@
 package seedu.address.ui;
 
-import java.awt.*;
-
-import javax.swing.plaf.ColorUIResource;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.address.model.task.Task;
 
 /**
@@ -97,6 +92,7 @@ public class TaskCard extends UiPart<Region> {
             cardPane.setStyle("-fx-background-color: #8a977b;");
         } else if (i == 5) {
             cardPane.setStyle("-fx-background-color: #b6c29a;");
-        } else {}
+        }
     }
 }
+
