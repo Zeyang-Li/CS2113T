@@ -315,7 +315,8 @@ Shows a list of nearest start tasks of "entertainment" category.
 
 === Set the calendar to desired month : `month`
 
-Shows the desired month to the user. +
+Shows the desired month to the user. Noted that only previous month and next month will be shown. +
+e.g. Current month is April, then only March and May can be shown.
 
 Format:
 
