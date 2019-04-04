@@ -334,7 +334,7 @@ There are currently two commands with parameters to help achieve this, `month` a
 *** Second, separate the 'upperPane' into calendarPane and reminderPane.
 *** The whole implementation of `timeline` is in 'timelinePane' using javafx.
 *** The overall structure is javafx VBox, which is a vertical arrangement structure.
-*** Inside the VBox, there are keyframes for every 2 hours. Then the timeline for each category.
+*** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
 
 // end::Effective Visualization[]
 

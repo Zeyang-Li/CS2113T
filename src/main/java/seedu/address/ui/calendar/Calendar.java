@@ -22,7 +22,7 @@ public class Calendar extends Node {
     private ArrayList<PaneNode> allCalendarDays = new ArrayList<>(35);
     private VBox view;
     private YearMonth shownYearMonth;
-    private int[][][] numOfTasks = new int[5][12][35];//Assuming 5 years
+    private int[][][] numOfTasks = new int[5][12][35]; //Assuming 5 years
     private ObservableList<Task> taskList;
 
     /**
@@ -34,7 +34,7 @@ public class Calendar extends Node {
         this.taskList = tasks;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
-        GridPane.setMargin(calendar, new Insets(0,0,0,5));
+        GridPane.setMargin(calendar, new Insets(0, 0, 0, 5));
         calendar.setPrefSize(340, 200);
 
         //Fill up the calendar.
@@ -147,15 +147,15 @@ public class Calendar extends Node {
             //System.out.println(year - 2017);
             return p;
         }
-        if(numOfTasks[year - 2017][month][day] >= 10) {
+        if (numOfTasks[year - 2017][month][day] >= 10) {
             p.setStyle("-fx-background-color: #ff0000");
-            numOfTasks[year - 2017][month][day]  = -1;
-        } else if(numOfTasks[year - 2017][month][day] > 5) {
+            numOfTasks[year - 2017][month][day] = -1;
+        } else if (numOfTasks[year - 2017][month][day] > 5) {
             p.setStyle("-fx-background-color: #00ff00");
-            numOfTasks[year - 2017][month][day]  = -1;
-        } else if(numOfTasks[year - 2017][month][day] > 1) {
+            numOfTasks[year - 2017][month][day] = -1;
+        } else if (numOfTasks[year - 2017][month][day] > 1) {
             p.setStyle("-fx-background-color: #0000ff");
-            numOfTasks[year - 2017][month][day]  = -1;
+            numOfTasks[year - 2017][month][day] = -1;
         }
         return p;
     }
@@ -171,8 +171,8 @@ public class Calendar extends Node {
             String month = date.split("-")[1];
             String year = date.split("-")[2];
             //System.out.print(Integer.parseInt(year)-17);
-            if (!checkdate(Integer.parseInt(year) - 17,
-          Integer.parseInt(month) - 1,
+            if (!checkdate(Integer.parseInt(year) - 17, 
+            Integer.parseInt(month) - 1, 
             Integer.parseInt(day) - 1)) {
                 continue;
             }
