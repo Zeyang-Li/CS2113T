@@ -78,6 +78,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Task> getRemindTaskList() { return model.getRemindTaskList(); }
+
+    @Override
     public ObservableList<Day> getFilteredDayList() {
         return model.getFilteredDayList();
     }

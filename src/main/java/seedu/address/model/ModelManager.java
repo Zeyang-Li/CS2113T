@@ -44,6 +44,7 @@ public class ModelManager implements Model {
     private final FilteredList<Day> filteredDays;
     private final SimpleObjectProperty<Task> selectedTask = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<Day> selectedDay = new SimpleObjectProperty<>();
+    private ObservableList<Task> remindList;
 
     private Comparator<Task> startComparator = new Comparator<Task>() {
         @Override
@@ -102,6 +103,7 @@ public class ModelManager implements Model {
         filteredTasks.addListener(this::ensureSelectedTaskIsValid);
         filteredDays = new FilteredList<>(versionedTaskBook.getDayList());
         filteredDays.addListener(this::ensureSelectedDayIsValid);
+        remindList = versionedTaskBook.getTaskList();
     }
 
     public ModelManager() {
@@ -200,6 +202,16 @@ public class ModelManager implements Model {
         versionedTaskBook.sortTaskByDate(endComparator);
     }
 
+    @Override
+    public void setRemindList(ObservableList<Task> remindList) {
+        this.remindList = remindList;
+    }
+
+    @Override
+    public ObservableList<Task> getRemindTaskList() { return remindList; }
+
+    @Override
+    public ObservableList<Task> getAllTaskList() { return versionedTaskBook.getTaskList(); }
 
     @Override
     public void addTask(Task task) {

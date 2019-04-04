@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,6 +23,7 @@ public class RemindCommand extends Command {
             + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
             + "of tasks ordered by start time or deadline.\n";
     private String arguments;
+    private ObservableList<Task> shownTaskList;
 
     /**
      * Constructor of RemindCommand.
@@ -51,6 +53,9 @@ public class RemindCommand extends Command {
         }
     }
 
+    public ObservableList<Task> getShownTaskList() {
+        return this.shownTaskList;
+    }
     /**
      * A boolean function to verify user's input
      */
@@ -81,7 +86,7 @@ public class RemindCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
 
         requireNonNull(model);
-
+        shownTaskList = model.getAllTaskList();
         String trimmedArguments = arguments.trim();
         String[] splitedInput = trimmedArguments.split("\\s");
 
@@ -90,14 +95,16 @@ public class RemindCommand extends Command {
 
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
             } else if (splitedInput[0].equals("start")) {
-
                 model.sortByStart();
+
             } else {
 
                 model.sortByEnd();
-            }
 
+            }
+            model.setRemindList(shownTaskList);
             model.commitTaskBook();
+
         } else if (splitedInput.length == 2) {
 
             if (!isValidCategory(splitedInput[0]) || !isValidTime(splitedInput[1])) {
@@ -106,14 +113,15 @@ public class RemindCommand extends Command {
             } else {
 
                 if (splitedInput[1].equals("start")) {
-
                     model.sortByStart();
-                } else {
 
+                } else {
                     model.sortByEnd();
+
                 }
             }
 
+            model.setRemindList(shownTaskList);
             model.commitTaskBook();
             Predicate<Task> predicate = task -> meetRequirement(task, splitedInput[0]);
             model.updateFilteredTaskList(predicate);
