@@ -85,7 +85,9 @@ public class ExportCommand extends Command {
 
         return new CommandResult(String.format(messageExportESuccess, filePath));
     }
-
+    /**
+     * To check whether the task is belong to that category.
+     */
     private boolean meetRequirement(Task task) {
         String cateInTask = task.getCategories().toString();
         if (cateInTask.equals(category)) {

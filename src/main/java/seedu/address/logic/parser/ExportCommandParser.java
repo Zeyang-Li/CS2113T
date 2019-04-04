@@ -25,7 +25,8 @@ public class ExportCommandParser implements Parser<ExportCommand> {
         requireNonNull(userInput);
         String[] args = userInput.trim().split("\\s+");
         if (args.length == 2) {
-            if (args[1].equals("a") || args[1].equals("c") || args[1].equals("e") || args[1].equals("r") || args[1].equals("o")) {
+            if (args[1].equals("a") || args[1].equals("c") || args[1].equals("e")
+                    || args[1].equals("r") || args[1].equals("o")) {
                 try {
                     Path filePath = ParserUtil.parseFilename(args[0]);
                     return new ExportCommand(filePath, args[1]);
@@ -33,14 +34,6 @@ public class ExportCommandParser implements Parser<ExportCommand> {
                     throw new ParseException(
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE), pe);
                 }
-//            } else if (args[1].equals("")) {
-//                try {
-//                    Path filePath = ParserUtil.parseFilename(args[0]);
-//                    return new ExportCommand(filePath);
-//                } catch (ParseException pe) {
-//                    throw new ParseException(
-//                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE), pe);
-//                }
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_CATEGORY_FORMAT, ExportCommand.MESSAGE_USAGE));
             }
