@@ -69,7 +69,7 @@ public class AddCommand extends Command {
         String endD = task.getEndDate().value;
         requireNonNull(task);
         if (startD.equalsIgnoreCase(endD)) {
-            checkArgument(isTimeValid(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
+            checkArgument(isValidTime(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
         } else {
             checkArgument(isValidDate(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DATE_CONSTRAINTS));
         }
@@ -98,7 +98,7 @@ public class AddCommand extends Command {
     /**
      * Returns true if endTime of a task is the same.
      */
-    public boolean isTimeValid(Task task) {
+    public boolean isValidTime(Task task) {
         String time = task.getEndTime().value;
         double end = task.getEndTime().getTimeDouble(time);
         time = task.getStartTime().value;
