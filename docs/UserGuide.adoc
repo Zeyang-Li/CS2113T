@@ -238,6 +238,8 @@ Returns `CS2113T lecture` and `CS3235 lecture`
 
 Shows a list of tasks in Tasketch.
 
+image::List.png[width="790"]
+
 Format:
 
 
@@ -250,8 +252,13 @@ List all the tasks whose start date is today +
 * `list DATE` +
 Lists all the tasks whose start date is that specific date +
 
+* `list CATEGORY` +
+Lists all the tasks of the specified category.
+
 Examples:
 
+* `list a` +
+Lists all the tasks of academic category.
 * `list 02-19` +
 Lists all the tasks which starts in February, 2019
 * `list 20-02-19` +
@@ -287,35 +294,44 @@ You should see a day of your choice with all the category times on the right sid
 
 === Reminding the users of the nearest task : `remind`
 
-Shows to the user the nearest tasks of certain category. +
+Shows to the user the nearest tasks of certain category.
+
+image::Reminder.png[width="790"]
 
 Format:
 
 * `remind start` +
-Reminds the users of most recently begin tasks of all categories. The reminded tasks should be in colored task cards.
+Reminds the users of the most recently begin tasks of all categories. The reminded tasks should be in colored task cards.
 +
 image::Remind_Start.png[width="790"]
 
 * `remind ddl` +
-Remind the users of most recent deadline of all categories. The reminded tasks should be in colored task cards. +
+Remind the users of the most recent deadline of all categories. The reminded tasks should be in colored task cards. +
 +
 image::Remind_DDL.png[width="790"]
 
 * `remind a/e/c/r/o ddl/start` +
 Remind the users of most recent start tasks or deadline of specified category.
 
-****
-* "a" - Academic +
-* "e" - Entertainment +
-* "c" - Co-Curricular Activity (CCA) +
-* "r" - Errand +
-* "o" - Other
-****
+[NOTE]
+"a" - Academic +
+"e" - Entertainment +
+"c" - Co-Curricular Activity (CCA) +
+"r" - Errand +
+"o" - Other
+
 
 Examples:
 
-* `remind e start` +
-Shows a list of nearest start tasks of "entertainment" category.
+* `remind c start` +
+Shows a list of nearest start CCA activities.
++
+image::Remind_C_Start.png[width="790"]
+
+* `remind a ddl` +
+Shows a list of nearest deadlines of academic activities.
++
+image::Academic.png[width="790"]
 
 == View calender & timeline
 
@@ -530,6 +546,8 @@ e.g. `edit 1 s/12.00 e/14.00 t/GET1018tut`
 e.g. `find CS2113T`
 * *List* : `list [DATE]` +
 e.g. `list 02-19`
+* *Remind* : `remind [category] start/end` +
+e.g. `remind a ddl`
 * *Showtime* : `showtime [DATE]`
 e.g. `showtime 13-02-19`
 * *History* : `history`
