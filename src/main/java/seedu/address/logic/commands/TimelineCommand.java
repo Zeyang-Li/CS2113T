@@ -18,16 +18,12 @@ import seedu.address.model.task.Task;
 public class TimelineCommand extends Command {
 
     public static final String COMMAND_WORD = "timeline";
-
     public static final String COMMAND_ALIAS = "time";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Arrange the tasks of the specific date "
             + "into a timeline and displays them according to categories.\n"
             + "Parameters: [date]...\n"
             + "Example: " + COMMAND_WORD + "15-03-19";
-    public static final String COMMAND_PARAMETERS = COMMAND_WORD + ": Arrange the tasks of the specific date "
-            + "into a timeline and displays them according to categories.\n"
-            + "Parameters: [date]...\n"
+    public static final String COMMAND_PARAMETERS = "Parameters: [date]...\n"
             + "Example: " + COMMAND_WORD + "15-03-19";
     public static final String MESSAGE_SUCCESS = "Timeline on %1$s has been successfully arranged!";
     public static final String MESSAGE_ILLEGAL = "Incorrect date format. [dd-mm-yys]";

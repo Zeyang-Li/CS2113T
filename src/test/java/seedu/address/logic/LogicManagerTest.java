@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -57,21 +58,21 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_invalidCommandFormat_throwsParseException() {
+    public void execute_invalidCommandFormat_throwsParseException() throws IOException, IllegalValueException {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
         //assertHistoryCorrect(invalidCommand);
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
+    public void execute_commandExecutionError_throwsCommandException() throws IOException, IllegalValueException {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         //assertHistoryCorrect(deleteCommand);
     }
 
     @Test
-    public void execute_validCommand_success() {
+    public void execute_validCommand_success() throws IOException, IllegalValueException {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS1, model);
         //assertHistoryCorrect(listCommand);
@@ -109,7 +110,8 @@ public class LogicManagerTest {
      * Also confirms that {@code expectedModel} is as specified.
      * @see #assertCommandBehavior(Class, String, String, Model)
      */
-    private void assertCommandSuccess(String inputCommand, String expectedMessage, Model expectedModel) {
+    private void assertCommandSuccess(String inputCommand, String expectedMessage, Model expectedModel)
+            throws IOException, IllegalValueException {
         assertCommandBehavior(null, inputCommand, expectedMessage, expectedModel);
     }
 
@@ -117,7 +119,8 @@ public class LogicManagerTest {
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
      * @see #assertCommandBehavior(Class, String, String, Model)
      */
-    private void assertParseException(String inputCommand, String expectedMessage) {
+    private void assertParseException(String inputCommand, String expectedMessage) throws IOException,
+            IllegalValueException {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
     }
 
@@ -125,7 +128,8 @@ public class LogicManagerTest {
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
      * @see #assertCommandBehavior(Class, String, String, Model)
      */
-    private void assertCommandException(String inputCommand, String expectedMessage) {
+    private void assertCommandException(String inputCommand, String expectedMessage) throws IOException,
+            IllegalValueException {
         assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
     }
 
@@ -133,7 +137,8 @@ public class LogicManagerTest {
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
      * @see #assertCommandBehavior(Class, String, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, Class<?> expectedException, String expectedMessage) {
+    private void assertCommandFailure(String inputCommand, Class<?> expectedException, String expectedMessage)
+            throws IOException, IllegalValueException {
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         assertCommandBehavior(expectedException, inputCommand, expectedMessage, expectedModel);
     }
@@ -145,7 +150,8 @@ public class LogicManagerTest {
      *      - {@code expectedModel}'s task book was saved to the storage file.
      */
     private void assertCommandBehavior(Class<?> expectedException, String inputCommand,
-                                           String expectedMessage, Model expectedModel) {
+                                           String expectedMessage, Model expectedModel) throws IOException,
+            IllegalValueException {
 
         try {
             CommandResult result = logic.execute(inputCommand);
