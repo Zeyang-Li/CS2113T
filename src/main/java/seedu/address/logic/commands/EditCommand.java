@@ -77,7 +77,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Tasketch.";
-    public static final String MESSAGE_DAILYTIME_CONSTRAINTS = "Editing daily task, Start Time must be before End Time!";
+    public static final String MESSAGE_DAILYTIME_CONSTRAINTS =
+            "Editing daily task, Start Time must be before End Time!";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;

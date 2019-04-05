@@ -2,6 +2,9 @@ package seedu.address.logic.commands.checks;
 
 import seedu.address.model.task.Task;
 
+/**
+ * Checking whether endDate of a task is after startDate.
+ */
 public class CheckValidDate {
     private Task task;
     private boolean isValidDate;

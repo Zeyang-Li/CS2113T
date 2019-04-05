@@ -3,7 +3,7 @@ package seedu.address.logic.commands.checks;
 import seedu.address.model.task.Task;
 
 /**
- * Checking if endTime of a task is after startTime.
+ * Checking whether endTime of a task is after startTime.
  */
 public class CheckValidTime {
     private Task task;
