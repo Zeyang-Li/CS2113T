@@ -10,37 +10,40 @@
 == Overview
 
 Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
-This user guide is introducing the features of Tasketch and show to the users how to use all the command lines. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+This Project Portfolio is to indicate what I have done to enhance the functionality of this project.
 
 == Summary of contributions
 
 * *Major enhancement*: Enhance visual feedback with timeline feature.
 ** What it does: It helps the user to visually view the time they should spend on each task.
 ** Justification: This feature improves the product significantly because people tend to believe what they see, it is good to have a vivid picture of the whole timeline.
-** Highlights: This feature helps the user to better manage their tasks.
-** Credits: _{I use Shibo's idea on filtering the desired tasks so that I can display the tasks according to different categories on the timeline}_
+** Highlights: This feature helps the user to better manage their tasks and decide on time allocation.
+** Credits: _{Shibo's idea is used on filtering the desired tasks on a specific date so that I can display the tasks according to different categories on the timeline}_
 
 * *Minor enhancement*: morphed the find and history command that allows the user to easily locate a task and see history commands.
 
-* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Jingchen&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
 ** Project management:
-*** The UI designer and the person in charge.
+*** The UI designer and the person in charge of group work coordination.
 *** Managed releases `v1.0` - `v1.4` (2 releases) on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI arrangement and corresponding features (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/83[#83], https://github.com/CS2113-AY1819S2-T09-2/main/pull/91[#91], https://github.com/CS2113-AY1819S2-T09-2/main/pull/96[#96])
+*** Improved the GUI structure.
+*** Updated the GUI arrangement and corresponding enhancing features (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/83[#83], https://github.com/CS2113-AY1819S2-T09-2/main/pull/91[#91], https://github.com/CS2113-AY1819S2-T09-2/main/pull/96[#96])
 *** Updated previous commands (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/51[#51], https://github.com/CS2113-AY1819S2-T09-2/main/pull/45[#45])
 ** Documentation:
-*** Updated UserGuide and DeveloperGuide ()
+*** Updated UserGuide and DeveloperGuide. (available https://github.com/jingchen-z/main/blob/master/docs/UserGuide.adoc[UserGuide] https://github.com/jingchen-z/main/blob/master/docs/DeveloperGuide.adoc[DeveloperGuide])
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
 *** Some parts of the history feature I added was referenced by several other class mates (https://github.com[1], https://github.com[2])
+*** My UI structure and design are referenced.
+
 ** Tools:
 *** Google is always the best friend. :)
+*** Java, Javafx and IntelliJ.
 
-_{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
 
@@ -49,10 +52,17 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
+=== Update the project picture
+
+The overview and screen shoot picture (available https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/images/Ui.png[[picture]])
 
 === Set the calendar to desired month : `month`
 
-Shows the desired month to the user. +
+Shows the desired month to the user. Noted that only previous month and next month will be shown. +
+e.g. Current month is April, then only March and May can be shown.
+
+[TIP]
+The feature for changing the background color of each day on the calendar will come in v2.0!
 
 Format:
 
@@ -60,13 +70,9 @@ Format:
 Changes the current calendar to next month. +
 
 * `month -` +
-Changes the current calendar to previous month. +
+Changes the current calendar to previous month.
 
-=== Show the timeline : `timeline`
-
-Shows the timeline of a specific day to the user. +
-
-Format:
+=== Shows the timeline of a specific day to the user : `timeline` +
 
 * `timeline` +
 Shows the timeline of today by default. +
@@ -74,7 +80,13 @@ Shows the timeline of today by default. +
 * `timeline [DATE]` +
 Shows the timeline of that date. +
 
+[WARNING]
+After adding or editing a task, user needs to retype timeline [DATE] to refresh the timeline. +
+This implementation is to make sure this feature is not purely part of UI.
+
+
 Examples:
+
 
 * `timeline` +
 Shows the timeline for today.
