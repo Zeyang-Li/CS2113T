@@ -354,8 +354,17 @@ by giving a list of closest approximations of word through the message box after
 Examples：
 
 * If you want to type `clear` but typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
++
+image::WrongCommandSuggestion_clarr.png[width="790"]
++
 * If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
++
+image::WrongCommandSuggestion_ecot.png[width="790"]
++
 * If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
+Although there are more than 2 alphabets different from the correct command, the system will smartly show the suggestion because `hsitryo` has the same alphabets with `history`
++
+image::WrongCommandSuggestion_hsitryo.png[width="790"]
 
 == Automatically complete input command for user
 If you type something wrongly, the app will automatically correct type error and fulfill their incomplete typed command in command line.

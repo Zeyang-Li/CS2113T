@@ -309,23 +309,19 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-// tag::suggestion[]
-=== Suggestion feature
+//tag::autoComplete[]
+=== Automatically complete input command feature
+
+//end::autoComplete[]
+
+// tag::wrongCommandSuggestion[]
+=== Wrong Command Suggestion feature
 
 The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
 
 ==== Current Implementation
 
-There are two kind of suggestions supported by this feature.
-
-Firstly, when a user has typed part of the command word and he forgets what is the whole correct command word, and then presses TAB. The system will suggest commands based on the current prefix string. If this command have parameters and the user types TAB again, the system will also suggest all the parameters about this command.
-
-Secondly, when a user completes entering a command (after pressing ENTER key), if the command typed is invalid, the system will suggest a similar command based on the edit distance (which will be explained later).
-
-**Input Command Suggestion**
-//to be filled
-
-**Wrong Command Suggestion**
+When a user completes entering a command (after pressing ENTER key), if the command typed is invalid, the system will suggest a similar command based on the edit distance (which will be explained later).
 
 Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
 
@@ -347,8 +343,6 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 ==== Design Considerations
 
-===== For the WrongCommandSuggestion implementation
-
 * **Alternative 1:** Compare the input command and the actual command character by character and see which command has the most matches.
 ** Pros: Easy to implement.
 ** Cons: Not as accurate or reliable in terms of giving a correct match of command.
@@ -359,10 +353,7 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 ** Pros: More accurate prediction.
 ** Cons: More difficult to implement.
 
-===== For the InputCommandSuggestion implementation
-//to be completed
-
-// end::suggestion[]
+// end::wrongCommandSuggestion[]
 
 // tag::reminder[]
 === Reminder feature
