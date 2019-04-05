@@ -31,4 +31,9 @@ public class CommandFormatString {
     public static final String FIND_COMMAND_FORMATSTRING = "Keyword";
     public static final String DELETE_COMMAND_FORMATSTRING = "Index";
     public static final String CLEAR_COMMAND_FORMATSTRING = "dd-mm-yy";
+    public static final String EXPORT_COMMAND_FORMATSTRING = "filename.json";
+    public static final String IMPORT_COMMAND_FORMATSTRING = "filename.json";
+    public static final String MONTH_COMMAND_FORMATSTRING = "+/-";
+    public static final String REMIND_COMMAND_FORMATSTRING = "dd-mm-yy/dd-mm-yy";
+    public static final String REMIND_COMMAND_CATEGORY_FORMATSTRING = "category dd-mm-yy/dd-mm-yy";
 }
