@@ -5,35 +5,68 @@
 
 == PROJECT: Tasketch
 
+=== About the project
 ---
+My team and I were tasked with enhancing a basic command line interface addressbook for our Software Engineering project.
+We chose to morph it into an time management system called Tasketch. It is an application that helps users to manage their
+everyday time by giving users an overview of all the time planned for all the tasks in a daily manner. It also helps users
+to be aware of all the tasks dateline too. +
+My primary role was to design and write the codes for the wrong command suggestion feature as well as the import and export feature.
+Also, I have enhanced a bit on the existing `clear` command. +
+The following sections illustrate these enhancements in more detail, as well as the relevant sections I have added to the
+user and developer guides in relation to these enhancements.
 
-== Overview
+Note the following symbols and formatting used in this document:
 
-Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
-for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too.
+[width="100%",cols="18%,<20%",options="header",]
+|=======================================================================
+|Symbol |Indication
+
+|`clear` |A grey highlight (called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.
+|NOTE |This indicates an important information
+|https://github.com/CS2113-AY1819S2-T09-2/main[Github repo] |The underlined blue text indicates an URL link.
+|=======================================================================
 
 == Summary of contributions
 
+|===
+|The following section shows a summary of code, document and other minor helpful contribution to our project. And some URL for the pull requests and
+|===
+
 * *Major enhancement*: +
-   1. Added the ability to clear tasks which start from one specific date or month and also clear all tasks that are finished before today. +
-   2. Added the ability to give users suggestion when they type the command words wrongly. +
-   3. Still working on the import and export feature.
-** What it does: +
-    a. It allows the user to clear some tasks that are no longer needed on the daily basis or the monthly basis or even clear all finished tasks in the storage. +
-    b. It is more user friendly because the system will be smart to guess what is the most similar command with the wrongly typed command word. +
-    c. It will also allow the users to import or export the tasks in Json file.
-** Justification: +
-    This feature improves the product significantly because a user can make clear a branch of tasks in the app. And when users have forgot or typed wrongly a command word, it will give suggestions to them. Also, it allows the app to be able to linked with the outside files.
-** Highlights: +
+1. Added the ability to clear tasks which start from one specific date or month, as well as clear all tasks that are finished before today. +
+    ** What it does: +
+    It allows the user to clear some tasks that are no longer needed on the daily basis or the monthly basis or even clear all finished tasks in the storage. +
+    ** Justification: +
+    This feature improves the product significantly because a user can make clear a specific branch of tasks in the app.
+    ** Highlights: +
     This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: +
+    ** Credits: +
+
+
+
+2. Added the ability to give users suggestion when they type the command words wrongly. +
+    ** What it does: +
+    It is more user friendly because the system will be smart to guess what is the most similar command with the wrongly typed command word. +
+    ** Justification: +
+    [why we need to have this?]
+    ** Highlights: +
+    (what's so great about this feature, what should u know about this feature)
+    ** Credits: +
     Codes and ideas related are inspired by https://github.com/CS2113-AY1819S1-W12-1/main[CS2113-AY1819S1-W12-1]
 
+3. Added the ability to import a json file into Tasketch and also export filtered tasks ro all tasks in Tasketch into a json file.
+** What it does: +
+    It will also allow the users to import or export the tasks in Json file.
+    ** Justification: +
+    ** Highlights: +
+    ** Credits: +
+    Codes and ideas related are inspired by https://github.com/CS2113-AY1819S1-W12-1/main[CS2113-AY1819S1-W12-1]
 
 * *Minor enhancement*: +
  Changed a bit of the ability to open help window, to exit the program and to undo and redo the previous command.
 
-* *Code contributed*: [https://github.com/CS2113-AY1819S2-T09-2/main/tree/master/src/main/java/seedu/address/export[Export code]] [https://github.com/CS2113-AY1819S2-T09-2/main/tree/master/src/main/java/seedu/address/commons/events[Events code]][https://github.com/CS2113-AY1819S2-T09-2/main/tree/master/src/main/java/seedu/address/logic/suggestions[Suggestion code]][https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/src/main/java/seedu/address/logic/parser/ClearCommandParser.java[Clear Command Parser]][https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/src/main/java/seedu/address/logic/commands/ClearCommand.java[Clear Command]][https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=Zeyang-Li&tabRepo=CS2113-AY1819S2-T09-2_main_master[RepoSence Report]]
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Zeyang-Li&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=Zeyang-Li&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[RepoSence Report]]
 
 * *Other contributions*:
 
@@ -48,19 +81,21 @@ for all the tasks in a daily manner. It also helps you to be aware of all the ta
 *** Contributed to forum discussions (examples:  https://github.com[])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
 *** Some parts of the input suggestion feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** bring in a third party library (opencsv) to the project (https://github.com[#42])
-
 
 
 == Contributions to the User Guide
 
 
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_Given below are some sample sections I contributed to the User Guide. If you would like to see the original part in our UserGuide, you can click the underlined blue titles. +
+They showcase my ability to write documentation targeting end-users. +
+Here are the links to other contributions I made to the UserGuide. +
+[https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#versioned-tasketch[Versioned Tasketch]]
+[https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#viewing-help-help[Viewing help]]
+[https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#exiting-the-program-exit[exiting the program]]_
 |===
 
-==== Clearing all tasks : `clear`/`c`
+==== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#clearing-all-tasks-clearc[Clearing all tasks : `clear`/`c`]
 
 If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
@@ -74,9 +109,9 @@ Clears all the tasks starting from the specified date
 
 Examples:
 
-* `clear 21-02-2019` +
+* `clear 21-02-19` +
 Clears all the tasks which start from February 21st, 2019.
-* `clear 02-2019` +
+* `clear 02-19` +
 Clears all the tasks which start from February, 2019.
 * `clear before` +
 Clears all the tasks which finished before today.
@@ -88,7 +123,24 @@ The tasks of your date choice should be cleared from the task list on the left o
 The correspond time duration for those tasks will be deducted from the Daily Time Planner.
 
 
-=== Import/Export
+== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#getting-wrong-command-suggestions[Getting wrong command suggestions]
+There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
+by giving a list of closest approximations of word through the message box after pressing `enter`. +
+
+****
+* The input is not case sensitive, hence it would increase the chance of getting a closer approximation of the correct command!
+* This feature tolerates a maximum of two wrong alphabets.
+* This feature allows user to type in a command which has the same alphabets with one of the correct command word but in different order. The system can give suggestion even if the user type in the reverse command word.
+****
+
+Examples：
+
+* If you want to type `clear` but typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
+* If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
+* If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
+
+
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#importexport[Import/Export]
 This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
 the product to export what you have in the Tasketch to a json file if you want.
 
@@ -137,67 +189,6 @@ Examples:
 2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
 ====
 
-=== Versioned Tasketch
-This feature will help you to check all the commands you have typed into Tasketch. Besides, it gives you a chance to
-regret your previous attempts when playing with Tasketch.
-
-==== Listing entered commands : `history`/`h`
-
-Lists all the commands that you have entered in reverse chronological order. +
-
-Format: `history`
-
-==== Undoing previous command : `undo`/`u`
-
-Restores the Tasetch to the state before the previous undoable command was executed. +
-
-Format: `undo`
-
-Examples:
-
-* `delete 1` +
-  `list` +
-  `undo` (reverses the `delete 1` command)
-* `delete 1` +
-  `clear` +
-  `undo`  (reverses the `delete 1` command) +
-  `undo` (reverses the `clear` command)
-
-
-==== Redoing the previously undone command : `redo`/`r`
-
-Reverses the most recent `undo` command. +
-
-Format: `redo`
-
-Examples:
-
-* `delete 1` +
-  `undo` (reverses the `delete 1` command) +
-  `redo` (reapplies the `delete 1` command)
-* `delete 1` +
-  `redo` +
-   The `redo` command fails as there are no undo commands executed previously.
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command)
-
-
-=== Viewing help : `help`
-
-In case you are clueless, you can always use this command get help on all the commands available and their functions.
-
-Format: `help`
-
-=== Exiting the program : `exit`
-
-If you are done using the app, you just use this command to exit and close the app.
-
-Format: `exit`
-
 
 == Contributions to the Developer Guide
 
@@ -206,7 +197,7 @@ Format: `exit`
 |===
 
 // tag::suggestiom[]
-=== Suggestion feature
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#suggestion-feature[Suggestion feature]
 
 The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
 
@@ -254,7 +245,7 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 // end::suggestion[]
 
 // tag::import/export[]
-=== Import/Export feature
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#importexport-feature[Import/Export feature]
 
 ==== Current Implementation
 
