@@ -20,7 +20,13 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 == Introduction
 === What is Tasketch
 
-Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too. +
+
+This application is designed for the busy NUS students who have many tasks, assignments and datelines everyday. +
+
+Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the
+benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively. +
 
 This developer guide is introducing the development structure of Tasketch and provide a better understanding of how this project works. Jump to the <<Quick Start>> to get started. Enjoy!
 
@@ -303,7 +309,7 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-// tag::suggestiom[]
+// tag::suggestion[]
 === Suggestion feature
 ==== Current Implementation
 
@@ -340,9 +346,18 @@ There are currently two commands with parameters to help achieve this, `month` a
 // end::Effective Visualization[]
 
 // tag::timeplanner[]
-=== Timeplanner feature
-==== Current Implementation
+=== Daily Time Planner feature
+Daily Time Planner uses the information of tasks added, such as start date, end date, start time, end time
+and category.
 
+==== Current Implementation
+Start date and end date are used to identify whether the task added is a daily task, same dates mean that it is a daily
+task or else it is a long term task which is not meant for daily time planning. Thus, that task will be added to
+Daily Time Planner for monitoring. +
+
+Start time and end time are used for calculating the time period of that task and to be added into the accumulated time
+for a category for that date of a task. ( eg. if the task with date 13-03-19 is a category academic task, its calculated
+time period will be added to the academic accumulated time in the day 13-03-19. )
 
 // end::timeplanned[]
 
