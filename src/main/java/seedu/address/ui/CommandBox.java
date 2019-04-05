@@ -9,8 +9,8 @@ import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORM
 import static seedu.address.logic.commands.CommandFormatString.IMPORT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.MONTH_COMMAND_FORMATSTRING;
-import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_CATEGORY_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_FORMATSTRING;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -114,8 +114,9 @@ public class CommandBox extends UiPart<Region> {
             break;
         case TAB:
             keyEvent.consume();
-            if (Arrays.asList(CommandList).contains(commandTextField.getText()) ||
-            		commandTextField.getText().equals(RemindCommand.COMMAND_WORD + " " + REMIND_COMMAND_FORMATSTRING)) {
+            if (Arrays.asList(CommandList).contains(commandTextField.getText())
+                    || commandTextField.getText().equals(RemindCommand.COMMAND_WORD
+                            + " " + REMIND_COMMAND_FORMATSTRING)) {
                 showParameterForCommand(commandTextField.getText());
             } else {
                 autoCompleteInputCommand();
@@ -150,8 +151,9 @@ public class CommandBox extends UiPart<Region> {
             replaceText(completedtext);
             break;
         case "export":
-        	completedtext = text + " " + EXPORT_COMMAND_FORMATSTRING;
+            completedtext = text + " " + EXPORT_COMMAND_FORMATSTRING;
             replaceText(completedtext);
+            break;
         case "find":
             completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
             replaceText(completedtext);
@@ -159,12 +161,15 @@ public class CommandBox extends UiPart<Region> {
         case "import":
             completedtext = text + " " + IMPORT_COMMAND_FORMATSTRING;
             replaceText(completedtext);
+            break;
         case "list":
             completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
             replaceText(completedtext);
+            break;
         case "month":
-        	completedtext = text + " " + MONTH_COMMAND_FORMATSTRING;
+            completedtext = text + " " + MONTH_COMMAND_FORMATSTRING;
             replaceText(completedtext);
+            break;
         case "remind":
             completedtext = text + " " + REMIND_COMMAND_FORMATSTRING;
             replaceText(completedtext);
