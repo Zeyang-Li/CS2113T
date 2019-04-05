@@ -17,8 +17,8 @@ public class ListCommandParser {
     public Command parse(String userInput) throws ParseException {
         String[] arguments = userInput.trim().split("\\s+");
         if (arguments.length == 1) {
-            if (arguments[0].equals("") || arguments[0].equals("td") || isValidDateFormat(arguments[0]) ||
-            isCategory(arguments[0])) {
+            if (arguments[0].equals("") || arguments[0].equals("td") || isValidDateFormat(arguments[0])
+                    || isCategory(arguments[0])) {
                 return new ListCommand(arguments);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
@@ -40,6 +40,9 @@ public class ListCommandParser {
         }
     }
 
+    /**
+     * Check if user input is of the correct format
+     */
     private boolean isCategory(String str) {
         if (str.equals("a") || str.equals("c") || str.equals("e") || str.equals("r") || str.equals("o")) {
             return true;
