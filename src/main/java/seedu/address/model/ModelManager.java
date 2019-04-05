@@ -88,15 +88,6 @@ public class ModelManager implements Model {
         }
     };
 
-    private boolean meetRequirement(Task task, String givenCategory) {
-        if (task.getCategories().value.equals(givenCategory)) {
-
-            return true;
-        } else {
-
-            return false;
-        }
-    }
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
      */
@@ -382,7 +373,18 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Determine the predicate
+     */
+    private boolean meetRequirement(Task task, String givenCategory) {
+        if (task.getCategories().value.equals(givenCategory)) {
 
+            return true;
+        } else {
+
+            return false;
+        }
+    }
     //=========== Import/ Export ==============================================================================
     @Override
     public void importTasksFromTaskBook(Path importFilePath) throws IOException, DataConversionException {
