@@ -1,7 +1,7 @@
 = Zeyang Li - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
-:stylesDir: ../stylesheets
+
 
 == PROJECT: Tasketch
 
@@ -30,7 +30,7 @@ Note the following symbols and formatting used in this document:
 |Symbol |Indication
 
 | `clear` |A grey highlight (called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.
-|[NOTE] |This indicates an important information
+|*NOTE* |This indicates an important information
 |https://github.com/CS2113-AY1819S2-T09-2/main[Github repo] |The blue text indicates an URL link.
 |=======================================================================
 
