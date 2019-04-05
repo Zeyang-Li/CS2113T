@@ -46,7 +46,7 @@ public class PreTask {
     public String getMonth() {
         return month;
     }
-
+    
     public String getYear() {
         return year;
     }
@@ -54,6 +54,7 @@ public class PreTask {
     public float getStart() {
         return start;
     }
+    
     public float getEnd() {
         return end;
     }
