@@ -42,6 +42,7 @@ type either `add` or `a`.
 * Parameters can be in any order e.g. if the command specifies `sd/START_DATE ed/END_DATE`, `ed/END_DATE sd/START_DATE` is also acceptable.
 * The format for dates is `dd-mm-yy`. For example: `25-03-19` means March 25th, 2019.
 * The format for times is `hh.mm` and it is using 24-hour clock. For example: `13.00` means 1 o'clock in the afternoon.
+* Tags names should be alphanumeric. For example: DueSoon, CS2113TLecture
 
 [[category]]
 ****
@@ -142,9 +143,9 @@ Clears all the tasks starting from the specified date
 
 Examples:
 
-* `clear 21-02-2019` +
+* `clear 21-02-19` +
 Clears all the tasks which start from February 21st, 2019.
-* `clear 02-2019` +
+* `clear 02-19` +
 Clears all the tasks which start from February, 2019.
 * `clear before` +
 Clears all the tasks which finished before today.
@@ -248,9 +249,9 @@ Lists all the tasks of that specific date +
 
 Examples:
 
-* `list 02-2019` +
+* `list 02-19` +
 Lists all the tasks in February, 2019
-* `list 20-02-2019` +
+* `list 20-02-19` +
 Lists all the tasks in February 20th, 2019
 * `list` +
 Lists all the tasks in the storage
@@ -353,8 +354,17 @@ by giving a list of closest approximations of word through the message box after
 Examples：
 
 * If you want to type `clear` but typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
++
+image::WrongCommandSuggestion_clarr.png[width="790"]
++
 * If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
++
+image::WrongCommandSuggestion_ecot.png[width="790"]
++
 * If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
+Although there are more than 2 alphabets different from the correct command, the system will smartly show the suggestion because `hsitryo` has the same alphabets with `history`
++
+image::WrongCommandSuggestion_hsitryo.png[width="790"]
 
 == Automatically complete input command for user
 If you type something wrongly, the app will automatically correct type error and fulfill their incomplete typed command in command line.
@@ -496,17 +506,17 @@ There is no need to save manually.
 * *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORY] [t/TAG]...` +
 e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a`
 * *Clear* : `clear [DATE]` +
-e.g. `clear 21-02-2019`
+e.g. `clear 21-02-19`
 * *Delete* : `delete INDEX_NUMBER` +
 e.g. `delete 1`
 * *Edit* : `edit INDEX_NUMBER [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]` +
-e.g. `edit 1 s/12.00 e/14.00 t/GET1018 tut`
+e.g. `edit 1 s/12.00 e/14.00 t/GET1018tut`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find CS2113T`
 * *List* : `list [DATE]` +
-e.g. `list 02-2019`
+e.g. `list 02-19`
 * *Showtime* : `showtime [DATE]`
-e.g. `showtime 13-02-2019`
+e.g. `showtime 13-02-19`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
