@@ -4,8 +4,13 @@ import static seedu.address.logic.commands.CommandFormatString.ADD_COMMAND_FORMA
 import static seedu.address.logic.commands.CommandFormatString.CLEAR_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.DELETE_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.EDIT_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.EXPORT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.IMPORT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.MONTH_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_CATEGORY_FORMATSTRING;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -25,12 +30,17 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
+import seedu.address.logic.commands.ShowTimeCommand;
+import seedu.address.logic.commands.TimelineCommand;
 import seedu.address.logic.commands.UndoCommand;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -54,12 +64,17 @@ public class CommandBox extends UiPart<Region> {
             DeleteCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
+            ExportCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             HistoryCommand.COMMAND_WORD,
+            ImportCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
+            MonthCommand.COMMAND_WORD,
             RemindCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
+            ShowTimeCommand.COMMAND_WORD,
+            TimelineCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD,
         };
     }
@@ -99,7 +114,8 @@ public class CommandBox extends UiPart<Region> {
             break;
         case TAB:
             keyEvent.consume();
-            if (Arrays.asList(CommandList).contains(commandTextField.getText())) {
+            if (Arrays.asList(CommandList).contains(commandTextField.getText()) ||
+            		commandTextField.getText().equals(RemindCommand.COMMAND_WORD + " " + REMIND_COMMAND_FORMATSTRING)) {
                 showParameterForCommand(commandTextField.getText());
             } else {
                 autoCompleteInputCommand();
@@ -133,12 +149,28 @@ public class CommandBox extends UiPart<Region> {
             completedtext = text + " " + EDIT_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
+        case "export":
+        	completedtext = text + " " + EXPORT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
         case "find":
             completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
+        case "import":
+            completedtext = text + " " + IMPORT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
         case "list":
             completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+        case "month":
+        	completedtext = text + " " + MONTH_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+        case "remind":
+            completedtext = text + " " + REMIND_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case RemindCommand.COMMAND_WORD + " " + REMIND_COMMAND_FORMATSTRING:
+            completedtext = RemindCommand.COMMAND_WORD + " " + REMIND_COMMAND_CATEGORY_FORMATSTRING;
             replaceText(completedtext);
             break;
 
