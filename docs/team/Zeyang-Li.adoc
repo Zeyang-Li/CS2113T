@@ -1,19 +1,7 @@
 = Zeyang Li - Project Portfolio
-:site-section: Zeyang-Li - Project Portfolio
-:toc:
-:toc-title:
-:toc-placement: preamble
-:sectnums:
+:site-section: AboutUs
 :imagesDir: ../images
-:stylesDir: stylesheets
-:xrefstyle: full
-:experimental:
-ifdef::env-github[]
-:tip-caption: :bulb:
-:note-caption: :information_source:
-endif::[]
-:repoURL: https://github.com/CS2113-AY1819S2-T09-2/main
-
+:stylesDir: ../stylesheets
 
 == PROJECT: Tasketch
 
@@ -42,8 +30,8 @@ Note the following symbols and formatting used in this document:
 |Symbol |Indication
 
 | `clear` |A grey highlight (called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.
-|NOTE |This indicates an important information
-|https://github.com/CS2113-AY1819S2-T09-2/main[Github repo] |The underlined blue text indicates an URL link.
+|[NOTE] |This indicates an important information
+|https://github.com/CS2113-AY1819S2-T09-2/main[Github repo] |The blue text indicates an URL link.
 |=======================================================================
 
 == Summary of contributions
@@ -101,7 +89,7 @@ https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/C
 == Contributions to the User Guide
 
 |===
-|_Given below are some sample sections I contributed to the User Guide in terms of the *Wrong Command Suggestion* and the *Import and Export feature*. If you would like to see the original part in our UserGuide, you can simply click the underlined blue titles. +
+|_Given below are some sample sections I contributed to the User Guide in terms of the *Wrong Command Suggestion* and the *Import and Export feature*. If you would like to see the original part in our UserGuide, you can simply click the blue titles. +
 They showcase my ability to write documentation targeting end-users. +
 Here are the links to other contributions I made to the UserGuide. +
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#versioned-tasketch[Versioned Tasketch]]
@@ -130,9 +118,9 @@ image::WrongCommandSuggestion_clarr.png[width="790"]
 _Figure 2: Outcome for example 1._
 * If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
 +
-_Figure 3: Outcome for example 2._
 image::WrongCommandSuggestion_ecot.png[width="790"]
 +
+_Figure 3: Outcome for example 2._
 * If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
 Although there are more than 2 alphabets different from the correct command, the system will smartly show the suggestion because `hsitryo` has the same alphabets with `history`
 +
