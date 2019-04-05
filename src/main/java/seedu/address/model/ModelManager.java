@@ -194,12 +194,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Task> getRemindTaskList()  {
+    public ObservableList<Task> getRemindTaskList() {
         return remindList;
     }
 
     @Override
-    public ObservableList<Task> getAllTaskList()   {
+    public ObservableList<Task> getAllTaskList() {
         return versionedTaskBook.getTaskList();
     }
 

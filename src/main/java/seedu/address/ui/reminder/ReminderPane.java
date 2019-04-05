@@ -49,7 +49,7 @@ public class ReminderPane extends AnchorPane {
         return this.logic;
     }
 
-    public ListView<TaskCard> getListView()  {
+    public ListView<TaskCard> getListView() {
         return this.taskListView;
     }
 
