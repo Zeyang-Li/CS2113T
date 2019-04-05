@@ -179,7 +179,7 @@ public class TaskBook implements ReadOnlyTaskBook {
                 dayMap.put(date, a);
             }
             Day d = dayMap.get(date);
-            dayMap.remove(date);
+            dayMap.remove(date, d);
             days.remove(d);
             d.addCategory(editedTask);
             addDay(d);
@@ -194,23 +194,29 @@ public class TaskBook implements ReadOnlyTaskBook {
                     dayMap.put(editedStartDate, new Day(editedStartDate));
                 }
                 Day eD = dayMap.get(editedStartDate);
+                dayMap.remove(editedStartDate, eD);
                 days.add(eD);
                 days.remove(eD);
                 eD.addCategory(editedTask);
                 days.add(eD);
+                dayMap.put(editedStartDate, eD);
 
                 Day tD = dayMap.get(targetStartDate);
+                dayMap.remove(targetStartDate, tD);
                 days.remove(tD);
                 tD.removeCategory(target);
                 days.add(tD);
+                dayMap.put(targetStartDate, tD);
 
                 indicateModified();
                 return;
             }
             Day tD = dayMap.get(targetStartDate);
+            dayMap.remove(targetStartDate, tD);
             days.remove(tD);
             tD.editCategory(target, editedTask);
             addDay(tD);
+            dayMap.put(targetStartDate, tD);
             indicateModified();
         }
     }
@@ -224,17 +230,20 @@ public class TaskBook implements ReadOnlyTaskBook {
         String dateE = key.getEndDate().toString();
         if (dateS.equalsIgnoreCase(dateE)) {
             Date date = new Date(dateS);
-            if (!dayMap.containsKey(date)) {
+            if (dayMap.containsKey(date)) {
+
+                Day d = dayMap.get(date);
+                dayMap.remove(date, d);
+                days.remove(d);
+                d.removeCategory(key);
+                if (!d.isDayEmpty()) {
+                    days.add(d);
+                    dayMap.put(date, d);
+                }
+                tasks.remove(key);
+                indicateModified();
+                return;
             }
-            Day d = dayMap.get(date);
-            days.remove(d);
-            d.removeCategory(key);
-            if (!d.isDayEmpty()) {
-                days.add(d);
-            }
-            tasks.remove(key);
-            indicateModified();
-            return;
         }
         tasks.remove(key);
         indicateModified();

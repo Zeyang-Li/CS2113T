@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_CONSTRAINTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_CONSTRAINTS;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -13,6 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.checks.CheckValidDate;
+import seedu.address.logic.commands.checks.CheckValidTime;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -56,57 +60,35 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Start Date & Start Time must be before End Date & End Time!";
-    public static final String MESSAGE_TIME_CONSTRAINTS = "Adding daily task, End Time must be after Start Time!";
+    public static final String MESSAGE_DAILYTIME_CONSTRAINTS = "Adding daily task, Start Time must be before End Time!";
+
     private Task toAdd;
-    private String specifiedDate;
 
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
     public AddCommand(Task task) {
+        requireNonNull(task);
+
+        boolean isValidDate;
+        boolean isValidTime;
+        CheckValidDate checkValidDate = new CheckValidDate(task);
+        CheckValidTime checkValidTime = new CheckValidTime(task);
+
+        isValidDate = checkValidDate.getCheck();
+        isValidTime = checkValidTime.getCheck();
+
         String startD = task.getStartDate().value;
         String endD = task.getEndDate().value;
-        requireNonNull(task);
+
         if (startD.equalsIgnoreCase(endD)) {
-            checkArgument(isValidTime(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
+            checkArgument(isValidTime, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_DAILYTIME_CONSTRAINTS));
         } else {
-            checkArgument(isValidDate(task), String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DATE_CONSTRAINTS));
+            checkArgument(isValidDate, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_DATE_CONSTRAINTS));
+            checkArgument(isValidTime, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_TIME_CONSTRAINTS));
         }
         toAdd = task;
-    }
-
-    /**
-     * Returns true if both date of a task is the same.
-     */
-    public boolean isValidDate(Task task) {
-        String[] dateS = task.getStartDate().value.split("-");
-        String[] dateE = task.getEndDate().value.split("-");
-
-        if (Integer.parseInt(dateS[0]) > Integer.parseInt(dateE[0])) {
-            return false;
-        }
-        if (Integer.parseInt(dateS[1]) > Integer.parseInt(dateE[1])) {
-            return false;
-        }
-        if (Integer.parseInt(dateS[2]) > Integer.parseInt(dateE[2])) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Returns true if endTime of a task is the same.
-     */
-    public boolean isValidTime(Task task) {
-        String time = task.getEndTime().value;
-        double end = task.getEndTime().getTimeDouble(time);
-        time = task.getStartTime().value;
-        double start = task.getStartTime().getTimeDouble(time);
-        if (end > start) {
-            return true;
-        }
-        return false;
     }
 
     @Override
