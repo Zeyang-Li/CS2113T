@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -90,7 +92,6 @@ public class RemindCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
 
         requireNonNull(model);
-        shownTaskList = model.getAllTaskList();
         String trimmedArguments = arguments.trim();
         String[] splitedInput = trimmedArguments.split("\\s");
 
@@ -99,14 +100,14 @@ public class RemindCommand extends Command {
 
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
             } else if (splitedInput[0].equals("start")) {
-                model.sortByStart();
-
+                //model.sortByStart();
+                model.sortRemindListByStart();
             } else {
 
-                model.sortByEnd();
-
+                //model.sortByEnd();
+                model.sortRemindListByEnd();
             }
-            model.setRemindList(shownTaskList);
+
             model.commitTaskBook();
 
         } else if (splitedInput.length == 2) {
@@ -117,18 +118,15 @@ public class RemindCommand extends Command {
             } else {
 
                 if (splitedInput[1].equals("start")) {
-                    model.sortByStart();
-
+                    model.sortRemindListByStart();
+                    model.filterRemindList(splitedInput[0]);
                 } else {
-                    model.sortByEnd();
-
+                    model.sortRemindListByEnd();
+                    model.filterRemindList(splitedInput[0]);
                 }
             }
 
-            model.setRemindList(shownTaskList);
             model.commitTaskBook();
-            Predicate<Task> predicate = task -> meetRequirement(task, splitedInput[0]);
-            model.updateFilteredTaskList(predicate);
 
         } else {
 
