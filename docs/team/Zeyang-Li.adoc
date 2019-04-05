@@ -18,7 +18,7 @@ _Figure 1: An overview of our project_
 * My primary role was to design and write the codes for the wrong command suggestion feature as well as the import and export feature.
 Also, I have enhanced a bit on the existing `clear` command.
 
-=== Overwiew
+== Overview
 
 The following sections illustrate these enhancements in more detail, as well as the relevant sections I have added to the
 user and developer guides in relation to these enhancements.
@@ -97,8 +97,7 @@ Here are the links to other contributions I made to the UserGuide. +
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#exiting-the-program-exit[Exiting the program]]_
 |===
 
-
-== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#getting-wrong-command-suggestions[Getting wrong command suggestions]
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#getting-wrong-command-suggestions[Getting wrong command suggestions]
 
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
 by giving a list of closest approximations of word through the message box after pressing `enter`. +
@@ -133,7 +132,7 @@ _Figure 4: Outcome for example 3._
 This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
 the product to export what you have in the Tasketch to a json file if you want.
 
-=== Export tasks: `export`
+==== Export tasks: `export`
 
 You can save all tasks or filtered tasks into a json file. It can be used with `list` or `find`. +
 Format: `export FILENAME.json [CATEGORY]`
@@ -293,5 +292,5 @@ Given below is an example usage scenario and how the export mechanism behaves at
 // end::import/export[]
 
 
-== PROJECT: Tasketch
+
 
