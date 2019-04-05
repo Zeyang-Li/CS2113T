@@ -199,23 +199,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
     /**
      * Choose which page to show.
      */
     public void setScene(String value) {
         optionPage = value;
-    }
-
-    /**
-     * Get current page.
-     * @return
-     */
-    public String getPage() {
-        return this.optionPage;
     }
 
     /**
