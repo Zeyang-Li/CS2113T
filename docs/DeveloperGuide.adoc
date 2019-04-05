@@ -412,7 +412,51 @@ Start time and end time are used for calculating the time period of that task an
 for a category for that date of a task. ( eg. if the task with date 13-03-19 is a category academic task, its calculated
 time period will be added to the academic accumulated time in the day 13-03-19. )
 
-// end::timeplanned[]
+These information is passed to the `calculateTime()` method in Day object in the form of string, so it has to be
+converted to double data type for calculation purpose using `Double.valueOf()`. Then it has to be rounded up to the power
+of 2 for consistency in data representation.
+
+Besides `Task` model being used to represent all the tasks added, there is also `Day` model to represent all the days
+which stores information (date and accumulated time of that 5 task categories) of the tasks added to that day.
+
+[NOTE]
+Each new `Task` added will not create new `Day` objects, instead it will either update the category times of that `Day`
+if the new task added has the same date (same start date), or create a new `Day` only if there no days that have the same
+date.
+
+*Data Structure* +
+`TaskBook` needs data structure to store data. Besides the ObservableList named `UniqueTaskList` to store all the tasks,
+there is also another ObservableList named `UniqueDayList` to store all the days.
+
+[NOTE]
+Observable List is used to observe a list so that when there is change in the list, it will notified (listeners) all the other
+components that utilizing this Observable List data and do the necessary updates in their own data.
+
+Besides those 2 mentioned above, a HashMap named `dayMap` is used to store another set of `Day` objects which are
+identical to the `UniqueDayList`.
+
+* **Alternative 1 (current choice): As described above**
+** Pros: Faster in finding a `Day` object as it uses a key (start date of a task) to add into and find in the hash map.
+** Cons: Double work as it needs to add into and remove the `Day` object from both `UniqueDayList` and `dayMap`.
+* **Alternative 2: Using the `UniqueDayList` only**
+** Pros: No extra work needed as adding and removing happens only to one data structure.
+** Cons: Finding a `Day` object will be slower when there are large amount `Day` objects, as it needs to iterate through
+the list.
+
+However, `dayMap` cannot be implemented alone as it doesn't have the ability to observe and notified the listeners when
+there is a change. So, it has to be implemented with an ObservableList.
+
+[NOTE]
+Since a new `TaskBook` is created each time `undo` and `redo` command executed as `VersionedTaskBook` extends `TaskBook`,
+the data of the latest `UniqueTaskList` and `UniqueDayList` will need to transferred to the new `TaskBook` through
+`resetData(ReadOnlyTaskBook newData)`.
+
+[NOTE]
+`dayMap` will be a reinitialised to new `HashMap` as the data in `UniqueDayList` is inaccurate during `resetData(ReadOnlyTaskBook newData)`.
+So, it is better to start in clean state and re-add all the time period of all tasks in the `UniqueTaskList`. The
+`UniqueDayList` will be updated as well.
+
+// end::timeplanner[]
 
 // tag::import/export[]
 === Import/Export feature

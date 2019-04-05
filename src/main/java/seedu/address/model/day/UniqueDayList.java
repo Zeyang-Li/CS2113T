@@ -109,7 +109,7 @@ public class UniqueDayList implements Iterable<Day> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code days} contains only unique days.
      */
     private boolean daysAreUnique(List<Day> days) {
         for (int i = 0; i < days.size() - 1; i++) {
