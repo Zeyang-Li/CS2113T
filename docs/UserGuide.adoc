@@ -317,6 +317,9 @@ Shows a list of nearest start tasks of "entertainment" category.
 Shows the desired month to the user. Noted that only previous month and next month will be shown. +
 e.g. Current month is April, then only March and May can be shown.
 
+[TIP]
+The feature for changing the background color of each day on the calendar will come in v2.0!
+
 Format:
 
 * `month +` +
@@ -332,6 +335,11 @@ Shows the timeline of today by default. +
 
 * `timeline [DATE]` +
 Shows the timeline of that date. +
+
+[WARNING]
+After adding or editing a task, user needs to retype timeline [DATE] to refresh the timeline. +
+This implementation is to make sure this feature is not purely part of UI.
+
 
 Examples:
 
