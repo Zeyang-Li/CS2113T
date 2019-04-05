@@ -455,7 +455,7 @@ So, it is better to start in clean state and re-add all the time period of all t
 ==== Current Implementation
 
 ===== Import
-This operation is exposed in the Model interface as Model#importTaskBook().
+This operation is exposed in the Model interface as `Model#importTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -467,23 +467,25 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 4*: The LogicManager calls execute() on the ImportCommand object
 
-*Step 5*: The Logic component then interacts with the Model component by calling importTasksFromTaskBook() of the Model interface.
+*Step 5*: The Logic component then interacts with the Model component by calling `Model#importTasksFromTaskBook()`.
 
 *Step 6*: The Model interface creates a new Import object and then pass the filePath to the ImportManager.
 
-*Step 7*: The Import object will call JsonFileStorage class to loadDataFromSaveFile.
+*Step 7*: The ModelManager will call `Import#readTaskBook()` and get a ReadOnlyTaskBook object.
 
-*Step 8*: The ImportManager class will call JsonFileStorage class to saveDataToFile.
+[NOTE]
+====
+The ImportManager class will first check whether the task in the file exists in Tasketch, if there is an existing task, just ignore this task.
+====
 
-*Step 9*: The JsonFileStorage class will call JsonUtil class to fromJsonString.
 
-*Step 10*: The ModelManager will get a ReadOnlyTaskBook object and then it will addTasksToTaskBook.
+*Step 8*: The ModelManager will then will call `addTasksToTaskBook()`.
 
-*Step 11*: If there is any new task added, the ModelManager will updateFilteredTaskList.
+*Step 9*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
 
 ===== Export
 
-This operation is exposed in the Model interface as Model#exportTaskBook().
+This operation is exposed in the Model interface as `Model#exportTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -495,22 +497,34 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 4*: The LogicManager calls execute() on the ExportCommand object
 
-*Step 5*: The Logic component then interacts with the Model component by calling exportFilteredTaskBook() of the Model interface.
+*Step 5*: The Logic component then interacts with the Model component by calling `Model#exportFilteredTaskBook()` of the Model interface.
 
 *Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList and the filePath to the ExportManager.
 
-*Step 7*: The Export object calls saveFilteredTasks function.
+*Step 7*: The Export object calls `Export#saveFilteredTasks()`.
 
-*Step 8*: The ExportManager class will call JsonFileStorage class to saveDataToFile.
+*Step 8*: The ExportManager class will call `JsonFileStorage#saveDataToFile()`.
 
-*Step 9*: The JsonFileStorage class will call JsonUtil class to saveJsonFile.
+*Step 9*: The JsonFileStorage class will call `JsonUtil#saveJsonFile()`.
 
-*Step 10*: The JsonUtil class will call FileUtil class to writeToFile.
+*Step 10*: The JsonUtil class will call `FileUtil#writeToFile()`.
 
-*Step 11*: The FileUtil class will finally call File class to write.
+*Step 11*: The FileUtil class will finally call `File#write()`.
+
+[NOTE]
+====
+This File object will creates a new file if there is no existing file with the same name. And if there is an existing file, it will just write to this file no matter it is empty or not.
+====
 
 ==== Design Considerations
-// to be added
+===== Aspect: Use what kind of file
+
+* **Alternative 1 (current choice): Json file**
+** Pros: Easier to implement because the addressbook itself uses Json file to store the data.
+** Cons: Hard for users to read about the exported file.
+* **Alternative 2: Xml file**
+** Pros: Xml is more widely used and it shows tha data better.
+** Cons: Hard to implement.
 
 // end::import/export[]
 
