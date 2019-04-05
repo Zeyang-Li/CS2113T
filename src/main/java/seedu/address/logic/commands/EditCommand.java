@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_CONSTRAINTS;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
@@ -21,6 +25,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.checks.CheckValidDate;
+import seedu.address.logic.commands.checks.CheckValidTime;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -71,6 +77,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Tasketch.";
+    public static final String MESSAGE_DAILYTIME_CONSTRAINTS = "Editing daily task, Start Time must be before End Time!";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -97,9 +104,28 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+        boolean isValidDate;
+        boolean isValidTime;
+        CheckValidDate checkValidDate = new CheckValidDate(editedTask);
+        CheckValidTime checkValidTime = new CheckValidTime(editedTask);
+        isValidDate = checkValidDate.getCheck();
+        isValidTime = checkValidTime.getCheck();
+
+        String startD = editedTask.getStartDate().value;
+        String endD = editedTask.getEndDate().value;
+
+        if (startD.equalsIgnoreCase(endD)) {
+            checkArgument(isValidTime, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_DAILYTIME_CONSTRAINTS));
+        } else {
+            checkArgument(isValidDate, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_DATE_CONSTRAINTS));
+            checkArgument(isValidTime, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_TIME_CONSTRAINTS));
+        }
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
