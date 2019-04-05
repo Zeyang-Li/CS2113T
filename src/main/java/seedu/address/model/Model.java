@@ -84,7 +84,15 @@ public interface Model {
 
     void sortByEnd();
 
+    void sortRemindListByStart();
+
+    void sortRemindListByEnd();
+
     void setRemindList(ObservableList<Task> remindList);
+
+    void filterRemindList(String str);
+
+    void reinitializeRemindList();
 
     ObservableList<Task> getRemindTaskList();
 

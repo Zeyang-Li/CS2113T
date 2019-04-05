@@ -242,17 +242,20 @@ Format:
 
 
 * `list` +
-Lists all the tasks of today +
+Lists all the tasks in the storage +
+
+* `list td` +
+List all the tasks whose start date is today +
 
 * `list DATE` +
-Lists all the tasks of that specific date +
+Lists all the tasks whose start date is that specific date +
 
 Examples:
 
 * `list 02-19` +
-Lists all the tasks in February, 2019
+Lists all the tasks which starts in February, 2019
 * `list 20-02-19` +
-Lists all the tasks in February 20th, 2019
+Lists all the tasks which starts on February 20th, 2019
 * `list` +
 Lists all the tasks in the storage
 
@@ -289,10 +292,14 @@ Shows to the user the nearest tasks of certain category. +
 Format:
 
 * `remind start` +
-Reminds the users of most recently begin tasks of all categories. +
+Reminds the users of most recently begin tasks of all categories. The reminded tasks should be in colored task cards.
++
+image::Remind_Start.png[width="790"]
 
 * `remind ddl` +
-Remind the users of most recent deadline of all categories. +
+Remind the users of most recent deadline of all categories. The reminded tasks should be in colored task cards. +
++
+image::Remind_DDL.png[width="790"]
 
 * `remind a/e/c/r/o ddl/start` +
 Remind the users of most recent start tasks or deadline of specified category.
