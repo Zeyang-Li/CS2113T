@@ -18,7 +18,7 @@ _Figure 1: An overview of our project_
 * My primary role was to design and write the codes for the wrong command suggestion feature as well as the import and export feature.
 Also, I have enhanced a bit on the existing `clear` command.
 
-=== Overwiew
+== Overview
 
 The following sections illustrate these enhancements in more detail, as well as the relevant sections I have added to the
 user and developer guides in relation to these enhancements.
@@ -29,9 +29,10 @@ Note the following symbols and formatting used in this document:
 |=======================================================================
 |Symbol |Indication
 
-| `clear` |A grey highlight (called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.
-|*NOTE* |This indicates an important information
-|https://github.com/CS2113-AY1819S2-T09-2/main[Github repo] |The blue text indicates an URL link.
+| `clear` |Grey highlight (called a mark-up) word(s) indicate that this is a command that can be inputted into the command line and executed by the application.
+| `Model#importTaskBook()` | Grey highlight text with brackets indicates a component, class or object in the architecture of the application.
+|NOTE |This indicates an important information
+|https://github.com/CS2113-AY1819S2-T09-2/main[Github repo] |The blue text indicates there is an URL. And when you click it, you can jump to the corresponding web page.
 |=======================================================================
 
 == Summary of contributions
@@ -89,7 +90,7 @@ https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/C
 == Contributions to the User Guide
 
 |===
-|_Given below are some sample sections I contributed to the User Guide in terms of the *Wrong Command Suggestion* and the *Import and Export feature*. If you would like to see the original part in our UserGuide, you can simply click the blue titles. +
+|_Given below are some sample sections I contributed to the User Guide in terms of the *Wrong Command Suggestion* and the *Import and Export feature*. If you would like to see the original part in our UserGuide, you can simply click blue titles. +
 They showcase my ability to write documentation targeting end-users. +
 Here are the links to other contributions I made to the UserGuide. +
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#versioned-tasketch[Versioned Tasketch]]
@@ -97,11 +98,10 @@ Here are the links to other contributions I made to the UserGuide. +
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#exiting-the-program-exit[Exiting the program]]_
 |===
 
-
-== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#getting-wrong-command-suggestions[Getting wrong command suggestions]
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#getting-wrong-command-suggestions[Getting wrong command suggestions]
 
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
-by giving a list of closest approximations of word through the message box after pressing `enter`. +
+by giving a list of closest approximations of word through the message box after pressing ENTER. +
 
 ****
 * The input is not case sensitive, hence it would increase the chance of getting a closer approximation of the correct command!
@@ -133,7 +133,7 @@ _Figure 4: Outcome for example 3._
 This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
 the product to export what you have in the Tasketch to a json file if you want.
 
-=== Export tasks: `export`
+==== Export tasks: `export`
 
 You can save all tasks or filtered tasks into a json file. It can be used with `list` or `find`. +
 Format: `export FILENAME.json [CATEGORY]`
@@ -153,8 +153,8 @@ Examples:
 
 [NOTE]
 ====
-1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
-2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+1.  The file will be located in *<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json*
+2.  This command overwrites any files with the same name at *<DIRECTORY OF YOUR JAR FILE>/data/*
 3.  If you export tasks based on categories, the left list will also change to show all tasks which are exported.
 ====
 
@@ -174,14 +174,14 @@ Examples:
 
 [NOTE]
 ====
-1.  The file to import must be placed in `<DIRECTORY OF YOUR JAR FILE>/data/`
+1.  The file to import must be placed in *<DIRECTORY OF YOUR JAR FILE>/data/*
 2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
 ====
 
 == Contributions to the Developer Guide
 
 |===
-|_Given below are sections I contributed to the Developer Guide in terms of the *Wrong Command Suggestion feature* as well as the *Import and Export feature*. If you would like to see the original part in our DeveloperGuide, you can simply click the underlined blue titles. +
+|_Given below are sections I contributed to the Developer Guide in terms of the *Wrong Command Suggestion feature* as well as the *Import and Export feature*. If you would like to see the original part in our DeveloperGuide, you can simply click blue titles. +
   They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
@@ -233,7 +233,7 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 ===== 1. Import
 
-This operation is exposed in the Model interface as Model#importTaskBook().
+This operation is exposed in the Model interface as `Model#importTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -245,23 +245,25 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 4*: The LogicManager calls execute() on the ImportCommand object
 
-*Step 5*: The Logic component then interacts with the Model component by calling importTasksFromTaskBook() of the Model interface.
+*Step 5*: The Logic component then interacts with the Model component by calling `Model#importTasksFromTaskBook()`.
 
 *Step 6*: The Model interface creates a new Import object and then pass the filePath to the ImportManager.
 
-*Step 7*: The Import object will call JsonFileStorage class to loadDataFromSaveFile.
+*Step 7*: The ModelManager will call `Import#readTaskBook()` and get a ReadOnlyTaskBook object.
 
-*Step 8*: The ImportManager class will call JsonFileStorage class to saveDataToFile.
+[NOTE]
+====
+The ImportManager class will first check whether the task in the file exists in Tasketch, if there is an existing task, just ignore this task.
+====
 
-*Step 9*: The JsonFileStorage class will call JsonUtil class to fromJsonString.
 
-*Step 10*: The ModelManager will get a ReadOnlyTaskBook object and then it will addTasksToTaskBook.
+*Step 8*: The ModelManager will then will call `addTasksToTaskBook()`.
 
-*Step 11*: If there is any new task added, the ModelManager will updateFilteredTaskList.
+*Step 9*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
 
 ===== 2. Export
 
-This operation is exposed in the Model interface as Model#exportTaskBook().
+This operation is exposed in the Model interface as `Model#exportTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -273,25 +275,38 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 4*: The LogicManager calls execute() on the ExportCommand object
 
-*Step 5*: The Logic component then interacts with the Model component by calling exportFilteredTaskBook() of the Model interface.
+*Step 5*: The Logic component then interacts with the Model component by calling `Model#exportFilteredTaskBook()` of the Model interface.
 
 *Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList and the filePath to the ExportManager.
 
-*Step 7*: The Export object calls saveFilteredTasks function.
+*Step 7*: The Export object calls `Export#saveFilteredTasks()`.
 
-*Step 8*: The ExportManager class will call JsonFileStorage class to saveDataToFile.
+*Step 8*: The ExportManager class will call `JsonFileStorage#saveDataToFile()`.
 
-*Step 9*: The JsonFileStorage class will call JsonUtil class to saveJsonFile.
+*Step 9*: The JsonFileStorage class will call `JsonUtil#saveJsonFile()`.
 
-*Step 10*: The JsonUtil class will call FileUtil class to writeToFile.
+*Step 10*: The JsonUtil class will call `FileUtil#writeToFile()`.
 
-*Step 11*: The FileUtil class will finally call File class to write.
+*Step 11*: The FileUtil class will finally call `File#write()`.
+
+[NOTE]
+====
+This File object will creates a new file if there is no existing file with the same name. And if there is an existing file, it will just write to this file no matter it is empty or not.
+====
 
 ==== Design Considerations
-// to be added
+===== Aspect: Use what kind of file
+
+* **Alternative 1 (current choice): Json file**
+** Pros: Easier to implement because the addressbook itself uses Json file to store the data.
+** Cons: Hard for users to read about the exported file.
+* **Alternative 2: Xml file**
+** Pros: Xml is more widely used and it shows tha data better.
+** Cons: Hard to implement.
+
 
 // end::import/export[]
 
 
-== PROJECT: Tasketch
+
 

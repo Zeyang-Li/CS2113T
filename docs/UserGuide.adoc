@@ -414,8 +414,8 @@ Examples:
 
 [NOTE]
 ====
-1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
-2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+1.  The file will be located in *<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json*
+2.  This command overwrites any files with the same name at *<DIRECTORY OF YOUR JAR FILE>/data/*
 3.  If you export tasks based on categories, the left list will also change to show all tasks which are exported.
 ====
 
@@ -434,7 +434,7 @@ Examples:
 
 [NOTE]
 ====
-1.  The file to import must be placed in `<DIRECTORY OF YOUR JAR FILE>/data/`
+1.  The file to import must be placed in *<DIRECTORY OF YOUR JAR FILE>/data/*
 2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
 ====
 
