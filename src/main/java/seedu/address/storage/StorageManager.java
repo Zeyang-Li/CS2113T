@@ -117,19 +117,19 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAccountList(ReadOnlyAccountList accountList) throws IOException {
+    public void saveAccountList(ReadOnlyAccountList accountList) throws Exception {
         saveAccountList(accountList, accountListStorage.getAccountListFilePath());
     }
 
     @Override
-    public void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws IOException {
+    public void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws Exception {
         logger.fine("Attempting to write to data file: " + filePath);
         accountListStorage.saveAccountList(accountList, filePath);
     }
 
     @Override
     @Subscribe
-    public void handleAccountListChangedEvent(AccountListChangedEvent event) {
+    public void handleAccountListChangedEvent(AccountListChangedEvent event) throws Exception {
         logger.info(LogsCenter.getEventHandlingLogMessage(event, "Local data changed, saving to file"));
         try {
             saveAccountList(event.data);

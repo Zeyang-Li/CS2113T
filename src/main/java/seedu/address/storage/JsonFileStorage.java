@@ -25,6 +25,15 @@ public class JsonFileStorage {
         }
     }
 
+    public static void saveAccountListToFile(Path file, JsonSerializableAccountList accountList)
+            throws FileNotFoundException {
+        try {
+            JsonUtil.saveJsonFile(accountList, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Returns task book in the file or an empty address book
      */
@@ -32,6 +41,11 @@ public class JsonFileStorage {
             FileNotFoundException {
         return JsonUtil.readJsonFile(file, JsonSerializableTaskBook.class);
 
+    }
+
+    public static Optional<JsonSerializableAccountList> loadAccountListFromSaveFile1(Path file) throws DataConversionException,
+            FileNotFoundException {
+        return JsonUtil.readJsonFile(file, JsonSerializableAccountList.class);
     }
 
 }

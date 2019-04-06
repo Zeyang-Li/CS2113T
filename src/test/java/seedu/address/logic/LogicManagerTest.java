@@ -32,10 +32,10 @@ import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.account.Username;
 import seedu.address.model.task.Task;
+import seedu.address.storage.JsonAccountListStorage;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.XmlAccountListStorage;
 import seedu.address.testutil.TaskBuilder;
 
 
@@ -59,7 +59,7 @@ public class LogicManagerTest {
 
         JsonTaskBookStorage taskBookStorage = new JsonTaskBookStorage(temporaryFolder.newFile().toPath());
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.newFile().toPath());
-        XmlAccountListStorage accountListStorage = new XmlAccountListStorage(temporaryFolder.newFile().toPath());
+        JsonAccountListStorage accountListStorage = new JsonAccountListStorage(temporaryFolder.newFile().toPath());
         StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage, accountListStorage);
         logic = new LogicManager(model, storage);
     }

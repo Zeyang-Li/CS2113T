@@ -39,7 +39,7 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage, AccountListS
     void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
 
     @Override
-    void saveAccountList(ReadOnlyAccountList accountList) throws IOException;
+    void saveAccountList(ReadOnlyAccountList accountList) throws IOException, Exception;
 
     /**
      * Saves the current version of the Address Book to the hard disk.
@@ -52,6 +52,7 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage, AccountListS
      * Saves the current version of the Account List to the hard disk.
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
+     * @throws Exception 
      */
-    void handleAccountListChangedEvent(AccountListChangedEvent accountList);
+    void handleAccountListChangedEvent(AccountListChangedEvent accountList) throws Exception;
 }

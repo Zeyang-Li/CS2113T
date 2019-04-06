@@ -37,13 +37,15 @@ public interface AccountListStorage {
      * Saves the given {@link ReadOnlyAccountList} to the storage.
      * @param accountList cannot be null.
      * @throws IOException if there was any problem writing to the file.
+     * @throws Exception 
      */
-    void saveAccountList(ReadOnlyAccountList accountList) throws IOException;
+    void saveAccountList(ReadOnlyAccountList accountList) throws IOException, Exception;
 
     /**
+     * @throws Exception 
      * @see #saveAccountList(ReadOnlyAccountList)
      */
-    void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws IOException;
+    void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws IOException, Exception;
 
 }
 

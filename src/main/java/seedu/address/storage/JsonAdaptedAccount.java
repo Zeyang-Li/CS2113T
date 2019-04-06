@@ -2,8 +2,6 @@ package seedu.address.storage;
 
 import java.util.Objects;
 
-import javax.xml.bind.annotation.XmlElement;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Password;
@@ -13,12 +11,11 @@ import seedu.address.model.account.Username;
 /**
  * JAXB-friendly version of the Account.
  */
-public class XmlAdaptedAccount {
+public class JsonAdaptedAccount {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Account's %s field is missing!";
 
-    @XmlElement(required = true)
+
     private String username;
-    @XmlElement(required = true)
     private String password;
 
 
@@ -27,13 +24,13 @@ public class XmlAdaptedAccount {
      * Constructs an XmlAdaptedAccount.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedAccount() {}
+    public JsonAdaptedAccount() {}
 
 
     /**
      * Constructs an {@code XmlAdaptedItem} with the given item details.
      */
-    public XmlAdaptedAccount(String username, String password) {
+    public JsonAdaptedAccount(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -44,7 +41,7 @@ public class XmlAdaptedAccount {
      *
      * @param source future changes to this will not affect the created XmlAdaptedItem
      */
-    public XmlAdaptedAccount(Account source) {
+    public JsonAdaptedAccount(Account source) {
         username = source.getUsername().fullUsername;
         password = source.getPassword().toString();
     }
@@ -87,11 +84,11 @@ public class XmlAdaptedAccount {
             return true;
         }
 
-        if (!(other instanceof XmlAdaptedAccount)) {
+        if (!(other instanceof JsonAdaptedAccount)) {
             return false;
         }
 
-        XmlAdaptedAccount otherAccount = (XmlAdaptedAccount) other;
+        JsonAdaptedAccount otherAccount = (JsonAdaptedAccount) other;
         return Objects.equals(username, otherAccount.username)
                 && Objects.equals(password, otherAccount.password);
     }

@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AccountList;
 import seedu.address.model.ReadOnlyAccountList;
@@ -18,28 +14,27 @@ import seedu.address.model.account.Account;
 /**
  * An Immutable AccountList that is serializable to XML format
  */
-@XmlRootElement(name = "accountlist")
-public class XmlSerializableAccountList {
+public class JsonSerializableAccountList {
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate account(s).";
 
-    @XmlElement
-    private List<XmlAdaptedAccount> accounts;
+
+    private List<JsonAdaptedAccount> accounts;
 
 
     /**
      * Creates an empty XmlSerializableAccountList.
      * This empty constructor is required for marshalling.
      */
-    public XmlSerializableAccountList() {
+    public JsonSerializableAccountList() {
         accounts = new ArrayList<>();
     }
 
     /**
      * Conversion
      */
-    public XmlSerializableAccountList(ReadOnlyAccountList src) {
+    public JsonSerializableAccountList(ReadOnlyAccountList src) {
         this();
-        accounts.addAll(src.getAccountList().stream().map(XmlAdaptedAccount::new).collect(Collectors.toList()));
+        accounts.addAll(src.getAccountList().stream().map(JsonAdaptedAccount::new).collect(Collectors.toList()));
     }
 
 
@@ -51,7 +46,7 @@ public class XmlSerializableAccountList {
      */
     public AccountList toModelType() throws IllegalValueException {
         AccountList accountList = new AccountList();
-        for (XmlAdaptedAccount p : accounts) {
+        for (JsonAdaptedAccount p : accounts) {
             Account account = p.toModelType();
             if (accountList.hasAccount(account)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ACCOUNT);
@@ -68,9 +63,9 @@ public class XmlSerializableAccountList {
             return true;
         }
 
-        if (!(other instanceof XmlSerializableAccountList)) {
+        if (!(other instanceof JsonSerializableAccountList)) {
             return false;
         }
-        return accounts.equals(((XmlSerializableAccountList) other).accounts);
+        return accounts.equals(((JsonSerializableAccountList) other).accounts);
     }
 }

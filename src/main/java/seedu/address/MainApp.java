@@ -30,13 +30,13 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleAccountDataUtil;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AccountListStorage;
+import seedu.address.storage.JsonAccountListStorage;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.TaskBookStorage;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.XmlAccountListStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -70,7 +70,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
-        AccountListStorage accountListStorage = new XmlAccountListStorage(userPrefs.getAccountListFilePath());
+        AccountListStorage accountListStorage = new JsonAccountListStorage(userPrefs.getAccountListFilePath());
         storage = new StorageManager(taskBookStorage, userPrefsStorage, accountListStorage);
 
         initLogging(config);

@@ -19,8 +19,8 @@ import seedu.address.model.ReadOnlyAccountList;
 /**
  * A class to access AccountList data stored as an xml file on the hard disk.
  */
-public class XmlAccountListStorage implements AccountListStorage {
-    private static final Logger logger = LogsCenter.getLogger(XmlAccountListStorage.class);
+public class JsonAccountListStorage implements AccountListStorage {
+    private static final Logger logger = LogsCenter.getLogger(JsonAccountListStorage.class);
 
     private final Path filePath;
 
@@ -29,7 +29,7 @@ public class XmlAccountListStorage implements AccountListStorage {
      * Reused from https://github.com/se-edu/addressbook-level4 solutions
      * @param filePath
      */
-    public XmlAccountListStorage(Path filePath) {
+    public JsonAccountListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -59,9 +59,9 @@ public class XmlAccountListStorage implements AccountListStorage {
             return Optional.empty();
         }
 
-        XmlSerializableAccountList xmlAccountList = XmlFileStorage.loadAccountListDataFromSaveFile(filePath);
+        Optional<JsonSerializableAccountList> JsonAccountList = JsonFileStorage.loadAccountListFromSaveFile1(filePath);
         try {
-            return Optional.of(xmlAccountList.toModelType());
+            return Optional.of(JsonAccountList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -69,21 +69,21 @@ public class XmlAccountListStorage implements AccountListStorage {
     }
 
     @Override
-    public void saveAccountList(ReadOnlyAccountList accountList) throws IOException {
+    public void saveAccountList(ReadOnlyAccountList accountList) throws Exception {
         saveAccountList(accountList, filePath);
     }
 
     /**
      * Similar to {@link #saveAccountList(ReadOnlyAccountList)}
      * @param filePath location of the data. Cannot be null
+     * @throws Exception 
      */
-    public void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws IOException {
+    public void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws Exception {
         requireNonNull(accountList);
         requireNonNull(filePath);
 
-
         FileUtil.createIfMissing(filePath);
-        XmlFileStorage.saveAccountListDataToFile(filePath, new XmlSerializableAccountList(accountList));
+        JsonFileStorage.saveAccountListToFile(filePath, new JsonSerializableAccountList(accountList));
     }
 
 }
