@@ -83,6 +83,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void reinitializeRemindList() {
+        model.reinitializeRemindList();
+    }
+
+    @Override
     public ObservableList<Day> getFilteredDayList() {
         return model.getFilteredDayList();
     }

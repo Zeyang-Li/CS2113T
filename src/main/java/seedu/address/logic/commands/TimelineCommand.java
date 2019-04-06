@@ -18,9 +18,7 @@ import seedu.address.model.task.Task;
 public class TimelineCommand extends Command {
 
     public static final String COMMAND_WORD = "timeline";
-
     public static final String COMMAND_ALIAS = "time";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Arrange the tasks of the specific date "
             + "into a timeline and displays them according to categories.\n"
             + "Parameters: [date]...\n"

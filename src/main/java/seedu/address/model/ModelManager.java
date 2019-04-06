@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -43,7 +44,7 @@ public class ModelManager implements Model {
     private final FilteredList<Day> filteredDays;
     private final SimpleObjectProperty<Task> selectedTask = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<Day> selectedDay = new SimpleObjectProperty<>();
-    private ObservableList<Task> remindList;
+    private ObservableList<Task> remindList = FXCollections.observableArrayList();
 
     private Comparator<Task> startComparator = new Comparator<Task>() {
         @Override
@@ -102,7 +103,9 @@ public class ModelManager implements Model {
         filteredTasks.addListener(this::ensureSelectedTaskIsValid);
         filteredDays = new FilteredList<>(versionedTaskBook.getDayList());
         filteredDays.addListener(this::ensureSelectedDayIsValid);
-        remindList = versionedTaskBook.getTaskList();
+        for (Task task : versionedTaskBook.getTaskList()) {
+            remindList.add(task);
+        }
     }
 
     public ModelManager() {
@@ -188,6 +191,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortRemindListByStart() {
+        FXCollections.sort(remindList, startComparator);
+    }
+
+    @Override
+    public void sortRemindListByEnd() {
+        FXCollections.sort(remindList, endComparator);
+
+    }
+
+    @Override
+    public void reinitializeRemindList() {
+        remindList = FXCollections.observableArrayList();
+        for (Task task : versionedTaskBook.getTaskList()) {
+            remindList.add(task);
+        }
+    }
+
+    @Override
     public void setRemindList(ObservableList<Task> remindList) {
         this.remindList = remindList;
     }
@@ -195,6 +217,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getRemindTaskList() {
         return remindList;
+    }
+
+    @Override
+    public void filterRemindList(String str) {
+        Predicate<Task> predicate = task -> meetRequirement(task, str);
+        remindList = remindList.filtered(predicate);
     }
 
     @Override
@@ -345,7 +373,18 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Determine the predicate
+     */
+    private boolean meetRequirement(Task task, String givenCategory) {
+        if (task.getCategories().value.equals(givenCategory)) {
 
+            return true;
+        } else {
+
+            return false;
+        }
+    }
     //=========== Import/ Export ==============================================================================
     @Override
     public void importTasksFromTaskBook(Path importFilePath) throws IOException, DataConversionException {

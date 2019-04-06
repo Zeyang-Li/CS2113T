@@ -20,7 +20,13 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 == Introduction
 === What is Tasketch
 
-Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too. +
+
+This application is designed for the busy NUS students who have many tasks, assignments and datelines everyday. +
+
+Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the
+benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively. +
 
 This developer guide is introducing the development structure of Tasketch and provide a better understanding of how this project works. Jump to the <<Quick Start>> to get started. Enjoy!
 
@@ -303,23 +309,19 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-// tag::suggestiom[]
-=== Suggestion feature
+//tag::autoComplete[]
+=== Automatically complete input command feature
+
+//end::autoComplete[]
+
+// tag::wrongCommandSuggestion[]
+=== Wrong Command Suggestion feature
 
 The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
 
 ==== Current Implementation
 
-There are two kind of suggestions supported by this feature.
-
-Firstly, when a user has typed part of the command word and he forgets what is the whole correct command word, and then presses TAB. The system will suggest commands based on the current prefix string. If this command have parameters and the user types TAB again, the system will also suggest all the parameters about this command.
-
-Secondly, when a user completes entering a command (after pressing ENTER key), if the command typed is invalid, the system will suggest a similar command based on the edit distance (which will be explained later).
-
-**Input Command Suggestion**
-//to be filled
-
-**Wrong Command Suggestion**
+When a user completes entering a command (after pressing ENTER key), if the command typed is invalid, the system will suggest a similar command based on the edit distance (which will be explained later).
 
 Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
 
@@ -341,8 +343,6 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 ==== Design Considerations
 
-===== For the WrongCommandSuggestion implementation
-
 * **Alternative 1:** Compare the input command and the actual command character by character and see which command has the most matches.
 ** Pros: Easy to implement.
 ** Cons: Not as accurate or reliable in terms of giving a correct match of command.
@@ -353,10 +353,7 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 ** Pros: More accurate prediction.
 ** Cons: More difficult to implement.
 
-===== For the InputCommandSuggestion implementation
-//to be completed
-
-// end::suggestion[]
+// end::wrongCommandSuggestion[]
 
 // tag::reminder[]
 === Reminder feature
@@ -393,11 +390,64 @@ These two parts will help the user better arrange their time usage by visualizat
 // end::Effective Visualization[]
 
 // tag::timeplanner[]
-=== Timeplanner feature
+=== Daily Time Planner feature
+Daily Time Planner uses the information of tasks added, such as start date, end date, start time, end time
+and category.
+
 ==== Current Implementation
+Start date and end date are used to identify whether the task added is a daily task, same dates mean that it is a daily
+task or else it is a long term task which is not meant for daily time planning. Thus, that task will be added to
+Daily Time Planner for monitoring. +
 
+Start time and end time are used for calculating the time period of that task and to be added into the accumulated time
+for a category for that date of a task. ( eg. if the task with date 13-03-19 is a category academic task, its calculated
+time period will be added to the academic accumulated time in the day 13-03-19. )
 
-// end::timeplanned[]
+These information is passed to the `calculateTime()` method in Day object in the form of string, so it has to be
+converted to double data type for calculation purpose using `Double.valueOf()`. Then it has to be rounded up to the power
+of 2 for consistency in data representation.
+
+Besides `Task` model being used to represent all the tasks added, there is also `Day` model to represent all the days
+which stores information (date and accumulated time of that 5 task categories) of the tasks added to that day.
+
+[NOTE]
+Each new `Task` added will not create new `Day` objects, instead it will either update the category times of that `Day`
+if the new task added has the same date (same start date), or create a new `Day` only if there no days that have the same
+date.
+
+*Data Structure* +
+`TaskBook` needs data structure to store data. Besides the ObservableList named `UniqueTaskList` to store all the tasks,
+there is also another ObservableList named `UniqueDayList` to store all the days.
+
+[NOTE]
+Observable List is used to observe a list so that when there is change in the list, it will notified (listeners) all the other
+components that utilizing this Observable List data and do the necessary updates in their own data.
+
+Besides those 2 mentioned above, a HashMap named `dayMap` is used to store another set of `Day` objects which are
+identical to the `UniqueDayList`.
+
+* **Alternative 1 (current choice): As described above**
+** Pros: Faster in finding a `Day` object as it uses a key (start date of a task) to add into and find in the hash map.
+** Cons: Double work as it needs to add into and remove the `Day` object from both `UniqueDayList` and `dayMap`.
+* **Alternative 2: Using the `UniqueDayList` only**
+** Pros: No extra work needed as adding and removing happens only to one data structure.
+** Cons: Finding a `Day` object will be slower when there are large amount `Day` objects, as it needs to iterate through
+the list.
+
+However, `dayMap` cannot be implemented alone as it doesn't have the ability to observe and notified the listeners when
+there is a change. So, it has to be implemented with an ObservableList.
+
+[NOTE]
+Since a new `TaskBook` is created each time `undo` and `redo` command executed as `VersionedTaskBook` extends `TaskBook`,
+the data of the latest `UniqueTaskList` and `UniqueDayList` will need to transferred to the new `TaskBook` through
+`resetData(ReadOnlyTaskBook newData)`.
+
+[NOTE]
+`dayMap` will be a reinitialised to new `HashMap` as the data in `UniqueDayList` is inaccurate during `resetData(ReadOnlyTaskBook newData)`.
+So, it is better to start in clean state and re-add all the time period of all tasks in the `UniqueTaskList`. The
+`UniqueDayList` will be updated as well.
+
+// end::timeplanner[]
 
 // tag::import/export[]
 === Import/Export feature
@@ -405,7 +455,7 @@ These two parts will help the user better arrange their time usage by visualizat
 ==== Current Implementation
 
 ===== Import
-This operation is exposed in the Model interface as Model#importTaskBook().
+This operation is exposed in the Model interface as `Model#importTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -417,23 +467,25 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 4*: The LogicManager calls execute() on the ImportCommand object
 
-*Step 5*: The Logic component then interacts with the Model component by calling importTasksFromTaskBook() of the Model interface.
+*Step 5*: The Logic component then interacts with the Model component by calling `Model#importTasksFromTaskBook()`.
 
 *Step 6*: The Model interface creates a new Import object and then pass the filePath to the ImportManager.
 
-*Step 7*: The Import object will call JsonFileStorage class to loadDataFromSaveFile.
+*Step 7*: The ModelManager will call `Import#readTaskBook()` and get a ReadOnlyTaskBook object.
 
-*Step 8*: The ImportManager class will call JsonFileStorage class to saveDataToFile.
+[NOTE]
+====
+The ImportManager class will first check whether the task in the file exists in Tasketch, if there is an existing task, just ignore this task.
+====
 
-*Step 9*: The JsonFileStorage class will call JsonUtil class to fromJsonString.
 
-*Step 10*: The ModelManager will get a ReadOnlyTaskBook object and then it will addTasksToTaskBook.
+*Step 8*: The ModelManager will then will call `addTasksToTaskBook()`.
 
-*Step 11*: If there is any new task added, the ModelManager will updateFilteredTaskList.
+*Step 9*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
 
 ===== Export
 
-This operation is exposed in the Model interface as Model#exportTaskBook().
+This operation is exposed in the Model interface as `Model#exportTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -445,22 +497,34 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 4*: The LogicManager calls execute() on the ExportCommand object
 
-*Step 5*: The Logic component then interacts with the Model component by calling exportFilteredTaskBook() of the Model interface.
+*Step 5*: The Logic component then interacts with the Model component by calling `Model#exportFilteredTaskBook()` of the Model interface.
 
 *Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList and the filePath to the ExportManager.
 
-*Step 7*: The Export object calls saveFilteredTasks function.
+*Step 7*: The Export object calls `Export#saveFilteredTasks()`.
 
-*Step 8*: The ExportManager class will call JsonFileStorage class to saveDataToFile.
+*Step 8*: The ExportManager class will call `JsonFileStorage#saveDataToFile()`.
 
-*Step 9*: The JsonFileStorage class will call JsonUtil class to saveJsonFile.
+*Step 9*: The JsonFileStorage class will call `JsonUtil#saveJsonFile()`.
 
-*Step 10*: The JsonUtil class will call FileUtil class to writeToFile.
+*Step 10*: The JsonUtil class will call `FileUtil#writeToFile()`.
 
-*Step 11*: The FileUtil class will finally call File class to write.
+*Step 11*: The FileUtil class will finally call `File#write()`.
+
+[NOTE]
+====
+This File object will creates a new file if there is no existing file with the same name. And if there is an existing file, it will just write to this file no matter it is empty or not.
+====
 
 ==== Design Considerations
-// to be added
+===== Aspect: Use what kind of file
+
+* **Alternative 1 (current choice): Json file**
+** Pros: Easier to implement because the addressbook itself uses Json file to store the data.
+** Cons: Hard for users to read about the exported file.
+* **Alternative 2: Xml file**
+** Pros: Xml is more widely used and it shows tha data better.
+** Cons: Hard to implement.
 
 // end::import/export[]
 

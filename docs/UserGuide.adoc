@@ -42,6 +42,7 @@ type either `add` or `a`.
 * Parameters can be in any order e.g. if the command specifies `sd/START_DATE ed/END_DATE`, `ed/END_DATE sd/START_DATE` is also acceptable.
 * The format for dates is `dd-mm-yy`. For example: `25-03-19` means March 25th, 2019.
 * The format for times is `hh.mm` and it is using 24-hour clock. For example: `13.00` means 1 o'clock in the afternoon.
+* Tags names should be alphanumeric. For example: DueSoon, CS2113TLecture
 
 [[category]]
 ****
@@ -113,12 +114,15 @@ Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/D
 
 Examples:
 
-* `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control` +
-Adds a task named CS2113 task in the app. It starts at 12:00 on March 13rd, 2019 and it ends at 14:00 on the same day. The description for this task is to talk about version control.
+* `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+Adds a task named CS2113 task in the app. It starts at 12:00 on March 13rd, 2019 and it ends at 14:00 on the same day.
+The description for this task is to talk about version control and its category is academic.
 * `add n/MA1101R tutorial sd/14-03-19 st/12.00 ed/14-03-19 et/14.00 d/Tutorial 8 c/a` +
-Adds a task named MA1101R tutorial. It starts at 12:00 on March 14th, 2019 and ends at 14:00 on the same day. Its description is tutorial and it category is academic.
-* `add n/CS3235 lecture sd/13-03-19 st/08.00 ed/14-03-19 et/10.00 d/Talk about network security t/important` +
-Adds a task named CS3235 lecture. It starts at 8:00 on March 13rd, 2019 and ends at 10:00 on March 14th, 2019. Its description is to talk about network security. The tag for it is 'important'.
+Adds a task named MA1101R tutorial. It starts at 12:00 on March 14th, 2019 and ends at 14:00 on the same day.
+Its description is tutorial and the category is academic.
+* `add n/CS3235 lecture sd/13-03-19 st/08.00 ed/14-03-19 et/10.00 d/Talk about network security c/a t/important` +
+Adds a task named CS3235 lecture. It starts at 8:00 on March 13rd, 2019 and ends at 10:00 on March 14th, 2019.
+Its description is to talk about network security and the category is academic. The tag for it is 'important'.
 
 Result: +
 You should see the task added into the task list on the left of the app. +
@@ -139,9 +143,9 @@ Clears all the tasks starting from the specified date
 
 Examples:
 
-* `clear 21-02-2019` +
+* `clear 21-02-19` +
 Clears all the tasks which start from February 21st, 2019.
-* `clear 02-2019` +
+* `clear 02-19` +
 Clears all the tasks which start from February, 2019.
 * `clear before` +
 Clears all the tasks which finished before today.
@@ -200,8 +204,8 @@ Format: `edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
 
 Examples:
 
-* `edit 1 st/12.00 et/14.00 t/GET1018 tut` +
-Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018 tut`.
+* `edit 1 st/12.00 et/14.00 t/GET1018` +
+Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018`.
 
 Result: +
 The information edited for that task will be updated and shown in the task list. +
@@ -234,21 +238,31 @@ Returns `CS2113T lecture` and `CS3235 lecture`
 
 Shows a list of tasks in Tasketch.
 
+image::List.png[width="790"]
+
 Format:
 
 
 * `list` +
-Lists all the tasks of today +
+Lists all the tasks in the storage +
+
+* `list td` +
+List all the tasks whose start date is today +
 
 * `list DATE` +
-Lists all the tasks of that specific date +
+Lists all the tasks whose start date is that specific date +
+
+* `list CATEGORY` +
+Lists all the tasks of the specified category.
 
 Examples:
 
-* `list 02-2019` +
-Lists all the tasks in February, 2019
-* `list 20-02-2019` +
-Lists all the tasks in February 20th, 2019
+* `list a` +
+Lists all the tasks of academic category.
+* `list 02-19` +
+Lists all the tasks which starts in February, 2019
+* `list 20-02-19` +
+Lists all the tasks which starts on February 20th, 2019
 * `list` +
 Lists all the tasks in the storage
 
@@ -280,31 +294,44 @@ You should see a day of your choice with all the category times on the right sid
 
 === Reminding the users of the nearest task : `remind`
 
-Shows to the user the nearest tasks of certain category. +
+Shows to the user the nearest tasks of certain category.
+
+image::Reminder.png[width="790"]
 
 Format:
 
 * `remind start` +
-Reminds the users of most recently begin tasks of all categories. +
+Reminds the users of the most recently begin tasks of all categories. The reminded tasks should be in colored task cards.
++
+image::Remind_Start.png[width="790"]
 
 * `remind ddl` +
-Remind the users of most recent deadline of all categories. +
+Remind the users of the most recent deadline of all categories. The reminded tasks should be in colored task cards. +
++
+image::Remind_DDL.png[width="790"]
 
 * `remind a/e/c/r/o ddl/start` +
 Remind the users of most recent start tasks or deadline of specified category.
 
-****
-* "a" - Academic +
-* "e" - Entertainment +
-* "c" - Co-Curricular Activity (CCA) +
-* "r" - Errand +
-* "o" - Other
-****
+[NOTE]
+"a" - Academic +
+"e" - Entertainment +
+"c" - Co-Curricular Activity (CCA) +
+"r" - Errand +
+"o" - Other
+
 
 Examples:
 
-* `remind e start` +
-Shows a list of nearest start tasks of "entertainment" category.
+* `remind c start` +
+Shows a list of nearest start CCA activities.
++
+image::Remind_C_Start.png[width="790"]
+
+* `remind a ddl` +
+Shows a list of nearest deadlines of academic activities.
++
+image::Academic.png[width="790"]
 
 == View calender & timeline
 
@@ -358,8 +385,17 @@ by giving a list of closest approximations of word through the message box after
 Examples：
 
 * If you want to type `clear` but typed `clarr` instead, the system will tell you that it is an unknown command, and would suggest the command `clear` instead.
++
+image::WrongCommandSuggestion_clarr.png[width="790"]
++
 * If you want to type `exit` but typed `ecot` instead, the system will tell you that it is an unknown command, and would suggest the command `exit` and `edit` instead.
++
+image::WrongCommandSuggestion_ecot.png[width="790"]
++
 * If you want to type `history` but typed `hsitryo` instead, the system will tell you that it is an unknown command, and would suggest the command `history` instead.
+Although there are more than 2 alphabets different from the correct command, the system will smartly show the suggestion because `hsitryo` has the same alphabets with `history`
++
+image::WrongCommandSuggestion_hsitryo.png[width="790"]
 
 == Automatically complete input command for user
 If you type something wrongly, the app will automatically correct type error and fulfill their incomplete typed command in command line.
@@ -401,8 +437,8 @@ Examples:
 
 [NOTE]
 ====
-1.  The file will be located in `<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json`
-2.  This command overwrites any files with the same name at `<DIRECTORY OF YOUR JAR FILE>/data/`
+1.  The file will be located in *<DIRECTORY OF YOUR JAR FILE>/data/FILENAME.json*
+2.  This command overwrites any files with the same name at *<DIRECTORY OF YOUR JAR FILE>/data/*
 3.  If you export tasks based on categories, the left list will also change to show all tasks which are exported.
 ====
 
@@ -421,7 +457,7 @@ Examples:
 
 [NOTE]
 ====
-1.  The file to import must be placed in `<DIRECTORY OF YOUR JAR FILE>/data/`
+1.  The file to import must be placed in *<DIRECTORY OF YOUR JAR FILE>/data/*
 2.  Tasks that already exist in your Tasketch won’t be imported. To import an existing task in Tasketch with different details, please `delete` it first.
 ====
 
@@ -501,17 +537,19 @@ There is no need to save manually.
 * *Add* : `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION [c/CATEGORY] [t/TAG]...` +
 e.g. `add n/CS2113 sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a`
 * *Clear* : `clear [DATE]` +
-e.g. `clear 21-02-2019`
+e.g. `clear 21-02-19`
 * *Delete* : `delete INDEX_NUMBER` +
 e.g. `delete 1`
 * *Edit* : `edit INDEX_NUMBER [s/START_TIME] [e/END_TIME] [t/TOPIC] [d/DESCRIPTION]` +
-e.g. `edit 1 s/12.00 e/14.00 t/GET1018 tut`
-* *Search* : `search KEYWORD [MORE_KEYWORDS]` +
-e.g. `search CS2113T`
+e.g. `edit 1 s/12.00 e/14.00 t/GET1018tut`
+* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
+e.g. `find CS2113T`
 * *List* : `list [DATE]` +
-e.g. `list 02-2019`
+e.g. `list 02-19`
+* *Remind* : `remind [category] start/end` +
+e.g. `remind a ddl`
 * *Showtime* : `showtime [DATE]`
-e.g. `showtime 13-02-2019`
+e.g. `showtime 13-02-19`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`

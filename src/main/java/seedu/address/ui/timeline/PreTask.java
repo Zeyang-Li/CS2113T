@@ -18,11 +18,17 @@ public class PreTask {
         this.start = s;
         this.end = e;
     }
-    public void setDay(String s) { this.day = s; }
+    public void setDay(String s) {
+        this.day = s;
+    }
 
-    public void setMonth(String s) { this.month = s; }
+    public void setMonth(String s) {
+        this.month = s;
+    }
 
-    public void setYear(String s) { this.year = s; }
+    public void setYear(String s) {
+        this.year = s;
+    }
 
 
     public String getTitle() {
@@ -33,10 +39,17 @@ public class PreTask {
         return cate;
     }
 
-    public String getDat() { return day; }
+    public String getDat() {
+        return day;
+    }
 
-    public String getMonth() { return month; }
-    public String getYear() { return year; }
+    public String getMonth() {
+        return month;
+    }
+    public String getYear() {
+        return year;
+    }
+
     public float getStart() {
         return start;
     }
