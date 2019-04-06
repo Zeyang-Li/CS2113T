@@ -55,6 +55,7 @@ This Project Portfolio is to indicate what I have done to enhance the functional
 === Update the project picture
 
 The overview and screen shoot picture (available https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/images/Ui.png[[picture]])
+== View calender & timeline
 
 === Set the calendar to desired month : `month`
 
@@ -68,9 +69,16 @@ Format:
 
 * `month +` +
 Changes the current calendar to next month. +
++
+image::month_plus.png[width="400"]
 
 * `month -` +
 Changes the current calendar to previous month.
+
+* `month` +
+Show current month's calendar.
++
+image::month_this.png[width="400"]
 
 === Shows the timeline of a specific day to the user : `timeline` +
 
@@ -80,19 +88,23 @@ Shows the timeline of today by default. +
 * `timeline [DATE]` +
 Shows the timeline of that date. +
 
-[WARNING]
+[NOTE]
 After adding or editing a task, user needs to retype timeline [DATE] to refresh the timeline. +
 This implementation is to make sure this feature is not purely part of UI.
 
 
 Examples:
 
-
 * `timeline` +
 Shows the timeline for today.
++
+image::timeline_today.png[width="790"]
 
 * `timeline 01-04-19` +
 Shows the whole timeline for 1st April 2019.
++
+image::timeline_date.png[width="790"]
+
 
 === Searching tasks by keywords: `find`/`f`
 
