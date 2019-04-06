@@ -53,7 +53,7 @@ public class ModelManager implements Model {
     private final VersionedAccountList versionedAccountList;
     private final FilteredList<Account> filteredAccounts;
     private final LoggedInAccount loggedInAccount;
-    
+
     private Comparator<Task> startComparator = new Comparator<Task>() {
         @Override
         public int compare(Task o1, Task o2) {
@@ -543,7 +543,6 @@ public class ModelManager implements Model {
 
     private void raise(AccountListChangedEvent accountListChangedEvent) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -76,7 +76,7 @@ public class JsonAccountListStorage implements AccountListStorage {
     /**
      * Similar to {@link #saveAccountList(ReadOnlyAccountList)}
      * @param filePath location of the data. Cannot be null
-     * @throws Exception 
+     * @throws Exception
      */
     public void saveAccountList(ReadOnlyAccountList accountList, Path filePath) throws Exception {
         requireNonNull(accountList);

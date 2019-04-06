@@ -190,4 +190,5 @@ public class EditAccountCommand extends Command {
                     && getPassword().equals(e.getPassword());
         }
     }
+
 }

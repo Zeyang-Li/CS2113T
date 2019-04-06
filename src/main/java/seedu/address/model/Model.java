@@ -225,7 +225,7 @@ public interface Model {
     void updateAccount(Account target, Account editedAccount);
 
     void deleteAccount(Account target);
-    
+
     ReadOnlyAccountList getAccountList();
 
     ObservableList<Account> getFilteredAccountList();
@@ -233,7 +233,7 @@ public interface Model {
     void updateFilteredAccountList(Predicate<Account> predicate);
 
     void resetAccountData(ReadOnlyAccountList newData);
-    
+
     /**
      * Get login status to determine if user can run commands
      */

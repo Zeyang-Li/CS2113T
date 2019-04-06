@@ -140,7 +140,6 @@ public class StorageManager implements Storage {
 
 	private void raise(DataSavingExceptionEvent dataSavingExceptionEvent) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
