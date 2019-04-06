@@ -34,6 +34,7 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_FAILURE = "Export failed!";
     public static final String MESSAGE_CATEGORY_FAILURE = "Invalid category!";
     public static final String MESSAGE_FAILURE_EMPTY_AB = "There is nothing to export!";
+    public static final String MESSAGE_LOGIN = "Please login first";
 
     private final Path filePath;
     private String category = "not specified category";
@@ -70,6 +71,10 @@ public class ExportCommand extends Command {
     }
 
     private CommandResult getCommandResult(Model model, String messageExportESuccess) throws CommandException {
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
 
         if (!category.equals("not specified category")) {
             Predicate<Task> predicate = task -> meetRequirement(task);

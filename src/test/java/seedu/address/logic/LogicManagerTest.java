@@ -30,10 +30,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.account.Username;
 import seedu.address.model.task.Task;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.XmlAccountListStorage;
 import seedu.address.testutil.TaskBuilder;
 
 
@@ -51,9 +53,14 @@ public class LogicManagerTest {
 
     @Before
     public void setUp() throws Exception {
+        Username admin = new Username("admin");
+        model = new ModelManager();
+        model.setLoggedInUser(admin);
+
         JsonTaskBookStorage taskBookStorage = new JsonTaskBookStorage(temporaryFolder.newFile().toPath());
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.newFile().toPath());
-        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        XmlAccountListStorage accountListStorage = new XmlAccountListStorage(temporaryFolder.newFile().toPath());
+        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage, accountListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -84,7 +91,7 @@ public class LogicManagerTest {
         JsonTaskBookStorage taskBookStorage =
                 new JsonTaskBookIoExceptionThrowingStub(temporaryFolder.newFile().toPath());
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.newFile().toPath());
-        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage, null);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -139,7 +146,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<?> expectedException, String expectedMessage)
             throws IOException, IllegalValueException {
-        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getAccountList());
         assertCommandBehavior(expectedException, inputCommand, expectedMessage, expectedModel);
     }
 

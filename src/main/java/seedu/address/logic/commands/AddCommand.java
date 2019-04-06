@@ -61,6 +61,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This Task already exists in Tasketch";
     public static final String MESSAGE_DAILYTIME_CONSTRAINTS = "Adding daily task, Start Time must be before End Time!";
+    public static final String MESSAGE_LOGIN = "Please login first";
 
     private Task toAdd;
 
@@ -94,6 +95,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
 
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

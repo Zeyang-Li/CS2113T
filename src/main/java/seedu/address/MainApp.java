@@ -19,19 +19,24 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.AccountList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAccountList;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleAccountDataUtil;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AccountListStorage;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.TaskBookStorage;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.XmlAccountListStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -65,7 +70,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
-        storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        AccountListStorage accountListStorage = new XmlAccountListStorage(userPrefs.getAccountListFilePath());
+        storage = new StorageManager(taskBookStorage, userPrefsStorage, accountListStorage);
 
         initLogging(config);
 
@@ -84,6 +90,10 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskBook> taskBookOptional;
         ReadOnlyTaskBook initialData;
+
+        Optional<ReadOnlyAccountList> accountListOptional;
+        ReadOnlyAccountList initialAccountData;
+
         try {
             taskBookOptional = storage.readTaskBook();
             if (!taskBookOptional.isPresent()) {
@@ -98,7 +108,21 @@ public class MainApp extends Application {
             initialData = new TaskBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            accountListOptional = storage.readAccountList();
+            if (!accountListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample account database");
+            }
+            initialAccountData = accountListOptional.orElseGet(SampleAccountDataUtil::getSampleAccountList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty account database");
+            initialAccountData = new AccountList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty account database");
+            initialAccountData = new AccountList();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialAccountData);
     }
 
     private void initLogging(Config config) {

@@ -1,10 +1,14 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.CommandFormatString.ADDACCOUNT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.ADD_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.CLEAR_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.DELETEACCOUNT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.DELETE_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.EDITACCOUNT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.EDIT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.EXPORT_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.FINDACCOUNT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.IMPORT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
@@ -23,18 +27,23 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditAccountCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.FindAccountCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ListAccountsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -60,16 +69,21 @@ public class CommandBox extends UiPart<Region> {
     static {
         CommandList = new String[] {
             AddCommand.COMMAND_WORD,
+            AddAccountCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
+            DeleteAccountCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
+            EditAccountCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             ExportCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
+            FindAccountCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             HistoryCommand.COMMAND_WORD,
             ImportCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
+            ListAccountsCommand.COMMAND_WORD,
             MonthCommand.COMMAND_WORD,
             RemindCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
@@ -138,6 +152,10 @@ public class CommandBox extends UiPart<Region> {
             completedtext = text + " " + ADD_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
+        case "addAccount":
+            completedtext = text + " " + ADDACCOUNT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
         case "clear":
             completedtext = text + " " + CLEAR_COMMAND_FORMATSTRING;
             replaceText(completedtext);
@@ -146,8 +164,16 @@ public class CommandBox extends UiPart<Region> {
             completedtext = text + " " + DELETE_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
+        case "deleteAccount":
+            completedtext = text + " " + DELETEACCOUNT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
         case "edit":
             completedtext = text + " " + EDIT_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "editAccount":
+            completedtext = text + " " + EDITACCOUNT_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
         case "export":
@@ -156,6 +182,10 @@ public class CommandBox extends UiPart<Region> {
             break;
         case "find":
             completedtext = text + " " + FIND_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "findAccount":
+            completedtext = text + " " + FINDACCOUNT_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
         case "import":

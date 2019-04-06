@@ -13,6 +13,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 
+import seedu.address.model.account.Account;
+import seedu.address.model.account.Username;
+
 /**
  * The API of the Model component.
  */
@@ -24,6 +27,7 @@ public interface Model {
 
     Predicate<Day> PREDICATE_SHOW_ALL_DAYS = unused -> true;
 
+    Predicate<Account> PREDICATE_SHOW_ALL_ACCOUNTS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -212,6 +216,43 @@ public interface Model {
      * Exports the current filtered person list to a xml file at {@code exportFilePath}.
      */
     void exportFilteredTaskBook(Path exportFilePath) throws IOException, IllegalValueException;
+
+    //============ Login/ Logout ===============================================================================
+    boolean hasAccount(Account account);
+
+    void addAccount(Account account);
+
+    void updateAccount(Account target, Account editedAccount);
+
+    void deleteAccount(Account target);
+    
+    ReadOnlyAccountList getAccountList();
+
+    ObservableList<Account> getFilteredAccountList();
+
+    void updateFilteredAccountList(Predicate<Account> predicate);
+
+    void resetAccountData(ReadOnlyAccountList newData);
+    
+    /**
+     * Get login status to determine if user can run commands
+     */
+    boolean getLoginStatus();
+
+    /**
+     * Get logged in user in the model
+     */
+    String getLoggedInUser();
+
+    /**
+     * Set logout status
+     */
+    void setLoggedOutStatus();
+
+    /**
+     * Set logged in user status
+     */
+    void setLoggedInUser(Username username);
 
 
 }

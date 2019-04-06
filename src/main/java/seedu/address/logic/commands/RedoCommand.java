@@ -19,9 +19,14 @@ public class RedoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Redo success!";
     public static final String MESSAGE_FAILURE = "No more commands to redo!";
 
+    public static final String MESSAGE_LOGIN = "Please login first";
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
 
         if (!model.canRedoTaskBook()) {
             throw new CommandException(MESSAGE_FAILURE);

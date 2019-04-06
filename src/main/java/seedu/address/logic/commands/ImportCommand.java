@@ -26,6 +26,7 @@ public class ImportCommand extends Command {
             + "Tasketch.\n" + COMMAND_PARAMETERS + COMMAND_EXAMPLE;
 
     public static final String MESSAGE_IMPORT_SUCCESS = "Imported %1$s task(s).";
+    public static final String MESSAGE_LOGIN = "Please login first";
 
     private static final String MESSAGE_FAILURE = "Import failed! Error: %1$s";
     private static final String MESSAGE_INVALID_LIST_SIZE = "Invalid list size.";
@@ -42,6 +43,10 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
 
         ReadOnlyTaskBook readOnlyTasksBook = model.getTaskBook();
         ObservableList<Task> taskList = readOnlyTasksBook.getTaskList();

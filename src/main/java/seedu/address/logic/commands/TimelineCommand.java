@@ -27,6 +27,7 @@ public class TimelineCommand extends Command {
             + "Example: " + COMMAND_WORD + "15-03-19";
     public static final String MESSAGE_SUCCESS = "Timeline on %1$s has been successfully arranged!";
     public static final String MESSAGE_ILLEGAL = "Incorrect date format. [dd-mm-yys]";
+    public static final String MESSAGE_LOGIN = "Please login first";
 
     private String parameter;
 
@@ -51,6 +52,11 @@ public class TimelineCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
+
         Date today = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
         String formattedToday = formatter.format(today);
