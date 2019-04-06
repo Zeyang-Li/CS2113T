@@ -237,5 +237,5 @@ the data of the latest `UniqueTaskList` and `UniqueDayList` will need to transfe
 
 [NOTE]
 `dayMap` will be a reinitialised to new `HashMap` as the data in `UniqueDayList` is inaccurate during `resetData(ReadOnlyTaskBook newData)`.
-So, it is better to start in clean state and re-add all the time period of all tasks in the `UniqueTaskList`. The
-`UniqueDayList` will be updated as well.
+So, it is better to start in clean state and re-add all the time period of all tasks in the `UniqueTaskList`.
+The `UniqueDayList` will be updated as well.
