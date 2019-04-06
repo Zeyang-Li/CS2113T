@@ -103,7 +103,7 @@ public class TimelineCommand extends Command {
             }
             switch (month) {
             case 1:
-                if (day < 0 || day > 31) { 
+                if (day < 0 || day > 31) {
                     check = false;
                 }
                 break;
