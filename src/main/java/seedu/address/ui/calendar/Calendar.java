@@ -117,6 +117,13 @@ public class Calendar extends Node {
     }
 
     /**
+     * Change the current view to next month, FOR FUTURE DEVELOPMENT.
+     */
+    public void thisMonth() {
+        showCalendar(shownYearMonth);
+    }
+
+    /**
      * Required by Travis.
      * @return
      */

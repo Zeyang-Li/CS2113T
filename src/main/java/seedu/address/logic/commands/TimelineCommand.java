@@ -62,6 +62,16 @@ public class TimelineCommand extends Command {
         String formattedToday = formatter.format(today);
         //System.out.println(formattedToday);
 
+        parameter = parameter.replaceAll("\\s+", "");
+        if (parameter.length() != 8 && !parameter.equals("")) {
+            throw new ParseException(MESSAGE_ILLEGAL);
+        }
+        try {
+            validDate();
+        } catch (Exception e) {
+            throw new ParseException(e.getMessage());
+        }
+
         if (parameter.equals("")) {
             Predicate<Task> predicate = task -> filter(task, formattedToday);
             //model.updateFilteredTaskList(predicate);
@@ -71,5 +81,109 @@ public class TimelineCommand extends Command {
             //model.updateFilteredTaskList(predicate);
             return new CommandResult(String.format(MESSAGE_SUCCESS, parameter));
         }
+    }
+
+    /**
+     * Checks whether the date entered is valid.
+     * @return
+     */
+    private boolean validDate() throws CommandException, ParseException {
+        boolean check = true;
+        if (parameter.equals("")) {
+            return true;
+        }
+        try {
+            //System.out.println(parameter.split("-")[0].replaceAll("0", ""));
+            int day = Integer.parseInt(parameter.split("-")[0].replaceAll("0", ""));
+            //System.out.println(day);
+            //System.out.println(parameter.split("-")[1]);
+            int month = Integer.parseInt(parameter.split("-")[1].replaceAll("0", ""));
+            //System.out.println(parameter.split("-")[2]);
+            int year = Integer.parseInt(parameter.split("-")[2].replaceAll("0", ""));
+            if (year > 25) {
+                throw new CommandException("Oops do not make plans so early!");
+            }
+            year += 2000;
+            if (month < 0 || month > 12) {
+                throw new CommandException("Incorrect month number! month should be within 1-12.");
+            }
+            switch (month) {
+            case 1:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            case 2:
+                if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                    if (day < 0 || day > 29) {
+                        check = false;
+                    }
+                } else {
+                    if (day < 0 || day > 28) {
+                        check = false;
+                    }
+                }
+                break;
+            case 3:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            case 4:
+                if (day < 0 || day > 30) {
+                    check = false;
+                }
+                break;
+            case 5:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            case 6:
+                if (day < 0 || day > 30) {
+                    check = false;
+                }
+                break;
+            case 7:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            case 8:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            case 9:
+                if (day < 0 || day > 30) {
+                    check = false;
+                }
+                break;
+            case 10:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            case 11:
+                if (day < 0 || day > 30) {
+                    check = false;
+                }
+                break;
+            case 12:
+                if (day < 0 || day > 31) {
+                    check = false;
+                }
+                break;
+            default:
+                check = false;
+                break;
+            }
+            if (!check) {
+                throw new ParseException("Incorrect day value! [dd-mm-yy]");
+            }
+        } catch (Exception e) {
+            throw new ParseException("Incorrect date value! [dd-mm-yy]");
+        }
+        return true;
     }
 }

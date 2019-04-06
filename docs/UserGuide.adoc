@@ -33,8 +33,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 There are several terms which we use throughout the guide. To make your understanding clearer, you can read the following
 section to ensure that you are able to use this user guide to the fullest.
 
-====
-*Command Format*
+=== Command Format
 
 * Some commands have an alias, which you can also use to execute the command e.g. to add a task to Tasketch, you can
 type either `add` or `a`.
@@ -55,7 +54,31 @@ type either `add` or `a`.
 ** Any inputs other than the above will be invalid.
 ** The time duration displayed for each category is in hours and minutes unit. (e.g. 1.0 for 1 hour, 1.15 for 1 hour 15 minutes)
 ****
-====
+
+*Symbols*
+
+[TIP]
+This symbol indicates important information.
+
+[NOTE]
+This symbol indicates things to take note.
+
+=== User Interface Layout
+image::UiLabel.png[width="790"]
+
+* *Panel A:* *Command Box* - Commands will be typed here
+* *Panel B:* *Result Box* - Displays result for all the commands, else displays either success / error message for all
+other commands.
+* *Panel C:* *Task Box* - Displays list of tasks
+* *Panel D:* *Calender* - Displays month view in calender
+* *Panel E:* *Reminder* - Displays nearest tasks of certain category
+* *Panel F:* *Day Box* - Displays list of accumulated time planned for all the categories in a day
+* *Panel G:* *Timeline* - Displays timeline of all the planned tasks in a day based on the task categories.
+
+Panel *A*, *C*, *E* and *F* are user-interactable, meaning you can scroll them up and down. Panels *B*, *D* and *G* are
+non-interactable.
+
+Panel *A* will always be active, allowing you to input your commands all the time.
 
 == Quick Start
 
@@ -104,11 +127,14 @@ will result correct values. There are only 5 valid categories. (The details abou
 You will also need to specify the type of category of the task that you are adding for the Daily Time Planner to monitor
 your time effectively.
 
-If any of the above is violated, the app will alert you that it is an invalid command with the corrected format shown to
-you.
-
 [TIP]
 A task can have any number of tags (including 0)
+
+[NOTE]
+If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
+you. +
+ +
+image:InvalidCommand.png[]
 
 Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION c/CATEGORIES [t/TAG][t/TAG]`
 
@@ -125,9 +151,11 @@ Adds a task named CS3235 lecture. It starts at 8:00 on March 13rd, 2019 and ends
 Its description is to talk about network security and the category is academic. The tag for it is 'important'.
 
 Result: +
-You should see the task added into the task list on the left of the app. +
-The time duration on that task will be calculated at the back and the time should be reflected in the day list on the right
-of the app.
+You should see the task added into the Task Box. (e.g. added a task on 15-03-19) +
+image:TaskBox.png[] +
+
+The time duration on that task will be calculated at the back and the time will be reflected in the Day Box. +
+image:DayBox.png[]
 
 === Clearing all tasks : `clear`/`c`
 
@@ -153,8 +181,8 @@ Clears all the tasks which finished before today.
 Clears all the tasks in the storage.
 
 Result: +
-The tasks of your date choice should be cleared from the task list on the left of the app. +
-The correspond time duration for those tasks will be deducted from the Daily Time Planner.
+The tasks of your date choice should be cleared from the Task Box. +
+The correspond time duration for those tasks will be deducted and reflected in the Day Box.
 
 === Deleting a task : `delete`/`d`
 
@@ -208,8 +236,8 @@ Examples:
 Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018`.
 
 Result: +
-The information edited for that task will be updated and shown in the task list. +
-The day related to that edited task will be updated and shown in the day list on the right of the app.
+The information edited for that task will be updated and reflected in the Task Box. +
+The day related to that edited task will be updated and reflected in the Day Box.
 
 === Searching tasks by keywords: `find`/`f`
 
@@ -267,7 +295,7 @@ Lists all the tasks which starts on February 20th, 2019
 Lists all the tasks in the storage
 
 Result: +
-You should see the state of Tasketch before the last `undo` command that you have executed.
+You should see a list of tasks in the Task Box.
 
 === Showing time planned for all task categories : `showtime`
 
@@ -280,15 +308,21 @@ If you want to the time planned for everyday, just use this command.
 Format: `showtime`
 
 Result: +
-You should see a list of days with all the category times on the right side of the app.
+You should see a list of days with all the category times in the Day Box as shown below. +
+
+image::ShowTime.png[width="250"]
 
 ==== Showing a particular day
 If you want to see only one specific day, simply add the date that you wish to see behind the command.
 
 Format: `showtime DATE`
 
+Example: `showtime 15-03-19`
+
 Result: +
-You should see a day of your choice with all the category times on the right side of the app, if the date exists.
+You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty.
+
+image::ShowTimeDate.png[]
 
 == Reminder
 
@@ -347,9 +381,16 @@ Format:
 
 * `month +` +
 Changes the current calendar to next month. +
++
+image::month_plus.png[width="400"]
 
 * `month -` +
 Changes the current calendar to previous month.
+
+* `month` +
+Show current month's calendar.
++
+image::month_this.png[width="400"]
 
 === Shows the timeline of a specific day to the user : `timeline` +
 
@@ -359,8 +400,8 @@ Shows the timeline of today by default. +
 * `timeline [DATE]` +
 Shows the timeline of that date. +
 
-[WARNING]
-After adding or editing a task, user needs to retype timeline [DATE] to refresh the timeline. +
+[NOTE]
+After adding or editing a task, user needs to retype `timeline [DATE]` to refresh the timeline. +
 This implementation is to make sure this feature is not purely part of UI.
 
 
@@ -368,9 +409,13 @@ Examples:
 
 * `timeline` +
 Shows the timeline for today.
++
+image::timeline_today.png[width="790"]
 
 * `timeline 01-04-19` +
 Shows the whole timeline for 1st April 2019.
++
+image::timeline_date.png[width="790"]
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
