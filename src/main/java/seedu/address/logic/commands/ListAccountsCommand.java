@@ -6,8 +6,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACCOUNTS;
 
 import java.util.List;
 
-
-
 import seedu.address.logic.CommandHistory;
 
 import seedu.address.model.Model;
@@ -30,9 +28,9 @@ public class ListAccountsCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
-        List<Account> ListOfAccounts = model.getFilteredAccountList();
-        String OutputList = getListOfAccounts(ListOfAccounts);
-        return new CommandResult(OutputList);
+        List<Account> listOfAccounts = model.getFilteredAccountList();
+        String outputList = getListOfAccounts(listOfAccounts);
+        return new CommandResult(outputList);
     }
 
     private String getListOfAccounts (List<Account> accounts) {
@@ -42,7 +40,7 @@ public class ListAccountsCommand extends Command {
         OutputList += "Accounts: \n";
         int index = 0;
         for (Account account : accounts) {
-        	index++;
+            index++;
             OutputList += index + ". " + account.getUsername() + "\n";
         }
         return OutputList;

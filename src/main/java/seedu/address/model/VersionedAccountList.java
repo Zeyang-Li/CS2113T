@@ -23,7 +23,7 @@ public class VersionedAccountList extends AccountList {
 
 
 
-	/**
+    /**
      * Saves a copy of the current {@code AccountList} state at the end of the state list.
      * Undone states are removed from the state list.
      */

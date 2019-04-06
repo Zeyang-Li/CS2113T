@@ -41,7 +41,7 @@ public class EditAccountCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the database.";
 
-	private static final String MESSAGE_LOGIN = "Please Login first";
+    private static final String MESSAGE_LOGIN = "Please Login first";
 
 
     private final Index index;

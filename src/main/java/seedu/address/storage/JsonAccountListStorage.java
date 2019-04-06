@@ -59,9 +59,9 @@ public class JsonAccountListStorage implements AccountListStorage {
             return Optional.empty();
         }
 
-        Optional<JsonSerializableAccountList> JsonAccountList = JsonFileStorage.loadAccountListFromSaveFile1(filePath);
+        Optional<JsonSerializableAccountList> jsonAccountList = JsonFileStorage.loadAccountListFromSaveFile1(filePath);
         try {
-            return Optional.of(JsonAccountList.get().toModelType());
+            return Optional.of(jsonAccountList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

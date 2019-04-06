@@ -28,8 +28,7 @@ public class DeleteAccountCommand extends Command {
 
     public static final String MESSAGE_DELETE_ACCOUNT_SUCCESS = "Deleted Account: %1$s";
 
-	private static final String MESSAGE_LOGIN = "Please login first";
-
+    private static final String MESSAGE_LOGIN = "Please login first";
 
     private final Index targetIndex;
 

@@ -10,11 +10,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.day.Day;
-import seedu.address.model.task.Task;
-
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Username;
+import seedu.address.model.day.Day;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.

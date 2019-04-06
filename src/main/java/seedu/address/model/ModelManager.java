@@ -103,7 +103,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(taskBook, userPrefs, accountList);
 
-        logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs + " and accounts" + accountList);
+        logger.fine("Initializing with task book: " + taskBook +
+                " and user prefs " + userPrefs + " and accounts" + accountList);
 
         versionedAccountList = new VersionedAccountList(accountList);
         filteredAccounts = new FilteredList<>(versionedAccountList.getAccountList());
@@ -530,7 +531,7 @@ public class ModelManager implements Model {
         filteredAccounts.setPredicate(predicate);
     }
 
-	@Override
+    @Override
     public void resetAccountData(ReadOnlyAccountList newData) {
         versionedAccountList.resetData(newData);
         indicateAccountListChanged();
@@ -541,11 +542,9 @@ public class ModelManager implements Model {
         raise(new AccountListChangedEvent(versionedAccountList));
     }
 
-    private void raise(AccountListChangedEvent accountListChangedEvent) {
-		// TODO Auto-generated method stub
-	}
+    private void raise(AccountListChangedEvent accountListChangedEvent) {}
 
-	@Override
+    @Override
     public boolean getLoginStatus() {
         return loggedInAccount.getLoginStatus();
     }

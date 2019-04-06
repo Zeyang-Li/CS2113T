@@ -90,7 +90,7 @@ public class TaskBookParser {
             return new LoginCommandParser().parse(arguments);
 
         case LogoutCommand.COMMAND_WORD:
-        	return new LogoutCommand();
+            return new LogoutCommand();
 
         case LoginStatusCommand.COMMAND_WORD:
             return new LoginStatusCommand();

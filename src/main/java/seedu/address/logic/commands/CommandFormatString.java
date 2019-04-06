@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 
 /**
  * Contains format string for input of each command in Command Line Interface (CLI)
@@ -41,7 +41,7 @@ public class CommandFormatString {
     public static final String FINDACCOUNT_COMMAND_FORMATSTRING = "Keyword";
     public static final String EDITACCOUNT_COMMAND_FORMATSTRING = "index" + PREFIX_USERNAME + "Username "
             + PREFIX_PASSWORD + "Password";
-	public static final String DELETEACCOUNT_COMMAND_FORMATSTRING = "Index ";
-	public static final String ADDACCOUNT_COMMAND_FORMATSTRING = PREFIX_USERNAME + "Username "
+    public static final String DELETEACCOUNT_COMMAND_FORMATSTRING = "Index ";
+    public static final String ADDACCOUNT_COMMAND_FORMATSTRING = PREFIX_USERNAME + "Username "
 	        + PREFIX_PASSWORD + "Password";
 }

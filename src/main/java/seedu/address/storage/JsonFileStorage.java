@@ -25,6 +25,9 @@ public class JsonFileStorage {
         }
     }
 
+    /**
+     * Stores AccountList data in an Json file
+     */
     public static void saveAccountListToFile(Path file, JsonSerializableAccountList accountList)
             throws FileNotFoundException {
         try {
@@ -43,7 +46,8 @@ public class JsonFileStorage {
 
     }
 
-    public static Optional<JsonSerializableAccountList> loadAccountListFromSaveFile1(Path file) throws DataConversionException,
+    public static Optional<JsonSerializableAccountList> loadAccountListFromSaveFile1(Path file)
+            throws DataConversionException,
             FileNotFoundException {
         return JsonUtil.readJsonFile(file, JsonSerializableAccountList.class);
     }
