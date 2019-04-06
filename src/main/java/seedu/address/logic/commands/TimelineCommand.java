@@ -109,9 +109,13 @@ public class TimelineCommand extends Command {
                 break;
             case 2:
                 if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-                    if(day < 0 || day > 29) { check = false; }
+                    if (day < 0 || day > 29) {
+                        check = false;
+                    }
                 } else {
-                    if(day < 0 || day > 28) { check = false; }
+                    if (day < 0 || day > 28) {
+                        check = false;
+                    }
                 }
                 break;
             case 3:
@@ -168,7 +172,7 @@ public class TimelineCommand extends Command {
                 check = false;
                 break;
             }
-            if(!check) {
+            if (!check) {
                 throw new ParseException("Incorrect day value! [dd-mm-yy]");
             }
         } catch (Exception e) {

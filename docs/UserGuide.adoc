@@ -359,7 +359,7 @@ Shows the timeline of today by default. +
 * `timeline [DATE]` +
 Shows the timeline of that date. +
 
-[WARNING]
+[CAUTION]
 After adding or editing a task, user needs to retype timeline [DATE] to refresh the timeline. +
 This implementation is to make sure this feature is not purely part of UI.
 
