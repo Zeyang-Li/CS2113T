@@ -37,12 +37,11 @@ public class ListCommandTest {
         expectedModel.setLoggedInUser(admin);
     }
 
-	private ReadOnlyAccountList getTypicalAccountList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    private ReadOnlyAccountList getTypicalAccountList() {
+        return null;
+    }
 
-	@Test
+    @Test
     public void execute_listIsNotFiltered_showsSameList() throws IOException, IllegalValueException {
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
