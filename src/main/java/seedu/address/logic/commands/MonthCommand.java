@@ -31,8 +31,10 @@ public class MonthCommand extends Command {
             this.parameter = "next";
         } else if (c.equals(" -")) {
             this.parameter = "previous";
+        } else if (c.replaceAll("\\s", "").equals("")) {
+            this.parameter = "this";
         } else {
-            throw new ParseException(MESSAGE_ILLEGAL);
+                throw new ParseException(MESSAGE_ILLEGAL);
         }
     }
 

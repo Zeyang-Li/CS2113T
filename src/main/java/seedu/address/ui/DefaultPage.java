@@ -93,6 +93,10 @@ public class DefaultPage extends UiPart<Region> {
             c.previousMonth();
             //System.out.println(month);
         }
+        if (month.equals("Viewing this month's calendar!")) {
+            c.thisMonth();
+            //System.out.println(month);
+        }
         calendarAnchorPane.getChildren().clear();
         calendarAnchorPane.getChildren().add(c.getView());
     }
