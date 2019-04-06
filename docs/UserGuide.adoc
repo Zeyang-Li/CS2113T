@@ -348,7 +348,7 @@ Format:
 * `month +` +
 Changes the current calendar to next month. +
 +
-image::month_plus.png[width="790"]
+image::month_plus.png[width="400"]
 
 * `month -` +
 Changes the current calendar to previous month.
@@ -356,7 +356,7 @@ Changes the current calendar to previous month.
 * `month` +
 Show current month's calendar.
 +
-image::month_this.png[width="790"]
+image::month_this.png[width="400"]
 
 === Shows the timeline of a specific day to the user : `timeline` +
 
@@ -375,9 +375,13 @@ Examples:
 
 * `timeline` +
 Shows the timeline for today.
++
+image::timeline_today.png[width="790"]
 
 * `timeline 01-04-19` +
 Shows the whole timeline for 1st April 2019.
++
+image::timeline_date.png[width="790"]
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,

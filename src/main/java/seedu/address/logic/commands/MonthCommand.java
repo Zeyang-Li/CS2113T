@@ -34,7 +34,7 @@ public class MonthCommand extends Command {
         } else if (c.replaceAll("\\s", "").equals("")) {
             this.parameter = "this";
         } else {
-                throw new ParseException(MESSAGE_ILLEGAL);
+            throw new ParseException(MESSAGE_ILLEGAL);
         }
     }
 

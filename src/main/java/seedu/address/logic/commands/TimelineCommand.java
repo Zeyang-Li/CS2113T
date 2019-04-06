@@ -57,7 +57,7 @@ public class TimelineCommand extends Command {
         //System.out.println(formattedToday);
 
         parameter = parameter.replaceAll("\\s+", "");
-        if (parameter.length() != 8) {
+        if (parameter.length() != 8 && !parameter.equals("")) {
             throw new ParseException(MESSAGE_ILLEGAL);
         }
         try {
@@ -83,7 +83,7 @@ public class TimelineCommand extends Command {
      */
     private boolean validDate() throws CommandException, ParseException {
         boolean check = true;
-        if (parameter == "") {
+        if (parameter.equals("")) {
             return true;
         }
         try {
