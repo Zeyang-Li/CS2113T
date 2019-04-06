@@ -10,12 +10,12 @@
 == Overview
 
 Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
-This Project Portfolio is to indicate what I have done to enhance the functionality of this project.
+This Project Portfolio is the enhancement and new added functionality I contributed to this software.
 
 == Summary of contributions
 
 * *Main enhancement*: Enhance visual feedback with timeline feature.
-** What it does: It arranges the tasks on a given day into a timeline according to their categories. 
+** What it does: It arranges the tasks on a given day into a timeline according to their categories.
 ** Justification: By visually showing the arranged timeline, this feature helps the user to better manage their tasks and decide on time allocation.
 ** Highlights: Each category timeline will have their own color to be distinguished.
 ** Credits: _{Shibo's idea is used on filtering the tasks according to date}_
