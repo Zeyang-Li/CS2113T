@@ -27,6 +27,8 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2101 cs2113t";
 
+    public static final String MESSAGE_LOGIN = "Please login first";
+
     private final TaskContainsKeywordsPredicate predicate;
 
     public FindCommand(TaskContainsKeywordsPredicate predicate) {

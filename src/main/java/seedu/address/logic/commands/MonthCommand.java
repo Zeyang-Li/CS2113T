@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
@@ -22,6 +23,7 @@ public class MonthCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Viewing %s month's calendar!";
     public static final String MESSAGE_ILLEGAL = "Please type in + or - to indicate!";
+    public static final String MESSAGE_LOGIN = "Please login first";
 
     private String parameter = "";
 
@@ -39,8 +41,13 @@ public class MonthCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
+
         model.setMonth(parameter);
         return new CommandResult(String.format(MESSAGE_SUCCESS, parameter));
     }

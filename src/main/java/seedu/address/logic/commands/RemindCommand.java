@@ -24,6 +24,7 @@ public class RemindCommand extends Command {
             + "1. start/ddl: Tasketch will give a reminding task list ordered by task start time or deadline.\n"
             + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
             + "of tasks ordered by start time or deadline.\n";
+    public static final String MESSAGE_LOGIN = "Please login first";
     private String arguments;
     private ObservableList<Task> shownTaskList;
 
@@ -88,6 +89,11 @@ public class RemindCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
 
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
+
         String trimmedArguments = arguments.trim();
         String[] splitedInput = trimmedArguments.split("\\s");
 

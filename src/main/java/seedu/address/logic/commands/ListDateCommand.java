@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
@@ -21,6 +22,7 @@ public class ListDateCommand extends Command {
             + "3. DATE: list 25-03-19    "
             + "list all the tasks which are before/after 25th March, 2019\n";
     public static final String MESSAGE_SUCCESS = "Listed tasks on %1$s";
+    public static final String MESSAGE_LOGIN = "Please login first";
     private String specifiedDate;
 
     /**
@@ -59,8 +61,12 @@ public class ListDateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
 
         Predicate<Task> predicate = task -> meetRequirement(task);
         model.updateFilteredTaskList(predicate);

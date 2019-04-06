@@ -92,7 +92,7 @@ public class TestApp extends MainApp {
      * Returns a defensive copy of the model.
      */
     public Model getModel() {
-        Model copy = new ModelManager((model.getTaskBook()), new UserPrefs());
+        Model copy = new ModelManager((model.getTaskBook()), new UserPrefs(), model.getAccountList());
         ModelHelper.setFilteredList(copy, model.getFilteredTaskList());
         return copy;
     }

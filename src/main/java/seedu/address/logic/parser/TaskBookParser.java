@@ -8,18 +8,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditAccountCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.FindAccountCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ListAccountsCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoginCommand;
+import seedu.address.logic.commands.LoginStatusCommand;
+import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
@@ -58,6 +66,34 @@ public class TaskBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case AddAccountCommand.COMMAND_WORD:
+        case AddAccountCommand.COMMAND_ALIAS:
+            return new AddAccountCommandParser().parse(arguments);
+
+        case DeleteAccountCommand.COMMAND_WORD:
+        case DeleteAccountCommand.COMMAND_ALIAS:
+            return new DeleteAccountCommandParser().parse(arguments);
+
+        case EditAccountCommand.COMMAND_WORD:
+        case EditAccountCommand.COMMAND_ALIAS:
+            return new EditAccountCommandParser().parse(arguments);
+
+        case FindAccountCommand.COMMAND_WORD:
+        case FindAccountCommand.COMMAND_ALIAS:
+            return new FindAccountCommandParser().parse(arguments);
+
+        case ListAccountsCommand.COMMAND_WORD:
+        case ListAccountsCommand.COMMAND_ALIAS:
+            return new ListAccountsCommand();
+
+        case LoginCommand.COMMAND_WORD:
+            return new LoginCommandParser().parse(arguments);
+
+        case LogoutCommand.COMMAND_WORD:
+            return new LogoutCommand();
+
+        case LoginStatusCommand.COMMAND_WORD:
+            return new LoginStatusCommand();
 
         case AddCommand.COMMAND_WORD:
         case AddCommand.COMMAND_ALIAS:
