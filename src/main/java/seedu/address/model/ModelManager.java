@@ -103,8 +103,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(taskBook, userPrefs, accountList);
 
-        logger.fine("Initializing with task book: " + taskBook +
-                " and user prefs " + userPrefs + " and accounts" + accountList);
+        logger.fine("Initializing with task book: " + taskBook
+                + " and user prefs " + userPrefs + " and accounts" + accountList);
 
         versionedAccountList = new VersionedAccountList(accountList);
         filteredAccounts = new FilteredList<>(versionedAccountList.getAccountList());

@@ -34,16 +34,15 @@ public class ListAccountsCommand extends Command {
     }
 
     private String getListOfAccounts (List<Account> accounts) {
-        String OutputList = "";
-        OutputList += MESSAGE_SUCCESS + "\n";
-
-        OutputList += "Accounts: \n";
+        String outputList = "";
+        outputList += MESSAGE_SUCCESS + "\n";
+        outputList += "Accounts: \n";
         int index = 0;
         for (Account account : accounts) {
             index++;
-            OutputList += index + ". " + account.getUsername() + "\n";
+            outputList += index + ". " + account.getUsername() + "\n";
         }
-        return OutputList;
+        return outputList;
     }
 
 }
