@@ -310,7 +310,7 @@ Format: `showtime`
 Result: +
 You should see a list of days with all the category times in the Day Box as shown below. +
 
-image::DayBox.png[]
+image::ShowTime.png[width="250"]
 
 ==== Showing a particular day
 If you want to see only one specific day, simply add the date that you wish to see behind the command.
