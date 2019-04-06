@@ -347,9 +347,16 @@ Format:
 
 * `month +` +
 Changes the current calendar to next month. +
++
+image::month_plus.png[width="790"]
 
 * `month -` +
 Changes the current calendar to previous month.
+
+* `month` +
+Show current month's calendar.
++
+image::month_this.png[width="790"]
 
 === Shows the timeline of a specific day to the user : `timeline` +
 
