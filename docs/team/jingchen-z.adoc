@@ -14,13 +14,13 @@ This Project Portfolio is to indicate what I have done to enhance the functional
 
 == Summary of contributions
 
-* *Major enhancement*: Enhance visual feedback with timeline feature.
-** What it does: It helps the user to visually view the time they should spend on each task.
-** Justification: This feature improves the product significantly because people tend to believe what they see, it is good to have a vivid picture of the whole timeline.
-** Highlights: This feature helps the user to better manage their tasks and decide on time allocation.
-** Credits: _{Shibo's idea is used on filtering the desired tasks on a specific date so that I can display the tasks according to different categories on the timeline}_
+* *Main enhancement*: Enhance visual feedback with timeline feature.
+** What it does: It arranges the tasks on a given day into a timeline according to their categories. 
+** Justification: By visually showing the arranged timeline, this feature helps the user to better manage their tasks and decide on time allocation.
+** Highlights: Each category timeline will have their own color to be distinguished.
+** Credits: _{Shibo's idea is used on filtering the tasks according to date}_
 
-* *Minor enhancement*: morphed the find and history command that allows the user to easily locate a task and see history commands.
+* *Other enhancement*: Changed the find and history command that allows the user to easily locate a task and see history commands.
 
 * *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Jingchen&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]] _{give links to collated code files}_
 
