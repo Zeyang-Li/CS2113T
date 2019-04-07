@@ -219,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Executes the command and returns the result.
-     * @throws DataConversionException 
+     * @throws DataConversionException
      *
      * @see seedu.address.logic.Logic#execute(String)
      */

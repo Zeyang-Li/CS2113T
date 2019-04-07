@@ -77,7 +77,7 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel} <br>
      * - the {@code actualCommandHistory} remains unchanged.
-     * @throws DataConversionException 
+     * @throws DataConversionException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
             CommandResult expectedCommandResult, Model expectedModel) throws IOException, IllegalValueException, DataConversionException {
@@ -97,7 +97,7 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandHistory, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
-     * @throws DataConversionException 
+     * @throws DataConversionException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
             String expectedMessage, Model expectedModel) throws IOException, IllegalValueException, DataConversionException {
@@ -111,7 +111,7 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the task book, filtered task list and selected task in {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
-     * @throws DataConversionException 
+     * @throws DataConversionException
      */
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
             String expectedMessage) throws DataConversionException {

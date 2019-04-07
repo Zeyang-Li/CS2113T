@@ -20,7 +20,7 @@ public abstract class Command {
      * @param history {@code CommandHistory} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
-     * @throws DataConversionException 
+     * @throws DataConversionException
      */
     public abstract CommandResult execute(Model model, CommandHistory history) throws CommandException,
             IllegalValueException, IOException, DataConversionException;

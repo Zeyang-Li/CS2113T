@@ -97,13 +97,13 @@ public class ExportManager implements Export {
             logger.fine("Initializing output file: " + filePath.toString());
             FileUtil.createIfMissing(filePath);
         }
-        
+
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
         JsonFileStorage.saveAccountListToFile(filePath, new JsonSerializableAccountList(filteredAccountList));
 	}
 
 	@Override
 	public void saveFilteredAccountList() throws IOException, IllegalValueException {
-		saveFilteredAccountList(filteredAccountList, exportPath);	
+		saveFilteredAccountList(filteredAccountList, exportPath);
 	}
 }
