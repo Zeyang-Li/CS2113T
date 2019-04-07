@@ -10,8 +10,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
+import seedu.address.model.account.Account;
 import seedu.address.model.task.Task;
 import seedu.address.storage.JsonFileStorage;
+import seedu.address.storage.JsonSerializableAccountList;
 import seedu.address.storage.JsonSerializableTaskBook;
 
 
@@ -23,8 +25,15 @@ public class ExportManager implements Export {
     private static final String MESSAGE_NOTHING_TO_EXPORT = "There is nothing to export!";
     private static final Logger logger = LogsCenter.getLogger(seedu.address.export.ExportManager.class);
 
+    private ObservableList<Account> filteredAccountList;
     private ObservableList<Task> filteredTasks;
     private Path exportPath;
+
+    public ExportManager(ObservableList<Account> filteredAccountList, ObservableList<Task> filteredTasks, Path filePath) {
+        this.filteredTasks = filteredTasks;
+        this.exportPath = filePath;
+        this.filteredAccountList = filteredAccountList;
+    }
 
     public ExportManager(ObservableList<Task> filteredTasks, Path filePath) {
         this.filteredTasks = filteredTasks;
@@ -70,4 +79,31 @@ public class ExportManager implements Export {
         }
         JsonFileStorage.saveDataToFile(filePath, new JsonSerializableTaskBook(filteredTasks));
     }
+
+	@Override
+	public void saveFilteredAccountList(ObservableList<Account> filteredAccountList, Path filePath)
+            throws IOException, IllegalValueException {
+        requireNonNull(filteredAccountList);
+        requireNonNull(filePath);
+
+        if (filteredAccountList.size() <= 0) {
+            logger.warning("There is nothing to export!");
+            throw new IllegalValueException(MESSAGE_NOTHING_TO_EXPORT);
+        }
+
+        if (FileUtil.isFileExists(filePath)) {
+            logger.fine("File exists. Overwriting output file: " + filePath.toString());
+        } else {
+            logger.fine("Initializing output file: " + filePath.toString());
+            FileUtil.createIfMissing(filePath);
+        }
+        
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
+        JsonFileStorage.saveAccountListToFile(filePath, new JsonSerializableAccountList(filteredAccountList));
+	}
+
+	@Override
+	public void saveFilteredAccountList() throws IOException, IllegalValueException {
+		saveFilteredAccountList(filteredAccountList, exportPath);	
+	}
 }

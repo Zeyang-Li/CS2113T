@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
@@ -18,7 +19,7 @@ public class HelpCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_help_success() throws IOException, IllegalValueException {
+    public void execute_help_success() throws IOException, IllegalValueException, DataConversionException {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         assertCommandSuccess(new HelpCommand(), model, commandHistory, expectedCommandResult, expectedModel);
     }

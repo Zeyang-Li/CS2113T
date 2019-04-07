@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
@@ -156,7 +157,15 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath(), logic.getTaskBook());
         //statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        commandBox = new CommandBox(this::executeCommand, logic.getHistory());
+        commandBox = new CommandBox(commandText -> {
+			try {
+				return executeCommand(commandText);
+			} catch (DataConversionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}, logic.getHistory());
 
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -210,11 +219,12 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Executes the command and returns the result.
+     * @throws DataConversionException 
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException,
-            IllegalValueException, IOException {
+            IllegalValueException, IOException, DataConversionException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -233,7 +243,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (IllegalArgumentException | CommandException | ParseException e) {
+        } catch (IllegalArgumentException | ParseException | CommandException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

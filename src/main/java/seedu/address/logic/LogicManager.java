@@ -8,6 +8,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -43,7 +44,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, IllegalValueException, IOException {
+    public CommandResult execute(String commandText) throws CommandException, IllegalValueException, IOException, DataConversionException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         taskBookModified = false;
 

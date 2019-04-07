@@ -46,7 +46,7 @@ public class JsonFileStorage {
 
     }
 
-    public static Optional<JsonSerializableAccountList> loadAccountListFromSaveFile1(Path file)
+    public static Optional<JsonSerializableAccountList> loadAccountListFromSaveFile(Path file)
             throws DataConversionException,
             FileNotFoundException {
         return JsonUtil.readJsonFile(file, JsonSerializableAccountList.class);

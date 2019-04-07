@@ -5,6 +5,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.account.Account;
 import seedu.address.model.task.Task;
 
 /**
@@ -23,5 +24,10 @@ public interface Export {
      */
     void saveFilteredTasks(ObservableList<Task> filteredTasks, Path filePath)
             throws IOException, IllegalValueException;
+
+	void saveFilteredAccountList(ObservableList<Account> filteredAccountList, Path filePath)
+			throws IOException, IllegalValueException;
+
+	void saveFilteredAccountList() throws IOException, IllegalValueException;
 
 }

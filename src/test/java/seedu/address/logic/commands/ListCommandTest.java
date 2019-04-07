@@ -10,6 +10,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
@@ -42,13 +43,13 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() throws IOException, IllegalValueException {
+    public void execute_listIsNotFiltered_showsSameList() throws IOException, IllegalValueException, DataConversionException {
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() throws IOException, IllegalValueException {
+    public void execute_listIsFiltered_showsEverything() throws IOException, IllegalValueException, DataConversionException {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);

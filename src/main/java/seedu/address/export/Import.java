@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyAccountList;
 import seedu.address.model.ReadOnlyTaskBook;
 
 
@@ -26,5 +27,7 @@ public interface Import {
      * @param filePath location of the data. Cannot be null
      */
     Optional<ReadOnlyTaskBook> readTaskBook(Path filePath) throws DataConversionException, FileNotFoundException;
+
+	Optional<ReadOnlyAccountList> readAccountList() throws DataConversionException, IOException;
 
 }

@@ -5,8 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACCOUNTS;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -40,7 +44,6 @@ public class LoginCommand extends Command {
     private final UsernameMatchPredicate predicate;
     private final String password;
 
-
     public LoginCommand(UsernameMatchPredicate predicate, Account account) {
         this.predicate = predicate;
         this.password = account.getPassword().toString();
@@ -48,21 +51,24 @@ public class LoginCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException, IOException, DataConversionException {
         if (model.getLoginStatus()) {
             throw new CommandException(String.format(MESSAGE_ALREADY_LOGGED_IN, model.getLoggedInUser()));
         }
 
         requireNonNull(model);
+
         model.updateFilteredAccountList(predicate);
         List<Account> matchedAccounts = model.getFilteredAccountList();
         modifyLoginStatus(matchedAccounts, password, model);
 
+        //model.importAccountsFromAccountList(filePath);
         if (!model.getLoginStatus()) {
             throw new CommandException(MESSAGE_FAIL);
         }
 
         model.updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
+
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getLoggedInUser()));
     }

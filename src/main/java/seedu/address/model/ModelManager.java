@@ -539,10 +539,8 @@ public class ModelManager implements Model {
 
     /** Raises an event to indicate the model has changed */
     private void indicateAccountListChanged() {
-        raise(new AccountListChangedEvent(versionedAccountList));
+        new AccountListChangedEvent(versionedAccountList);
     }
-
-    private void raise(AccountListChangedEvent accountListChangedEvent) {}
 
     @Override
     public boolean getLoginStatus() {
@@ -564,4 +562,36 @@ public class ModelManager implements Model {
         loggedInAccount.setLoggedInUser(username);
     }
 
+
+	@Override
+    public void exportFilteredAccountList(Path filePath) throws IOException, IllegalValueException {
+        Export export = new ExportManager(getFilteredAccountList(), null, filePath);
+	    export.saveFilteredAccountList();
+    }
+
+
+	@Override
+	public void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException {
+        Import importManager = new ImportManager(filePath);
+        ReadOnlyAccountList accountListImported = importManager.readAccountList().orElseThrow(IOException::new);
+        boolean hasChanged = addAccountsToAccountList(accountListImported);
+
+        if (hasChanged) {
+        	updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
+            indicateAccountListChanged();
+        }
+	}
+
+
+	private boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported) {
+        ObservableList<Account> accounts = accountListImported.getAccountList();
+        AtomicBoolean hasChanged = new AtomicBoolean(false);
+        accounts.forEach((account) -> {
+            if (!hasAccount(account)) {
+                hasChanged.set(true);
+                versionedAccountList.addAccount(account);
+            }
+        });
+        return hasChanged.get();
+	}
 }

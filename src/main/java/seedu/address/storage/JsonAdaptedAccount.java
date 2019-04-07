@@ -2,6 +2,8 @@ package seedu.address.storage;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Password;
@@ -14,23 +16,14 @@ import seedu.address.model.account.Username;
 public class JsonAdaptedAccount {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Account's %s field is missing!";
 
-
-    private String username;
-    private String password;
-
-
-
-    /**
-     * Constructs an XmlAdaptedAccount.
-     * This is the no-arg constructor that is required by JAXB.
-     */
-    public JsonAdaptedAccount() {}
+    public String username;
+    public String password;
 
 
     /**
      * Constructs an {@code XmlAdaptedItem} with the given item details.
      */
-    public JsonAdaptedAccount(String username, String password) {
+    public JsonAdaptedAccount(@JsonProperty("username") String username, @JsonProperty("password") String password) {
         this.username = username;
         this.password = password;
     }

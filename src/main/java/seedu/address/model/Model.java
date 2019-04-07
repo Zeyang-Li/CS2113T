@@ -253,5 +253,9 @@ public interface Model {
      */
     void setLoggedInUser(Username username);
 
+	void exportFilteredAccountList(Path path) throws IOException, IllegalValueException;
+
+	void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException;
+
 
 }
