@@ -44,7 +44,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, IllegalValueException, IOException, DataConversionException {
+    public CommandResult execute(String commandText)
+            throws CommandException, IllegalValueException, IOException, DataConversionException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         taskBookModified = false;
 

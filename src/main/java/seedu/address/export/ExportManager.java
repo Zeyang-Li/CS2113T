@@ -29,7 +29,8 @@ public class ExportManager implements Export {
     private ObservableList<Task> filteredTasks;
     private Path exportPath;
 
-    public ExportManager(ObservableList<Account> filteredAccountList, ObservableList<Task> filteredTasks, Path filePath) {
+    public ExportManager(ObservableList<Account> filteredAccountList,
+            ObservableList<Task> filteredTasks, Path filePath) {
         this.filteredTasks = filteredTasks;
         this.exportPath = filePath;
         this.filteredAccountList = filteredAccountList;
@@ -80,8 +81,8 @@ public class ExportManager implements Export {
         JsonFileStorage.saveDataToFile(filePath, new JsonSerializableTaskBook(filteredTasks));
     }
 
-	@Override
-	public void saveFilteredAccountList(ObservableList<Account> filteredAccountList, Path filePath)
+    @Override
+    public void saveFilteredAccountList(ObservableList<Account> filteredAccountList, Path filePath)
             throws IOException, IllegalValueException {
         requireNonNull(filteredAccountList);
         requireNonNull(filePath);
@@ -100,10 +101,10 @@ public class ExportManager implements Export {
 
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
         JsonFileStorage.saveAccountListToFile(filePath, new JsonSerializableAccountList(filteredAccountList));
-	}
+    }
 
-	@Override
-	public void saveFilteredAccountList() throws IOException, IllegalValueException {
-		saveFilteredAccountList(filteredAccountList, exportPath);
-	}
+    @Override
+    public void saveFilteredAccountList() throws IOException, IllegalValueException {
+        saveFilteredAccountList(filteredAccountList, exportPath);
+    }
 }

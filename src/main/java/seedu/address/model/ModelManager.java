@@ -563,27 +563,26 @@ public class ModelManager implements Model {
     }
 
 
-	@Override
+    @Override
     public void exportFilteredAccountList(Path filePath) throws IOException, IllegalValueException {
         Export export = new ExportManager(getFilteredAccountList(), null, filePath);
-	    export.saveFilteredAccountList();
+        export.saveFilteredAccountList();
     }
 
-
-	@Override
+    @Override
 	public void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException {
         Import importManager = new ImportManager(filePath);
         ReadOnlyAccountList accountListImported = importManager.readAccountList().orElseThrow(IOException::new);
         boolean hasChanged = addAccountsToAccountList(accountListImported);
 
         if (hasChanged) {
-        	updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
+            updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
             indicateAccountListChanged();
         }
-	}
+    }
 
 
-	private boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported) {
+    private boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported) {
         ObservableList<Account> accounts = accountListImported.getAccountList();
         AtomicBoolean hasChanged = new AtomicBoolean(false);
         accounts.forEach((account) -> {
@@ -593,5 +592,5 @@ public class ModelManager implements Model {
             }
         });
         return hasChanged.get();
-	}
+    }
 }

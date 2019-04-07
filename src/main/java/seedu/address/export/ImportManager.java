@@ -63,12 +63,13 @@ public class ImportManager implements Import {
         }
     }
 
-	@Override
-	public Optional<ReadOnlyAccountList> readAccountList() throws DataConversionException, IOException {
+    @Override
+    public Optional<ReadOnlyAccountList> readAccountList() throws DataConversionException, IOException {
         return readAccountList(importPath);
-	}
+    }
 
-	private Optional<ReadOnlyAccountList> readAccountList(Path importPath) throws FileNotFoundException, DataConversionException {
+    private Optional<ReadOnlyAccountList> readAccountList(Path importPath)
+            throws FileNotFoundException, DataConversionException {
         requireNonNull(importPath);
 
         if (!Files.exists(importPath)) {
@@ -87,5 +88,5 @@ public class ImportManager implements Import {
             logger.info("Illegal values found in " + importPath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
-	}
+    }
 }

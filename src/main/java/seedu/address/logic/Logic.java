@@ -27,7 +27,8 @@ public interface Logic {
      * @throws DataConversionException
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, IllegalValueException, IOException, DataConversionException;
+    CommandResult execute(String commandText)
+            throws CommandException, IllegalValueException, IOException, DataConversionException;
 
     /**
      * Returns the TaskBook.

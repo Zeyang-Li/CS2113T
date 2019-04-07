@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACCOUNTS;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -51,9 +49,11 @@ public class LoginCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException, IOException, DataConversionException {
+    public CommandResult execute(Model model, CommandHistory history)
+            throws CommandException, IOException, DataConversionException {
         if (model.getLoginStatus()) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_LOGGED_IN, model.getLoggedInUser()));
+            throw new CommandException(String.format
+                    (MESSAGE_ALREADY_LOGGED_IN, model.getLoggedInUser()));
         }
 
         requireNonNull(model);

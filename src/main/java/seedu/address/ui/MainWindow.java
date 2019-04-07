@@ -158,14 +158,13 @@ public class MainWindow extends UiPart<Stage> {
         //statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         commandBox = new CommandBox(commandText -> {
-			try {
-				return executeCommand(commandText);
-			} catch (DataConversionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}, logic.getHistory());
+            try {
+                return executeCommand(commandText);
+            } catch (DataConversionException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, logic.getHistory());
 
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }

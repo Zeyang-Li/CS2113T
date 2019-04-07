@@ -16,8 +16,8 @@ import seedu.address.model.account.Username;
 public class JsonAdaptedAccount {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Account's %s field is missing!";
 
-    public String username;
-    public String password;
+    private String username;
+    private String password;
 
 
     /**
