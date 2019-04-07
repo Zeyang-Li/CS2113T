@@ -43,13 +43,15 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() throws IOException, IllegalValueException, DataConversionException {
+    public void execute_listIsNotFiltered_showsSameList()
+            throws IOException, IllegalValueException, DataConversionException {
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() throws IOException, IllegalValueException, DataConversionException {
+    public void execute_listIsFiltered_showsEverything()
+            throws IOException, IllegalValueException, DataConversionException {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);

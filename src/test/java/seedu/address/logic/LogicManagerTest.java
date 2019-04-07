@@ -66,7 +66,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_invalidCommandFormat_throwsParseException() throws IOException, IllegalValueException, DataConversionException {
+    public void execute_invalidCommandFormat_throwsParseException()
+            throws IOException, IllegalValueException, DataConversionException {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
         //assertHistoryCorrect(invalidCommand);

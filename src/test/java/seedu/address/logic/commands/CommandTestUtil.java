@@ -80,7 +80,8 @@ public class CommandTestUtil {
      * @throws DataConversionException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            CommandResult expectedCommandResult, Model expectedModel) throws IOException, IllegalValueException, DataConversionException {
+            CommandResult expectedCommandResult, Model expectedModel)
+                    throws IOException, IllegalValueException, DataConversionException {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
             CommandResult result = command.execute(actualModel, actualCommandHistory);
@@ -100,7 +101,8 @@ public class CommandTestUtil {
      * @throws DataConversionException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage, Model expectedModel) throws IOException, IllegalValueException, DataConversionException {
+            String expectedMessage, Model expectedModel)
+                    throws IOException, IllegalValueException, DataConversionException {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, actualCommandHistory, expectedCommandResult, expectedModel);
     }
