@@ -570,7 +570,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-	public void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException {
+    public void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException {
         Import importManager = new ImportManager(filePath);
         ReadOnlyAccountList accountListImported = importManager.readAccountList().orElseThrow(IOException::new);
         boolean hasChanged = addAccountsToAccountList(accountListImported);
@@ -581,8 +581,8 @@ public class ModelManager implements Model {
         }
     }
 
-
-    private boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported) {
+    @Override
+    public boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported) {
         ObservableList<Account> accounts = accountListImported.getAccountList();
         AtomicBoolean hasChanged = new AtomicBoolean(false);
         accounts.forEach((account) -> {

@@ -68,7 +68,8 @@ public class ImportManager implements Import {
         return readAccountList(importPath);
     }
 
-    private Optional<ReadOnlyAccountList> readAccountList(Path importPath)
+    @Override
+    public Optional<ReadOnlyAccountList> readAccountList(Path importPath)
             throws FileNotFoundException, DataConversionException {
         requireNonNull(importPath);
 

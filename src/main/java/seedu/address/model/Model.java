@@ -257,5 +257,10 @@ public interface Model {
 
     void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException;
 
-
+    /**
+     * Adds all the accounts in {@code accountListImported} to the current address book.
+     *
+     * @return hasChanged is true if the addressBook is modified, returns false otherwise.
+     */
+    boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported);
 }
