@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyAccountList;
 
 
 /**
- * A class to access AccountList data stored as an xml file on the hard disk.
+ * A class to access AccountList data stored as an Json file on the hard disk.
  */
 public class JsonAccountListStorage implements AccountListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAccountListStorage.class);
@@ -59,7 +59,7 @@ public class JsonAccountListStorage implements AccountListStorage {
             return Optional.empty();
         }
 
-        Optional<JsonSerializableAccountList> jsonAccountList = JsonFileStorage.loadAccountListFromSaveFile1(filePath);
+        Optional<JsonSerializableAccountList> jsonAccountList = JsonFileStorage.loadAccountListFromSaveFile(filePath);
         try {
             return Optional.of(jsonAccountList.get().toModelType());
         } catch (IllegalValueException ive) {

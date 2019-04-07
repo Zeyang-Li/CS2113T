@@ -45,6 +45,9 @@ import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListAccountsCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoginCommand;
+import seedu.address.logic.commands.LoginStatusCommand;
+import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
@@ -84,6 +87,9 @@ public class CommandBox extends UiPart<Region> {
             ImportCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             ListAccountsCommand.COMMAND_WORD,
+            LoginCommand.COMMAND_WORD,
+            LoginStatusCommand.COMMAND_WORD,
+            LogoutCommand.COMMAND_WORD,
             MonthCommand.COMMAND_WORD,
             RemindCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
