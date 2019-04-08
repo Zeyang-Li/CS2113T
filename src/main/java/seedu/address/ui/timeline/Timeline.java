@@ -139,6 +139,9 @@ public class Timeline {
             }
             start = (Math.round(t.getStart()) + 20) % 24;
             end = (Math.round(t.getEnd()) + 20) % 24;
+            if ((start >= 20 && start <= 23) || (start >= 0 && start <= 1) || (end >= 22 && end <= 23)) {
+                continue;
+            }
             if ((end - start) <= 1) {
                 timeInterval[start] = 4;
                 continue;
@@ -171,7 +174,7 @@ public class Timeline {
         }
         for (int i = 0; i < total; i++) {
             int time = (Math.round(tasks[i].getStart()) + 20) % 24;
-            if (time > 21) {
+            if (time > 19) {
                 //System.out.println(time);
                 continue;
             }

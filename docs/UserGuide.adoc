@@ -60,7 +60,7 @@ type either `add` or `a`.
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
+.  Download the latest `tasketch.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Tasketch.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
