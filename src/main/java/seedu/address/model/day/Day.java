@@ -148,11 +148,27 @@ public class Day {
      * To calculate time into the category for each task
      */
     public double calculateTime(String start, String end) {
+        String[] splitStart = start.split("\\.");
+        String[] splitEnd = end.split("\\.");
 
-        Double result = Double.valueOf(end) - Double.valueOf(start);
-        double scale = Math.pow(10, 2);
+        int startHour = Integer.valueOf(splitStart[0]);
+        int startMinute = Integer.valueOf(splitStart[1]);
+        int endHour = Integer.valueOf(splitEnd[0]);
+        int endMinute = Integer.valueOf(splitEnd[1]);
 
-        return Math.round(result * scale) / scale;
+        int s = startHour * 60 + startMinute;
+        int e = endHour * 60 + endMinute;
+        int duration = e - s;
+        int hours = duration / 60;
+        int mins = duration % 60;
+
+        final StringBuilder builder = new StringBuilder();
+        builder.append(hours)
+                .append(".")
+                .append(mins);
+        String st = builder.toString();
+
+        return Double.valueOf(st);
     }
 
     /**

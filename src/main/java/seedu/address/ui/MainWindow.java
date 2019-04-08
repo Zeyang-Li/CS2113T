@@ -231,7 +231,9 @@ public class MainWindow extends UiPart<Stage> {
             defaultPage.setMonth(commandResult.getFeedbackToUser());
             defaultPage.setTimeline(commandResult.getFeedbackToUser());
             defaultPage.setReminder(logic);
-            logic.reinitializeRemindList();
+            if (commandText.equals("remind")) {
+                logic.reinitializeRemindList();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

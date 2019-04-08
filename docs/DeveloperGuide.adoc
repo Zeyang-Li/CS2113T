@@ -357,7 +357,31 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 // tag::reminder[]
 === Reminder feature
+
+This feature will show user a remind list when remind command is requested. The remind list is a task list sorted by start time or deadline.
+
 ==== Current Implementation
+
+We maintain a reminder list in each model. Note that each time user can ask for any category of tasks to be reminded, which means the remind list should contains all the tasks in Tasketch to be filtered. When the app runs, remind list will be initialised to be a **FXCollections list** of all the tasks in Tasketch.
+
+Remind feature has two formats of command:
+
+* a) `remind [start/ddl]`
+* b) `remind [category] [start/ddl]`
+
+they follows the following steps:
+
+** *Step 1* : **Sort remind list.** +
+*** When `remind [start/ddl]` is requested, **sortRemindListByStart() / sortRemindListByEnd()** will be called. These two method will sort the remind list by start time or deadline of a task.
+*** When `remind [category] [start/ddl]` is requested, Tasketh will first do the same thing as described above. In addition, it will call **filterRemindList()** method to filter the remind list to contain only tasks with the specified category.
+** **Step 2** : **Update the UI.** +
+The UI part of reminder is managed by **ReminderPane** class. After remind list is sorted. We update the UI of reminder in **MainWindow** by calling **setReminder()** method. **setReminder()** is implemented using **ReminderPane**.
+
+** **Step 3** : **Re-initialize remind list.** +
+Call **reinitialzeRemindList()** method in **MainWindow** to set remind list to be a FXCollections list of all the tasks.
+
+[NOTE]
+The reason of doing this is when we show the remind list in UI, we change it from FXCollections list to a Observable list. However, in current implementation, sorting method can only be applied to FXCollections list. So we need to re-initialize remind list to be a FXCollections list containing all the tasks after each call of remind command.
 
 
 // end::reminder[]
