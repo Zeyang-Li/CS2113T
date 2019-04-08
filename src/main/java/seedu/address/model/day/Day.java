@@ -155,15 +155,17 @@ public class Day {
         int startMinute = Integer.valueOf(splitStart[1]);
         int endHour = Integer.valueOf(splitEnd[0]);
         int endMinute = Integer.valueOf(splitEnd[1]);
-        int s, e, duration, hours, mins;
-        s = startHour*60 + startMinute;
-        e = endHour*60 + endMinute;
-        duration = e - s;
-        hours = duration/60;
-        mins = duration%60;
+
+        int s = startHour * 60 + startMinute;
+        int e = endHour * 60 + endMinute;
+        int duration = e - s;
+        int hours = duration / 60;
+        int mins = duration % 60;
 
         final StringBuilder builder = new StringBuilder();
-        builder.append(hours).append(".").append(mins);
+        builder.append(hours)
+                .append(".")
+                .append(mins);
         String st = builder.toString();
 
         return Double.valueOf(st);
