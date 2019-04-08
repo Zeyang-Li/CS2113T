@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import java.io.IOException;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,8 +20,9 @@ public abstract class Command {
      * @param history {@code CommandHistory} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
+     * @throws DataConversionException
      */
     public abstract CommandResult execute(Model model, CommandHistory history) throws CommandException,
-            IllegalValueException, IOException;
+            IllegalValueException, IOException, DataConversionException;
 
 }

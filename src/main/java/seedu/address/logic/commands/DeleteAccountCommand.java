@@ -2,10 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -30,6 +34,8 @@ public class DeleteAccountCommand extends Command {
 
     private static final String MESSAGE_LOGIN = "Please login first";
 
+    private final Path filePath = Paths.get("data/AccountList.json");
+
     private final Index targetIndex;
 
     public DeleteAccountCommand(Index targetIndex) {
@@ -37,7 +43,8 @@ public class DeleteAccountCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history)
+            throws CommandException, IOException, IllegalValueException {
         requireNonNull(model);
 
         if (!model.getLoginStatus()) {
@@ -58,6 +65,7 @@ public class DeleteAccountCommand extends Command {
         }
 
         model.deleteAccount(itemToDelete);
+        model.exportFilteredAccountList(filePath);
         return new CommandResult(String.format(MESSAGE_DELETE_ACCOUNT_SUCCESS, itemToDelete));
     }
 

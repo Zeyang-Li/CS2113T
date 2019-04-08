@@ -253,5 +253,14 @@ public interface Model {
      */
     void setLoggedInUser(Username username);
 
+    void exportFilteredAccountList(Path path) throws IOException, IllegalValueException;
 
+    void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException;
+
+    /**
+     * Adds all the accounts in {@code accountListImported} to the current address book.
+     *
+     * @return hasChanged is true if the addressBook is modified, returns false otherwise.
+     */
+    boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported);
 }

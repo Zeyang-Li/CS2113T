@@ -4,6 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,7 +38,7 @@ public class AddAccountCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New account added: %1$s";
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the database";
     public static final String MESSAGE_LOGIN = "Please login first";
-
+    private final Path filePath = Paths.get("data/AccountList.json");
 
 
 
@@ -50,7 +55,8 @@ public class AddAccountCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history)
+            throws CommandException, IOException, IllegalValueException {
         requireNonNull(model);
 
         if (!model.getLoginStatus()) {
@@ -61,8 +67,9 @@ public class AddAccountCommand extends Command {
         if (model.hasAccount(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);
         }
-        System.out.println(toAdd.getUsername() + " " + toAdd.getPassword());
+
         model.addAccount(toAdd);
+        model.exportFilteredAccountList(filePath);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

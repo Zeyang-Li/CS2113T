@@ -5,11 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACCOUNTS;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -43,7 +47,7 @@ public class EditAccountCommand extends Command {
 
     private static final String MESSAGE_LOGIN = "Please Login first";
 
-
+    private final Path filePath = Paths.get("data/AccountList.json");
     private final Index index;
     private final EditAccountDescriptor editAccountDescriptor;
 
@@ -62,16 +66,16 @@ public class EditAccountCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history)
+            throws CommandException, IOException, IllegalValueException {
         requireNonNull(model);
 
         if (!model.getLoginStatus()) {
             throw new CommandException(MESSAGE_LOGIN);
         }
 
+
         List<Account> lastShownList = model.getFilteredAccountList();
-
-
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ACCOUNT_DISPLAYED_INDEX);
@@ -91,6 +95,7 @@ public class EditAccountCommand extends Command {
             model.setLoggedInUser(editedAccount.getUsername());
         }
 
+        model.exportFilteredAccountList(filePath);
         return new CommandResult(String.format(MESSAGE_EDIT_ACCOUNT_SUCCESS, editedAccount));
 
     }

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AccountList;
 import seedu.address.model.ReadOnlyAccountList;
@@ -11,31 +16,36 @@ import seedu.address.model.account.Account;
 
 
 /**
- * An Immutable AccountList that is serializable to XML format
+ * An Immutable AccountList that is serializable to Json format
  */
+@JsonRootName(value = "Source")
 public class JsonSerializableAccountList {
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "Account list contains duplicate account(s).";
 
-
-    private List<JsonAdaptedAccount> accounts;
+    private final List<JsonAdaptedAccount> accounts = new ArrayList<>();
 
 
     /**
-     * Creates an empty XmlSerializableAccountList.
-     * This empty constructor is required for marshalling.
+     * Constructs a {@code JsonSerializableAccountList} with the given accounts.
      */
-    public JsonSerializableAccountList() {
-        accounts = new ArrayList<>();
+    @JsonCreator
+    public JsonSerializableAccountList(@JsonProperty("accounts") List<JsonAdaptedAccount> accounts) {
+        this.accounts.addAll(accounts);
     }
 
     /**
      * Conversion
      */
     public JsonSerializableAccountList(ReadOnlyAccountList src) {
-        this();
         accounts.addAll(src.getAccountList().stream().map(JsonAdaptedAccount::new).collect(Collectors.toList()));
     }
 
+    /**
+     * Conversion with filtered accounts instead of the whole AccountList.
+     */
+    public JsonSerializableAccountList(ObservableList<Account> filteredAccountList) {
+        accounts.addAll(filteredAccountList.stream().map(JsonAdaptedAccount::new).collect(Collectors.toList()));
+    }
 
     /**
      * Converts account list into the model's {@code AccountList} object.

@@ -5,7 +5,6 @@
 
 == PROJECT: Tasketch
 
----
 
 == Overview
 
@@ -13,14 +12,24 @@ My teammates and I developed Tasketch for those who need to manage their time by
 
 == Summary of contributions
 
-* *Major enhancement*: I have added *the reminder feature* to our Tasketch.
-** What it does: Sometimes student tend to forget important deadline of their tasks or start time of their CCA events and etc. The reminder will show a list of tasks in time order for them to conveniently view what tasks are coming soon so that they will know what to prepare first.
+This part shows my individual contributions to our project Tasketch.
+
+* *Major enhancement*: I have added the *reminder feature* to our Tasketch.
+** What it does: Sometimes student tend to forget important deadline of their tasks or start time of their CCA events and etc. When users type in remind command, Tasketch will show a list of tasks in time order for them to conveniently view what tasks are coming soon so that they will know what to prepare first.
 ** Justification: For busy university students, it is almost impossible for them to remember every start time or deadlines of their activities. A reminder is a common requirement of them to easily view these time in order. This feature significantly improves the users' using experience by meeting this requirement.
-** Highlights: This feature implement a very useful method sort() in model API which can be used to implement other features.
+** Highlights:
+*** The task cards in the remind list are filled with different colors according to those tasks' urgency level. It is very striking for users to view and consequently have a good effect on reminding users. +
+*** This feature implement a very useful method sort() in model API which can be used to implement other features.
 
 
-* *Minor enhancement*: I made an enhancement to the list command of the previous version. In the previous version, list command can only list all the tasks in the storage. After enhancement, it support the usage like *list td* to list all the tasks of today so that user will know what need to be done today easily. It also support *list [DATE]*, which show a list of tasks on the specified date.
+* *Minor enhancement*: I made an enhancement to the list command of the previous version. In the previous version, list command can only list all the tasks in the storage. After enhancement, it support the following 4 kind of usages:
 
+****
+* 1. *list* - list all the tasks in Tasketch.
+* 2. *list td* - list all the tasks of today.
+* 3. *list [Date]* - list all the tasks of the specified date. The date can be accurate to day or month.
+* 4. *list [Category]* - list all the tasks of the specified category.
+****
 
 * *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=BrittonAlone&tabRepo=CS2113-AY1819S2-T09-2_main_master[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=BrittonAlone&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]]
 
@@ -50,51 +59,75 @@ My teammates and I developed Tasketch for those who need to manage their time by
 
 Shows a list of tasks in Tasketch.
 
+image::List.png[width="790"]
+
 Format:
 
+
 * `list` +
-Lists all the tasks of today +
+Lists all the tasks in the storage +
+
+* `list td` +
+List all the tasks whose start date is today +
 
 * `list DATE` +
-Lists all the tasks of that specific date +
+Lists all the tasks whose start date is that specific date +
+
+* `list CATEGORY` +
+Lists all the tasks of the specified category.
 
 Examples:
 
-* `list 02-2019` +
-Lists all the tasks in February, 2019
-* `list 20-02-2019` +
-Lists all the tasks in February 20th, 2019
+* `list a` +
+Lists all the tasks of academic category.
+* `list 02-19` +
+Lists all the tasks which starts in February, 2019
+* `list 20-02-19` +
+Lists all the tasks which starts on February 20th, 2019
 * `list` +
 Lists all the tasks in the storage
 
+
 === Reminding the users of the nearest task : `remind`
 
-Shows to the user the nearest tasks of certain category. +
+Shows to the user the nearest tasks of certain category.
+
+image::Reminder.png[width="790"]
 
 Format:
 
 * `remind start` +
-Reminds the users of most recently begin tasks of all categories. +
+Reminds the users of the most recently begin tasks of all categories. The reminded tasks should be in colored task cards.
++
+image::Remind_Start.png[width="790"]
 
 * `remind ddl` +
-Remind the users of most recent deadline of all categories. +
+Remind the users of the most recent deadline of all categories. The reminded tasks should be in colored task cards. +
++
+image::Remind_DDL.png[width="790"]
 
 * `remind a/e/c/r/o ddl/start` +
 Remind the users of most recent start tasks or deadline of specified category.
 
-****
-* "a" - Academic +
-* "e" - Entertainment +
-* "c" - Co-Curricular Activity (CCA) +
-* "r" - Errand +
-* "o" - Other
-****
+[NOTE]
+"a" - Academic +
+"e" - Entertainment +
+"c" - Co-Curricular Activity (CCA) +
+"r" - Errand +
+"o" - Other
+
 
 Examples:
 
-* `remind e start` +
-Shows a list of nearest start tasks of "entertainment" category.
+* `remind c start` +
+Shows a list of nearest start CCA activities.
++
+image::Remind_C_Start.png[width="790"]
 
+* `remind a ddl` +
+Shows a list of nearest deadlines of academic activities.
++
+image::Academic.png[width="790"]
 
 
 == Contributions to the Developer Guide
@@ -103,9 +136,33 @@ Shows a list of nearest start tasks of "entertainment" category.
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-//include::../DeveloperGuide.adoc[tag=undoredo]
+=== Reminder feature
 
-//include::../DeveloperGuide.adoc[tag=dataencryption]
+This feature will show user a remind list when remind command is requested. The remind list is a task list sorted by start time or deadline.
+
+==== Current Implementation
+
+We maintain a reminder list in each model. Note that each time user can ask for any category of tasks to be reminded, which means the remind list should contains all the tasks in Tasketch to be filtered. When the app runs, remind list will be initialised to be a **FXCollections list** of all the tasks in Tasketch.
+
+Remind feature has two formats of command:
+
+* a) `remind [start/ddl]`
+* b) `remind [category] [start/ddl]`
+
+they follows the following steps:
+
+** **Step 1** : **Sort remind list.** +
+*** When `remind [start/ddl]` is requested, **sortRemindListByStart() / sortRemindListByEnd()** will be called. These two method will sort the remind list by start time or deadline of a task.
+*** When `remind [category] [start/ddl]` is requested, Tasketh will first do the same thing as described above. In addition, it will call **filterRemindList()** method to filter the remind list to contain only tasks with the specified category.
+** **Step 2** : **Update the UI.** +
+The UI part of reminder is managed by **ReminderPane** class. After remind list is sorted. We update the UI of reminder in **MainWindow** by calling **setReminder()** method. **setReminder()** is implemented using **ReminderPane**.
+
+** **Step 3** : **Re-initialize remind list.** +
+Call **reinitialzeRemindList()** method in **MainWindow** to set remind list to be a FXCollections list of all the tasks.
+
+[NOTE]
+The reason of doing this is when we show the remind list in UI, we change it from FXCollections list to a Observable list. However, in current implementation, sorting method can only be applied to FXCollections list. So we need to re-initialize remind list to be a FXCollections list containing all the tasks after each call of remind command.
+
 
 
 == PROJECT: PowerPointLabs
