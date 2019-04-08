@@ -23,7 +23,7 @@ public class MonthCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Viewing %s month's calendar!";
     public static final String MESSAGE_ILLEGAL = "Please type in + or - to indicate!";
 
-    private String parameter = "";
+    private String parameter = " ";
 
     public MonthCommand(String c) throws ParseException {
         //System.out.println(c);
