@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandFormatString.FINDACCOUNT_COMMA
 import static seedu.address.logic.commands.CommandFormatString.FIND_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.IMPORT_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.LIST_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.LOGIN_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.MONTH_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_CATEGORY_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_FORMATSTRING;
@@ -200,6 +201,10 @@ public class CommandBox extends UiPart<Region> {
             break;
         case "list":
             completedtext = text + " " + LIST_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "login":
+            completedtext = text + " " + LOGIN_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
         case "month":
