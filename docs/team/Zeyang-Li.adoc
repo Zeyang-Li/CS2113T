@@ -93,6 +93,7 @@ https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/C
 |_Given below are some sample sections I contributed to the User Guide in terms of the *Wrong Command Suggestion* and the *Import and Export feature*. If you would like to see the original part in our UserGuide, you can simply click blue titles. +
 They showcase my ability to write documentation targeting end-users. +
 Here are the links to other contributions I made to the UserGuide. +
+[https://github.com/Zeyang-Li/main/blob/master/docs/UserGuide.adoc#clearing-all-tasks-clearc[Clear tasks]]
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#versioned-tasketch[Versioned Tasketch]]
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#viewing-help-help[Viewing help]]
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#exiting-the-program-exit[Exiting the program]]_

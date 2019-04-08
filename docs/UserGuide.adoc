@@ -157,7 +157,7 @@ image:TaskBox.png[] +
 The time duration on that task will be calculated at the back and the time will be reflected in the Day Box. +
 image:DayBox.png[]
 
-=== Clearing all tasks : `clear`/`c`
+=== Clearing tasks : `clear`/`c`
 
 If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
@@ -168,6 +168,10 @@ Clears all the tasks in Tasketch
 
 * `clear DATE` +
 Clears all the tasks starting from the specified date
+
+* `clear before` +
+Clears all finished tasks.
+
 
 Examples:
 
