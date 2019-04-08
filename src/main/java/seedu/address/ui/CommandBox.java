@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandFormatString.LOGIN_COMMAND_FOR
 import static seedu.address.logic.commands.CommandFormatString.MONTH_COMMAND_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_CATEGORY_FORMATSTRING;
 import static seedu.address.logic.commands.CommandFormatString.REMIND_COMMAND_FORMATSTRING;
+import static seedu.address.logic.commands.CommandFormatString.TIMELINE_COMMAND_FORMATSTRING;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -213,6 +214,10 @@ public class CommandBox extends UiPart<Region> {
             break;
         case "remind":
             completedtext = text + " " + REMIND_COMMAND_FORMATSTRING;
+            replaceText(completedtext);
+            break;
+        case "timeline":
+            completedtext = text + " " + TIMELINE_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
         case RemindCommand.COMMAND_WORD + " " + REMIND_COMMAND_FORMATSTRING:
