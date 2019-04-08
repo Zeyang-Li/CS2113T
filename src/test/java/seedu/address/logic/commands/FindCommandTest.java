@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_TASK_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
@@ -16,8 +17,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
