@@ -217,7 +217,7 @@ public class CommandBox extends UiPart<Region> {
             replaceText(completedtext);
             break;
         case "timeline":
-        	completedtext = text + " " + TIMELINE_COMMAND_FORMATSTRING;
+            completedtext = text + " " + TIMELINE_COMMAND_FORMATSTRING;
             replaceText(completedtext);
             break;
         case RemindCommand.COMMAND_WORD + " " + REMIND_COMMAND_FORMATSTRING:
