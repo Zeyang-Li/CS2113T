@@ -46,4 +46,5 @@ public class CommandFormatString {
             + PREFIX_PASSWORD + "Password";
     public static final String LOGIN_COMMAND_FORMATSTRING = PREFIX_USERNAME + "Username "
             + PREFIX_PASSWORD + "Password";
+    public static final String TIMELINE_COMMAND_FORMATSTRING = "dd-mm-yy";
 }
