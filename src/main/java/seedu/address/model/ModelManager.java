@@ -195,16 +195,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortByStart() {
-        versionedTaskBook.sortTaskByDate(startComparator);
-    }
-
-    @Override
-    public void sortByEnd() {
-        versionedTaskBook.sortTaskByDate(endComparator);
-    }
-
-    @Override
     public void sortRemindListByStart() {
         FXCollections.sort(remindList, startComparator);
     }
