@@ -83,7 +83,7 @@ Panel *A* will always be active, allowing you to input your commands all the tim
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
+.  Download the latest `tasketch.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Tasketch.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -416,6 +416,9 @@ image::timeline_today.png[width="790"]
 Shows the whole timeline for 1st April 2019.
 +
 image::timeline_date.png[width="790"]
+
+[TIP]
+Timeline will only show the tasks between 6:00am to 24:pm. Sleep early is a good habit~
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,

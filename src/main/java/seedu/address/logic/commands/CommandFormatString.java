@@ -36,12 +36,15 @@ public class CommandFormatString {
     public static final String EXPORT_COMMAND_FORMATSTRING = "filename.json";
     public static final String IMPORT_COMMAND_FORMATSTRING = "filename.json";
     public static final String MONTH_COMMAND_FORMATSTRING = "+/-";
-    public static final String REMIND_COMMAND_FORMATSTRING = "dd-mm-yy/dd-mm-yy";
-    public static final String REMIND_COMMAND_CATEGORY_FORMATSTRING = "category dd-mm-yy/dd-mm-yy";
+    public static final String REMIND_COMMAND_FORMATSTRING = "start/ddl";
+    public static final String REMIND_COMMAND_CATEGORY_FORMATSTRING = "category start/ddl";
     public static final String FINDACCOUNT_COMMAND_FORMATSTRING = "Keyword";
     public static final String EDITACCOUNT_COMMAND_FORMATSTRING = "index" + PREFIX_USERNAME + "Username "
             + PREFIX_PASSWORD + "Password";
     public static final String DELETEACCOUNT_COMMAND_FORMATSTRING = "Index ";
     public static final String ADDACCOUNT_COMMAND_FORMATSTRING = PREFIX_USERNAME + "Username "
             + PREFIX_PASSWORD + "Password";
+    public static final String LOGIN_COMMAND_FORMATSTRING = PREFIX_USERNAME + "Username "
+            + PREFIX_PASSWORD + "Password";
+    public static final String TIMELINE_COMMAND_FORMATSTRING = "dd-mm-yy";
 }
