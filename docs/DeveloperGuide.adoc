@@ -251,7 +251,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-*Step 2*: The user executes `delete 5` command to delete the 5th person in the task book. The `delete` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `delete 5` command executes to be saved in the `taskBookStateList`, and the `currentStatePointer` is shifted to the newly inserted task book state.
+*Step 2*: The user executes `delete 5` command to delete the 5th task in the task book. The `delete` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `delete 5` command executes to be saved in the `taskBookStateList`, and the `currentStatePointer` is shifted to the newly inserted task book state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
