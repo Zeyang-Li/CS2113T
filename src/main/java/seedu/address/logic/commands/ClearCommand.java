@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBook;
 import seedu.address.model.task.Task;
@@ -30,6 +31,7 @@ public class ClearCommand extends Command {
     public static final String COMMAND_PARAMETERS = "Parameters: none or DATE or before\n";
     public static final String MESSAGE_CLEARDATE_SUCCESS = "clear %1$d tasks which start at %2$s";
     public static final String MESSAGE_CLEARYD_SUCCESS = "clear %1$d tasks which have already ended on %2$s";
+    public static final String MESSAGE_LOGIN = "Please login first";
     private String specificDate;
     private int count = 0;
     private List<Task> tasksToBeDeleted = new ArrayList<Task>();
@@ -98,9 +100,13 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
 
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
 
         if (this.specificDate.equals("")) {
 

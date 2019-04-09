@@ -6,6 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DAYS;
 import java.util.function.Predicate;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.day.Day;
 
@@ -21,6 +22,7 @@ public class ShowTimeCommand extends Command {
             + "1. no parameters: showtime        show all days\n"
             + "2. DATE: showtime 25-03-19    "
             + "show the day 25th March, 2019\n";
+    public static final String MESSAGE_LOGIN = "Please login first";
     public static final String MESSAGE_SUCCESS1 = "Shown all days";
     public static final String MESSAGE_SUCCESS2 = "Listed day on %1$s";
     public static final String COMMAND_PARAMETERS = "Parameters:\n"
@@ -63,8 +65,13 @@ public class ShowTimeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
+
         if (arguments[0].equals("")) {
 
             model.updateFilteredDayList(PREDICATE_SHOW_ALL_DAYS);

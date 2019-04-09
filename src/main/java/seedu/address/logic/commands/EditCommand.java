@@ -73,7 +73,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ENDTIME + "ENDTIME] "
             + "[" + PREFIX_CATEGORY + "CATEGORY]...\n";
 
-
+    public static final String MESSAGE_LOGIN = "Please login first";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Tasketch.";
@@ -99,6 +99,11 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
+
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

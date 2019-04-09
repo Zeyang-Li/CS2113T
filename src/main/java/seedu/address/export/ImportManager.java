@@ -12,8 +12,10 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyAccountList;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.storage.JsonFileStorage;
+import seedu.address.storage.JsonSerializableAccountList;
 import seedu.address.storage.JsonSerializableTaskBook;
 
 /**
@@ -57,6 +59,34 @@ public class ImportManager implements Import {
             }
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
+
+    @Override
+    public Optional<ReadOnlyAccountList> readAccountList() throws DataConversionException, IOException {
+        return readAccountList(importPath);
+    }
+
+    @Override
+    public Optional<ReadOnlyAccountList> readAccountList(Path importPath)
+            throws FileNotFoundException, DataConversionException {
+        requireNonNull(importPath);
+
+        if (!Files.exists(importPath)) {
+            logger.info("AccountList file " + importPath + " not found");
+            return Optional.empty();
+        }
+
+        Optional<JsonSerializableAccountList> jsonAccountList = JsonFileStorage.loadAccountListFromSaveFile(importPath);
+        try {
+            if (jsonAccountList.isPresent()) {
+                return Optional.of(jsonAccountList.get().toModelType());
+            } else {
+                return Optional.empty();
+            }
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + importPath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }

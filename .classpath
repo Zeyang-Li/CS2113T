@@ -26,5 +26,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-9/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="lib" path="C:/Users/惠普/.gradle/caches/modules-2/files-2.1/javax.xml.bind/jaxb-api/2.2.8/f0287831b3e3550b82b5bd19152d460061859ce6/jaxb-api-2.2.8.jar" sourcepath="C:/Users/惠普/.gradle/caches/modules-2/files-2.1/javax.xml.bind/jaxb-api/2.2.8/92c1b43eee9de5ec71c1719aa0334d59983ef596/jaxb-api-2.2.8-sources.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

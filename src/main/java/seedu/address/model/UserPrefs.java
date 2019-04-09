@@ -17,7 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path taskBookFilePath = Paths.get("data" , "taskbook.json");
     private Path daysKeeperFilePath = Paths.get("data" , "dayskeeper.json");
     private Path exportCsvFilePath = Paths.get("data", "tasketch.json");
-
+    private Path accountListFilePath = Paths.get("data" , "AccountList.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -43,6 +43,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public GuiSettings getGuiSettings() {
         return guiSettings;
+    }
+
+
+    public Path getAccountListFilePath() {
+        return accountListFilePath;
     }
 
     public void setGuiSettings(GuiSettings guiSettings) {

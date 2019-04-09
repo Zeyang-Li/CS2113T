@@ -10,11 +10,14 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAccountList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.account.Username;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -28,18 +31,27 @@ public class ListCommandTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalAccountList());
+        expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getAccountList());
+        Username admin = new Username("admin");
+        model.setLoggedInUser(admin);
+        expectedModel.setLoggedInUser(admin);
+    }
+
+    private ReadOnlyAccountList getTypicalAccountList() {
+        return null;
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() throws IOException, IllegalValueException {
+    public void execute_listIsNotFiltered_showsSameList()
+            throws IOException, IllegalValueException, DataConversionException {
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() throws IOException, IllegalValueException {
+    public void execute_listIsFiltered_showsEverything()
+            throws IOException, IllegalValueException, DataConversionException {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);

@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.AccountListChangedEvent;
 import seedu.address.commons.events.model.TaskBookChangedEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -27,6 +28,9 @@ import seedu.address.export.Export;
 import seedu.address.export.ExportManager;
 import seedu.address.export.Import;
 import seedu.address.export.ImportManager;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.LoggedInAccount;
+import seedu.address.model.account.Username;
 import seedu.address.model.day.Day;
 import seedu.address.model.day.exceptions.DayNotFoundException;
 import seedu.address.model.task.Task;
@@ -45,6 +49,10 @@ public class ModelManager implements Model {
     private final SimpleObjectProperty<Task> selectedTask = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<Day> selectedDay = new SimpleObjectProperty<>();
     private ObservableList<Task> remindList = FXCollections.observableArrayList();
+
+    private final VersionedAccountList versionedAccountList;
+    private final FilteredList<Account> filteredAccounts;
+    private final LoggedInAccount loggedInAccount;
 
     private Comparator<Task> startComparator = new Comparator<Task>() {
         @Override
@@ -89,13 +97,18 @@ public class ModelManager implements Model {
     };
 
     /**
-     * Initializes a ModelManager with the given taskBook and userPrefs.
+     * Initializes a ModelManager with the given taskBook, userPrefs and accountList.
      */
-    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs, ReadOnlyAccountList accountList) {
         super();
-        requireAllNonNull(taskBook, userPrefs);
+        requireAllNonNull(taskBook, userPrefs, accountList);
 
-        logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task book: " + taskBook
+                + " and user prefs " + userPrefs + " and accounts" + accountList);
+
+        versionedAccountList = new VersionedAccountList(accountList);
+        filteredAccounts = new FilteredList<>(versionedAccountList.getAccountList());
+        loggedInAccount = new LoggedInAccount();
 
         versionedTaskBook = new VersionedTaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -108,8 +121,9 @@ public class ModelManager implements Model {
         }
     }
 
+
     public ModelManager() {
-        this(new TaskBook(), new UserPrefs());
+        this(new TaskBook(), new UserPrefs(), new AccountList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -278,7 +292,7 @@ public class ModelManager implements Model {
         filteredDays.setPredicate(predicate);
     }
 
-    //=========== Undo/Redo =================================================================================
+    //=========== TaskBook =================================================================================
 
     @Override
     public boolean canUndoTaskBook() {
@@ -468,4 +482,115 @@ public class ModelManager implements Model {
                 && Objects.equals(selectedDay.get(), other.selectedDay.get());
     }
 
+    //=========== Account List ==============================================================================
+
+    @Override
+
+    public boolean hasAccount(Account account) {
+        requireNonNull(account);
+        return versionedAccountList.hasAccount(account);
+    }
+
+    @Override
+    public void addAccount(Account account) {
+        versionedAccountList.addAccount(account);
+        updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
+        indicateAccountListChanged();
+    }
+
+
+    @Override
+    public void updateAccount(Account target, Account editedAccount) {
+        requireAllNonNull(target, editedAccount);
+
+        versionedAccountList.updateAccount(target, editedAccount);
+        indicateAccountListChanged();
+    }
+
+    @Override
+    public void deleteAccount(Account target) {
+        versionedAccountList.removeAccount(target);
+        indicateAccountListChanged();
+    }
+
+    @Override
+    public ReadOnlyAccountList getAccountList() {
+        return versionedAccountList;
+    }
+
+
+    @Override
+    public ObservableList<Account> getFilteredAccountList() {
+        return FXCollections.unmodifiableObservableList(filteredAccounts);
+    }
+
+
+    @Override
+    public void updateFilteredAccountList(Predicate<Account> predicate) {
+        requireNonNull(predicate);
+        filteredAccounts.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetAccountData(ReadOnlyAccountList newData) {
+        versionedAccountList.resetData(newData);
+        indicateAccountListChanged();
+    }
+
+    /** Raises an event to indicate the model has changed */
+    private void indicateAccountListChanged() {
+        new AccountListChangedEvent(versionedAccountList);
+    }
+
+    @Override
+    public boolean getLoginStatus() {
+        return loggedInAccount.getLoginStatus();
+    }
+
+    @Override
+    public String getLoggedInUser() {
+        return loggedInAccount.getUsername().toString();
+    }
+
+    @Override
+    public void setLoggedOutStatus() {
+        loggedInAccount.setLoggedOutStatus();
+    }
+
+    @Override
+    public void setLoggedInUser(Username username) {
+        loggedInAccount.setLoggedInUser(username);
+    }
+
+
+    @Override
+    public void exportFilteredAccountList(Path filePath) throws IOException, IllegalValueException {
+        Export export = new ExportManager(getFilteredAccountList(), null, filePath);
+        export.saveFilteredAccountList();
+    }
+
+    @Override
+    public void importAccountsFromAccountList(Path filePath) throws IOException, DataConversionException {
+        Import importManager = new ImportManager(filePath);
+        ReadOnlyAccountList accountListImported = importManager.readAccountList().orElseThrow(IOException::new);
+        boolean hasChanged = addAccountsToAccountList(accountListImported);
+
+        if (hasChanged) {
+            updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
+            indicateAccountListChanged();
+        }
+    }
+
+    @Override
+    public boolean addAccountsToAccountList(ReadOnlyAccountList accountListImported) {
+        ObservableList<Account> accounts = accountListImported.getAccountList();
+        AtomicBoolean hasChanged = new AtomicBoolean(false);
+        accounts.forEach((account) -> {
+            if (!hasAccount(account)) {
+                hasChanged.set(true);
+                versionedAccountList.addAccount(account);
+            }
+        });
+        return hasChanged.get();
+    }
 }

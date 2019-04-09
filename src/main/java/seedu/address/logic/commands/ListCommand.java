@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.function.Predicate;
 
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
@@ -18,6 +19,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
     public static final String COMMAND_ALIAS = "l";
+    public static final String MESSAGE_LOGIN = "Please login first";
     public static final String MESSAGE_USAGE = "list : list specified tasks\n"
             + "Parameters:\n"
             + "1. no parameters: list        list all tasks\n"
@@ -44,8 +46,13 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        if (!model.getLoginStatus()) {
+            throw new CommandException(MESSAGE_LOGIN);
+        }
+
         if (arguments[0].equals("")) {
 
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

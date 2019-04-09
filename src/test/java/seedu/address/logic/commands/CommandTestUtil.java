@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -76,9 +77,11 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel} <br>
      * - the {@code actualCommandHistory} remains unchanged.
+     * @throws DataConversionException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            CommandResult expectedCommandResult, Model expectedModel) throws IOException, IllegalValueException {
+            CommandResult expectedCommandResult, Model expectedModel)
+                    throws IOException, IllegalValueException, DataConversionException {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
             CommandResult result = command.execute(actualModel, actualCommandHistory);
@@ -95,9 +98,11 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandHistory, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
+     * @throws DataConversionException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage, Model expectedModel) throws IOException, IllegalValueException {
+            String expectedMessage, Model expectedModel)
+                    throws IOException, IllegalValueException, DataConversionException {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, actualCommandHistory, expectedCommandResult, expectedModel);
     }
@@ -108,9 +113,10 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the task book, filtered task list and selected task in {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
+     * @throws DataConversionException
      */
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage) {
+            String expectedMessage) throws DataConversionException {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TaskBook expectedTaskBook = new TaskBook(actualModel.getTaskBook());
