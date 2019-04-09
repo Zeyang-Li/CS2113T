@@ -34,6 +34,6 @@ public class CommandFormatString {
     public static final String EXPORT_COMMAND_FORMATSTRING = "filename.json";
     public static final String IMPORT_COMMAND_FORMATSTRING = "filename.json";
     public static final String MONTH_COMMAND_FORMATSTRING = "+/-";
-    public static final String REMIND_COMMAND_FORMATSTRING = "dd-mm-yy/dd-mm-yy";
-    public static final String REMIND_COMMAND_CATEGORY_FORMATSTRING = "category dd-mm-yy/dd-mm-yy";
+    public static final String REMIND_COMMAND_FORMATSTRING = "start/ddl";
+    public static final String REMIND_COMMAND_CATEGORY_FORMATSTRING = "category start/ddl";
 }
