@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 
+import guitests.guihandles.BrowserPanelHandle;
 import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.DayListPanelHandle;
 import guitests.guihandles.MainMenuHandle;
@@ -171,6 +172,14 @@ public abstract class TaskBookSystemTest {
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
         getTaskListPanel().rememberSelectedTaskCard();
+    }
+
+    /**
+     * Asserts that the selected card in the task list panel remain unchanged.
+     * @see TaskListPanelHandle#isSelectedTaskCardChanged()
+     */
+    protected void assertSelectedCardUnchanged() {
+        assertFalse(getTaskListPanel().isSelectedTaskCardChanged());
     }
 
     /**
