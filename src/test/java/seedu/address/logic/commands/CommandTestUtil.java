@@ -67,12 +67,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG + VALID_TAG_CS2101;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + ""; // blank not allowed in names
-    public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "a"; // arbitary not allowed in startDates
-    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "a"; // arbitary not allowed in startTimes
+    public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "a"; // arbitary not allowed startDates
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "a"; // arbitary not allowed startTimes
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "a"; // arbitary not allowed in endDates
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "a"; // arbitary not allowed in endTimes
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty string not allowed for desc
-    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "b"; // arbitary string not allowed for cat
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty str not allowed for desc
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "b"; // arbitary str not allowed in cat
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

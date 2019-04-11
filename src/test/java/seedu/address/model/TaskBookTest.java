@@ -70,7 +70,7 @@ public class TaskBookTest {
     }
 
     @Test
-    public void hasTask_TaskNotInTaskBook_returnsFalse() {
+    public void hasTask_taskNotInTaskBook_returnsFalse() {
         assertFalse(taskBook.hasTask(CS2110));
     }
 

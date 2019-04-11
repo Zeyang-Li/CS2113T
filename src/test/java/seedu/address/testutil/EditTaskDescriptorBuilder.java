@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
@@ -12,7 +13,6 @@ import seedu.address.model.task.EndTime;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
 import seedu.address.model.task.StartTime;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**

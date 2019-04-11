@@ -25,9 +25,6 @@ import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_CS2101
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2101;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalTasks.CS2101;
 import static seedu.address.testutil.TypicalTasks.CS2113;
@@ -54,7 +51,6 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.StartDate;
 import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
 
 public class AddCommandSystemTest extends TaskBookSystemTest {

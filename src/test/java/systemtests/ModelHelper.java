@@ -26,19 +26,19 @@ public class ModelHelper {
     }
 
     /**
+     * @see ModelHelper#setFilteredList(Model, List)
+     */
+    public static void setFilteredList(Model model, Task... toDisplay) {
+        setFilteredList(model, Arrays.asList(toDisplay));
+    }
+
+    /**
      * Updates {@code model}'s filtered list to display only {@code toDisplay}.
      */
     public static void setFilteredDayList(Model model, List<Day> toDisplay) {
         Optional<Predicate<Day>> predicate =
                 toDisplay.stream().map(ModelHelper::getDayPredicateMatching).reduce(Predicate::or);
         model.updateFilteredDayList(predicate.orElse(PREDICATE_MATCHING_NO_DAYS));
-    }
-
-    /**
-     * @see ModelHelper#setFilteredList(Model, List)
-     */
-    public static void setFilteredList(Model model, Task... toDisplay) {
-        setFilteredList(model, Arrays.asList(toDisplay));
     }
 
     /**

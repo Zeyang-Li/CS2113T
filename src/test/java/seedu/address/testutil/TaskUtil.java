@@ -15,9 +15,8 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
-import seedu.address.logic.commands.LoginCommand;
-import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class for Task.
@@ -73,12 +72,17 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getStartDate().ifPresent(startDate -> sb.append(PREFIX_STARTDATE).append(startDate.value).append(" "));
-        descriptor.getStartTime().ifPresent(startTime -> sb.append(PREFIX_STARTTIME).append(startTime.value).append(" "));
-        descriptor.getEndDate().ifPresent(endDate -> sb.append(PREFIX_ENDDATE).append(endDate.value).append(" "));
+        descriptor.getStartDate().ifPresent(startDate -> sb.append(PREFIX_STARTDATE)
+                .append(startDate.value).append(" "));
+        descriptor.getStartTime().ifPresent(startTime -> sb.append(PREFIX_STARTTIME)
+                .append(startTime.value).append(" "));
+        descriptor.getEndDate().ifPresent(endDate -> sb.append(PREFIX_ENDDATE)
+                .append(endDate.value).append(" "));
         descriptor.getEndTime().ifPresent(endTime -> sb.append(PREFIX_ENDTIME).append(endTime.value).append(" "));
-        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
-        descriptor.getCategories().ifPresent(categories -> sb.append(PREFIX_CATEGORY).append(categories.value).append(" "));
+        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
+                .append(description.value).append(" "));
+        descriptor.getCategories().ifPresent(categories -> sb.append(PREFIX_CATEGORY).append(categories.value)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

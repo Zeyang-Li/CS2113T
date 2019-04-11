@@ -18,8 +18,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.TaskBookBuilder;
 import seedu.address.testutil.TaskBuilder;
