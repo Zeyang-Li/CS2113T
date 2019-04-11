@@ -21,6 +21,7 @@ public class TaskCardHandle extends NodeHandle<Node> {
     private static final String ENDDATE_FIELD_ID = "#endDate";
     private static final String ENDTIME_FIELD_ID = "#endTime";
     private static final String DESCRIPTION_FIELD_ID = "#description";
+    private static final String CATEGORIES_FIELD_ID = "#categories";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
@@ -30,6 +31,7 @@ public class TaskCardHandle extends NodeHandle<Node> {
     private final Label endDateLabel;
     private final Label endTimeLabel;
     private final Label descriptionLabel;
+    private final Label categoriesLabel;
     private final List<Label> tagLabels;
 
     public TaskCardHandle(Node cardNode) {
@@ -42,6 +44,7 @@ public class TaskCardHandle extends NodeHandle<Node> {
         endDateLabel = getChildNode(ENDDATE_FIELD_ID);
         endTimeLabel = getChildNode(ENDTIME_FIELD_ID);
         descriptionLabel = getChildNode(DESCRIPTION_FIELD_ID);
+        categoriesLabel = getChildNode(CATEGORIES_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         tagLabels = tagsContainer
@@ -79,6 +82,10 @@ public class TaskCardHandle extends NodeHandle<Node> {
         return descriptionLabel.getText();
     }
 
+    public String getCategories() {
+        return categoriesLabel.getText();
+    }
+
     public List<String> getTags() {
         return tagLabels
                 .stream()
@@ -96,6 +103,7 @@ public class TaskCardHandle extends NodeHandle<Node> {
                 && getEndDate().equals(task.getEndDate().value)
                 && getEndTime().equals(task.getEndTime().value)
                 && getDescription().equals(task.getDescription().value)
+                && getCategories().equals(task.getCategories().fullName)
                 && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(task.getTags().stream()
                         .map(tag -> tag.tagName)
                         .collect(Collectors.toList())));
