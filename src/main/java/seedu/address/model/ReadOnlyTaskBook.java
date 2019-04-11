@@ -19,5 +19,4 @@ public interface ReadOnlyTaskBook extends Observable {
      */
     ObservableList<Task> getTaskList();
     ObservableList<Day> getDayList();
-    Map<Date, Day> getDayMap();
 }
