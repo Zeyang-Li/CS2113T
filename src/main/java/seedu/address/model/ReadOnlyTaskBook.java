@@ -1,10 +1,7 @@
 package seedu.address.model;
 
-import java.util.Map;
-
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
-import seedu.address.model.day.Date;
 import seedu.address.model.day.Day;
 import seedu.address.model.task.Task;
 
