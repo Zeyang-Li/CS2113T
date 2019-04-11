@@ -37,7 +37,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private DefaultPage defaultPage;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
@@ -46,9 +45,6 @@ public class MainWindow extends UiPart<Stage> {
 
     //To check which scene to show
     private String optionPage = DEFAULT_PAGE;
-
-    @FXML
-    private StackPane browserPlaceholder;
 
     @FXML
     private StackPane defaultBrowserPlaceholder;
@@ -129,23 +125,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        switch (optionPage) {
-        case DEFAULT_PAGE:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
-            defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
-            break;
 
-        case PROJECT_DETAILS:
-            browserPanel = new BrowserPanel(logic.selectedTaskProperty());
-            browserPlaceholder.getChildren().add(browserPanel.getRoot());
-            break;
-
-        default:
-            defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
-            defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
-            break;
-        }
-
+        defaultPage = new DefaultPage(logic.getFilteredTaskList(), logic);
+        defaultBrowserPlaceholder.getChildren().add(defaultPage.getRoot());
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.selectedTaskProperty(),
                 logic::setSelectedTask);
@@ -155,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath(), logic.getTaskBook());
-        //statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         commandBox = new CommandBox(commandText -> {
             try {
