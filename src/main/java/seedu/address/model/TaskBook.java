@@ -294,11 +294,6 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     @Override
-    public Map<Date, Day> getDayMap() {
-        return this.dayMap;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskBook // instanceof handles nulls

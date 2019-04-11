@@ -3,6 +3,7 @@ package seedu.address.logic;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.ENDDATE_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_CS2113;
@@ -27,6 +28,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.suggestions.WrongCommandSuggestion;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskBook;
@@ -69,7 +71,7 @@ public class LogicManagerTest {
     public void execute_invalidCommandFormat_throwsParseException()
             throws IOException, IllegalValueException, DataConversionException {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND + "\n" + WrongCommandSuggestion.NO_SUGGESTION);
         //assertHistoryCorrect(invalidCommand);
     }
 
@@ -99,7 +101,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         Task expectedTask = new TaskBuilder(CS2113).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);

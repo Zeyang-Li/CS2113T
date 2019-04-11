@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Tasketch App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Tasketch App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -52,13 +52,7 @@
             </padding>
             <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
-          <!--
-           <StackPane fx:id="browserPlaceholder" prefWidth="340" >
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-          </StackPane>
-          -->
+
           <StackPane fx:id="defaultBrowserPlaceholder" prefWidth="340">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />

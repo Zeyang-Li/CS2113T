@@ -112,17 +112,17 @@ tasks.coveralls {
     onlyIf { System.env.'CI' }
 }
 
-//task(guiTests)
+task(guiTests)
 task(nonGuiTests)
 
 // Run `test` task if `guiTests` or `nonGuiTests` is specified
-//guiTests.dependsOn test
+guiTests.dependsOn test
 nonGuiTests.dependsOn test
 
 task(allTests)
 
 // `allTests` implies both `guiTests` and `nonGuiTests`
-//allTests.dependsOn guiTests
+allTests.dependsOn guiTests
 allTests.dependsOn nonGuiTests
 
 test {
@@ -144,26 +144,26 @@ test {
     }
 
     doFirst {
-        //boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
+        boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
         boolean runNonGuiTests = gradle.taskGraph.hasTask(nonGuiTests)
 
-        //if (!runGuiTests && !runNonGuiTests) {
-        //    runGuiTests = true
-        //    runNonGuiTests = true
-        //}
+        if (!runGuiTests && !runNonGuiTests) {
+            runGuiTests = true
+            runNonGuiTests = true
+        }
 
         if (runNonGuiTests) {
             test.include 'systemtests/**'
         }
 
-        //if (runGuiTests) {
-            //test.include 'systemtests/**'
-            //test.include 'seedu/address/ui/**'
-        //}
+        if (runGuiTests) {
+            test.include 'systemtests/**'
+            test.include 'seedu/address/ui/**'
+        }
 
-        //if (!runGuiTests) {
-            //test.exclude 'seedu/address/ui/**'
-        //}
+        if (!runGuiTests) {
+            test.exclude 'seedu/address/ui/**'
+        }
     }
 }
 

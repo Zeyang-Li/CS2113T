@@ -1,30 +1,44 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
+
+import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class for Person.
+ * A utility class for Task.
  */
 public class TaskUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code task}.
      */
     public static String getAddCommand(Task task) {
         return AddCommand.COMMAND_WORD + " " + getTaskDetails(task);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns an login command string.
+     */
+    public static String getLoginCommand(String command) {
+        return command + " " + getLoginDetails();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
@@ -34,6 +48,7 @@ public class TaskUtil {
         sb.append(PREFIX_ENDDATE + task.getEndDate().value + " ");
         sb.append(PREFIX_ENDTIME + task.getEndTime().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
+        sb.append(PREFIX_CATEGORY + task.getCategories().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -41,14 +56,33 @@ public class TaskUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code task}'s details.
+     */
+    public static String getLoginDetails() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_USERNAME + "admin ");
+        sb.append(PREFIX_PASSWORD + "admin");;
+        return sb.toString();
+    }
 
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+
+    /**
+     * Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
+     */
+    public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getStartDate().ifPresent(startDate -> sb.append(PREFIX_STARTDATE)
+                .append(startDate.value).append(" "));
+        descriptor.getStartTime().ifPresent(startTime -> sb.append(PREFIX_STARTTIME)
+                .append(startTime.value).append(" "));
+        descriptor.getEndDate().ifPresent(endDate -> sb.append(PREFIX_ENDDATE)
+                .append(endDate.value).append(" "));
+        descriptor.getEndTime().ifPresent(endTime -> sb.append(PREFIX_ENDTIME).append(endTime.value).append(" "));
+        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
+                .append(description.value).append(" "));
+        descriptor.getCategories().ifPresent(categories -> sb.append(PREFIX_CATEGORY).append(categories.value)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
@@ -58,5 +92,5 @@ public class TaskUtil {
             }
         }
         return sb.toString();
-    }*/
+    }
 }

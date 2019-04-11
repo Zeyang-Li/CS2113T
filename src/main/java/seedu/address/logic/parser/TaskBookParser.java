@@ -66,6 +66,7 @@ public class TaskBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
         case AddAccountCommand.COMMAND_WORD:
         case AddAccountCommand.COMMAND_ALIAS:
             return new AddAccountCommandParser().parse(arguments);
