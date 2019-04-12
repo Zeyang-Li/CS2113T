@@ -111,6 +111,9 @@ To get started, you will need to add a task into Tasketch. The format is as belo
 When you are adding a task, the app will ensure that there will be no duplicate names added. This is to ensure that
 there is no confusion in the task names.
 
+[TIP]
+Tasks can overlap each other, meaning you can have 2 tasks planned at the same period, as you can multitask.
+
 Adding a task with the same start date and end date means that it is a daily task, will be monitored by the Daily Time
 Planner. Different dates means it is a long period task, thus will not be considered as daily task but can still be added.
 
@@ -128,7 +131,7 @@ You will also need to specify the type of category of the task that you are addi
 your time effectively.
 
 [TIP]
-A task can have any number of tags (including 0)
+A task can have any number of tags (including 0).
 
 [NOTE]
 If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
