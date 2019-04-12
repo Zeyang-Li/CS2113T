@@ -30,7 +30,7 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task CS2110 = new TaskBuilder().withName("CS2110")
-            .withStartDate("01-01-11").withStartTime("01.00").withEndDate("02-01-02").withEndTime("02.00")
+            .withStartDate("01-01-11").withStartTime("01.00").withEndDate("02-01-11").withEndTime("02.00")
             .withDescription("Do sequence").withCategory("a")
             .withTags("CS2110").build();
     public static final Task CS2100 = new TaskBuilder().withName("cs2100")
