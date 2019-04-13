@@ -118,14 +118,14 @@ Format:  `login u/USERNAME p/PASSWORD`
 
 Examples: 
 
-* `login u/admin p/admin`
+* `login u/admin p/admin` +
 login with the default account if no account has logged in Tasketch. 
 
 Result: +
 The loginstatus should be changed to Logged in as: admin. +
 image:login.png[width="790"]
 
-* `login u/admin p/admin`
+* `login u/admin p/admin` +
 login with the default account if an account has already logged in Tasketch.. 
 
 Result: +
@@ -145,7 +145,8 @@ Add a new account whose name is "wan" and password is "123456".
 Add a new account whose name is "John" and password is "541623".
 
 Result: +
-You should see the account has been added to the accountlist if you execute `listAccounts` command. 
+You should see the account has been added to the accountlist if you execute `listAccounts` command(add a new account whose username is "wan" and a new account whose username is "John"). +
+image:AddAccount.png[width="790"]
 
 === ListAccounts
 Shows a list of tasks in Tasketch.
@@ -161,10 +162,11 @@ Examples:
 Lists all the accounts in the accountlist
 
 Result: +
-You should see a list of all the accounts in the Result Box.
+You should see a list of all the accounts in the Result Box. + 
+image:listAccounts.png[width="790"]
 
 === EditAccount
-Edit a existed account.
+Edit a existed account with its username and password.
 Format: `editAccount INDEX u/USERNAME [p/PASSWORD]`
 
 ****
@@ -180,6 +182,11 @@ Changes the password of the second account to 123123!
 * `editAccount 2 u/John` +
 Changes the username of the second account to John!
 
+Result: +
+Before execute  `editAccount 2 u/John`: +
+image:editAccount1.png[width="790"]
+After execute `editAccount 2 u/John`: + 
+image:editAccount2.png[width="790"]
 
 === FindAccount
 
@@ -227,8 +234,11 @@ Examples:
 
 * `loginStatus` +
 If you do not login with any accounts, return `Not logged in`.
+image:loginStatus.png[width="790"]
+
 * `loginStatus` +
 If you login with default account, return `Logged in as: admin`.
+image:loginStatus1.png[width="790"]
 
 === Logout
 Log out if you have logged in with an account.
@@ -238,9 +248,12 @@ Format: `logout`
 Examples:
 
 * `logout` +
-If you do not login with any accounts, return `Already logged out`.
+If you do not login with any accounts, return `Already logged out`. +
+image:logout1.png[width="790"]
+
 * `logout` +
-If you login with default account, return `Logged out: admin`.
+If you login with default account, return `Logged out: admin`. +
+image:logout.png[width="790"]
 
 == Daily Time Planner
 
