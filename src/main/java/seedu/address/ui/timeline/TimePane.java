@@ -16,18 +16,18 @@ import seedu.address.model.task.Task;
  * This is the overall arrangement of timeline pane.
  */
 public class TimePane extends AnchorPane {
-    private static float LINE_WIDTH = 920.0f;
-    private static float LINE_HEIGHT = 10.0f;
-    private static float BAR_LINE_HEIGHT = 3.0f;
-    private static int GRID_WIDTH = 96;
-    private static int GRID_HEIGHT = 10;
-    private static int TIMELINE_WIDTH = 800;
+    private static final float LINE_WIDTH = 920.0f;
+    private static final float LINE_HEIGHT = 10.0f;
+    private static final float BAR_LINE_HEIGHT = 3.0f;
+    private static final int GRID_WIDTH = 96;
+    private static final int GRID_HEIGHT = 10;
+    private static final int TIMELINE_WIDTH = 800;
 
-    private static String CATEGORY_ACADEMIC = "a";
-    private static String CATEGORY_CCA = "c";
-    private static String CATEGORY_ENTERTAINMENT = "e";
-    private static String CATEGORY_ERRANDS = "r";
-    private static String CATEGORY_OTHER = "o";
+    private static final String CATEGORY_ACADEMIC = "a";
+    private static final String CATEGORY_CCA = "c";
+    private static final String CATEGORY_ENTERTAINMENT = "e";
+    private static final String CATEGORY_ERRANDS = "r";
+    private static final String CATEGORY_OTHER = "o";
 
 
     private VBox vbox = new VBox();

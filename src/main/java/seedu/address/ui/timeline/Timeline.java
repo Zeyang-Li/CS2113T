@@ -13,13 +13,13 @@ import javafx.scene.text.TextAlignment;
  * Individual Timeline for each category.
  */
 public class Timeline {
-    private static int GRIDSIZE = 100;
-    private static int GRIDHEIGHT = 5;
-    private static int TIMELINE_WIDTH = 50;
-    private static int TIMELINE_HEIGHT = 10;
-    private static double PREF_WIDTH = 850.0f;
-    private static float HEADING_HEIGHT = 1.0f;
-    private static float ARC_SIZE = 0.3f;
+    private static final int GRIDSIZE = 100;
+    private static final int GRIDHEIGHT = 5;
+    private static final int TIMELINE_WIDTH = 50;
+    private static final int TIMELINE_HEIGHT = 10;
+    private static final double PREF_WIDTH = 850.0f;
+    private static final float HEADING_HEIGHT = 1.0f;
+    private static final float ARC_SIZE = 0.3f;
 
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;

@@ -19,11 +19,11 @@ import seedu.address.model.task.Task;
  * The real implementation for calendar will be here.
  */
 public class Calendar extends Node {
-    private static int CALENDAR_WIDTH = 340;
-    private static int CALENDAR_HEIGHT = 340;
-    private static int GRID_WIDTH = 48;
-    private static int GRID_HEIGHT = 40;
-    private static double ANCHOR_SIZE = 5;
+    private static final int CALENDAR_WIDTH = 340;
+    private static final int CALENDAR_HEIGHT = 340;
+    private static final int GRID_WIDTH = 48;
+    private static final int GRID_HEIGHT = 40;
+    private static final double ANCHOR_SIZE = 5;
 
     private ArrayList<PaneNode> allCalendarDays = new ArrayList<>(35);
     private VBox view;
