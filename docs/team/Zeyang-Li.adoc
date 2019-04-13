@@ -188,7 +188,7 @@ Examples:
 |===
 
 // tag::wrongCommandSuggestion[]
-=== Wrong Command Suggestion feature
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#wrong-command-suggestion-feature[Wrong Command Suggestion feature]
 
 The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
 
@@ -233,7 +233,7 @@ image::WrongCommandSuggestionSequenceDiagram.png[width="650"]
 // end::wrongCommandSuggestion[]
 
 // tag::import/export[]
-=== Import/Export feature
+=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#importexport-feature[Import/Export feature]
 
 ==== Current Implementation
 
