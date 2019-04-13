@@ -119,10 +119,18 @@ Format:  `login u/USERNAME p/PASSWORD`
 Examples: 
 
 * `login u/admin p/admin`
-login with the default account. 
+login with the default account if no account has logged in Tasketch. 
 
 Result: +
-The loginstatus should be changed to Logged in as the account you have logged in. 
+The loginstatus should be changed to Logged in as: admin. 
+image::login.png[width="790"]
+
+* `login u/admin p/admin`
+login with the default account if an account has already logged in Tasketch.. 
+
+Result: +
+Shows `Already logged in as: admin` in result box. 
+image::login1.png[width="790"]
 
 === AddAccount 
 Add a new account to Tasketch 
@@ -131,9 +139,9 @@ Format: `addAccount u/USERNAME p/PASSWORD`
 
 Examples:
 
-* `addAccount u/wan p/123456`+
+* `addAccount u/wan p/123456` +
 Add a new account whose name is "wan" and password is "123456".
-* `addAccount u/John p/541623`+
+* `addAccount u/John p/541623` +
 Add a new account whose name is "John" and password is "541623".
 
 Result: +
