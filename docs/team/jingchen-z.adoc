@@ -9,13 +9,16 @@
 
 == Overview
 
-Tasketch is for those who need to manage their time by allocating time for each daily task. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
-This Project Portfolio is the enhancement and new added functionality I contributed to this software.
+image::Ui.png[width="600"]
+
+Tasketch is a time management software helping NUS students who need to manage their time by allocating time to daily tasks. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+Tasketch is morphed from addressbook-level4 by 5 students, namely Cheah Zhi Kang, Jin Shibo, Li Zeyang, Wan Chunwei and Zhang Jingchen(me).
+This Project Portfolio is a summary of enhanced features done by me.
 
 == Summary of contributions
 
 * *Main enhancement*: Enhance visual feedback with timeline feature.
-** What it does: It arranges the tasks on a given day into a timeline according to their categories.
+** What it does: It arranges the tasks on a given day into a timeline according to their categories and display in parallel timelines.
 ** Justification: By visually showing the arranged timeline, this feature helps the user to better manage their tasks and decide on time allocation.
 ** Highlights: Each category timeline will have their own color to be distinguished.
 ** Credits: _{Shibo's idea is used on filtering the tasks according to date}_
@@ -29,6 +32,7 @@ This Project Portfolio is the enhancement and new added functionality I contribu
 ** Project management:
 *** The UI designer and the person in charge of group work coordination.
 *** Managed releases `v1.0` - `v1.4` (2 releases) on GitHub
+*** Helped in setting up issue trackers.
 ** Enhancements to existing features:
 *** Improved the GUI structure.
 *** Updated the GUI arrangement and corresponding enhancing features (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/83[#83], https://github.com/CS2113-AY1819S2-T09-2/main/pull/91[#91], https://github.com/CS2113-AY1819S2-T09-2/main/pull/96[#96])
@@ -36,13 +40,10 @@ This Project Portfolio is the enhancement and new added functionality I contribu
 ** Documentation:
 *** Updated UserGuide and DeveloperGuide. (available https://github.com/jingchen-z/main/blob/master/docs/UserGuide.adoc[UserGuide] https://github.com/jingchen-z/main/blob/master/docs/DeveloperGuide.adoc[DeveloperGuide])
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Some parts of the history feature I added was referenced by several other class mates (https://github.com[1], https://github.com[2])
+*** PRs reviewed: https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** Reviewed most of the Pull Request.
+*** Some parts of the history feature I added was referenced by several other class mates.
 *** My UI structure and design are referenced.
-
-** Tools:
-*** Google is always the best friend. :)
-*** Java, Javafx and IntelliJ.
 
 
 == Contributions to the User Guide
@@ -51,6 +52,8 @@ This Project Portfolio is the enhancement and new added functionality I contribu
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
+
+https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc[../UserGuide.adoc]
 
 === Update the project picture
 
@@ -153,6 +156,8 @@ Deletes the task with index number 1 in task list.
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
+https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc[../DeveloperGuide.adoc]
+
 // tag::month/timeline[]
 === Effective Visualization feature
 
