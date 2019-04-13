@@ -9,7 +9,7 @@
 
 == Overview
 
-image::./Ui.png[width="600"]
+image::Ui.png[width="600"]
 
 Tasketch is a time management software helping NUS students who need to manage their time by allocating time to daily tasks. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
 Tasketch is morphed from addressbook-level4 by 5 students, namely Cheah Zhi Kang, Jin Shibo, Li Zeyang, Wan Chunwei and Zhang Jingchen(me).
