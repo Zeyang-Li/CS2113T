@@ -80,13 +80,6 @@ public interface Model {
 
     void deleteTaskList(List<Task> targets);
 
-    /**
-     * Sort the task list
-     */
-    void sortByStart();
-
-    void sortByEnd();
-
     void sortRemindListByStart();
 
     void sortRemindListByEnd();

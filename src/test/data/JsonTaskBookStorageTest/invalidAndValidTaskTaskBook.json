@@ -1,0 +1,21 @@
+{
+  "tasks" : [ {
+    "name" : "Task with valid startDate",
+    "description" : "Do sequence",
+    "tagged" : [ "CS2110" ],
+    "startDate" : "01-01-11",
+    "startTime" : "01.00",
+    "endDate" : "02-01-02",
+    "endTime" : "02.00",
+    "categories" : "a"
+  }, {
+    "name" : "Task with invalid startDate",
+    "description" : "Do user",
+    "tagged" : [ "CS2100" ],
+    "startDate" : "03.03.03",
+    "startTime" : "03.00",
+    "endDate" : "04-03-04",
+    "endTime" : "04.00",
+    "categories" : "a"
+  } ]
+}

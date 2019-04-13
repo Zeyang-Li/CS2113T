@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -33,21 +34,23 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_CS2113 = "CS2113";
     public static final String VALID_NAME_CS2101 = "CS2101";
-    public static final String VALID_STARTDATE_CS2113 = "11-11-11";
-    public static final String VALID_STARTDATE_CS2101 = "22-22-22";
-    public static final String VALID_STARTTIME_CS2113 = "11.11";
-    public static final String VALID_STARTTIME_CS2101 = "22.22";
-    public static final String VALID_ENDDATE_CS2113 = "33-33-33";
-    public static final String VALID_ENDDATE_CS2101 = "44-44-44";
-    public static final String VALID_ENDTIME_CS2113 = "33.33";
-    public static final String VALID_ENDTIME_CS2101 = "44.44";
+    public static final String VALID_STARTDATE_CS2113 = "05-05-05";
+    public static final String VALID_STARTDATE_CS2101 = "07-07-07";
+    public static final String VALID_STARTTIME_CS2113 = "05.00";
+    public static final String VALID_STARTTIME_CS2101 = "07.00";
+    public static final String VALID_ENDDATE_CS2113 = "06-06-06";
+    public static final String VALID_ENDDATE_CS2101 = "08-08-08";
+    public static final String VALID_ENDTIME_CS2113 = "06.00";
+    public static final String VALID_ENDTIME_CS2101 = "08.00";
     public static final String VALID_DESCRIPTION_CS2113 = "Do sequence diagram";
     public static final String VALID_DESCRIPTION_CS2101 = "Do user guide";
+    public static final String VALID_CATEGORY_CS2113 = "a";
+    public static final String VALID_CATEGORY_CS2101 = "a";
     public static final String VALID_TAG_CS2113 = "CS2113";
     public static final String VALID_TAG_CS2101 = "CS2101";
 
     public static final String NAME_DESC_CS2113 = " " + PREFIX_NAME + VALID_NAME_CS2113;
-    public static final String NAME_DESC_CS2101 = " " + PREFIX_NAME + VALID_NAME_CS2113;
+    public static final String NAME_DESC_CS2101 = " " + PREFIX_NAME + VALID_NAME_CS2101;
     public static final String STARTDATE_DESC_CS2113 = " " + PREFIX_STARTDATE + VALID_STARTDATE_CS2113;
     public static final String STARTDATE_DESC_CS2101 = " " + PREFIX_STARTDATE + VALID_STARTDATE_CS2101;
     public static final String STARTTIME_DESC_CS2113 = " " + PREFIX_STARTTIME + VALID_STARTTIME_CS2113;
@@ -58,15 +61,18 @@ public class CommandTestUtil {
     public static final String ENDTIME_DESC_CS2101 = " " + PREFIX_ENDTIME + VALID_ENDTIME_CS2101;
     public static final String DESCRIPTION_DESC_CS2113 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2113;
     public static final String DESCRIPTION_DESC_CS2101 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2101;
+    public static final String CATEGORY_DESC_CS2113 = " " + PREFIX_CATEGORY + VALID_CATEGORY_CS2113;
+    public static final String CATEGORY_DESC_CS2101 = " " + PREFIX_CATEGORY + VALID_CATEGORY_CS2101;
     public static final String TAG_DESC_CS2113 = " " + PREFIX_TAG + VALID_TAG_CS2113;
     public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG + VALID_TAG_CS2101;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + ""; // blank not allowed in names
-    public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "a"; // 'a' not allowed in startDates
-    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "a"; // 'a' not allowed in startTimes
-    public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "a"; // 'a' not allowed in endDates
-    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "a"; // 'a' not allowed in endTimes
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty string not allowed for desc
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " "; // blank not allowed in names
+    public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "a"; // arbitary not allowed startDates
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "a"; // arbitary not allowed startTimes
+    public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "a"; // arbitary not allowed in endDates
+    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "a"; // arbitary not allowed in endTimes
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty str not allowed for desc
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "b"; // arbitary str not allowed in cat
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

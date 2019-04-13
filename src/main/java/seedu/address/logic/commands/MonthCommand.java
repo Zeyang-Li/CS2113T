@@ -25,7 +25,7 @@ public class MonthCommand extends Command {
     public static final String MESSAGE_ILLEGAL = "Please type in + or - to indicate!";
     public static final String MESSAGE_LOGIN = "Please login first";
 
-    private String parameter = "";
+    private String parameter = " ";
 
     public MonthCommand(String c) throws ParseException {
         //System.out.println(c);

@@ -36,7 +36,7 @@ public class TimePane extends AnchorPane {
                               new Text("12:00"), new Text("14:00"),
                               new Text("16:00"), new Text("18:00"),
                               new Text("20:00"), new Text("22:00"),
-                              new Text("0:00"), new Text("2:00")};
+                              new Text("0:00"), new Text(" ")};
 
         GridPane timelineLabel = new GridPane();
         timelineLabel.setPrefWidth(800);

@@ -1,15 +1,12 @@
 package systemtests;
 
-import static guitests.guihandles.WebViewUtil.waitUntilBrowserLoaded;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
 import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
-//import static seedu.address.ui.testutil.GuiTestAssert.assertListMatching;
+import static seedu.address.ui.testutil.GuiTestAssert.assertListMatching;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -21,23 +18,20 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 
-import guitests.guihandles.BrowserPanelHandle;
 import guitests.guihandles.CommandBoxHandle;
+import guitests.guihandles.DayListPanelHandle;
 import guitests.guihandles.MainMenuHandle;
 import guitests.guihandles.MainWindowHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.StatusBarFooterHandle;
 import guitests.guihandles.TaskListPanelHandle;
 import seedu.address.TestApp;
-import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
-//import seedu.address.logic.commands.SelectCommand;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBook;
 import seedu.address.testutil.TypicalTasks;
-import seedu.address.ui.BrowserPanel;
 import seedu.address.ui.CommandBox;
 
 /**
@@ -67,7 +61,6 @@ public abstract class TaskBookSystemTest {
         testApp = setupHelper.setupApplication(this::getInitialData, getDataFileLocation());
         mainWindowHandle = setupHelper.setupMainWindowHandle();
 
-        waitUntilBrowserLoaded(getBrowserPanel());
         assertApplicationStartingStateIsCorrect();
     }
 
@@ -102,12 +95,12 @@ public abstract class TaskBookSystemTest {
         return mainWindowHandle.getTaskListPanel();
     }
 
-    public MainMenuHandle getMainMenu() {
-        return mainWindowHandle.getMainMenu();
+    public DayListPanelHandle getDayListPanel() {
+        return mainWindowHandle.getDayListPanel();
     }
 
-    public BrowserPanelHandle getBrowserPanel() {
-        return mainWindowHandle.getBrowserPanel();
+    public MainMenuHandle getMainMenu() {
+        return mainWindowHandle.getMainMenu();
     }
 
     public StatusBarFooterHandle getStatusBarFooter() {
@@ -130,11 +123,10 @@ public abstract class TaskBookSystemTest {
 
         mainWindowHandle.getCommandBox().run(command);
 
-        waitUntilBrowserLoaded(getBrowserPanel());
     }
 
     /**
-     * Displays all tasks in the address book.
+     * Displays all tasks in the task book.
      */
     protected void showAllTasks() {
         executeCommand(ListCommand.COMMAND_WORD);
@@ -150,21 +142,13 @@ public abstract class TaskBookSystemTest {
     }
 
     /**
-     * Selects the task at {@code index} of the displayed list.
-     */
-    /*protected void selectTask(Index index) {
-        executeCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
-        assertEquals(index.getZeroBased(), getTaskListPanel().getSelectedCardIndex());
-    }
-    */
-    /**
      * Deletes all tasks in the task book.
      */
-    /*protected void deleteAllTasks() {
+    protected void deleteAllTasks() {
         executeCommand(ClearCommand.COMMAND_WORD);
         assertEquals(0, getModel().getTaskBook().getTaskList().size());
     }
-    */
+
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
      * {@code expectedResultMessage}, the storage contains the same task objects as {@code expectedModel}
@@ -175,58 +159,25 @@ public abstract class TaskBookSystemTest {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new TaskBook(expectedModel.getTaskBook()), testApp.readStorageTaskBook());
-        //assertListMatching(getTaskListPanel(), expectedModel.getFilteredTaskList());
+        assertListMatching(getTaskListPanel(), expectedModel.getFilteredTaskList());
     }
 
     /**
-     * Calls {@code BrowserPanelHandle}, {@code TaskListPanelHandle} and {@code StatusBarFooterHandle} to remember
+     * Calls {@code TaskListPanelHandle} and {@code StatusBarFooterHandle} to remember
      * their current state.
      */
     private void rememberStates() {
         StatusBarFooterHandle statusBarFooterHandle = getStatusBarFooter();
-        getBrowserPanel().rememberUrl();
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
         getTaskListPanel().rememberSelectedTaskCard();
     }
 
     /**
-     * Asserts that the previously selected card is now deselected and the browser's url is now displaying the
-     * default page.
-     * @see BrowserPanelHandle#isUrlChanged()
-     */
-    protected void assertSelectedCardDeselected() {
-        assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
-        assertFalse(getTaskListPanel().isAnyCardSelected());
-    }
-
-    /**
-     * Asserts that the browser's url is changed to display the details of the task in the task list panel at
-     * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
-     * @see BrowserPanelHandle#isUrlChanged()
-     * @see TaskListPanelHandle#isSelectedTaskCardChanged()
-     */
-    protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) {
-        getTaskListPanel().navigateToCard(getTaskListPanel().getSelectedCardIndex());
-        String selectedCardName = getTaskListPanel().getHandleToSelectedCard().getName();
-        URL expectedUrl;
-        try {
-            expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + selectedCardName.replaceAll(" ", "%20"));
-        } catch (MalformedURLException mue) {
-            throw new AssertionError("URL expected to be valid.", mue);
-        }
-        assertEquals(expectedUrl, getBrowserPanel().getLoadedUrl());
-
-        assertEquals(expectedSelectedCardIndex.getZeroBased(), getTaskListPanel().getSelectedCardIndex());
-    }
-
-    /**
-     * Asserts that the browser's url and the selected card in the task list panel remain unchanged.
-     * @see BrowserPanelHandle#isUrlChanged()
+     * Asserts that the selected card in the task list panel remain unchanged.
      * @see TaskListPanelHandle#isSelectedTaskCardChanged()
      */
     protected void assertSelectedCardUnchanged() {
-        assertFalse(getBrowserPanel().isUrlChanged());
         assertFalse(getTaskListPanel().isSelectedTaskCardChanged());
     }
 
@@ -271,8 +222,7 @@ public abstract class TaskBookSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        //assertListMatching(getTaskListPanel(), getModel().getFilteredTaskList());
-        assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
+        assertListMatching(getTaskListPanel(), getModel().getFilteredTaskList());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
                 getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());

@@ -15,15 +15,15 @@ import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Revise CS2113T";
-    public static final String DEFAULT_STARTDATE = "0315";
-    public static final String DEFAULT_STARTTIME = "1400";
-    public static final String DEFAULT_ENDDATE = "0315";
-    public static final String DEFAULT_ENDTIME = "1700";
+    public static final String DEFAULT_STARTDATE = "14-04-19";
+    public static final String DEFAULT_STARTTIME = "14.00";
+    public static final String DEFAULT_ENDDATE = "14-04-19";
+    public static final String DEFAULT_ENDTIME = "17.00";
     public static final String DEFAULT_DESCRIPTION = "Class diagram";
     public static final String DEFAULT_CATEGORY = "c";
 
@@ -80,8 +80,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code category} of the {@code Task} that we are building.
      */
-    public TaskBuilder withCategory(Categories category) {
-        this.category = category;
+    public TaskBuilder withCategory(String category) {
+        this.category = new Categories(category);
         return this;
     }
 

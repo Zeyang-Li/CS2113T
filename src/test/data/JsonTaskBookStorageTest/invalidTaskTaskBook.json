@@ -1,0 +1,12 @@
+{
+  "tasks" : [ {
+    "name" : "Task with invalid description",
+    "description" : " ",
+    "tagged" : [ "CS2110" ],
+    "startDate" : "01-01-11",
+    "startTime" : "01.00",
+    "endDate" : "02-01-02",
+    "endTime" : "02.00",
+    "categories" : "a"
+  } ]
+}
