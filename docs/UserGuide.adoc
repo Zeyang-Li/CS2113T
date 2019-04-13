@@ -323,7 +323,8 @@ Format: `showtime DATE`
 Example: `showtime 15-03-19`
 
 Result: +
-You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty.
+You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty. +
+If you input anything that is invalid like `showtime sfsf`, error message will be prompted with the correct usage.
 
 image::ShowTimeDate.png[]
 
