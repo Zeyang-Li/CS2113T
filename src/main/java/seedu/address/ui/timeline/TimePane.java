@@ -19,9 +19,23 @@ public class TimePane extends AnchorPane {
     private static float LINE_WIDTH = 920.0f;
     private static float LINE_HEIGHT = 10.0f;
     private static float BAR_LINE_HEIGHT = 3.0f;
+    private static int GRID_WIDTH = 96;
+    private static int GRID_HEIGHT = 10;
+    private static int TIMELINE_WIDTH = 800;
+
+    private static String CATEGORY_ACADEMIC = "a";
+    private static String CATEGORY_CCA = "c";
+    private static String CATEGORY_ENTERTAINMENT = "e";
+    private static String CATEGORY_ERRANDS = "r";
+    private static String CATEGORY_OTHER = "o";
+
 
     private VBox vbox = new VBox();
-    private String[] category = {"a", "c", "e", "r", "o"};
+    private String[] category = {CATEGORY_ACADEMIC,
+                                 CATEGORY_CCA,
+                                 CATEGORY_ENTERTAINMENT,
+                                 CATEGORY_ERRANDS,
+                                 CATEGORY_OTHER};
 
     public TimePane(ObservableList<Task> taskList, String d) {
         showTimeline(taskList, d);
@@ -43,12 +57,12 @@ public class TimePane extends AnchorPane {
                               new Text("0:00"), new Text(" ")};
 
         GridPane timelineLabel = new GridPane();
-        timelineLabel.setPrefWidth(800);
+        timelineLabel.setPrefWidth(TIMELINE_WIDTH);
         //timelineLabel.setGridLinesVisible(true);
         int col = 1;
         for (Text time : timePoints) {
             AnchorPane aGrid = new AnchorPane();
-            aGrid.setPrefSize(96, 10);
+            aGrid.setPrefSize(GRID_WIDTH, GRID_HEIGHT);
             aGrid.getChildren().add(time);
             aGrid.setStyle("-fx-text-inner-color: white;");
             timelineLabel.add(aGrid, col, 0);
@@ -78,7 +92,11 @@ public class TimePane extends AnchorPane {
         vbox.getChildren().add(timelineLabel);
 
         //==========Set up each timeline for 4 categories==========
-        String[] cate = {"a", "c", "e", "r", "o"};
+        String[] cate = {CATEGORY_ACADEMIC,
+                         CATEGORY_CCA,
+                         CATEGORY_ENTERTAINMENT,
+                         CATEGORY_ERRANDS,
+                         CATEGORY_OTHER};
         PreTask[] filteredDate = filterDate(taskList, d);
         for (int i = 0; i < 5; i++) {
             PreTask[] filteredCate = filterCate(filteredDate, category[i]);
@@ -142,9 +160,16 @@ public class TimePane extends AnchorPane {
         return filtered;
     }
 
+    /**
+     * Thie parse a string to a float, representing time.
+     * Called in filteredDate method.
+     * @param time
+     * @return
+     */
     private float parse(String time) {
         return Float.parseFloat(time);
     }
+
     public VBox getView() {
         return this.vbox;
     }

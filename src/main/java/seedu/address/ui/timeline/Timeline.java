@@ -17,6 +17,9 @@ public class Timeline {
     private static int GRIDHEIGHT = 5;
     private static int TIMELINE_WIDTH = 50;
     private static int TIMELINE_HEIGHT = 10;
+    private static double PREF_WIDTH = 850.0f;
+    private static float HEADING_HEIGHT = 1.0f;
+    private static float ARC_SIZE = 0.3f;
 
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;
@@ -49,22 +52,23 @@ public class Timeline {
         heading.setFill(Color.GRAY);
 
         //Setting the properties of the rectangle
-        heading.setWidth(850.0f);
-        heading.setHeight(1.0f);
+        heading.setWidth(PREF_WIDTH);
+        heading.setHeight(HEADING_HEIGHT);
 
         //Setting the height and width of the arc
-        heading.setArcWidth(0.3);
-        heading.setArcHeight(0.3);
+        heading.setArcWidth(ARC_SIZE);
+        heading.setArcHeight(ARC_SIZE);
         //Add to the view
         oneTimeline.getChildren().add(heading);
     }
 
     /**
      * This method will prepare the name of the task.
+     * This is done by using putting task names into separated grids.
      */
     private void prepTitle(String c) {
         GridPane taskNameLine = new GridPane();
-        taskNameLine.setPrefWidth(850);
+        taskNameLine.setPrefWidth(PREF_WIDTH);
         //taskNameLine.setGridLinesVisible(true);
         int col = 1;
         taskNames[0] = new Text(getCate(c));
@@ -88,7 +92,7 @@ public class Timeline {
      */
     private void prepTimeline(PreTask[] pre) {
         GridPane time = new GridPane();
-        time.setPrefWidth(850);
+        time.setPrefWidth(PREF_WIDTH);
         //time.setGridLinesVisible(true);
         int[] timeInterval = markTimeInterval(pre);
 
