@@ -97,7 +97,7 @@ For example:
 * login
 * loginStatus
 * listAccounts
-* findAccounts
+* findAccount
 * help
 * history
 * exit
@@ -111,17 +111,103 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`exit`* : exits the app
 
 == Login
-You must login to manage your Tasketch and unlock all commands. 
+You must login to manage your Tasketch and unlock all commands.
+
+Format:  `login u/USERNAME p/PASSWORD`
+
+Examples: 
+
+* `login u/admin p/admin`
+login with the default account. 
+
+Result: +
+The loginstatus should be changed to Logged in as the account you have logged in. 
 
 == AddAccount 
+Add a new account to Tasketch 
 
-== ListAccount
+Format: `addAccount u/USERNAME p/PASSWORD`
+
+Examples:
+
+* `addAccount u/wan p/123456`+
+Add a new account whose name is "wan" and password is "123456".
+* `addAccount u/John p/541623`+
+Add a new account whose name is "John" and password is "541623".
+
+Result: +
+You should see the account has been added to the accountlist if you execute `listAccounts` command. 
+
+== ListAccounts
+Shows a list of tasks in Tasketch.
+
+Format:
+
+* `listAccounts` +
+Lists all the accounts in the accountlist
+
+Examples:
+
+* `listAccounts` +
+Lists all the accounts in the accountlist
+
+Result: +
+You should see a list of all the accounts in the Result Box.
 
 == EditAccount
+Edit a existed account.
+Format: `editAccount INDEX u/USERNAME [p/PASSWORD]`
+
+****
+* Edits the account at the specified INDEX. The index refers to the index number shown in the displayed list when 'listAccounts' is used. The index must be a positive integer 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+****
+
+Examples:
+
+* `editAccount 2 p/123123` +
+Changes the password of the second account to 123123!
+* `editAccount 2 u/John` +
+Changes the username of the second account to John!
+
 
 == FindAccount
 
+Finds accounts whose username contain the given keywords.
+
+Format: `findAccount KEYWORD`
+
+****
+* The search is case insensitive. e.g `WAN` will match `wan`.
+* Only the username is searched.
+****
+
+Examples:
+
+* `findAccount ad` +
+Returns `admin`
+* `findAccount AdMin` +
+Returns `admin`
+
 == DeleteAccount
+Deletes a specified account from Tasketch.
+
+Format: `deleteAccount INDEX_NUMBER`
+
+****
+* Each account is identified by a index number shown in the account list.
+* Deletes the account with the index number.
+****
+
+Examples:
+
+* `listAccounts` +
+`delete 2` +
+Deletes the account with index number 2 in task list.
+
+Result: +
+The account of the index number you choose should be delete from accountlist.
 
 == Daily Time Planner
 
