@@ -89,6 +89,18 @@ Panel *A* will always be active, allowing you to input your commands all the tim
 +
 image::Ui.png[width="790"]
 +
+.  Before start to use Tasketch. You should first log into this app via login command.
+For example:
+*  login u/admin p/admin
+. Tasketch provides a default account whose username and password are both "admin"
+. If you do not login, you can only execute following commands and other commands are locked.
+* login
+* loginStatus
+* listAccounts
+* findAccounts
+* help
+* history
+* exit
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some examples you can try:
@@ -97,6 +109,19 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
 * **`delete`**`3` : deletes the task with index 3 in Tasketch.
 * *`exit`* : exits the app
+
+== Login
+You must login to manage your Tasketch and unlock all commands. 
+
+== AddAccount 
+
+== ListAccount
+
+== EditAccount
+
+== FindAccount
+
+== DeleteAccount
 
 == Daily Time Planner
 
