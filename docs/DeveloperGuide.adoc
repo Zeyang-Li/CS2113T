@@ -899,6 +899,5 @@ Look for the index number of the task named 'CS2003' in the task list. +
 You should see for the date '13-03-19', academic time has 4 hours now ((14.00-12.00)+(14.00-12.00)=4.00, showing 4.0 instead)
 in the Day list.
 
-If you trying to find a particular date in the day list. For example, '13-03-19', use `showtime 13-03` or `showtime 13-03-19`. +
-If the date is not in the day list, you will see empty list. +
+If you trying to find a particular date in the day list. For example, '13-03-19', use `showtime 13-03` or `showtime 13-03-19`. If the date is not in the day list, you will see empty list. +
 Invalid commands like `showtime sfsf` will prompt error message with the correct usage.
