@@ -110,7 +110,7 @@ A task can have any number of tags (including 0)
 If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
 you.
 
-image:InvalidCommand.png[width="900"] +
+image::InvalidCommand.png[width="900"] +
 _Figure 2. An invalid command message._
 
 Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION c/CATEGORIES [t/TAG]...`
@@ -127,12 +127,12 @@ Adds a task named CS3235 lecture. It starts at 8:00 on March 13rd, 2019 and ends
 Result: +
 You should see the task added into the Task Box. (e.g. added a task on 15-03-19)
 
-image:TaskBox.png[width="250"] +
+image::TaskBox.png[width="250"] +
 _Figure 3. Expected result in Task Box after adding a task_
 
 The time duration on that task will be calculated at the back and the time will be reflected in the Day Box.
 
-image:DayBox.png[width="250"] +
+image::DayBox.png[width="250"] +
 _Figure 4. Expected result in Day Box after adding a task_
 
 === Showing time planned for all task categories : `showtime`
@@ -148,7 +148,7 @@ Format: `showtime`
 Result: +
 You should see a list of days with all the category times in the Day Box as shown below. 
 
-image:ShowTime.png[width="250"] +
+image::ShowTime.png[width="250"] +
 _Figure 5. Expected result in Day Box after `showtime`_
 
 ==== Showing a particular day
@@ -162,7 +162,7 @@ Result: +
 You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty. +
 If you input anything that is invalid like `showtime sfsf`, error message will be prompted with the correct usage.
 
-image:ShowTimeDate.png[width="250"] +
+image::ShowTimeDate.png[width="250"] +
 _Figure 6. Expected result in Day Box after showtime 15-03-19_
 
 == Contributions to the Developer Guide
