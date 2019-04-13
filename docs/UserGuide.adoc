@@ -92,7 +92,7 @@ image::Ui.png[width="790"]
 .  Before start to use Tasketch. You should first log into this app via login command.
 For example:
 *  login u/admin p/admin
-. Tasketch provides a default account whose username and password are both "admin"
+. Tasketch provides a default account whose username and password are both "admin". We suggest that do not delete that account.
 . If you do not login, you can only execute following commands and other commands are locked.
 * login
 * loginStatus
@@ -111,6 +111,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`exit`* : exits the app
 
 == Login
+=== Login
 You must login to manage your Tasketch and unlock all commands.
 
 Format:  `login u/USERNAME p/PASSWORD`
@@ -123,7 +124,7 @@ login with the default account.
 Result: +
 The loginstatus should be changed to Logged in as the account you have logged in. 
 
-== AddAccount 
+=== AddAccount 
 Add a new account to Tasketch 
 
 Format: `addAccount u/USERNAME p/PASSWORD`
@@ -138,7 +139,7 @@ Add a new account whose name is "John" and password is "541623".
 Result: +
 You should see the account has been added to the accountlist if you execute `listAccounts` command. 
 
-== ListAccounts
+=== ListAccounts
 Shows a list of tasks in Tasketch.
 
 Format:
@@ -154,7 +155,7 @@ Lists all the accounts in the accountlist
 Result: +
 You should see a list of all the accounts in the Result Box.
 
-== EditAccount
+=== EditAccount
 Edit a existed account.
 Format: `editAccount INDEX u/USERNAME [p/PASSWORD]`
 
@@ -172,7 +173,7 @@ Changes the password of the second account to 123123!
 Changes the username of the second account to John!
 
 
-== FindAccount
+=== FindAccount
 
 Finds accounts whose username contain the given keywords.
 
@@ -186,11 +187,11 @@ Format: `findAccount KEYWORD`
 Examples:
 
 * `findAccount ad` +
-Returns `admin`
+Returns `admin`.
 * `findAccount AdMin` +
-Returns `admin`
+Returns `admin`.
 
-== DeleteAccount
+=== DeleteAccount
 Deletes a specified account from Tasketch.
 
 Format: `deleteAccount INDEX_NUMBER`
@@ -208,6 +209,30 @@ Deletes the account with index number 2 in task list.
 
 Result: +
 The account of the index number you choose should be delete from accountlist.
+
+=== LoginStatus
+Shows whether the user log in Tasketch and which account the user logged in. 
+
+Format: `loginStatus`
+
+Examples:
+
+* `loginStatus` +
+If you do not login with any accounts, return `Not logged in`.
+* `loginStatus` +
+If you login with default account, return `Logged in as: admin`.
+
+=== Logout
+Log out if you have logged in with an account.
+
+Format: `logout`
+
+Examples:
+
+* `logout` +
+If you do not login with any accounts, return `Already logged out`.
+* `logout` +
+If you login with default account, return `Logged out: admin`.
 
 == Daily Time Planner
 
