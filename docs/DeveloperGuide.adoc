@@ -164,7 +164,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data and feedback to user so that the UI can be updated with the modified data.
-* Consists of 5 parts in MainWindow, 1 part in HelpWindow. 
+* Consists of 5 parts in MainWindow, 1 part in HelpWindow.
 
 ** The default page consists of UpperPart and Timeline.
 ** UpperPart consists of Calendar, Reminder and Planner which are arranged in sequence.
