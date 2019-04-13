@@ -1,12 +1,15 @@
 package systemtests;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.ENDDATE_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.ENDDATE_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_CS2113;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDDATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDTIME_DESC;
@@ -22,20 +25,25 @@ import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_CS2101
 import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_CS2113;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2113;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CS2101;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalTasks.CS2101;
 import static seedu.address.testutil.TypicalTasks.CS2113;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.LoginCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.suggestions.WrongCommandSuggestion;
 import seedu.address.model.Model;
+import seedu.address.model.account.Username;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Categories;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EndDate;
 import seedu.address.model.task.EndTime;
@@ -51,46 +59,41 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
     public void add() {
         Model model = getModel();
 
+        assertCommandSuccess("login");
+
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a task without tags to a non-empty task book, command with leading spaces and trailing spaces
+        /* Case: add a task without tags to a non-empty task book
          * -> added
          */
         Task toAdd = CS2113;
-        String command = "   " + AddCommand.COMMAND_WORD + "  " + NAME_DESC_CS2113 + "  " + STARTDATE_DESC_CS2113 + " "
-                + STARTTIME_DESC_CS2113 + "   " + ENDDATE_DESC_CS2113 + "   " + ENDDATE_DESC_CS2113 + " "
-                + ENDTIME_DESC_CS2113 + "   " + DESCRIPTION_DESC_CS2113 + TAG_DESC_CS2113;
+        String command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113
+                + STARTTIME_DESC_CS2113 + ENDDATE_DESC_CS2113 + ENDDATE_DESC_CS2113
+                + ENDTIME_DESC_CS2113
+                + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113 + TAG_DESC_CS2113;
         assertCommandSuccess(command, toAdd);
 
+        /* Case: undo adding CS2113 to the list -> CS2113 deleted */
+        command = UndoCommand.COMMAND_WORD;
+        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a task with all fields same as another task in the task book except name -> added */
-        toAdd = new TaskBuilder(CS2113).withName(VALID_NAME_CS2101).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_CS2101 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + TAG_DESC_CS2113;
-        assertCommandSuccess(command, toAdd);
-
-        /* Case: add a task with all fields same as another task in the task book except startDate and startTime
-         * -> added
-         */
-        toAdd = new TaskBuilder().withStartDate(VALID_STARTDATE_CS2101).withStartTime(VALID_STARTTIME_CS2101).build();
-        command = TaskUtil.getAddCommand(toAdd);
-        assertCommandSuccess(command, toAdd);
+        /* Case: redo adding Amy to the list -> Amy added again */
+        command = RedoCommand.COMMAND_WORD;
+        model.addTask(toAdd);
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: add to empty task book -> added */
-        //deleteAllTasks();
-        //assertCommandSuccess(CS2113);
+        deleteAllTasks();
+        assertCommandSuccess(CS2113);
 
         /* Case: add a task with tags, command with parameters in random order -> added */
         toAdd = CS2101;
         command = AddCommand.COMMAND_WORD + TAG_DESC_CS2101 + STARTTIME_DESC_CS2101 + STARTDATE_DESC_CS2101
-                + NAME_DESC_CS2101 + ENDDATE_DESC_CS2101 + ENDTIME_DESC_CS2101 + DESCRIPTION_DESC_CS2101;
+                + NAME_DESC_CS2101 + ENDDATE_DESC_CS2101 + ENDTIME_DESC_CS2101 + DESCRIPTION_DESC_CS2101
+                + CATEGORY_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
-
-        /* ------------------------ Perform add operation while a person card is selected --------------------------- */
-
-        /* Case: selects first card in the task list, add a person -> added, card selection remains unchanged */
-        //selectPerson(Index.fromOneBased(1));
-        //assertCommandSuccess(CARL);
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
@@ -104,71 +107,85 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
 
         /* Case: missing name -> rejected */
         command = AddCommand.COMMAND_WORD + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113 + ENDDATE_DESC_CS2113
-                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + TAG_DESC_CS2113;
+                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113 + TAG_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing startDate -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTTIME_DESC_CS2113 + ENDDATE_DESC_CS2113
-                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing startTime -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + ENDDATE_DESC_CS2113
-                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing endDate -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing endTime -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing description -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
-        /* Case: invalid keyword -> rejected */
+        /* Case: missing categories -> rejected */
+        command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        /* Case: invalid command -> rejected */
         command = "adds " + TaskUtil.getTaskDetails(toAdd);
-        assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
+        List<String> listOfCommands = new WrongCommandSuggestion().getSuggestions("adds");
+        String suggestionsToString = StringUtil.join(listOfCommands, ", ");
+        assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND + '\n'
+                + String.format(WrongCommandSuggestion.SUGGESTION_HEADER, suggestionsToString));
 
         /* Case: invalid name -> rejected */
         command = AddCommand.COMMAND_WORD + INVALID_NAME_DESC + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, Name.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid startDate -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + INVALID_STARTDATE_DESC + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, StartDate.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid startTime -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + INVALID_STARTTIME_DESC
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, StartTime.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid endDate -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + INVALID_ENDDATE_DESC + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+                + INVALID_ENDDATE_DESC + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, EndDate.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid endTime -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + INVALID_ENDTIME_DESC + DESCRIPTION_DESC_CS2113;
+                + ENDDATE_DESC_CS2113 + INVALID_ENDTIME_DESC + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, EndTime.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid description -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + INVALID_DESCRIPTION_DESC;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + INVALID_DESCRIPTION_DESC + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, Description.MESSAGE_CONSTRAINTS);
+
+        /* Case: invalid categories -> rejected */
+        command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + INVALID_CATEGORY_DESC;
+        assertCommandFailure(command, Categories.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + INVALID_TAG_DESC;
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113 + CATEGORY_DESC_CS2113
+                + INVALID_TAG_DESC;
         assertCommandFailure(command, Tag.MESSAGE_CONSTRAINTS);
     }
 
@@ -207,7 +224,7 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
      * Performs the same verification as {@code assertCommandSuccess(String, Task)} except asserts that
      * the,<br>
      * 1. Result display box displays {@code expectedResultMessage}.<br>
-     * 2. {@code Storage} and {@code PersonListPanel} equal to the corresponding components in
+     * 2. {@code Storage} and {@code TaskListPanel} equal to the corresponding components in
      * {@code expectedModel}.<br>
      * @see AddCommandSystemTest#assertCommandSuccess(String, Task)
      */
@@ -217,6 +234,26 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
         assertSelectedCardUnchanged();
         assertCommandBoxShowsDefaultStyle();
         assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    private void assertCommandSuccess(String command) {
+        Username username = new Username("admin");
+        assertCommandSuccess(TaskUtil.getLoginCommand(command), username);
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(Person)}. Executes {@code command}
+     * instead.
+     * @see AddCommandSystemTest#assertCommandSuccess(Task)
+     */
+    private void assertCommandSuccess(String command, Username username) {
+        Model expectedModel = getModel();
+        expectedModel.setLoggedInUser(username);
+        String expectedResultMessage = String.format(LoginCommand.MESSAGE_SUCCESS, username);
+
+        executeCommand(command);
+        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
+        assertCommandBoxShowsDefaultStyle();
     }
 
     /**

@@ -23,7 +23,7 @@ import seedu.address.testutil.Assert;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "Do CS2101&";
-    private static final String INVALID_STARTDATE = "19-03-01";
+    private static final String INVALID_STARTDATE = "19.03.01";
     private static final String INVALID_TAG = "#cs2101";
 
     private static final String VALID_NAME = "Do CS2101";

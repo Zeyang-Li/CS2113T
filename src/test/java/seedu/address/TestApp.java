@@ -63,7 +63,7 @@ public class TestApp extends MainApp {
         UserPrefs userPrefs = super.initPrefs(storage);
         double x = Screen.getPrimary().getVisualBounds().getMinX();
         double y = Screen.getPrimary().getVisualBounds().getMinY();
-        userPrefs.setGuiSettings(new GuiSettings(600.0, 600.0, (int) x, (int) y));
+        userPrefs.setGuiSettings(new GuiSettings(1080.0, 700.0, (int) x, (int) y));
         userPrefs.setTaskBookFilePath(saveFileLocation);
         return userPrefs;
     }
@@ -75,7 +75,7 @@ public class TestApp extends MainApp {
         try {
             return new TaskBook(storage.readTaskBook().get());
         } catch (DataConversionException dce) {
-            throw new AssertionError("Data is not in the AddressBook format.", dce);
+            throw new AssertionError("Data is not in the TaskBook format.", dce);
         } catch (IOException ioe) {
             throw new AssertionError("Storage file cannot be found.", ioe);
         }
@@ -94,6 +94,7 @@ public class TestApp extends MainApp {
     public Model getModel() {
         Model copy = new ModelManager((model.getTaskBook()), new UserPrefs(), model.getAccountList());
         ModelHelper.setFilteredList(copy, model.getFilteredTaskList());
+        ModelHelper.setFilteredDayList(copy, model.getFilteredDayList());
         return copy;
     }
 

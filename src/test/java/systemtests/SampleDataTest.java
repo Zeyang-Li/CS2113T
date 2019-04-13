@@ -1,6 +1,6 @@
 package systemtests;
 
-//import static seedu.address.ui.testutil.GuiTestAssert.assertListMatching;
+import static seedu.address.ui.testutil.GuiTestAssert.assertListMatching;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,6 +46,6 @@ public class SampleDataTest extends TaskBookSystemTest {
     @Test
     public void taskBook_dataFileDoesNotExist_loadSampleData() {
         Task[] expectedList = SampleDataUtil.getSampleTasks();
-        //assertListMatching(getTaskListPanel(), expectedList);
+        assertListMatching(getTaskListPanel(), expectedList);
     }
 }

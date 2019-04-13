@@ -86,6 +86,7 @@ Note the following symbols and formatting used in this document:
 *** Contributed to issues (examples:  https://github.com/CS2113-AY1819S2-T09-2/main/issues/127[1], https://github.com/CS2113-AY1819S2-T09-2/main/issues/101[2],
 https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/CS2113-AY1819S2-T09-2/main/issues/53[4])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/cs2113-ay1819s2-t11-3/main/issues/82[1], https://github.com/cs2113-ay1819s2-t11-3/main/issues/89[2], https://github.com/cs2113-ay1819s2-t11-3/main/issues/91[3], https://github.com/cs2113-ay1819s2-t11-3/main/issues/95[4], )
+*** Some of the codes in the export and import part are also used by my teammate Chunwei.
 
 == Contributions to the User Guide
 
@@ -93,6 +94,7 @@ https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/C
 |_Given below are some sample sections I contributed to the User Guide in terms of the *Wrong Command Suggestion* and the *Import and Export feature*. If you would like to see the original part in our UserGuide, you can simply click blue titles. +
 They showcase my ability to write documentation targeting end-users. +
 Here are the links to other contributions I made to the UserGuide. +
+[https://github.com/Zeyang-Li/main/blob/master/docs/UserGuide.adoc#clearing-all-tasks-clearc[Clear tasks]]
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#versioned-tasketch[Versioned Tasketch]]
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#viewing-help-help[Viewing help]]
 [https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#exiting-the-program-exit[Exiting the program]]_
@@ -186,7 +188,7 @@ Examples:
 |===
 
 // tag::wrongCommandSuggestion[]
-=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#suggestion-feature[Wrong command Suggestion feature]
+=== Wrong Command Suggestion feature
 
 The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
 
@@ -212,6 +214,10 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 *Step 8*: WrongCommandSuggestion would then return the suggestion in a string, which would then be inputted into the CommandException, to be thrown to the LogicManager class.
 
+The following sequence diagram shows an example of how the WrongCommandSuggestion operation works with wrongly spelt command `clarr` (closest command is `clear`):
+
+image::WrongCommandSuggestionSequenceDiagram.png[width="650"]
+
 ==== Design Considerations
 
 * **Alternative 1:** Compare the input command and the actual command character by character and see which command has the most matches.
@@ -227,12 +233,11 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 // end::wrongCommandSuggestion[]
 
 // tag::import/export[]
-=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#importexport-feature[Import/Export feature]
+=== Import/Export feature
 
 ==== Current Implementation
 
-===== 1. Import
-
+===== Import
 This operation is exposed in the Model interface as `Model#importTaskBook()`.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
@@ -249,19 +254,26 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 6*: The Model interface creates a new Import object and then pass the filePath to the ImportManager.
 
-*Step 7*: The ModelManager will call `Import#readTaskBook()` and get a ReadOnlyTaskBook object.
+*Step 7*: The ModelManager will call `ImportManager#readTaskBook()` and get a ReadOnlyTaskBook object.
 
 [NOTE]
 ====
 The ImportManager class will first check whether the task in the file exists in Tasketch, if there is an existing task, just ignore this task.
 ====
 
+*Step 8*: The ImportManager will then will call `JsonFileStorage#loadDataFromSaveFile()`.
 
-*Step 8*: The ModelManager will then will call `addTasksToTaskBook()`.
+*Step 9*: The JsonFileStorage will then will call `JsonUtil#readJsonFile()`.
 
-*Step 9*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
+*Step 10*: And then the ModelManager will then will call `addTasksToTaskBook()`.
 
-===== 2. Export
+*Step 11*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
+
+The following sequence diagram shows how the Import operation works:
+
+image::ImportSequenceDiagram.png[width="850"]
+
+===== Export
 
 This operation is exposed in the Model interface as `Model#exportTaskBook()`.
 
@@ -277,11 +289,11 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 5*: The Logic component then interacts with the Model component by calling `Model#exportFilteredTaskBook()` of the Model interface.
 
-*Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList and the filePath to the ExportManager.
+*Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList.
 
-*Step 7*: The Export object calls `Export#saveFilteredTasks()`.
+*Step 7*: The ExportManager object calls `ExportManager#saveFilteredTasks()`.
 
-*Step 8*: The ExportManager class will call `JsonFileStorage#saveDataToFile()`.
+*Step 8*: Then ExportManager class will call `JsonFileStorage#saveDataToFile()`.
 
 *Step 9*: The JsonFileStorage class will call `JsonUtil#saveJsonFile()`.
 
@@ -293,6 +305,9 @@ Given below is an example usage scenario and how the export mechanism behaves at
 ====
 This File object will creates a new file if there is no existing file with the same name. And if there is an existing file, it will just write to this file no matter it is empty or not.
 ====
+The following sequence diagram shows how the Export operation works:
+
+image::ExportSequenceDiagram.png[width="850"]
 
 ==== Design Considerations
 ===== Aspect: Use what kind of file
@@ -304,9 +319,7 @@ This File object will creates a new file if there is no existing file with the s
 ** Pros: Xml is more widely used and it shows tha data better.
 ** Cons: Hard to implement.
 
-
 // end::import/export[]
-
 
 
 

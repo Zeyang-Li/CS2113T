@@ -22,7 +22,7 @@ public class HistoryCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(history);
-        ArrayList<String> previousCommands = new ArrayList<>(history.getHistory());
+        ArrayList<String> previousCommands = new ArrayList<>(history.getHistory()); // show history
 
         if (previousCommands.isEmpty()) {
             return new CommandResult(MESSAGE_NO_HISTORY);

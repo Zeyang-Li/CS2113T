@@ -83,7 +83,7 @@ Panel *A* will always be active, allowing you to input your commands all the tim
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `tasketch.jar` link:{repoURL}/releases[here]*(the link needs to be changed)*.
+.  Download the latest `tasketch.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Tasketch.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -136,6 +136,9 @@ To get started, you will need to add a task into Tasketch. The format is as belo
 When you are adding a task, the app will ensure that there will be no duplicate names added. This is to ensure that
 there is no confusion in the task names.
 
+[TIP]
+Tasks can overlap each other, meaning you can have 2 tasks planned at the same period, as you can multitask.
+
 Adding a task with the same start date and end date means that it is a daily task, will be monitored by the Daily Time
 Planner. Different dates means it is a long period task, thus will not be considered as daily task but can still be added.
 
@@ -153,7 +156,7 @@ You will also need to specify the type of category of the task that you are addi
 your time effectively.
 
 [TIP]
-A task can have any number of tags (including 0)
+A task can have any number of tags (including 0).
 
 [NOTE]
 If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
@@ -182,7 +185,7 @@ image:TaskBox.png[] +
 The time duration on that task will be calculated at the back and the time will be reflected in the Day Box. +
 image:DayBox.png[]
 
-=== Clearing all tasks : `clear`/`c`
+=== Clearing tasks : `clear`/`c`
 
 If you have done with the tasks, simply clear them from the Tasketch, so that they will not disrupt your time planning.
 
@@ -193,6 +196,10 @@ Clears all the tasks in Tasketch
 
 * `clear DATE` +
 Clears all the tasks starting from the specified date
+
+* `clear before` +
+Clears all finished tasks.
+
 
 Examples:
 
@@ -345,7 +352,8 @@ Format: `showtime DATE`
 Example: `showtime 15-03-19`
 
 Result: +
-You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty.
+You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty. +
+If you input anything that is invalid like `showtime sfsf`, error message will be prompted with the correct usage.
 
 image::ShowTimeDate.png[]
 
@@ -441,6 +449,9 @@ image::timeline_today.png[width="790"]
 Shows the whole timeline for 1st April 2019.
 +
 image::timeline_date.png[width="790"]
+
+[TIP]
+Timeline will only show the tasks between 6:00am to 24:pm. Sleep early is a good habit~
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,

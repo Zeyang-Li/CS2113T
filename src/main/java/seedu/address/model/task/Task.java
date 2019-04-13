@@ -17,12 +17,12 @@ public class Task {
 
     // Identity fields
     private final Name name;
+
+    // Data fields
     private final StartDate startDate;
     private final EndDate endDate;
     private final StartTime startTime;
     private final EndTime endTime;
-
-    // Data fields
     private final Description description;
     private final Categories categories;
     private final Set<Tag> tags = new HashSet<>();
