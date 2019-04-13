@@ -108,8 +108,8 @@ A task can have any number of tags (including 0)
 
 [NOTE]
 If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
-you. +
- +
+you.
+
 image:InvalidCommand.png[width="900"] +
 _Figure 2. An invalid command message._
 
@@ -125,11 +125,13 @@ Adds a task named MA1101R tutorial. It starts at 12:00 on March 14th, 2019 and e
 Adds a task named CS3235 lecture. It starts at 8:00 on March 13rd, 2019 and ends at 10:00 on March 14th, 2019. Its description is to talk about network security. The tag for it is 'important'.
 
 Result: +
-You should see the task added into the Task Box. (e.g. added a task on 15-03-19) +
+You should see the task added into the Task Box. (e.g. added a task on 15-03-19)
+
 image:TaskBox.png[width="250"] +
 _Figure 3. Expected result in Task Box after adding a task_
 
-The time duration on that task will be calculated at the back and the time will be reflected in the Day Box. +
+The time duration on that task will be calculated at the back and the time will be reflected in the Day Box.
+
 image:DayBox.png[width="250"] +
 _Figure 4. Expected result in Day Box after adding a task_
 
@@ -144,7 +146,7 @@ If you want to the time planned for everyday, just use this command.
 Format: `showtime`
 
 Result: +
-You should see a list of days with all the category times in the Day Box as shown below. +
+You should see a list of days with all the category times in the Day Box as shown below. 
 
 image:ShowTime.png[width="250"] +
 _Figure 5. Expected result in Day Box after `showtime`_
