@@ -402,6 +402,7 @@ There are mainly two parts in this features, **calendar** and **timeline arrange
 
 These two parts will help the user better arrange their time usage by visualization of time.
 
+***
 * **There are currently two commands with parameters to help achieve this, `month` and `timeline`.**
 
 ** **Implementation for Calendar: ** Using `GridPane` to separate the whole calendar area into 35 grids.
@@ -409,7 +410,6 @@ These two parts will help the user better arrange their time usage by visualizat
 *** Each one of the 35 grids is filled with PaneNode which is defined as area for a day.
 *** PaneNode extends AnchorPane.
 
-***
 
 ** **Implementation for Timeline:** Using javafx and segment each part of the browserPanel.
 
@@ -419,6 +419,7 @@ These two parts will help the user better arrange their time usage by visualizat
 *** The overall structure is javafx VBox, which is a vertical arrangement structure.
 *** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
 
+***
 ==== Design Considerations
 
 ===== Aspect: How timeline executes
