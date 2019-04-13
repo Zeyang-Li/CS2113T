@@ -216,7 +216,7 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 The following sequence diagram shows an example of how the WrongCommandSuggestion operation works with wrongly spelt command `clarr` (closest command is `clear`):
 
-image::WrongCommandSuggestionSequenceDiagram.png[width="650"]
+image::WrongCommandSuggestionSequenceDiagram.png[width="850"]
 
 ==== Design Considerations
 
