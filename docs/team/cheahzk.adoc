@@ -109,7 +109,7 @@ A task can have any number of tags (including 0)
 [NOTE]
 If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
 you.
-
+ +
 image:InvalidCommand.PNG[width="900"] +
 _Figure 2. An invalid command message._
 
