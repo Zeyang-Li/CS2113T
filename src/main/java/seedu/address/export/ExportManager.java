@@ -18,7 +18,7 @@ import seedu.address.storage.JsonSerializableTaskBook;
 
 
 /**
- * Manages exporting of AddressBook data.
+ * Manages exporting of TaskBook data.
  */
 public class ExportManager implements Export {
 
