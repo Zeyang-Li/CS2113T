@@ -16,6 +16,10 @@ import seedu.address.model.task.Task;
  * This is the overall arrangement of timeline pane.
  */
 public class TimePane extends AnchorPane {
+    private static float LINE_WIDTH = 920.0f;
+    private static float LINE_HEIGHT = 10.0f;
+    private static float BAR_LINE_HEIGHT = 3.0f;
+
     private VBox vbox = new VBox();
     private String[] category = {"a", "c", "e", "r", "o"};
 
@@ -50,24 +54,21 @@ public class TimePane extends AnchorPane {
             timelineLabel.add(aGrid, col, 0);
             col++;
         }
-        //==========Set up a rectangle==========
+        //==========Set up a heading rectangle==========
         Rectangle heading = new Rectangle();
+
+        //Setting the properties of the rectangle
         heading.setFill(Color.WHITE);
+        heading.setWidth(LINE_WIDTH);
+        heading.setHeight(LINE_HEIGHT);
 
-        //Setting the properties of the rectangle
-        heading.setX(150.0f);
-        heading.setY(75.0f);
-        heading.setWidth(920.0f);
-        heading.setHeight(10.0f);
-
+        //==========Set up a bottom rectangle==========
         Rectangle bottom = new Rectangle();
-        bottom.setFill(Color.WHITE);
 
         //Setting the properties of the rectangle
-        bottom.setX(150.0f);
-        bottom.setY(75.0f);
-        bottom.setWidth(920.0f);
-        bottom.setHeight(3.0f);
+        bottom.setFill(Color.WHITE);
+        bottom.setWidth(LINE_WIDTH);
+        bottom.setHeight(BAR_LINE_HEIGHT);
 
         //Setting the height and width of the arc
         //heading.setArcWidth(10.0);
@@ -123,7 +124,6 @@ public class TimePane extends AnchorPane {
     private PreTask[] filterCate(PreTask[] taskList, String cate) {
         PreTask[] filtered = new PreTask[1000];
         int count = 0;
-        //System.out.println("Sofarsogood 11");
         for (PreTask t : taskList) {
             try {
                 t.getCate();
@@ -131,9 +131,7 @@ public class TimePane extends AnchorPane {
                 break;
             }
 
-            //System.out.println(t.getCategories().toString().equals(cate));
             if (t.getCate().equals(cate)) {
-                //System.out.println("Sofarsogood 33");
                 filtered[count] = new PreTask(t.getTitle(),
                         t.getCate(),
                         t.getStart(),
@@ -143,6 +141,7 @@ public class TimePane extends AnchorPane {
         }
         return filtered;
     }
+
     private float parse(String time) {
         return Float.parseFloat(time);
     }

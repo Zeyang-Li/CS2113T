@@ -10,9 +10,14 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- * Individual Timeline.
+ * Individual Timeline for each category.
  */
 public class Timeline {
+    private static int GRIDSIZE = 100;
+    private static int GRIDHEIGHT = 5;
+    private static int TIMELINE_WIDTH = 50;
+    private static int TIMELINE_HEIGHT = 10;
+
     private VBox oneTimeline = new VBox();
     private PreTask[] tasks;
     private String cate;
@@ -65,7 +70,7 @@ public class Timeline {
         taskNames[0] = new Text(getCate(c));
         for (Text n : taskNames) {
             AnchorPane aGrid = new AnchorPane();
-            aGrid.setPrefSize(100, 5);
+            aGrid.setPrefSize(GRIDSIZE, GRIDHEIGHT);
             //n.setBoundsType(TextBoundsType.VISUAL);
             n.setStyle("-fx-padding: 0 0 0 0;"
                        + "-fx-font-size: 14px;");
@@ -92,33 +97,32 @@ public class Timeline {
             switch (timeInterval[i]) {
             case 1:
                 Region rect1 = new Region();
-                rect1.setPrefSize(50, 10);
+                rect1.setPrefSize(TIMELINE_WIDTH, TIMELINE_HEIGHT);
                 time.add(setColor(rect1, timeInterval[i]), i, 0);
                 break;
             case 2:
                 Region rect2 = new Region();
-                rect2.setPrefSize(50, 10);
+                rect2.setPrefSize(TIMELINE_WIDTH, TIMELINE_HEIGHT);
                 time.add(setColor(rect2, timeInterval[i]), i, 0);
                 break;
             case 3:
                 Region rect3 = new Region();
-                rect3.setPrefSize(50, 10);
+                rect3.setPrefSize(TIMELINE_WIDTH, TIMELINE_HEIGHT);
                 time.add(setColor(rect3, timeInterval[i]), i, 0);
                 break;
             case 4:
                 Region rect4 = new Region();
-                rect4.setPrefSize(50, 10);
+                rect4.setPrefSize(TIMELINE_WIDTH, TIMELINE_HEIGHT);
                 time.add(setColor(rect4, timeInterval[i]), i, 0);
                 break;
             default:
                 AnchorPane aGrid = new AnchorPane();
-                aGrid.setPrefSize(50, 5);
+                aGrid.setPrefSize(TIMELINE_WIDTH, TIMELINE_HEIGHT);
                 aGrid.getChildren().add(new Text(" "));
                 time.add(aGrid, i, 0);
                 break;
             }
         }
-        //System.out.println("");
         oneTimeline.getChildren().add(time);
     }
 
@@ -161,8 +165,6 @@ public class Timeline {
      */
     private void sort() {
         int total = getSize();
-        //System.out.println(total);
-
         for (int i = 0; i < total; i++) {
             for (int j = 0; j < total - i - 1; j++) {
                 if (tasks[j].getStart() > tasks[j + 1].getStart()) {
@@ -179,7 +181,6 @@ public class Timeline {
                 continue;
             }
             taskNames[(Math.round(tasks[i].getStart()) + 20) % 24] = new Text(tasks[i].getTitle());
-            //System.out.println(tasks[i].getStart());
         }
     }
 
