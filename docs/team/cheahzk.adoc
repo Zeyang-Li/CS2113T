@@ -146,7 +146,7 @@ If you want to the time planned for everyday, just use this command.
 Format: `showtime`
 
 Result: +
-You should see a list of days with all the category times in the Day Box as shown below. 
+You should see a list of days with all the category times in the Day Box as shown below.
 
 image:ShowTime.png[width="250"] +
 _Figure 5. Expected result in Day Box after `showtime`_
