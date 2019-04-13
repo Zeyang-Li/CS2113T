@@ -390,10 +390,17 @@ Call **reinitialzeRemindList()** method in **MainWindow** to set remind list to 
 [NOTE]
 The reason of doing this is when we show the remind list in UI, we change it from FXCollections list to a Observable list. However, in current implementation, sorting method can only be applied to FXCollections list. So we need to re-initialize remind list to be a FXCollections list containing all the tasks after each call of remind command.
 
+image::RemindSequenceDiagram.png[width="650"]
 
-// end::reminder[]
+==== Design Consideration
 
-// tag::month/timeline[]
+* **Alternative 1:** Use filteredTaskList as the remind list and all operations which are related to reminder are done to filteredTaskList.
+** Pros: Very easy to implement.
+** Cons: It is not user friendly. When user execute command like "list", "filteredTaskList" will change and as a result the remind list will also change. However, remind list is expected to be concise and up-to-date. It should point to all tasks in storage instead of filteredTaskList and only change when commands like "add" and "delete" are executed.
+* **Alternative 2 (current choice):** Implement a separate remind list in model and maintain the remind list whenever the tasks in storage change.
+** Pros: It is user friendly. As long as users don't change the tasks in the storage, remind list will remain the same. When users make change to tasks, remind command will update remind list.
+** Cons: Hard to implement. Developers need to implement a separate bunch of methods in logic and model interface and class to maintain the remind list.
+
 === Effective Visualization feature
 
 ==== Current Implementation
