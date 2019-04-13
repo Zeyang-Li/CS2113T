@@ -156,7 +156,7 @@ image::UiClassDiagram.png[width="800"]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter`, `DefaultPage` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -164,6 +164,11 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data and feedback to user so that the UI can be updated with the modified data.
+* Consists of 5 parts in MainWindow, 1 part in HelpWindow. 
+
+** The default page consists of UpperPart and Timeline.
+** UpperPart consists of Calendar, Reminder and Planner which are arranged in sequence.
+** Timeline and reminder are exceptions for previous statement, please see the implementation for these two part.
 
 [[Design-Logic]]
 === Logic component
@@ -177,7 +182,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `TaskBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+.  The command execution can affect the `Model` (e.g. adding a person) and `UI` since some UI parts depends on the execution result.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -314,6 +319,7 @@ image::UndoRedoActivityDiagram.png[width="650"]
 //tag::autoComplete[]
 === Automatically complete input command feature
 
+Auto-complete uses tab as a signal to trigger auto-complete and the command box will automatically complete the incomplete input.
 //end::autoComplete[]
 
 // tag::wrongCommandSuggestion[]
@@ -412,6 +418,26 @@ These two parts will help the user better arrange their time usage by visualizat
 *** The whole implementation of `timeline` is in `timelinePane` using javafx.
 *** The overall structure is javafx VBox, which is a vertical arrangement structure.
 *** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
+
+==== Design Considerations
+
+===== Aspect: How timeline executes
+
+* **Alternative 1 (current choice):** Delete current timeline area and re-render timeline.
+** Pros: Easy to implement. User has the freedom to choose which day to display.
+** Cons: May have performance issues in terms of execution and computation power.
+* **Alternative 2:** The timeline is auto-updated after each `add` or `edit` command.
+** Pros: More intuitive to use.
+** Cons: User lost the freedom to choose which day to display the timeline.
+
+===== Aspect: Special Data structure to support timeline commands
+
+* **Alternative 1 (current choice):** Use a 2-D array to store of PreTask objects instead of using Task objects.
+** Pros: Saves memory since filtering requires a copy of task details.
+** Cons: Similar class is created. Not very friendly to maintain.
+* **Alternative 2:** Use a 2-D array to store Task objects.
+** Pros: More intuitive and easy to implement since no new class is created.
+** Cons: Requires more memory and computational power.
 
 // end::Effective Visualization[]
 
