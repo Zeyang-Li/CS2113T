@@ -168,7 +168,7 @@ The `UI` component,
 
 ** The default page consists of UpperPart and Timeline.
 ** UpperPart consists of Calendar, Reminder and Planner which are arranged in sequence.
-** Timeline and reminder are exceptions for previous statement, please see the implementation for these two part.
+** Timeline and reminder are exceptions for updating with model's changes, please see the implementation for these two part.
 
 [[Design-Logic]]
 === Logic component
