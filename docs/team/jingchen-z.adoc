@@ -14,13 +14,13 @@ This is Jingchen from the `Tasketch` project team. This project is under Nationa
 
 image::Ui.png[width="1000"]
 
-Tasketch is a time management software helping NUS students who need to manage their time by allocating time to daily tasks. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
-Tasketch is morphed from addressbook-level4 by 5 students, namely Cheah Zhi Kang, Jin Shibo, Li Zeyang, Wan Chunwei and Zhang Jingchen(me).
+`Tasketch` is a *time management* software helping NUS students who need to manage their time by allocating time to daily tasks. More importantly, `Tasketch` is optimized for those who prefer to use a desktop app and work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+`Tasketch` is morphed from `addressbook-level4` by 5 students, namely Cheah Zhi Kang, Jin Shibo, Li Zeyang, Wan Chunwei (my teammates) and Zhang Jingchen(me).
 
 == Summary of contributions
 
 * *Main enhancement*: Enhance visual feedback with timeline feature.
-** What it does: It arranges the tasks on a given day into a timeline according to their categories and display in parallel timelines.
+** What it does: It arranges the tasks on a given day into a timeline according to their categories and display the timelines in parallel.
 ** Justification: By visually showing the arranged timeline, this feature helps the user to better manage their tasks and decide on time allocation.
 ** Highlights: Each category timeline will have their own color to be distinguished.
 ** Credits: _{Shibo's idea is used on filtering the tasks according to date}_
