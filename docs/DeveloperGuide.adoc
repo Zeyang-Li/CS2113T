@@ -236,6 +236,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+//tag::Login[]
+=== Login feature
+
+The login feature will unlock all commands for the users, otherwise the user can only execute following commands:
+* login
+* loginStatus
+* listAccounts
+* findAccount
+* help
+* history
+* exit
+
+==== Current Implementation
+The login mechanism is facilitated by `LoginCommand`. It extends Command and implements the following operations:
+* `LoginCommand#modifyLoginStatus()` — checks whether there exists such username and corresponding password in accountlist. If troue, updates the logged in account status in Model accordingly.
+* `LoginCommand#execute()` — calls LoginCommand#modifyLoginStatus(). Then, checks login status in Model and displays a login success message if true and displays a failure message otherwise.
+
+
+//end::Login[]
 
 // tag::undoredo[]
 === Versioned Tasketch feature
@@ -321,6 +340,10 @@ image::UndoRedoActivityDiagram.png[width="650"]
 === Automatically complete input command feature
 
 Auto-complete uses tab as a signal to trigger auto-complete and the command box will automatically complete the incomplete input.
+
+==== Current Implementation
+
+When a user press TAB key, if the command is 
 //end::autoComplete[]
 
 // tag::wrongCommandSuggestion[]
