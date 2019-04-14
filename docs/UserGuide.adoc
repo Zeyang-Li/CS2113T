@@ -89,6 +89,18 @@ Panel *A* will always be active, allowing you to input your commands all the tim
 +
 image::Ui.png[width="790"]
 +
+.  Before start to use Tasketch. You should first log into this app via login command.
+For example:
+*  login u/admin p/admin
+. Tasketch provides a default account whose username and password are both "admin". We suggest that do not delete that account.
+. If you do not login, you can only execute following commands and other commands are locked.
+* login
+* loginStatus
+* listAccounts
+* findAccount
+* help
+* history
+* exit
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some examples you can try:
@@ -97,6 +109,145 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * **`add`**`n/Do CS2113 sd/17-03-19 sd/10.00 ed/17-03-19 et/12.00 d/Do User Guide` : adds a new task to Tasketch.
 * **`delete`**`3` : deletes the task with index 3 in Tasketch.
 * *`exit`* : exits the app
+
+== Login
+=== Login
+You must login to manage your Tasketch and unlock all commands.
+
+Format:  `login u/USERNAME p/PASSWORD`
+
+Examples:
+
+* `login u/admin p/admin` +
+login with the default account if no account has logged in Tasketch. +
+image:login3.png[width="790"]
+
+* `login u/admin p/admin` +
+login with the default account if an account has already logged in Tasketch.. +
+image:login1.png[width="790"]
+
+=== AddAccount
+Add a new account to Tasketch
+
+Format: `addAccount u/USERNAME p/PASSWORD`
+
+Examples:
+
+* `addAccount u/wan p/123456` +
+Add a new account whose name is "wan" and password is "123456".
+* `addAccount u/John p/541623` +
+Add a new account whose name is "John" and password is "541623".
+
+Result: +
+You should see the account has been added to the accountlist if you execute `listAccounts` command(add a new account whose username is "wan" and a new account whose username is "John"). +
+image:AddAccount.png[width="790"]
+
+=== ListAccounts
+Shows a list of tasks in Tasketch.
+
+Format:
+
+* `listAccounts` +
+Lists all the accounts in the accountlist
+
+Examples:
+
+* `listAccounts` +
+Lists all the accounts in the accountlist
+
+Result: +
+You should see a list of all the accounts in the Result Box. +
+image:listAccounts.png[width="790"]
+
+=== EditAccount
+Edit a existed account with its username and password.
+Format: `editAccount INDEX u/USERNAME [p/PASSWORD]`
+
+****
+* Edits the account at the specified INDEX. The index refers to the index number shown in the displayed list when 'listAccounts' is used. The index must be a positive integer 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+****
+
+Examples:
+
+* `editAccount 2 p/123123` +
+Changes the password of the second account to 123123!
+* `editAccount 2 u/John` +
+Changes the username of the second account to John!
+
+Result: +
+Before execute  `editAccount 2 u/John`: +
+image:editAccount1.png[width="790"]+
+After execute `editAccount 2 u/John`: +
+image:editAccount2.png[width="790"]
+
+=== FindAccount
+
+Finds accounts whose username contain the given keywords.
+
+Format: `findAccount KEYWORD`
+
+****
+* The search is case insensitive. e.g `WAN` will match `wan`.
+* Only the username is searched.
+****
+
+Examples:
+
+* `findAccount ad` +
+Returns `admin`.
+* `findAccount AdMin` +
+Returns `admin`.
+
+=== DeleteAccount
+Deletes a specified account from Tasketch.
+
+Format: `deleteAccount INDEX_NUMBER`
+
+****
+* Each account is identified by a index number shown in the account list.
+* Deletes the account with the index number.
+****
+
+Examples:
+
+* `listAccounts` +
+`delete 2` +
+Deletes the account with index number 2 in task list.
+
+Result: +
+The account of the index number you choose should be delete from accountlist.
+
+=== LoginStatus
+Shows whether the user log in Tasketch and which account the user logged in.
+
+Format: `loginStatus`
+
+Examples:
+
+* `loginStatus` +
+If you do not login with any accounts, return `Not logged in`.
+image:loginStatus.png[width="790"]
+
+* `loginStatus` +
+If you login with default account, return `Logged in as: admin`.
+image:loginStatus1.png[width="790"]
+
+=== Logout
+Log out if you have logged in with an account.
+
+Format: `logout`
+
+Examples:
+
+* `logout` +
+If you do not login with any accounts, return `Already logged out`. +
+image:logout1.png[width="790"]
+
+* `logout` +
+If you login with default account, return `Logged out: admin`. +
+image:logout.png[width="790"]
 
 == Daily Time Planner
 

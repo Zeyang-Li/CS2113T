@@ -236,6 +236,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+//tag::Login[]
+
+=== Login feature
+
+The login feature will unlock all commands for the users, otherwise the user can only execute following commands:
+* login
+* loginStatus
+* listAccounts
+* findAccount
+* help
+* history
+* exit
+
+==== Current Implementation
+The login mechanism is facilitated by `LoginCommand`. It extends Command and implements the following operations:
+* `LoginCommand#modifyLoginStatus()` — checks whether there exists such username and corresponding password in accountlist. If troue, updates the logged in account status in Model accordingly.
+* `LoginCommand#execute()` — calls LoginCommand#modifyLoginStatus(). Then, checks login status in Model and displays a login success message if true and displays a failure message otherwise.
+
+These operations are exposed in the Model interface as Model#setLoggedInUser() and Model#getLoginStatus() respectively.
+
+Given below is an example usage scenario and how the LoginCommand mechanism behaves at each step.
+
+*Step 1*: The user executes `login u/admin p/admin` command to log into Tasketch. The username and admin are both "admin".
+
+*Step 2*: The execute command calls `Model#getLoginStatus()` and checks whether the user has already logged in with an account. If true, execute throws a CommandException notifying the user that he is already logged in.
+
+*Step 3*: The execute command then calls `LoginCommand#modifyLoginStatus()`.It checks whether the username "admin" and its corresponding password "admin" exists in the accountlist.
+
+*Step 4*: If there exists such an account, `LoginCommand#modifyLoginStatus()` calls `Model#setLoggedInUser()` which updates the logged in account status in model with the logged in account set to admin and logged in status set to true.
+
+*Step 5*: The login command checks the login status according to `Model#getLoginStatus()`. A success message is printed if true; otherwise a failure message is printed.
+
+The following sequence diagram shows how the login operation works:
+
+image::loginSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How login executes
+
+* **Alternative 1 (current choice):** Check against various accounts stored in a file and allow access if match.
+** Pros: It allows multiple accounts to access to Taskbook.
+** Cons: It may cost more memory to store the account list.
+* **Alternative 2:** Checks against a single account that can be modified.
+** Pros: It will use less memory.
+** Cons: Only one account can access to Taskbook. If the user accidently loses the account, the whole application may be locked up.
+
+//end::Login[]
 
 // tag::undoredo[]
 === Versioned Tasketch feature
@@ -321,6 +369,10 @@ image::UndoRedoActivityDiagram.png[width="650"]
 === Automatically complete input command feature
 
 Auto-complete uses tab as a signal to trigger auto-complete and the command box will automatically complete the incomplete input.
+
+==== Current Implementation
+
+When a user press TAB key, if the command is
 //end::autoComplete[]
 
 // tag::wrongCommandSuggestion[]
