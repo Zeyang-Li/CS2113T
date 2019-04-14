@@ -26,7 +26,9 @@ public class TimelineCommand extends Command {
     public static final String COMMAND_PARAMETERS = "Parameters: [date]...\n"
             + "Example: " + COMMAND_WORD + "01-04-19";
     public static final String MESSAGE_SUCCESS = "Timeline on %1$s has been successfully arranged!";
-    public static final String MESSAGE_ILLEGAL = "Incorrect date format. [dd-mm-yys]";
+    public static final String MESSAGE_ILLEGAL = "Incorrect date format! [dd-mm-yy]";
+    public static final String MESSAGE_ILLEGAL_DAY = "Incorrect day format! [dd-mm-yy]";
+    public static final String MESSAGE_ILLEGAL_VALUE = "Incorrect date value! [dd-mm-yy]";
     public static final String MESSAGE_LOGIN = "Please login first";
 
     private String parameter;

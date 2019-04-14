@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.ClearCommand.MESSAGE_INVALID_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ public class ListCommand extends Command {
             + "1. no parameters: list        list all tasks\n"
             + "2. td: list td       list all the tasks of today\n"
             + "3. DATE: list 25-03-19    "
-            + "list all the tasks which are before/after 25th March, 2019\n"
+            + "list all the tasks on 25th March, 2019\n"
             + "4. category: list a/c/e/r/o";
     public static final String MESSAGE_SUCCESS1 = "Listed all tasks";
     public static final String MESSAGE_SUCCESS2 = "Listed all tasks of today.";
@@ -69,12 +70,15 @@ public class ListCommand extends Command {
             Predicate<Task> predicate = task -> meetRequirementCategory(task);
             model.updateFilteredTaskList(predicate);
             return new CommandResult(String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)));
-        } else {
+        } else if (ClearCommand.isValidDate(arguments[0])) {
 
             specifiedDate = arguments[0];
             Predicate<Task> predicate = task -> meetRequirementDate(task);
             model.updateFilteredTaskList(predicate);
             return new CommandResult(String.format(MESSAGE_SUCCESS3, specifiedDate));
+        } else {
+
+            throw new CommandException(MESSAGE_INVALID_DATE);
         }
 
     }

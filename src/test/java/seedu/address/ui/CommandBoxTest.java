@@ -127,6 +127,7 @@ public class CommandBoxTest extends GuiUnitTest {
         assertInputHistory(KeyCode.UP, thirdCommand);
     }
 
+
     /**
      * Runs a command that fails, then verifies that <br>
      *      - the text remains <br>

@@ -1,47 +1,70 @@
-= John Doe - Project Portfolio
+= Wan Chunwei - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
 
-== PROJECT: AddressBook - Level 4
+== PROJECT: Tasketch
 
 ---
 
 == Overview
 
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Tasketch is an desktop application designed for busy NUS students who have many tasks, assignments and deadlines everyday. Tasketch helps you to manage your everyday time by giving you an overview of all the time planned for all the tasks in a daily manner.Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively.
+
+image::Ui.png[width="1000"]
+_Figure 1. An overview of our application._
+
+
+
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement* 1: Added *login* feature. +
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+** What it does: It allows the user to log into the Tasketch with their account. If the user doesn't login, all commands will be locked up except
+*** login
+*** loginstatus
+*** listaccounts
+*** findaccount
+*** help
+*** history
+*** exit
+After logging in, all commands will be unlocked for user. Besides, the user can add new accounts, edit accounts information, check login status, list all accounts, find accounts containing keywords, and delete accounts.
+** Justification: This feature prevent Tasketch from unauthorized modification. A user cannot modify the content of Tasketch without logging in.
+** Highlights: Tasketch provides a default account whose username and password are both "admin". We suggest that do not delete that account.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
-* *Other contributions*:
 
+* *Major enhancement* 2: Added *Auto-complete* feature. +
+
+** What it does: If you type something wrongly, the app will automatically correct type error and fulfill their incomplete typed command in command line. If you type correct command, then it can help fulfill the format string of the parameter for corresponding command.
+** Justification: This feature improves the product significantly because a user may not be familiar with the command and may be hard to type a very long string of parameters
+** Highlights: This enhancement will be affected by existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as if user type a command wrongly it required an algorism that can compute the similarity compared with the command user type in and existing command and return the most similar command.
+**Credits: I apply a math concept of "Edit distance", which means caculate the similarity between two strings by
+caculating the time of editing for converting one string to another string.
+
+* *Minor enhancement*:
+** Implement 'edit' command that allows the user to edit his task information
+
+* *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Wanchunwei&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Wanchunwei&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Test code]] _{give links to collated code files}_
+
+
+* *Other contributions*
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** Brainstorm new features for Tasketch
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Fix bugs for and Update previous commands.
+*** Updated the Import and Export command. Makes Tasketch can import and export account list as a Json file(Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/160[#160]).
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Update User Guide and Developer Guide. (available https://github.com/Wanchunwei/main/blob/master/docs/UserGuide.adoc[UserGuide], https://github.com/Wanchunwei/main/blob/master/docs/DeveloperGuide.adoc[DeveloperGuide])
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
-
-_{you can add/remove categories in the list above}_
+*** Reported bugs and offered suggestions for other teams in the class
+*** PRs reviewed (with non-trivial review comments)
 
 == Contributions to the User Guide
 
@@ -50,15 +73,301 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[tag=undoredo]
+https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc[../UserGuide.adoc]
 
-//include::../UserGuide.adoc[tag=dataencryption]
+=== Quick Start
+.  Before start to use Tasketch. You should first log into this app via login command.
+For example:
+*  login u/admin p/admin
+. Tasketch provides a default account whose username and password are both "admin". We suggest that do not delete that account.
+. If you do not login, you can only execute following commands and other commands are locked.
+* login
+* loginstatus
+* listaccounts
+* findaccount
+* help
+* history
+* exit
+
+=== Login
+==== Login
+You must login to manage your Tasketch and unlock all commands.
+
+Format:  `login u/USERNAME p/PASSWORD`
+
+Examples:
+
+* `login u/admin p/admin` +
+login with the default account if no account has logged in Tasketch. +
+image:login3.png[width="790"]
+
+* `login u/admin p/admin` +
+login with the default account if an account has already logged in Tasketch.. +
+image:login1.png[width="790"]
+
+==== AddAccount
+Add a new account to Tasketch
+
+Format: `addaccount u/USERNAME p/PASSWORD`
+
+Examples:
+
+* `addaccount u/wan p/123456` +
+Add a new account whose name is "wan" and password is "123456".
+* `addaccount u/John p/541623` +
+Add a new account whose name is "John" and password is "541623".
+
+Result: +
+You should see the account has been added to the accountlist if you execute `listAccounts` command(add a new account whose username is "wan" and a new account whose username is "John"). +
+image:AddAccount.png[width="790"]
+
+==== ListAccounts
+Shows a list of tasks in Tasketch.
+
+Format:
+
+* `listaccounts` +
+Lists all the accounts in the accountlist
+
+Examples:
+
+* `listaccounts` +
+Lists all the accounts in the accountlist
+
+Result: +
+You should see a list of all the accounts in the Result Box. +
+image:listAccounts.png[width="790"]
+
+==== EditAccount
+Edit a existed account with its username and password.
+Format: `editaccount INDEX u/USERNAME [p/PASSWORD]`
+
+****
+* Edits the account at the specified INDEX. The index refers to the index number shown in the displayed list when 'listAccounts' is used. The index must be a positive integer 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+****
+
+Examples:
+
+* `editaccount 2 p/123123` +
+Changes the password of the second account to 123123!
+* `editaccount 2 u/John` +
+Changes the username of the second account to John!
+
+Result: +
+Before execute  `editaccount 2 u/John`: +
+image:editAccount1.png[width="790"]+
+After execute `editaccount 2 u/John`: +
+image:editAccount2.png[width="790"]
+
+==== FindAccount
+
+Finds accounts whose username contain the given keywords.
+
+Format: `findaccount KEYWORD`
+
+****
+* The search is case insensitive. e.g `WAN` will match `wan`.
+* Only the username is searched.
+****
+
+Examples:
+
+* `findaccount ad` +
+Returns `admin`.
+* `findaccount AdMin` +
+Returns `admin`.
+
+==== DeleteAccount
+Deletes a specified account from Tasketch.
+
+Format: `deleteaccount INDEX_NUMBER`
+
+****
+* Each account is identified by a index number shown in the account list.
+* Deletes the account with the index number.
+****
+
+Examples:
+
+* `listaccounts` +
+`deleteaccount 2` +
+Deletes the account with index number 2 in task list.
+
+Result: +
+The account of the index number you choose should be delete from accountlist.
+
+==== LoginStatus
+Shows whether the user log in Tasketch and which account the user logged in.
+
+Format: `loginstatus`
+
+Examples:
+
+* `loginstatus` +
+If you do not login with any accounts, return `Not logged in`.
+image:loginStatus.png[width="790"]
+
+* `loginstatus` +
+If you login with default account, return `Logged in as: admin`.
+image:loginStatus1.png[width="790"]
+
+==== Logout
+Log out if you have logged in with an account.
+
+Format: `logout`
+
+Examples:
+
+* `logout` +
+If you do not login with any accounts, return `Already logged out`. +
+image:logout1.png[width="790"]
+
+* `logout` +
+If you login with default account, return `Logged out: admin`. +
+image:logout.png[width="790"]
+
+=== Editing a task : `edit`/`e`
+
+Sometimes, you might have added a task information wrongly or wish to change its information. This command will allow you to
+edit all existing tasks in Tasketch.
+
+Since the Daily Time Planner only includes tasks that start and end on the same date. Editing the start date and end date
+of a task will also lead to some changes.
+
+1. Changing from same start and end date to different dates will remove the task from Daily Time Planner, its corresponding
+time duration will also be deducted.
+
+2. Changing from different start and end date to same dates will make it a daily task, thus to be included into the Daily
+Time Planner, its corresponding time duration will also be added.
+
+3. Maintaining the same start and end dates but changed the start or end time of a task. Its time duration changes will
+also be updated in the Daily Time Planner.
+
+Format: `edit TASK_ID [n/NAME] [st/START_TIME] [et/END_TIME] [d/DESCRIPTION]`
+
+****
+* Edits the task with the index number shown in the task list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing description, the existing description of the task will be removed.
+****
+
+Examples:
+
+* `edit 1 st/12.00 et/14.00 t/GET1018` +
+Edits the start time and end time of the task with ID 1 to be `12.00` and `14.00` respectively. Change the topic to `GET1018`.
+
+Result: +
+The information edited for that task will be updated and reflected in the Task Box. +
+The day related to that edited task will be updated and reflected in the Day Box.
+
+=== Automatically complete input command for user
+If you type something wrongly, the app will automatically correct type error and fulfill their incomplete typed command in command line.
+
+****
+* The input is not case sensitive.
+* If you type a string that is a substring of one of the commands, then command line will fulfill the string with this command.
+* If you type a string that is not a substring of any of the commands, then command line will show the most similar command compared this string.
+* if you type a string can not match any command, then command line will show `No command matched`.
+****
+
+Examples：
+
+* If you want to type `list`, you can type `li` instead, and press `TAB` on keyboard. The system will automatically fulfill the command in command line with `list`.
+* If you want to type `history`, but you type `histoe` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
+* If you want to type `add`, but you type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
 
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
+
+https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc[../UserGuide.adoc]
+
+=== Login feature
+
+The login feature will unlock all commands for the users, otherwise the user can only execute following commands:
+
+* `login`
+* `loginStatus`
+* `listAccounts`
+* `findAccount`
+* `help`
+* `history`
+* `exist`
+
+==== Current Implementation
+The login mechanism is facilitated by `LoginCommand`. It extends Command and implements the following operations:
+
+* `LoginCommand#modifyLoginStatus()` — checks whether there exists such username and corresponding password in accountlist. If troue, updates the logged in account status in Model accordingly.
+* `LoginCommand#execute()` — calls LoginCommand#modifyLoginStatus(). Then, checks login status in Model and displays a login success message if true and displays a failure message otherwise.
+
+These operations are exposed in the Model interface as Model#setLoggedInUser() and Model#getLoginStatus() respectively.
+
+Given below is an example usage scenario and how the LoginCommand mechanism behaves at each step.
+
+*Step 1*: The user executes `login u/admin p/admin` command to log into Tasketch. The username and admin are both "admin".
+
+*Step 2*: The execute command calls `Model#getLoginStatus()` and checks whether the user has already logged in with an account. If true, execute throws a CommandException notifying the user that he is already logged in.
+
+*Step 3*: The execute command then calls `LoginCommand#modifyLoginStatus()`.It checks whether the username "admin" and its corresponding password "admin" exists in the accountlist.
+
+*Step 4*: If there exists such an account, `LoginCommand#modifyLoginStatus()` calls `Model#setLoggedInUser()` which updates the logged in account status in model with the logged in account set to admin and logged in status set to true.
+
+*Step 5*: The login command checks the login status according to `Model#getLoginStatus()`. A success message is printed if true; otherwise a failure message is printed.
+
+The following sequence diagram shows how the login operation works:
+
+image::LoginSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How login executes
+
+* **Alternative 1 (current choice):** Check against various accounts stored in a file and allow access if match.
+** Pros: It allows multiple accounts to access to Taskbook.
+** Cons: It may cost more memory to store the account list.
+* **Alternative 2:** Checks against a single account that can be modified.
+** Pros: It will use less memory.
+** Cons: Only one account can access to Taskbook. If the user accidently loses the account, the whole application may be locked up.
+
+=== Automatically complete input command feature
+
+Auto-complete uses tab as a signal to trigger auto-complete and the command box will automatically complete the incomplete input.
+
+==== Current Implementation
+
+When a user press TAB key, if the command is incomplete, Auto-complete feature will fulfill the automatically. If the command is completed, Auto- complete feature will fulfill the format string of corresponding parameters of the command.
+
+Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
+
+*Step 1*: The user type an command in command line and press `TAB` from keyboard.
+
+*Step 2*: The command will be compared with `CommandBox#CommandList`. If the typed command is in `CommandBox#CommandList`, which means it is a valid command, then call `CommandBox#showParameterForCommand()` to fulfill the format string of parameters of the command.
+
+*Step 3*: Otherwise, `TAB` will call `CommandBox#autoCompleteInputCommand()` to fulfill the incomplete command.
+
+*Step 4*: `CommandBox#autoCompleteInputCommand()` will call `CommandBox#getMostSimilarCommand()` to get the most similar command from `Comm,andBox#CommandList`.
+
+*Step 4*: `CommandBox#getMostSimilarCommand()` will call `CommandBox#compare()` to get the similarity by caculating the times of editing needed for changing the input command into command in `CommandBox#CommandList`.
+
+*Step 5*:  If the similarity between the input command and the most similar command is more than 0.5, then replace the incomplete command with the most similar command. Otherwise, fulfill the command line with "No matched command".
+
+The following sequence diagram shows an example of how the Auto-complete operation works with incomplete command `histoe` (closest command is `history`):
+
+image::Auto-completeSequenceDiagram_01.png[width="650"]
+
+==== Design Considerations
+
+* **Alternative 1:** Auto-complete the input command by that if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command.
+** Pros: Simple.
+** Cons: If the user wrongly types the incomplete command, it can not correct them.
+* **Alternative 2(current choice):**if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. If the input incomplete command is not a substring of any commands in CommandList, caculate the similarity and return the most similar command by applying a math concept: Levenshtein Distance.
+** Pros: Even if the user wrongly type a command, Auto-complete feature can correct it.
+** Cons: Difficult to design the algorithm.
 
 //include::../DeveloperGuide.adoc[tag=undoredo]
 

@@ -24,6 +24,7 @@ public class RemindCommand extends Command {
             + "1. start/ddl: Tasketch will give a reminding task list ordered by task start time or deadline.\n"
             + "2. a/e/c/r/o start/ddl: Tasketch will give a reminding task list of specified category\n"
             + "of tasks ordered by start time or deadline.\n";
+    public static final String MESSAGE_REMIND_SUCCESS = "Reminder shown!";
     public static final String MESSAGE_LOGIN = "Please login first";
     private String arguments;
     private ObservableList<Task> shownTaskList;
@@ -135,6 +136,6 @@ public class RemindCommand extends Command {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
         }
 
-        return new CommandResult("Reminder shown!");
+        return new CommandResult(MESSAGE_REMIND_SUCCESS);
     }
 }

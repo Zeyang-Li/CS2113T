@@ -81,7 +81,7 @@ public class ClearCommand extends Command {
     /**
      * Boolean function that help predicate to check valid date format.
      */
-    public boolean isValidDate(String checkingDate) {
+    public static boolean isValidDate(String checkingDate) {
         final String[] specificDateList = checkingDate.split("-");
 
         if (specificDateList.length == 3) {
