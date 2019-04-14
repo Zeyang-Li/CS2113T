@@ -11,7 +11,7 @@ endif::[]
 == PROJECT: Tasketch
 
 ---
-Hello there~!:)
+Hello there~! :)
 
 This is Jingchen from the `Tasketch` project team. This project is under National University of Singapore, School of Computing's module CS2113T and CS2101. My teammates and I aim to create a software which helps NUS students manage their time properly. This portfolio serves to document my work on Tasketch.
 
@@ -46,6 +46,7 @@ image::Ui.png[width="1000"]
 *** Updated previous commands (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/51[#51], https://github.com/CS2113-AY1819S2-T09-2/main/pull/45[#45])
 ** Documentation:
 *** Updated UserGuide and DeveloperGuide. (available https://github.com/jingchen-z/main/blob/master/docs/UserGuide.adoc[UserGuide] https://github.com/jingchen-z/main/blob/master/docs/DeveloperGuide.adoc[DeveloperGuide])
+*** Updated sample picture with sample data.(https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/images/Ui.png[Sample UI])
 ** Community:
 *** Reviewed most of the Pull Request.
 *** Some parts of the history feature I added was referenced by several other class mates.
@@ -116,7 +117,7 @@ Shows the whole timeline for 1st April 2019.
 image::timeline_date.png[width="790"]
 
 [TIP]
-Timeline will only show the tasks between 6:00am to 24:pm. Sleep early is a good habit~
+Timeline will only show the tasks between 6:00am to 24:pm. Sleeping early is a good habit~
 
 
 === Searching tasks by keywords: `find`/`f`

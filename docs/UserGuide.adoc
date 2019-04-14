@@ -425,7 +425,7 @@ Shows the whole timeline for 1st April 2019.
 image::timeline_date.png[width="790"]
 
 [TIP]
-Timeline will only show the tasks between 6:00am to 24:pm. Sleep early is a good habit~
+Timeline will only show the tasks between 6:00am to 24:pm. Sleeping early is a good habit~
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
