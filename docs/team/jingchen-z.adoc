@@ -14,8 +14,8 @@ This is Jingchen from the `Tasketch` project team. This project is under Nationa
 
 image::Ui.png[width="1000"]
 
-`Tasketch` is a *time management* software helping NUS students who need to manage their time by allocating time to daily tasks. More importantly, `Tasketch` is optimized for those who prefer to use a desktop app and work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). +
-`Tasketch` is morphed from `addressbook-level4` by 5 students, namely Cheah Zhi Kang, Jin Shibo, Li Zeyang, Wan Chunwei (my teammates) and Zhang Jingchen(me).
+`Tasketch` is a *time management* software aiming to help NUS students who need to manage their time by allocating time to daily tasks. More importantly, `Tasketch` is optimized for those who prefer to use a desktop app and work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). +
+`Tasketch` is morphed from `addressbook-level4` by 5 students, namely *Cheah Zhi Kang*, *Jin Shibo*, *Li Zeyang*, *Wan Chunwei* (my teammates) and *Zhang Jingchen*(me).
 
 == Summary of contributions
 
@@ -34,7 +34,7 @@ image::Ui.png[width="1000"]
 ** Project management:
 *** The UI designer and the person in charge of group work coordination.
 *** Managed releases `v1.0` - `v1.4` (2 releases) on GitHub
-*** Helped in setting up issue trackers.
+*** Helped in setting up issue trackers, set up Travis-CI and auto-update of project page.
 ** Enhancements to existing features:
 *** Improved the GUI structure.
 *** Updated the GUI arrangement and corresponding enhancing features (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/83[#83], https://github.com/CS2113-AY1819S2-T09-2/main/pull/91[#91], https://github.com/CS2113-AY1819S2-T09-2/main/pull/96[#96])
@@ -42,7 +42,6 @@ image::Ui.png[width="1000"]
 ** Documentation:
 *** Updated UserGuide and DeveloperGuide. (available https://github.com/jingchen-z/main/blob/master/docs/UserGuide.adoc[UserGuide] https://github.com/jingchen-z/main/blob/master/docs/DeveloperGuide.adoc[DeveloperGuide])
 ** Community:
-*** PRs reviewed: https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
 *** Reviewed most of the Pull Request.
 *** Some parts of the history feature I added was referenced by several other class mates.
 *** My UI structure and design are referenced.
@@ -57,7 +56,7 @@ image::Ui.png[width="1000"]
 
 https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc[../UserGuide.adoc]
 
-= View calender & timeline
+== View calender & timeline
 
 === Set the calendar to desired month : `month`
 
@@ -197,10 +196,10 @@ These two parts will help the user better arrange their time usage by visualizat
 
 * **Alternative 1 (current choice):** Use a 2-D array to store of PreTask objects instead of using Task objects.
 ** Pros: Saves memory since filtering requires a copy of task details.
-** Cons: Similar class is created. Not very friendly to maintain.
+** Cons: Similar class is created. 
 * **Alternative 2:** Use a 2-D array to store Task objects.
 ** Pros: More intuitive and easy to implement since no new class is created.
-** Cons: Requires more memory and computational power.
+** Cons: Requires more memory and computation power.
 
 // end::Effective Visualization[]
 
