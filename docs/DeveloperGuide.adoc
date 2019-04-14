@@ -104,7 +104,8 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 === Architecture
 
 .Architecture Diagram
-image::Architecture.png[width="600"]
+
+image::architecture.png[width="800"]
 
 The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
 

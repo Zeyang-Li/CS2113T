@@ -176,8 +176,4 @@ image::RemindSequenceDiagram.png[width="650"]
 
 
 
-== PROJECT: PowerPointLabs
 
----
-
-_{Optionally, you may include other projects in your portfolio.}_
