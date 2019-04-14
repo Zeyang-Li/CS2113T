@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.CS2100;
 import static seedu.address.testutil.TypicalTasks.CS2110;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
-import static seedu.address.testutil.TypicalTasks.sameStartDateWithCS2110;
+import static seedu.address.testutil.TypicalTasks.SAMESTARTDATEWITHCS2110;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -21,9 +21,9 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.AccountList;
-import seedu.address.model.TaskBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.account.Username;
 import seedu.address.model.task.Task;
@@ -50,7 +50,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_emptyTaskBook_success() throws DataConversionException, IllegalValueException, IOException {
+    public void emptyTaskBook_success() throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager();
         expectedModel.commitTaskBook();
@@ -60,7 +60,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyTaskBook_success()
+    public void nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
@@ -72,7 +72,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_clearBefore_nonEmptyTaskBook_success()
+    public void clearBefore_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
@@ -82,7 +82,7 @@ public class ClearCommandTest {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
 
-        List<Task> tasksToBeCleared = new ArrayList<>(Arrays.asList(CS2110, sameStartDateWithCS2110, CS2100));
+        List<Task> tasksToBeCleared = new ArrayList<>(Arrays.asList(CS2110, SAMESTARTDATEWITHCS2110, CS2100));
         expectedModel.deleteTaskList(tasksToBeCleared);
 
         expectedModel.commitTaskBook();
@@ -92,12 +92,12 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_clearSpecificDate_nonEmptyTaskBook_success()
+    public void clearSpecificDate_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
 
-        List<Task> tasksToBeCleared = new ArrayList<>(Arrays.asList(CS2110, sameStartDateWithCS2110));
+        List<Task> tasksToBeCleared = new ArrayList<>(Arrays.asList(CS2110, SAMESTARTDATEWITHCS2110));
         expectedModel.deleteTaskList(tasksToBeCleared);
 
         expectedModel.commitTaskBook();
@@ -107,7 +107,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_clearSpecificDate2_nonEmptyTaskBook_success()
+    public void clearSpecificDate2_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
@@ -119,12 +119,12 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_clearSpecificMonth_nonEmptyTaskBook_success()
+    public void clearSpecificMonth_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
 
-        List<Task> tasksToBeCleared = new ArrayList<>(Arrays.asList(CS2110, sameStartDateWithCS2110));
+        List<Task> tasksToBeCleared = new ArrayList<>(Arrays.asList(CS2110, SAMESTARTDATEWITHCS2110));
         expectedModel.deleteTaskList(tasksToBeCleared);
 
         expectedModel.commitTaskBook();
@@ -134,7 +134,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_clearSpecificMonth2_nonEmptyTaskBook_success()
+    public void clearSpecificMonth2_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
@@ -146,7 +146,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_DateWithNoTask_nonEmptyTaskBook_success()
+    public void DateWithNoTask_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
@@ -158,7 +158,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_invalidDate_nonEmptyTaskBook_success()
+    public void invalidDate_nonEmptyTaskBook_success()
             throws DataConversionException {
 
         assertCommandFailure(new ClearCommand("aabb"), model, commandHistory,

@@ -33,7 +33,7 @@ public class TypicalTasks {
             .withStartDate("01-01-11").withStartTime("01.00").withEndDate("02-01-11").withEndTime("02.00")
             .withDescription("Do sequence").withCategory("a")
             .withTags("CS2110").build();
-    public static final Task sameStartDateWithCS2110 = new TaskBuilder().withName("sameStartDateWithCS2110")
+    public static final Task SAMESTARTDATEWITHCS2110 = new TaskBuilder().withName("sameStartDateWithCS2110")
             .withStartDate("01-01-11").withStartTime("01.00").withEndDate("02-01-11").withEndTime("02.00")
             .withDescription("Do sequence").withCategory("c")
             .withTags("sameStartDateWithCS2110").build();
@@ -41,11 +41,11 @@ public class TypicalTasks {
             .withStartDate("03-03-03").withStartTime("03.00").withCategory("e")
             .withDescription("Do user").withEndDate("04-03-04").withEndTime("04.00")
             .withTags("CS2100").build();
-    public static final Task neverStart = new TaskBuilder().withName("neverStart")
+    public static final Task NEVERSTART = new TaskBuilder().withName("neverStart")
             .withStartDate("01-01-99").withStartTime("03.00").withCategory("r")
             .withDescription("test clear command").withEndDate("04-03-99").withEndTime("04.00")
             .withTags("NeverEnd").build();
-    public static final Task neverStart2 = new TaskBuilder().withName("neverStart2")
+    public static final Task NEVERSTART2 = new TaskBuilder().withName("neverStart2")
             .withStartDate("01-01-60").withStartTime("03.00").withCategory("o")
             .withDescription("second test clear command").withEndDate("04-03-60").withEndTime("04.00")
             .withTags("NeverEnd").build();
@@ -84,7 +84,7 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(CS2110, sameStartDateWithCS2110, CS2100, neverStart, neverStart2));
+        return new ArrayList<>(Arrays.asList(CS2110, SAMESTARTDATEWITHCS2110, CS2100, NEVERSTART, NEVERSTART2));
     }
 
 }

@@ -21,7 +21,7 @@ import seedu.address.model.account.Username;
 
 public class RedoCommandTest {
 
-    private final Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(),new AccountList());
+    private final Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), new AccountList());
     private final Model expectedModel = new ModelManager(getTypicalTaskBook(), new UserPrefs(), new AccountList());
     private final CommandHistory commandHistory = new CommandHistory();
 
