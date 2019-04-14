@@ -28,21 +28,26 @@ public class MonthCommand extends Command {
     private String parameter = " ";
 
     public MonthCommand(String c) throws ParseException {
+        c = c.replaceAll("\\s", "");
         //System.out.println(c);
-        if (c.equals(" +")) {
+        if (c.equals("+")) {
             this.parameter = "next";
-        } else if (c.equals(" -")) {
+        } else if (c.equals("-")) {
             this.parameter = "previous";
         } else if (c.replaceAll("\\s", "").equals("")) {
             this.parameter = "this";
         } else {
-            throw new ParseException(MESSAGE_ILLEGAL);
+            parameter = MESSAGE_ILLEGAL;
         }
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException, ParseException {
         requireNonNull(model);
+
+        if (parameter.equals(MESSAGE_ILLEGAL)) {
+            return new CommandResult(MESSAGE_ILLEGAL);
+        }
 
         if (!model.getLoginStatus()) {
             throw new CommandException(MESSAGE_LOGIN);
