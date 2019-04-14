@@ -70,7 +70,7 @@ public class ListCommand extends Command {
             Predicate<Task> predicate = task -> meetRequirementCategory(task);
             model.updateFilteredTaskList(predicate);
             return new CommandResult(String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)));
-        } else if (ClearCommand.isValidDate(arguments[0])){
+        } else if (ClearCommand.isValidDate(arguments[0])) {
 
             specifiedDate = arguments[0];
             Predicate<Task> predicate = task -> meetRequirementDate(task);
