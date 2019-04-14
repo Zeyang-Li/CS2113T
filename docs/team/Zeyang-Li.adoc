@@ -80,9 +80,8 @@ Note the following symbols and formatting used in this document:
 *** Updated the clear command to clear tasks which start from one specific date or month, as well as to clear all tasks that are finished before today. +
 (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/65[#65], https://github.com/CS2113-AY1819S2-T09-2/main/pull/70[#70])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide, developer guide to make them more organized and user friendly: https://github.com/CS2113-AY1819S2-T09-2/main/pull/118[#118], https://github.com/CS2113-AY1819S2-T09-2/main/pull[to be added]
+*** Did cosmetic tweaks to existing contents of the User Guide, developer guide to make them more organized and user friendly: https://github.com/CS2113-AY1819S2-T09-2/main/pull/118[#118]
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#28], https://github.com[#31], https://github.com[#32], https://github.com[#35], https://github.com[#52], https://github.com[#58], https://github.com[#65]
 *** Contributed to issues (examples:  https://github.com/CS2113-AY1819S2-T09-2/main/issues/127[1], https://github.com/CS2113-AY1819S2-T09-2/main/issues/101[2],
 https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/CS2113-AY1819S2-T09-2/main/issues/53[4])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/cs2113-ay1819s2-t11-3/main/issues/82[1], https://github.com/cs2113-ay1819s2-t11-3/main/issues/89[2], https://github.com/cs2113-ay1819s2-t11-3/main/issues/91[3], https://github.com/cs2113-ay1819s2-t11-3/main/issues/95[4], )
@@ -95,12 +94,9 @@ https://github.com/CS2113-AY1819S2-T09-2/main/issues/75[3], https://github.com/C
 They showcase my ability to write documentation targeting end-users. +
 Here are the links to other contributions I made to the UserGuide. +
 [https://github.com/Zeyang-Li/main/blob/master/docs/UserGuide.adoc#clearing-all-tasks-clearc[Clear tasks]]
-[https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#versioned-tasketch[Versioned Tasketch]]
-[https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#viewing-help-help[Viewing help]]
-[https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#exiting-the-program-exit[Exiting the program]]_
 |===
 
-=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#getting-wrong-command-suggestions[Getting wrong command suggestions]
+=== Getting wrong command suggestions
 
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
 by giving a list of closest approximations of word through the message box after pressing ENTER. +
@@ -130,7 +126,7 @@ image::WrongCommandSuggestion_hsitryo.png[width="790"]
 +
 _Figure 4: Outcome for example 3._
 
-=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc#importexport[Import/Export]
+=== Import/Export
 
 This feature allows you to import an existing json file which contains your other tasks in Tasketch. Also, it supports
 the product to export what you have in the Tasketch to a json file if you want.
@@ -188,7 +184,7 @@ Examples:
 |===
 
 // tag::wrongCommandSuggestion[]
-=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#wrong-command-suggestion-feature[Wrong Command Suggestion feature]
+=== Wrong Command Suggestion feature
 
 The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
 
@@ -233,7 +229,7 @@ image::WrongCommandSuggestionSequenceDiagram.png[width="850"]
 // end::wrongCommandSuggestion[]
 
 // tag::import/export[]
-=== https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/DeveloperGuide.adoc#importexport-feature[Import/Export feature]
+=== Import/Export feature
 
 ==== Current Implementation
 
