@@ -61,7 +61,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskBook_WithCategoryA() throws Exception {
+    public void execute_exportWithCategoryA() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "a");
@@ -74,7 +74,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskBook_WithCategoryE() throws Exception {
+    public void execute_exportWithCategoryE() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "e");
@@ -87,7 +87,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskBook_WithCategorR() throws Exception {
+    public void execute_exportWithCategorR() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "r");
@@ -100,7 +100,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskBook_WithCategoryO() throws Exception {
+    public void execute_exportWithCategoryO() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "o");
