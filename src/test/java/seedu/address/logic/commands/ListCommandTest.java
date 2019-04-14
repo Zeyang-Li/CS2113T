@@ -6,8 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +19,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAccountList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.account.Username;
-import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
