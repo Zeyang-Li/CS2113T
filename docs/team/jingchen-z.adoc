@@ -8,7 +8,7 @@
 ---
 Hello there~!:)
 
-This is Jingchen from the `Tasketch` project team. This project is under National University of Singapore, School of Computing's module CS2113T. My teammates and I aim to create a software which helps NUS students manage their time properly. This portfolio serves to document my work on Tasketch.
+This is Jingchen from the `Tasketch` project team. This project is under National University of Singapore, School of Computing's module CS2113T and CS2101. My teammates and I aim to create a software which helps NUS students manage their time properly. This portfolio serves to document my work on Tasketch.
 
 == Overview
 
@@ -90,6 +90,7 @@ Shows the timeline of today by default. +
 Shows the timeline of that date. +
 
 [NOTE]
+
 After adding or editing a task, user needs to retype `timeline [DATE]` to refresh the timeline. +
 This implementation is to make sure this feature is not purely part of UI.
 
@@ -196,7 +197,7 @@ These two parts will help the user better arrange their time usage by visualizat
 
 * **Alternative 1 (current choice):** Use a 2-D array to store of PreTask objects instead of using Task objects.
 ** Pros: Saves memory since filtering requires a copy of task details.
-** Cons: Similar class is created. 
+** Cons: Similar class is created.
 * **Alternative 2:** Use a 2-D array to store Task objects.
 ** Pros: More intuitive and easy to implement since no new class is created.
 ** Cons: Requires more memory and computation power.
