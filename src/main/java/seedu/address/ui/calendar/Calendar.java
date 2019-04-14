@@ -84,7 +84,7 @@ public class Calendar extends Node {
 
         //view.getChildren().add(weekDayLabel);
         //view.getChildren().add(calendar);
-        
+
         view = new VBox(new Text(""), weekDayLabel, calendar);
     }
 
