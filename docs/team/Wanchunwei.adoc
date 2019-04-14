@@ -334,47 +334,40 @@ image::LoginSequenceDiagram.png[width="800"]
 ** Pros: It will use less memory.
 ** Cons: Only one account can access to Taskbook. If the user accidently loses the account, the whole application may be locked up.
 
-=== Wrong Command Suggestion feature
+=== Automatically complete input command feature
 
-The suggestions feature gives users helpful suggestions on what command to type, and corrections for commands when incorrect commands are being entered.
+Auto-complete uses tab as a signal to trigger auto-complete and the command box will automatically complete the incomplete input.
 
 ==== Current Implementation
 
-When a user completes entering a command (after pressing ENTER key), if the command typed is invalid, the system will suggest a similar command based on the edit distance (which will be explained later).
+When a user press TAB key, if the command is incomplete, Auto-complete feature will fulfill the automatically. If the command is completed, Auto- complete feature will fulfill the format string of corresponding parameters of the command.
 
 Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
 
-*Step 1*: The user would type in the command string wrongly.
+*Step 1*: The user type an command in command line and press `TAB` from keyboard.
 
-*Step 2*: The command would be parsed into the TaskBookParser class. Since no commands match the word exactly, it would fall into the default case.
+*Step 2*: The command will be compared with `CommandBox#CommandList`. If the typed command is in `CommandBox#CommandList`, which means it is a valid command, then call `CommandBox#showParameterForCommand()` to fulfill the format string of parameters of the command.
 
-*Step 3*: The default case would extract out only the command portion of the user input, and input it into the WrongCommandSuggestion class.
+*Step 3*: Otherwise, `TAB` will call `CommandBox#autoCompleteInputCommand()` to fulfill the incomplete command.
 
-*Step 4*: WrongCommandSuggestion would first check the alphabets occurrence in the command word typed by users, if there is any correct command word has the same alphabets occurrence, WrongCommandSuggestion will return this command word immediately.
+*Step 4*: `CommandBox#autoCompleteInputCommand()` will call `CommandBox#getMostSimilarCommand()` to get the most similar command from `Comm,andBox#CommandList`.
 
-*Step 5*: Otherwise, WrongCommandSuggestion then would then instantiate the StringSimilarity class to find the nearest match of a word.
+*Step 4*: `CommandBox#getMostSimilarCommand()` will call `CommandBox#compare()` to get the similarity by caculating the times of editing needed for changing the input command into command in `CommandBox#CommandList`.
 
-*Step 6*: editDistance in StringSimliarity class would be called to find out the edit distance between two words. These two words would be the wrong command the user has input, and the list of available commands in the whole application.
+*Step 5*:  If the similarity between the input command and the most similar command is more than 0.5, then replace the incomplete command with the most similar command. Otherwise, fulfill the command line with "No matched command".
 
-*Step 7*: WrongCommandSuggestion would then compare if the edit distance of the current command is shorter than the current shortest edit distance command (which is initialised to 3 edits). If it is shorter, it would then suggest the current command.
+The following sequence diagram shows an example of how the Auto-complete operation works with incomplete command `histoe` (closest command is `history`):
 
-*Step 8*: WrongCommandSuggestion would then return the suggestion in a string, which would then be inputted into the CommandException, to be thrown to the LogicManager class.
-
-The following sequence diagram shows an example of how the WrongCommandSuggestion operation works with wrongly spelt command `clarr` (closest command is `clear`):
-
-image::WrongCommandSuggestionSequenceDiagram.png[width="850"]
+image::Auto-completeSequenceDiagram_01.png[width="650"]
 
 ==== Design Considerations
 
-* **Alternative 1:** Compare the input command and the actual command character by character and see which command has the most matches.
-** Pros: Easy to implement.
-** Cons: Not as accurate or reliable in terms of giving a correct match of command.
-* **Alternative 2:** Use a string matching algorithm to implement the matching and difference calculation between the command and the user input.
-** Pros: Accurate prediction or suggestions from actual commands.
-** Cons: Difficult to implement, and might require more processing overhead.
-* **Alternative 3(current choice):** Combination of the two.
-** Pros: More accurate prediction.
-** Cons: More difficult to implement.
+* **Alternative 1:** Auto-complete the input command by that if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command.
+** Pros: Simple.
+** Cons: If the user wrongly types the incomplete command, it can not correct them.
+* **Alternative 2(current choice):**if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. If the input incomplete command is not a substring of any commands in CommandList, caculate the similarity and return the most similar command by applying a math concept: Levenshtein Distance.
+** Pros: Even if the user wrongly type a command, Auto-complete feature can correct it.
+** Cons: Difficult to design the algorithm.
 
 //include::../DeveloperGuide.adoc[tag=undoredo]
 
