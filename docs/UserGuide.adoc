@@ -116,7 +116,7 @@ You must login to manage your Tasketch and unlock all commands.
 
 Format:  `login u/USERNAME p/PASSWORD`
 
-Examples: 
+Examples:
 
 * `login u/admin p/admin` +
 login with the default account if no account has logged in Tasketch. +
@@ -126,8 +126,8 @@ image:login3.png[width="790"]
 login with the default account if an account has already logged in Tasketch.. +
 image:login1.png[width="790"]
 
-=== AddAccount 
-Add a new account to Tasketch 
+=== AddAccount
+Add a new account to Tasketch
 
 Format: `addAccount u/USERNAME p/PASSWORD`
 
@@ -156,7 +156,7 @@ Examples:
 Lists all the accounts in the accountlist
 
 Result: +
-You should see a list of all the accounts in the Result Box. + 
+You should see a list of all the accounts in the Result Box. +
 image:listAccounts.png[width="790"]
 
 === EditAccount
@@ -178,8 +178,8 @@ Changes the username of the second account to John!
 
 Result: +
 Before execute  `editAccount 2 u/John`: +
-image:editAccount1.png[width="790"]+ 
-After execute `editAccount 2 u/John`: + 
+image:editAccount1.png[width="790"]+
+After execute `editAccount 2 u/John`: +
 image:editAccount2.png[width="790"]
 
 === FindAccount
@@ -198,7 +198,7 @@ Examples:
 * `findAccount ad` +
 Returns `admin`.
 * `findAccount AdMin` +
-Returns `admin`. 
+Returns `admin`.
 
 === DeleteAccount
 Deletes a specified account from Tasketch.
@@ -220,7 +220,7 @@ Result: +
 The account of the index number you choose should be delete from accountlist.
 
 === LoginStatus
-Shows whether the user log in Tasketch and which account the user logged in. 
+Shows whether the user log in Tasketch and which account the user logged in.
 
 Format: `loginStatus`
 
