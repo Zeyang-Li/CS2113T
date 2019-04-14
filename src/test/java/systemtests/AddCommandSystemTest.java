@@ -58,9 +58,8 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
     @Test
     public void add() {
         Model model = getModel();
-        Username admin = new Username("admin");
-        model.setLoggedInUser(admin);
-        //assertCommandSuccess("login");
+
+        assertCommandSuccess("login");
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
@@ -136,10 +135,10 @@ public class AddCommandSystemTest extends TaskBookSystemTest {
                 + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + CATEGORY_DESC_CS2113;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
-//        /* Case: missing categories -> rejected */
-//        command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
-//                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
-//        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        /* Case: missing categories -> rejected */
+        command = AddCommand.COMMAND_WORD + NAME_DESC_CS2113 + STARTDATE_DESC_CS2113 + STARTTIME_DESC_CS2113
+                + ENDDATE_DESC_CS2113 + ENDTIME_DESC_CS2113 + DESCRIPTION_DESC_CS2113;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: invalid command -> rejected */
         command = "adds " + TaskUtil.getTaskDetails(toAdd);

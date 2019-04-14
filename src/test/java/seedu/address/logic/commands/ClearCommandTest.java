@@ -4,8 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.CS2100;
 import static seedu.address.testutil.TypicalTasks.CS2110;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 import static seedu.address.testutil.TypicalTasks.SAMESTARTDATEWITHCS2110;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

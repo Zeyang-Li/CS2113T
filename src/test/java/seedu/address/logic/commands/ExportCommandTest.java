@@ -31,7 +31,6 @@ public class ExportCommandTest {
     private Model model;
     private Model expectedModel;
     private Path exportFilePath;
-    private Path wrongFileType;
 
     @Before
     public void setUp() {
@@ -41,7 +40,6 @@ public class ExportCommandTest {
         model.setLoggedInUser(admin);
 
         exportFilePath = Paths.get("src", "test", "data", "sandbox", "testExportCommand.json");
-        wrongFileType = Paths.get("tryWrong.xml");
     }
 
     @Test
@@ -63,7 +61,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskbook_WithCategoryA() throws Exception {
+    public void taskBook_WithCategoryA() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "a");
@@ -76,7 +74,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskbook_WithCategoryE() throws Exception {
+    public void taskBook_WithCategoryE() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "e");
@@ -89,7 +87,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskbook_WithCategorR() throws Exception {
+    public void taskBook_WithCategorR() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "r");
@@ -102,7 +100,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void taskbook_WithCategoryO() throws Exception {
+    public void taskBook_WithCategoryO() throws Exception {
 
         expectedModel = model;
         ExportCommand exportCommand = new ExportCommand(exportFilePath, "o");
