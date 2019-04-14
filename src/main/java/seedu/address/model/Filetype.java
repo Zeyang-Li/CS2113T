@@ -12,7 +12,7 @@ import java.util.EnumSet;
 public class Filetype {
 
     public static final String MESSAGE_FILETYPE_CONSTRAINTS =
-            "Filetype can take either \"csv\" or \"vcf\", and it should not be blank";
+            "Filetype make be \"json\", and it should not be blank";
 
     /**
      * The first character of the filetype must not be a whitespace,
@@ -24,7 +24,7 @@ public class Filetype {
      * Filetypes that can be used to export contacts.
      */
     public enum Extension {
-        csv, vcf
+        json
     }
 
     private final String value;

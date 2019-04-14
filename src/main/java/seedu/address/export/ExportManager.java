@@ -18,7 +18,7 @@ import seedu.address.storage.JsonSerializableTaskBook;
 
 
 /**
- * Manages exporting of AddressBook data.
+ * Manages exporting of TaskBook data.
  */
 public class ExportManager implements Export {
 
@@ -99,7 +99,6 @@ public class ExportManager implements Export {
             FileUtil.createIfMissing(filePath);
         }
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
         JsonFileStorage.saveAccountListToFile(filePath, new JsonSerializableAccountList(filteredAccountList));
     }
 

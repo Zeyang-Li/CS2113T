@@ -247,6 +247,10 @@ public class ModelManager implements Model {
 
         versionedTaskBook.setTask(target, editedTask);
     }
+    @Override
+    public void resetData(ReadOnlyTaskBook newData) {
+        versionedTaskBook.resetData(newData);
+    }
 
     //=========== Filtered Task List Accessors =============================================================
 

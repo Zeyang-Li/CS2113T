@@ -3,17 +3,25 @@ package seedu.address.logic.suggestions;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditAccountCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.FindAccountCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ListAccountsCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoginCommand;
+import seedu.address.logic.commands.LoginStatusCommand;
+import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.MonthCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
@@ -36,16 +44,24 @@ public class WrongCommandSuggestion implements Suggestion {
     static {
         CommandList = new String[] {
             AddCommand.COMMAND_WORD,
+            AddAccountCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
+            DeleteAccountCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
+            EditAccountCommand.COMMAND_WORD,
             ExportCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
+            FindAccountCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             HistoryCommand.COMMAND_WORD,
             ImportCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
+            ListAccountsCommand.COMMAND_WORD,
+            LoginCommand.COMMAND_WORD,
+            LogoutCommand.COMMAND_WORD,
+            LoginStatusCommand.COMMAND_WORD,
             MonthCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
             RemindCommand.COMMAND_WORD,

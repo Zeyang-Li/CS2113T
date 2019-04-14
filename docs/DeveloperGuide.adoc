@@ -204,6 +204,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Task Book and Account List data.
+* stores currently logged in Account.
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * exposes an unmodifiable `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -235,6 +236,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+//tag::Login[]
+
+=== Login feature
+
+The login feature will unlock all commands for the users, otherwise the user can only execute following commands:
+
+* `login`
+* `loginStatus`
+* `listAccounts`
+* `findAccount`
+* `help`
+* `history`
+* `exist`
+
+==== Current Implementation
+The login mechanism is facilitated by `LoginCommand`. It extends Command and implements the following operations:
+
+* `LoginCommand#modifyLoginStatus()` — checks whether there exists such username and corresponding password in accountlist. If troue, updates the logged in account status in Model accordingly.
+* `LoginCommand#execute()` — calls LoginCommand#modifyLoginStatus(). Then, checks login status in Model and displays a login success message if true and displays a failure message otherwise.
+
+These operations are exposed in the Model interface as Model#setLoggedInUser() and Model#getLoginStatus() respectively.
+
+Given below is an example usage scenario and how the LoginCommand mechanism behaves at each step.
+
+*Step 1*: The user executes `login u/admin p/admin` command to log into Tasketch. The username and admin are both "admin".
+
+*Step 2*: The execute command calls `Model#getLoginStatus()` and checks whether the user has already logged in with an account. If true, execute throws a CommandException notifying the user that he is already logged in.
+
+*Step 3*: The execute command then calls `LoginCommand#modifyLoginStatus()`.It checks whether the username "admin" and its corresponding password "admin" exists in the accountlist.
+
+*Step 4*: If there exists such an account, `LoginCommand#modifyLoginStatus()` calls `Model#setLoggedInUser()` which updates the logged in account status in model with the logged in account set to admin and logged in status set to true.
+
+*Step 5*: The login command checks the login status according to `Model#getLoginStatus()`. A success message is printed if true; otherwise a failure message is printed.
+
+The following sequence diagram shows how the login operation works:
+
+image::LoginSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Aspect: How login executes
+
+* **Alternative 1 (current choice):** Check against various accounts stored in a file and allow access if match.
+** Pros: It allows multiple accounts to access to Taskbook.
+** Cons: It may cost more memory to store the account list.
+* **Alternative 2:** Checks against a single account that can be modified.
+** Pros: It will use less memory.
+** Cons: Only one account can access to Taskbook. If the user accidently loses the account, the whole application may be locked up.
+
+//end::Login[]
 
 // tag::undoredo[]
 === Versioned Tasketch feature
@@ -320,6 +371,39 @@ image::UndoRedoActivityDiagram.png[width="650"]
 === Automatically complete input command feature
 
 Auto-complete uses tab as a signal to trigger auto-complete and the command box will automatically complete the incomplete input.
+
+==== Current Implementation
+
+When a user press TAB key, if the command is incomplete, Auto-complete feature will fulfill the automatically. If the command is completed, Auto- complete feature will fulfill the format string of corresponding parameters of the command.
+
+Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
+
+*Step 1*: The user type an command in command line and press `TAB` from keyboard.
+
+*Step 2*: The command will be compared with `CommandBox#CommandList`. If the typed command is in `CommandBox#CommandList`, which means it is a valid command, then call `CommandBox#showParameterForCommand()` to fulfill the format string of parameters of the command.
+
+*Step 3*: Otherwise, `TAB` will call `CommandBox#autoCompleteInputCommand()` to fulfill the incomplete command.
+
+*Step 4*: `CommandBox#autoCompleteInputCommand()` will call `CommandBox#getMostSimilarCommand()` to get the most similar command from `Comm,andBox#CommandList`.
+
+*Step 4*: `CommandBox#getMostSimilarCommand()` will call `CommandBox#compare()` to get the similarity by caculating the times of editing needed for changing the input command into command in `CommandBox#CommandList`.
+
+*Step 5*:  If the similarity between the input command and the most similar command is more than 0.5, then replace the incomplete command with the most similar command. Otherwise, fulfill the command line with "No matched command".
+
+The following sequence diagram shows an example of how the Auto-complete operation works with incomplete command `histoe` (closest command is `history`):
+
+image::Auto-completeSequenceDiagram_01.png[width="650"]
+
+==== Design Considerations
+
+* **Alternative 1:** Auto-complete the input command by that if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command.
+** Pros: Simple.
+** Cons: If the user wrongly types the incomplete command, it can not correct them.
+* **Alternative 2(current choice):**if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. If the input incomplete command is not a substring of any commands in CommandList, caculate the similarity and return the most similar command by applying a math concept: Levenshtein Distance.
+** Pros: Even if the user wrongly type a command, Auto-complete feature can correct it.
+** Cons: Difficult to design the algorithm.
+
+
 //end::autoComplete[]
 
 // tag::wrongCommandSuggestion[]
@@ -348,6 +432,10 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 *Step 7*: WrongCommandSuggestion would then compare if the edit distance of the current command is shorter than the current shortest edit distance command (which is initialised to 3 edits). If it is shorter, it would then suggest the current command.
 
 *Step 8*: WrongCommandSuggestion would then return the suggestion in a string, which would then be inputted into the CommandException, to be thrown to the LogicManager class.
+
+The following sequence diagram shows an example of how the WrongCommandSuggestion operation works with wrongly spelt command `clarr` (closest command is `clear`):
+
+image::WrongCommandSuggestionSequenceDiagram.png[width="850"]
 
 ==== Design Considerations
 
@@ -391,10 +479,17 @@ Call **reinitialzeRemindList()** method in **MainWindow** to set remind list to 
 [NOTE]
 The reason of doing this is when we show the remind list in UI, we change it from FXCollections list to a Observable list. However, in current implementation, sorting method can only be applied to FXCollections list. So we need to re-initialize remind list to be a FXCollections list containing all the tasks after each call of remind command.
 
+image::RemindSequenceDiagram.png[width="650"]
 
-// end::reminder[]
+==== Design Consideration
 
-// tag::month/timeline[]
+* **Alternative 1:** Use filteredTaskList as the remind list and all operations which are related to reminder are done to filteredTaskList.
+** Pros: Very easy to implement.
+** Cons: It is not user friendly. When user execute command like "list", "filteredTaskList" will change and as a result the remind list will also change. However, remind list is expected to be concise and up-to-date. It should point to all tasks in storage instead of filteredTaskList and only change when commands like "add" and "delete" are executed.
+* **Alternative 2 (current choice):** Implement a separate remind list in model and maintain the remind list whenever the tasks in storage change.
+** Pros: It is user friendly. As long as users don't change the tasks in the storage, remind list will remain the same. When users make change to tasks, remind command will update remind list.
+** Cons: Hard to implement. Developers need to implement a separate bunch of methods in logic and model interface and class to maintain the remind list.
+
 === Effective Visualization feature
 
 ==== Current Implementation
@@ -454,11 +549,8 @@ Daily Time Planner for monitoring. +
 
 Start time and end time are used for calculating the time period of that task and to be added into the accumulated time
 for a category for that date of a task. ( eg. if the task with date 13-03-19 is a category academic task, its calculated
-time period will be added to the academic accumulated time in the day 13-03-19. )
-
-These information is passed to the `calculateTime()` method in Day object in the form of string, so it has to be
-converted to double data type for calculation purpose using `Double.valueOf()`. Then it has to be rounded up to the power
-of 2 for consistency in data representation.
+time period will be added to the academic accumulated time in the day 13-03-19. ) These information is passed to the
+`calculateTime()` method in Day object in the form of string.
 
 Besides `Task` model being used to represent all the tasks added, there is also `Day` model to represent all the days
 which stores information (date and accumulated time of that 5 task categories) of the tasks added to that day.
@@ -500,6 +592,35 @@ the data of the latest `UniqueTaskList` and `UniqueDayList` will need to transfe
 So, it is better to start in clean state and re-add all the time period of all tasks in the `UniqueTaskList`. The
 `UniqueDayList` will be updated as well.
 
+==== Enhancement to `add` Command
+To ensure the Daily Time Planner works as it intended, some input checks have been implemented to properly guide and to
+ensure the user to input the `add` command correctly.
+
+*Adding Daily Task* +
+With the user inputs, the app will check the start and end dates. If the dates are identical, meaning it is a daily task,
+then the start and end times will be checked through `CheckValidTime(Task)` because it is not correct to have a task to
+end even before it starts. +
+
+If the `CheckValidTime(Task)` results false, the system will throw exception and inform the
+user that it is an invalid command and tell the user that start time must be before the end time.
+
+*Adding Long Term Task* +
+If the dates are not identical, it only means that the task ends after few days from the start date or it can be end date
+is before start date. In order to verify this, the start and end dates need to be checked through `CheckValidDate(Task)`. +
+
+If `CheckValidDate(Task)` results negative, the system will throw exception and inform the user that it is an invalid
+command and tell the user that start date must be before the end date. If it results positive, the system will proceed to
+check the start and end times through `CheckValidTime(Task)` to ensure that the end time is after the start time. If it
+results negative, the system will throw exception and inform the user that it is an invalid command and tell the user
+that start time must be before the end time.
+
+If both `CheckValidDate(Task)` and `CheckValidTime(Task)` are passed, then it is a valid command.
+
+The system will also check for the date and time format. For dates (dd-mm-yy), the days should be more than 0 and less than 32,
+months should be more than 0 and less than 13. For times (hh.mm), the hours should range from 0 to 23, while
+the minutes range from 0 to 59. +
+If the formats are violated, error message with correct usage will be prompted.
+
 // end::timeplanner[]
 
 // tag::import/export[]
@@ -524,17 +645,24 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 6*: The Model interface creates a new Import object and then pass the filePath to the ImportManager.
 
-*Step 7*: The ModelManager will call `Import#readTaskBook()` and get a ReadOnlyTaskBook object.
+*Step 7*: The ModelManager will call `ImportManager#readTaskBook()` and get a ReadOnlyTaskBook object.
 
 [NOTE]
 ====
 The ImportManager class will first check whether the task in the file exists in Tasketch, if there is an existing task, just ignore this task.
 ====
 
+*Step 8*: The ImportManager will then will call `JsonFileStorage#loadDataFromSaveFile()`.
 
-*Step 8*: The ModelManager will then will call `addTasksToTaskBook()`.
+*Step 9*: The JsonFileStorage will then will call `JsonUtil#readJsonFile()`.
 
-*Step 9*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
+*Step 10*: And then the ModelManager will then will call `addTasksToTaskBook()`.
+
+*Step 11*: If there is any new task added, the ModelManager will then call `Model#updateFilteredTaskList()` .
+
+The following sequence diagram shows how the Import operation works:
+
+image::ImportSequenceDiagram.png[width="850"]
 
 ===== Export
 
@@ -552,11 +680,11 @@ Given below is an example usage scenario and how the export mechanism behaves at
 
 *Step 5*: The Logic component then interacts with the Model component by calling `Model#exportFilteredTaskBook()` of the Model interface.
 
-*Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList and the filePath to the ExportManager.
+*Step 6*: The Model interface creates a new Export object and then pass the filteredTaskList.
 
-*Step 7*: The Export object calls `Export#saveFilteredTasks()`.
+*Step 7*: The ExportManager object calls `ExportManager#saveFilteredTasks()`.
 
-*Step 8*: The ExportManager class will call `JsonFileStorage#saveDataToFile()`.
+*Step 8*: Then ExportManager class will call `JsonFileStorage#saveDataToFile()`.
 
 *Step 9*: The JsonFileStorage class will call `JsonUtil#saveJsonFile()`.
 
@@ -568,6 +696,9 @@ Given below is an example usage scenario and how the export mechanism behaves at
 ====
 This File object will creates a new file if there is no existing file with the same name. And if there is an existing file, it will just write to this file no matter it is empty or not.
 ====
+The following sequence diagram shows how the Export operation works:
+
+image::ExportSequenceDiagram.png[width="850"]
 
 ==== Design Considerations
 ===== Aspect: Use what kind of file
@@ -659,8 +790,7 @@ task type each day
 *MSS*
 
 1.  User requests to create a task
-* 1a. User submits the following information. Task Name || Start date || Start time || End date || End time ||
-Description || Task category || Tag
+* 1a. User submits the following information. [Task Name] [Start date] [Start time] [End date] [End time] [Description] [Task category] [Tag]
 2.  TaskBook add that task into the task list
 +
 Use case ends.
@@ -683,7 +813,7 @@ Use case resumes at step 1
 . User request edit -taskID [id] -s [startDateTime] -e [endDateTime] -t [topic] -d [description]
 . TaskBook lists the details of a task and user can edit the description of the task.
 
-	Use case ends
+Use case ends
 
 [discrete]
 === Find a task
@@ -693,7 +823,7 @@ Use case resumes at step 1
 . User request find [keyWords/subString]
 . TaskBook will list all the tasks which satisfy the searching condition.
 
-	Use case ends.
+Use case ends.
 
 [discrete]
 === Delete a task
@@ -704,7 +834,7 @@ Use case resumes at step 1
 . TaskBook list all the task satisfy that keywords condition
 . TaskBook remove that task.
 
-	Use case ends
+Use case ends
 
 [discrete]
 === Clear tasks by time period
@@ -714,9 +844,10 @@ Use case resumes at step 1
 . User request clear all
 . TaskBook removes all the tasks in Tasketch.
 
-Use case ends
+Use case ends.
 
-Extension
+*Extension*
+
 . User request clear [Date]
 . TaskBook removes the tasks which start from that day.
 
@@ -737,7 +868,8 @@ Use case ends.
 
 Use case ends.
 
-Extension
+*Extension*
+
 . User request list all
 .. TaskBook shows a list of all the tasks.
 
@@ -761,7 +893,8 @@ Use case ends.
 . User request for a reminder.
 .. TaskBook shows a list of tasks which have nearest start time or deadline.
 
-Extension
+*Extension*
+
 . User request for a reminder of certain category of tasks.
 .. TaskBook shows a list of tasks with the specified category which have nearest start time or deadline.
 
@@ -800,3 +933,102 @@ the tasks faster using commands than using the mouse.
 [appendix]
 == Glossary
 . Mainstream OS: Windows, Linux, Unix, OS-X
+
+[appendix]
+== Instruction for Manual Testing
+
+=== Daily Time Planner
+To get started, you must first add a task. So, the inputs will be checked by the system, especially the Start and End Date
+as well as the Start and End Time.
+
+*Adding Daily Task* +
+Meaning that the Start Date is same as the End Date. You should see the time period correspond to its start date will be added
+into the Day list where all the summary of time planned for each categories on each day is found.
+
+Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION c/CATEGORIES [t/TAG][t/TAG]`
+
+Example:
+
+* `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is a valid command as the Start and End Dates are the same and the Start Time is before the End Time.
+
+* `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/10.00 d/Talk about version control c/a` +
+This command is not a valid command as the Start Time is after the End Time. The system will prompt a message of
+"Adding daily task, Start Time must be before End Time!".
+
+*Adding Long Term Task* +
+Meaning that the Start Date is different from the End Date. There will be no change in the Day list.
+
+Example:
+
+* `add n/CS2113 task sd/12-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is a valid command as the Start Date is before End Date and the Start Time is before End Time.
+
+* `add n/CS2113 task sd/14-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This is not a valid command as the Start Date is after End Date. The system will prompt a message of
+"Start Date must be before End Date!".
+
+* `add n/CS2113 task sd/12-03-19 st/12.00 ed/13-03-19 et/10.00 d/Talk about version control c/a` +
+This is not a valid command as the Start Time is after End Time eventhough the dates are correct. The system will prompt a message of
+"Start Time must be before End Time!".
+
+*Valid Date and Time Check* +
+For adding both daily and long term tasks, the dates and the times will be checked as well to ensure that the format is
+correct.
+
+Dates are in 'dd-mm-yy' format, the user will need to input the exact format, eg. 13-03-19. The system is not smart enough
+to detect whether the day is correct for that month, so you will need to ensure the correctness yourself. However,
+the system will not allow days more than 31 and less than 1, while months not more than 12 and less than 1.
+
+Example:
+
+* `add n/CS2113 task sd/31.03.19 st/12.00 ed/13.03.19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the date format is wrong, should be using '-' instead of '.' symbol in between.
+
+* `add n/CS2113 task sd/32-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the day exceeds 31.
+
+* `add n/CS2113 task sd/00-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the day is less than 1.
+
+* `add n/CS2113 task sd/13-13-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the month exceeds 12.
+
+* `add n/CS2113 task sd/13-00-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the month less than 1.
+
+Meanwhile, the times are in 24-hr format and in 'hh.mm' format, the user will need to input the exact format, eg. 08.00.
+the system will not allow hours more than 23 and less than 0, while minutes not more than 59 and less than 0.
+
+Example:
+
+* `add n/CS2113 task sd/31-03-19 st/12:00 ed/13-03-19 et/14:00 d/Talk about version control c/a` +
+This command is invalid because the time format is wrong, should be using '.' instead of ':' symbol in between.
+
+* `add n/CS2113 task sd/12-03-19 st/24.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the hour exceeds 23.
+
+* `add n/CS2113 task sd/12-03-19 st/23.60 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+This command is invalid because the minute exceeds 59.
+
+*Showing Daily Summary*
+Only tasks with same Start Date and End Date will be shown here. If there 2 tasks with same Start Date but one of the task
+has different End Date, then only the task with the same Start Date and End Date will appear in the summary / Day list.
+
+Example:
+
+1. `add n/CS2113 task sd/13-03-19 st/12.00 ed/13-03-19 et/14.00 d/Talk about version control c/a` +
+2. `add n/CS2003 task sd/13-03-19 st/12.00 ed/14-03-19 et/14.00 d/Talk about test c/a` +
+3. `showtime`
+
+You should see for the date '13-03-19', academic time only has 2 hours (14.00-12.00=2.00, showing 2.0 instead) in the
+Day list.
+
+Look for the index number of the task named 'CS2003' in the task list. +
+4. `edit [index number] ed/13-03-19`
+
+You should see for the date '13-03-19', academic time has 4 hours now ((14.00-12.00)+(14.00-12.00)=4.00, showing 4.0 instead)
+in the Day list.
+
+If you trying to find a particular date in the day list. For example, '13-03-19', use `showtime 13-03` or `showtime 13-03-19`. If the date is not in the day list, you will see empty list. +
+Invalid commands like `showtime sfsf` will prompt error message with the correct usage.
