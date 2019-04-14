@@ -43,7 +43,7 @@ public class RemindCommandTest {
     }
 
     @Test
-    public void remindDDL_success() throws DataConversionException, IllegalValueException, IOException {
+    public void remindDdl_success() throws DataConversionException, IllegalValueException, IOException {
 
         expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
         expectedModel.commitTaskBook();
@@ -73,7 +73,7 @@ public class RemindCommandTest {
     }
 
     @Test
-    public void remindCategoryDDL1_success() throws DataConversionException, IllegalValueException, IOException {
+    public void remindCategoryDdl1_success() throws DataConversionException, IllegalValueException, IOException {
 
         expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
         expectedModel.commitTaskBook();
@@ -83,7 +83,7 @@ public class RemindCommandTest {
     }
 
     @Test
-    public void remindCategoryDDL2_success() throws DataConversionException, IllegalValueException, IOException {
+    public void remindCategoryDdl2_success() throws DataConversionException, IllegalValueException, IOException {
 
         expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
         expectedModel.commitTaskBook();
