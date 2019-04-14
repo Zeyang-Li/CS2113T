@@ -48,7 +48,7 @@ After logging in, all commands will be unlocked for user. Besides, the user can 
 **Credits: I apply a math concept of "Edit distance", which means caculate the similarity between two strings by
 caculating the time of editing for converting one string to another string.
 
-* *Minor enhancement*: 
+* *Minor enhancement*:
 ** Implement 'edit' command that allows the user to edit his task information
 
 * *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Wanchunwei&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Wanchunwei&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Test code]] _{give links to collated code files}_
@@ -59,7 +59,7 @@ caculating the time of editing for converting one string to another string.
 *** Brainstorm new features for Tasketch
 ** Enhancements to existing features:
 *** Fix bugs for and Update previous commands.
-*** Updated the Import and Export command. Makes Tasketch can import and export account list as a Json file(Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/160[#160]). 
+*** Updated the Import and Export command. Makes Tasketch can import and export account list as a Json file(Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/160[#160]).
 ** Documentation:
 *** Update User Guide and Developer Guide. (available https://github.com/Wanchunwei/main/blob/master/docs/UserGuide.adoc[UserGuide], https://github.com/Wanchunwei/main/blob/master/docs/DeveloperGuide.adoc[DeveloperGuide])
 ** Community:
