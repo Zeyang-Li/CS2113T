@@ -83,7 +83,7 @@ public class CommandTestUtil {
     public static final EditTaskDescriptorBuilder DESC_CS2101;
 
     static {
-    	DESC_CS2113 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2113)
+        DESC_CS2113 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2113)
                 .withStartDate(VALID_STARTDATE_CS2113).withStartTime(VALID_STARTTIME_CS2113)
                 .withEndDate(VALID_ENDDATE_CS2113).withEndTime(VALID_ENDTIME_CS2113)
                 .withCategories(VALID_CATEGORY_CS2113).withDescription(VALID_DESCRIPTION_CS2113)
