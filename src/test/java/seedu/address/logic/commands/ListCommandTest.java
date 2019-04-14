@@ -1,18 +1,19 @@
 package seedu.address.logic.commands;
 
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_SUCCESS3;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_SUCCESS4;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
-//import java.io.IOException;
+import java.io.IOException;
 
 import org.junit.Before;
-//import org.junit.Test;
+import org.junit.Test;
 
-//import seedu.address.commons.exceptions.DataConversionException;
-//import seedu.address.commons.exceptions.IllegalValueException;
-
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,6 +31,20 @@ public class ListCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
     private String[] argument;
 
+    private String categoryString(String str) {
+        if (str.equals("a")) {
+            return "academic";
+        } else if (str.equals("c")) {
+            return "CCA";
+        } else if (str.equals("e")) {
+            return "entertainment";
+        } else if (str.equals("r")) {
+            return "errand";
+        } else {
+            return "other";
+        }
+    }
+
     @Before
     public void setUp() {
         model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalAccountList());
@@ -37,25 +52,77 @@ public class ListCommandTest {
         Username admin = new Username("admin");
         model.setLoggedInUser(admin);
         expectedModel.setLoggedInUser(admin);
-        this.argument = null;
+        this.argument = new String[] {""};
     }
 
     private ReadOnlyAccountList getTypicalAccountList() {
         return null;
     }
 
-    /*@Test
-    public void execute_listIsNotFiltered_showsSameList()
+    @Test
+    public void execute_listAllTask_success()
             throws IOException, IllegalValueException, DataConversionException {
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything()
+    public void execute_listTdTask_success()
             throws IOException, IllegalValueException, DataConversionException {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        this.argument = new String[] {"td"};
         assertCommandSuccess(new ListCommand(argument), model, commandHistory,
-                ListCommand.MESSAGE_SUCCESS1, expectedModel);
-    }*/
+                ListCommand.MESSAGE_SUCCESS2, expectedModel);
+    }
+
+    @Test
+    public void execute_listDateTask_Date_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"01-01-11"};
+        String specifiedDate = argument[0];
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                String.format(MESSAGE_SUCCESS3, specifiedDate),expectedModel);
+    }
+
+    @Test
+    public void execute_listCategoryTask1_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"a"};
+        String specifiedCategory = argument[0];
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)),expectedModel);
+    }
+
+    @Test
+    public void execute_listCategoryTask2_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"c"};
+        String specifiedCategory = argument[0];
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)),expectedModel);
+    }
+
+    @Test
+    public void invalidInput_failure()
+            throws DataConversionException {
+
+        assertCommandFailure(new ListCommand(new String[] {"abc"}), model, commandHistory,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+        assertCommandFailure(new ListCommand(new String[] {"aa-bb-cc"}), model, commandHistory,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+        assertCommandFailure(new ListCommand(new String[] {"38-01-11"}), model, commandHistory,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+        assertCommandFailure(new ListCommand(new String[] {"01-13-11"}), model, commandHistory,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+        assertCommandFailure(new ListCommand(new String[] {"abc"}), model, commandHistory,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+        assertCommandFailure(new ListCommand(new String[] {"abc"}), model, commandHistory,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+    }
+
 }
