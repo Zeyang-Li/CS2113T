@@ -396,6 +396,10 @@ Show current month's calendar.
 image::month_this.png[width="400"]
 
 === Shows the timeline of a specific day to the user : `timeline` +
+`timeline` command will arrange the tasks on one day to real timelines.
+
+Noted that if there are multiple tasks at the same time under same category, the timeline will only display one task name and time period.
+e.g Academic task1: 12:00-14:00, Academic task2: 12:00-15:00 (in one day). The academic timeline will only show 12:00-15:00 is reserved.
 
 * `timeline` +
 Shows the timeline of today by default. +
