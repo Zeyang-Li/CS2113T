@@ -380,13 +380,13 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 *Step 1*: The user type an command in command line and press `TAB` from keyboard.
 
-*Step 2*: The command will be compared with `CommandBox#CommandList`. If the typed command is in `CommandBox#CommandList`, which means it is a valid command, then call `CommandBox#showParameterForCommand()` to fulfill the format string of parameters of the command. 
+*Step 2*: The command will be compared with `CommandBox#CommandList`. If the typed command is in `CommandBox#CommandList`, which means it is a valid command, then call `CommandBox#showParameterForCommand()` to fulfill the format string of parameters of the command.
 
 *Step 3*: Otherwise, `TAB` will call `CommandBox#autoCompleteInputCommand()` to fulfill the incomplete command.
 
 *Step 4*: `CommandBox#autoCompleteInputCommand()` will call `CommandBox#getMostSimilarCommand()` to get the most similar command from `Comm,andBox#CommandList`.
 
-*Step 4*: `CommandBox#getMostSimilarCommand()` will call `CommandBox#compare()` to get the similarity by caculating the times of editing needed for changing the input command into command in `CommandBox#CommandList`. 
+*Step 4*: `CommandBox#getMostSimilarCommand()` will call `CommandBox#compare()` to get the similarity by caculating the times of editing needed for changing the input command into command in `CommandBox#CommandList`.
 
 *Step 5*:  If the similarity between the input command and the most similar command is more than 0.5, then replace the incomplete command with the most similar command. Otherwise, fulfill the command line with "No matched command".
 
@@ -396,10 +396,10 @@ image::Auto-completeSequenceDiagram_01.png[width="650"]
 
 ==== Design Considerations
 
-* **Alternative 1:** Auto-complete the input command by that if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. 
+* **Alternative 1:** Auto-complete the input command by that if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command.
 ** Pros: Simple.
-** Cons: If the user wrongly types the incomplete command, it can not correct them.  
-* **Alternative 2(current choice):**if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. If the input incomplete command is not a substring of any commands in CommandList, caculate the similarity and return the most similar command by applying a math concept: Levenshtein Distance.  
+** Cons: If the user wrongly types the incomplete command, it can not correct them.
+* **Alternative 2(current choice):**if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. If the input incomplete command is not a substring of any commands in CommandList, caculate the similarity and return the most similar command by applying a math concept: Levenshtein Distance.
 ** Pros: Even if the user wrongly type a command, Auto-complete feature can correct it.
 ** Cons: Difficult to design the algorithm.
 
