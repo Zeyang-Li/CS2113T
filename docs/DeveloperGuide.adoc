@@ -1040,6 +1040,9 @@ in the Day list.
 If you trying to find a particular date in the day list. For example, '13-03-19', use `showtime 13-03` or `showtime 13-03-19`. If the date is not in the day list, you will see empty list. +
 Invalid commands like `showtime sfsf` will prompt error message with the correct usage.
 === Timeline visualization
+
+image::TimelineSequenceDiagram.png[width="600"]
+
 Assuming that you followed the procedure given above, there should be a few tasks added to your Tasketch. +
 Such that you could test `timeline` using the above tasks.
 
