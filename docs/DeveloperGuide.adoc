@@ -243,11 +243,17 @@ This section describes some noteworthy details on how certain features are imple
 The login feature will unlock all commands for the users, otherwise the user can only execute following commands:
 
 * `login`
+
 * `loginStatus`
+
 * `listAccounts`
+
 * `findAccount`
+
 * `help`
+
 * `history`
+
 * `exist`
 
 ==== Current Implementation
@@ -1032,3 +1038,16 @@ in the Day list.
 
 If you trying to find a particular date in the day list. For example, '13-03-19', use `showtime 13-03` or `showtime 13-03-19`. If the date is not in the day list, you will see empty list. +
 Invalid commands like `showtime sfsf` will prompt error message with the correct usage.
+=== Timeline visualization
+Assuming that you followed the procedure given above, there should be a few tasks added to your Tasketch. +
+Such that you could test `timeline` using the above tasks. 
+
+*Viewing timeline* +
+In order to test the timeline, you are encouraged to follow the steps below.
+
+Format: `timeline [DATE]`
+
+Example:
+
+* `timeline 13-03-19` +
+This command will display the tasks we just added whose start date is 13-03-19.

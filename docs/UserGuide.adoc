@@ -18,10 +18,10 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
-for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too. +
+Tasketch is an application that helps you to manage your everyday task by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the task deadlines too. +
 
-This application is designed for the busy NUS students who have many tasks, assignments and datelines everyday. +
+This application is designed for the busy NUS students who have many tasks, assignments and deadlines everyday. +
 
 Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the
 benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively. +
