@@ -33,36 +33,6 @@ public class ListCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
     private String[] argument;
 
-    private String categoryString(String str) {
-        if (str.equals("a")) {
-            return "academic";
-        } else if (str.equals("c")) {
-            return "CCA";
-        } else if (str.equals("e")) {
-            return "entertainment";
-        } else if (str.equals("r")) {
-            return "errand";
-        } else {
-            return "other";
-        }
-    }
-
-    /**
-     * A boolean function used to decide predicate for list td command.
-     */
-    private boolean meetRequirementTd(Task task) {
-
-        Date currentDate = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-YY");
-        String dateInString = formatter.format(currentDate);
-
-        final String taskDate = task.getStartDate().value;
-        if (taskDate.equals(dateInString)) {
-            return true;
-        }
-        return false;
-    }
-
     @Before
     public void setUp() {
         model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), new AccountList());
@@ -84,44 +54,44 @@ public class ListCommandTest {
                 ListCommand.MESSAGE_SUCCESS1, expectedModel);
     }
 
-//    @Test
-//    public void execute_listTdTask_success()
-//            throws IOException, IllegalValueException, DataConversionException {
-//        this.argument = new String[] {"td"};
-//        Predicate<Task> predicate = task -> meetRequirementTd(task);
-//        expectedModel.updateFilteredTaskList(predicate);
-//        expectedModel.commitTaskBook();
-//
-//        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
-//                ListCommand.MESSAGE_SUCCESS2, expectedModel);
-//    }
-//
-//    @Test
-//    public void execute_listDateTask_Date_success()
-//            throws IOException, IllegalValueException, DataConversionException {
-//        this.argument = new String[] {"01-01-11"};
-//        String specifiedDate = argument[0];
-//        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
-//                String.format(MESSAGE_SUCCESS3, specifiedDate),expectedModel);
-//    }
-//
-//    @Test
-//    public void execute_listCategoryTask1_success()
-//            throws IOException, IllegalValueException, DataConversionException {
-//        this.argument = new String[] {"a"};
-//        String specifiedCategory = argument[0];
-//        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
-//                String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)),expectedModel);
-//    }
-//
-//    @Test
-//    public void execute_listCategoryTask2_success()
-//            throws IOException, IllegalValueException, DataConversionException {
-//        this.argument = new String[] {"c"};
-//        String specifiedCategory = argument[0];
-//        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
-//                String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)),expectedModel);
-//    }
+    /*@Test
+    public void execute_listTdTask_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"td"};
+        Predicate<Task> predicate = task -> meetRequirementTd(task);
+        expectedModel.updateFilteredTaskList(predicate);
+        expectedModel.commitTaskBook();
+
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                ListCommand.MESSAGE_SUCCESS2, expectedModel);
+    }
+
+    @Test
+    public void execute_listDateTask_Date_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"01-01-11"};
+        String specifiedDate = argument[0];
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                String.format(MESSAGE_SUCCESS3, specifiedDate),expectedModel);
+    }
+
+    @Test
+    public void execute_listCategoryTask1_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"a"};
+        String specifiedCategory = argument[0];
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)),expectedModel);
+    }
+
+    @Test
+    public void execute_listCategoryTask2_success()
+            throws IOException, IllegalValueException, DataConversionException {
+        this.argument = new String[] {"c"};
+        String specifiedCategory = argument[0];
+        assertCommandSuccess(new ListCommand(argument), model, commandHistory,
+                String.format(MESSAGE_SUCCESS4, categoryString(specifiedCategory)),expectedModel);
+    }*/
 
     @Test
     public void invalidInput_failure()
