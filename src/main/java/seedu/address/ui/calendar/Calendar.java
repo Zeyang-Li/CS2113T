@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import seedu.address.model.task.Task;
@@ -19,8 +19,8 @@ import seedu.address.model.task.Task;
  * The real implementation for calendar will be here.
  */
 public class Calendar extends Node {
-    private static final int CALENDAR_WIDTH = 340;
-    private static final int CALENDAR_HEIGHT = 340;
+    private static final int CALENDAR_WIDTH = 350;
+    private static final int CALENDAR_HEIGHT = 175;
     private static final int GRID_WIDTH = 48;
     private static final int GRID_HEIGHT = 40;
     private static final double ANCHOR_SIZE = 5;
@@ -60,7 +60,7 @@ public class Calendar extends Node {
                             new Text("Fri"), new Text("Sat") };
 
         GridPane weekDayLabel = new GridPane();
-        weekDayLabel.setPrefWidth(340);
+        weekDayLabel.setPrefWidth(CALENDAR_WIDTH);
 
         int col = 1;
         for (Text day : weekDays) {
@@ -71,11 +71,18 @@ public class Calendar extends Node {
             col++;
         }
 
-        Text calendarTitle = new Text(); //Title to be added later
-        HBox titleBar = new HBox(calendarTitle);
+        //Text calendarTitle = new Text(); //Title to be added later
+        //HBox titleBar = new HBox(calendarTitle);
+        //titleBar.setAlignment(Pos.BASELINE_CENTER);
+        weekDayLabel.setAlignment(Pos.BASELINE_CENTER);
+        calendar.setAlignment(Pos.BASELINE_CENTER);
         showCalendar(yearMonth);
         calendar.setGridLinesVisible(true);
-        view = new VBox(titleBar, weekDayLabel, calendar);
+
+        //view.getChildren().add(weekDayLabel);
+        //view.getChildren().add(calendar);
+
+        view = new VBox(new Text(""), weekDayLabel, calendar);
     }
 
     /**

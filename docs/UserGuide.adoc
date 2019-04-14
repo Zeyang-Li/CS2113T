@@ -18,10 +18,10 @@ By: `T09-2`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Tasketch is an application that helps you to manage your everyday time by giving you an overview of all the time planned
-for all the tasks in a daily manner. It also helps you to be aware of all the tasks dateline too. +
+Tasketch is an application that helps you to manage your everyday task by giving you an overview of all the time planned
+for all the tasks in a daily manner. It also helps you to be aware of all the task deadlines too. +
 
-This application is designed for the busy NUS students who have many tasks, assignments and datelines everyday. +
+This application is designed for the busy NUS students who have many tasks, assignments and deadlines everyday. +
 
 Tasketch uses minimal (GUI) elements, instead opting for a faster Command Line Interface (CLI) while maintaining the
 benefits of the GUI. So, if you are used to the command line, Tasketch is sure to help manage your time effectively. +
@@ -95,9 +95,9 @@ For example:
 . Tasketch provides a default account whose username and password are both "admin". We suggest that do not delete that account.
 . If you do not login, you can only execute following commands and other commands are locked.
 * login
-* loginStatus
-* listAccounts
-* findAccount
+* loginstatus
+* listaccounts
+* findaccount
 * help
 * history
 * exit
@@ -129,13 +129,13 @@ image:login1.png[width="790"]
 === AddAccount
 Add a new account to Tasketch
 
-Format: `addAccount u/USERNAME p/PASSWORD`
+Format: `addaccount u/USERNAME p/PASSWORD`
 
 Examples:
 
-* `addAccount u/wan p/123456` +
+* `addaccount u/wan p/123456` +
 Add a new account whose name is "wan" and password is "123456".
-* `addAccount u/John p/541623` +
+* `addaccount u/John p/541623` +
 Add a new account whose name is "John" and password is "541623".
 
 Result: +
@@ -147,12 +147,12 @@ Shows a list of tasks in Tasketch.
 
 Format:
 
-* `listAccounts` +
+* `listaccounts` +
 Lists all the accounts in the accountlist
 
 Examples:
 
-* `listAccounts` +
+* `listaccounts` +
 Lists all the accounts in the accountlist
 
 Result: +
@@ -161,7 +161,7 @@ image:listAccounts.png[width="790"]
 
 === EditAccount
 Edit a existed account with its username and password.
-Format: `editAccount INDEX u/USERNAME [p/PASSWORD]`
+Format: `editaccount INDEX u/USERNAME [p/PASSWORD]`
 
 ****
 * Edits the account at the specified INDEX. The index refers to the index number shown in the displayed list when 'listAccounts' is used. The index must be a positive integer 1, 2, 3, …
@@ -171,22 +171,22 @@ Format: `editAccount INDEX u/USERNAME [p/PASSWORD]`
 
 Examples:
 
-* `editAccount 2 p/123123` +
+* `editaccount 2 p/123123` +
 Changes the password of the second account to 123123!
-* `editAccount 2 u/John` +
+* `editaccount 2 u/John` +
 Changes the username of the second account to John!
 
 Result: +
-Before execute  `editAccount 2 u/John`: +
+Before execute  `editaccount 2 u/John`: +
 image:editAccount1.png[width="790"]+
-After execute `editAccount 2 u/John`: +
+After execute `editaccount 2 u/John`: +
 image:editAccount2.png[width="790"]
 
 === FindAccount
 
 Finds accounts whose username contain the given keywords.
 
-Format: `findAccount KEYWORD`
+Format: `findaccount KEYWORD`
 
 ****
 * The search is case insensitive. e.g `WAN` will match `wan`.
@@ -195,15 +195,15 @@ Format: `findAccount KEYWORD`
 
 Examples:
 
-* `findAccount ad` +
+* `findaccount ad` +
 Returns `admin`.
-* `findAccount AdMin` +
+* `findaccount AdMin` +
 Returns `admin`.
 
 === DeleteAccount
 Deletes a specified account from Tasketch.
 
-Format: `deleteAccount INDEX_NUMBER`
+Format: `deleteaccount INDEX_NUMBER`
 
 ****
 * Each account is identified by a index number shown in the account list.
@@ -212,8 +212,8 @@ Format: `deleteAccount INDEX_NUMBER`
 
 Examples:
 
-* `listAccounts` +
-`delete 2` +
+* `listaccounts` +
+`deleteaccount 2` +
 Deletes the account with index number 2 in task list.
 
 Result: +
@@ -222,15 +222,15 @@ The account of the index number you choose should be delete from accountlist.
 === LoginStatus
 Shows whether the user log in Tasketch and which account the user logged in.
 
-Format: `loginStatus`
+Format: `loginstatus`
 
 Examples:
 
-* `loginStatus` +
+* `loginstatus` +
 If you do not login with any accounts, return `Not logged in`.
 image:loginStatus.png[width="790"]
 
-* `loginStatus` +
+* `loginstatus` +
 If you login with default account, return `Logged in as: admin`.
 image:loginStatus1.png[width="790"]
 
@@ -552,6 +552,10 @@ Show current month's calendar.
 image::month_this.png[width="400"]
 
 === Shows the timeline of a specific day to the user : `timeline` +
+`timeline` command will arrange the tasks on one day to real timelines.
+
+Noted that if there are multiple tasks at the same time under same category, the timeline will only display one task name and time period.
+e.g Academic task1: 12:00-14:00, Academic task2: 12:00-15:00 (in one day). The academic timeline will only show 12:00-15:00 is reserved.
 
 * `timeline` +
 Shows the timeline of today by default. +
@@ -577,7 +581,7 @@ Shows the whole timeline for 1st April 2019.
 image::timeline_date.png[width="790"]
 
 [TIP]
-Timeline will only show the tasks between 6:00am to 24:pm. Sleep early is a good habit~
+Timeline will only show the tasks between 6:00am to 24:pm. Sleeping early is a good habit~
 
 == Getting wrong command suggestions
 There so many commands in the app, so to help you to use the app easier, it will tell you what you have typed wrongly automatically,
@@ -617,7 +621,7 @@ If you type something wrongly, the app will automatically correct type error and
 Examples：
 
 * If you want to type `list`, you can type `li` instead, and press `TAB` on keyboard. The system will automatically fulfill the command in command line with `list`.
-* If you want to type `histoy`, but you type `histoy` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
+* If you want to type `history`, but you type `histoe` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `history`.
 * If you want to type `add`, but you type `aefw` instead, and press `tap` on keyboard. The system will automatically fulfill the command line with `No command matched`.
 
 == Import/Export

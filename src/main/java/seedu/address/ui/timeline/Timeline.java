@@ -35,7 +35,7 @@ public class Timeline {
         this.tasks = pre;
         this.cate = c;
         sort();
-        oneTimeline.setSpacing(13);
+        oneTimeline.setSpacing(12);
         //==========Set up a seperate line==========
         prepLine();
         //==========Set up Titles==========

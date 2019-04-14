@@ -99,7 +99,6 @@ public class ExportManager implements Export {
             FileUtil.createIfMissing(filePath);
         }
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
         JsonFileStorage.saveAccountListToFile(filePath, new JsonSerializableAccountList(filteredAccountList));
     }
 
