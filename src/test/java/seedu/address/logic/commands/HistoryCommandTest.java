@@ -18,7 +18,7 @@ public class HistoryCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void history_command_test() throws IllegalValueException, IOException, DataConversionException {
+    public void execute() throws IllegalValueException, IOException, DataConversionException {
 
         assertCommandSuccess(new HistoryCommand(), model, history, HistoryCommand.MESSAGE_NO_HISTORY, expectedModel);
 
@@ -27,7 +27,7 @@ public class HistoryCommandTest {
         assertCommandSuccess(new HistoryCommand(), model, history,
                 String.format(HistoryCommand.MESSAGE_SUCCESS, command1), expectedModel);
 
-        String command2 = "illegalcommand";
+        String command2 = "illegal command";
         String command3 = "list td";
         history.add(command2);
         history.add(command3);

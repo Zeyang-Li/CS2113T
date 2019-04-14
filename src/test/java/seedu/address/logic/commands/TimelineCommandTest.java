@@ -39,7 +39,7 @@ public class TimelineCommandTest {
     }
 
     @Test
-    public void execute_timeline_success()
+    public void executeTimeline_success()
             throws DataConversionException, IllegalValueException, IOException {
         String input = "01-04-19";
         assertCommandSuccess(new TimelineCommand(input), model, commandHistory,
@@ -47,7 +47,7 @@ public class TimelineCommandTest {
     }
 
     @Test
-    public void execute_timeline_invalid_day()
+    public void executeTimeline_invalidDay()
             throws DataConversionException, IllegalValueException {
         String invalidInput = "31-04-19";
 
@@ -56,7 +56,7 @@ public class TimelineCommandTest {
     }
 
     @Test
-    public void execute_timeline_invalid_month()
+    public void executeTimeline_invalidMonth()
             throws DataConversionException, IllegalValueException {
         String invalidInput = "01-13-19";
 
@@ -65,7 +65,7 @@ public class TimelineCommandTest {
     }
 
     @Test
-    public void execute_timeline_invalid_year()
+    public void executeTimeline_invalidYear()
             throws DataConversionException, IllegalValueException {
         String invalidInput = "01-04-100";
 

@@ -11,7 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.*;
+import seedu.address.model.AccountList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.TaskBook;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.account.Username;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
@@ -35,7 +39,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void find_command_test() {
+    public void findCommand_test() {
         TaskContainsKeywordsPredicate firstPredicate =
                 new TaskContainsKeywordsPredicate(Collections.singletonList("first"));
         TaskContainsKeywordsPredicate secondPredicate =

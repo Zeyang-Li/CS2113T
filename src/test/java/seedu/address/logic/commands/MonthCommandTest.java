@@ -38,7 +38,7 @@ public class MonthCommandTest {
     }
 
     @Test
-    public void execute_next_month_success()
+    public void executeNextMonth_success()
             throws DataConversionException, IllegalValueException, IOException {
         String input = "+";
         String output = "next";
@@ -47,7 +47,7 @@ public class MonthCommandTest {
     }
 
     @Test
-    public void execute_prevous_month_success()
+    public void executePrevousMonth_success()
             throws DataConversionException, IllegalValueException, IOException {
         String input = "-";
         String output = "previous";
@@ -56,7 +56,7 @@ public class MonthCommandTest {
     }
 
     @Test
-    public void execute_this_month_success()
+    public void executeThisMonth_success()
             throws DataConversionException, IllegalValueException, IOException {
         String input = "";
         String output = "this";
