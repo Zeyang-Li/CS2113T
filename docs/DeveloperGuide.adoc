@@ -241,16 +241,18 @@ This section describes some noteworthy details on how certain features are imple
 === Login feature
 
 The login feature will unlock all commands for the users, otherwise the user can only execute following commands:
-* login
-* loginStatus
-* listAccounts
-* findAccount
-* help
-* history
-* exit
+
+* `login`
+* `loginStatus`
+* `listAccounts`
+* `findAccount`
+* `help`
+* `history`
+* `exist`
 
 ==== Current Implementation
 The login mechanism is facilitated by `LoginCommand`. It extends Command and implements the following operations:
+
 * `LoginCommand#modifyLoginStatus()` — checks whether there exists such username and corresponding password in accountlist. If troue, updates the logged in account status in Model accordingly.
 * `LoginCommand#execute()` — calls LoginCommand#modifyLoginStatus(). Then, checks login status in Model and displays a login success message if true and displays a failure message otherwise.
 
@@ -270,7 +272,7 @@ Given below is an example usage scenario and how the LoginCommand mechanism beha
 
 The following sequence diagram shows how the login operation works:
 
-image::loginSequenceDiagram.png[width="800"]
+image::LoginSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
@@ -372,7 +374,36 @@ Auto-complete uses tab as a signal to trigger auto-complete and the command box 
 
 ==== Current Implementation
 
-When a user press TAB key, if the command is
+When a user press TAB key, if the command is incomplete, Auto-complete feature will fulfill the automatically. If the command is completed, Auto- complete feature will fulfill the format string of corresponding parameters of the command.
+
+Given below is an example usage of how the WrongCommandSuggestion behaves at each step.
+
+*Step 1*: The user type an command in command line and press `TAB` from keyboard.
+
+*Step 2*: The command will be compared with `CommandBox#CommandList`. If the typed command is in `CommandBox#CommandList`, which means it is a valid command, then call `CommandBox#showParameterForCommand()` to fulfill the format string of parameters of the command.
+
+*Step 3*: Otherwise, `TAB` will call `CommandBox#autoCompleteInputCommand()` to fulfill the incomplete command.
+
+*Step 4*: `CommandBox#autoCompleteInputCommand()` will call `CommandBox#getMostSimilarCommand()` to get the most similar command from `Comm,andBox#CommandList`.
+
+*Step 4*: `CommandBox#getMostSimilarCommand()` will call `CommandBox#compare()` to get the similarity by caculating the times of editing needed for changing the input command into command in `CommandBox#CommandList`.
+
+*Step 5*:  If the similarity between the input command and the most similar command is more than 0.5, then replace the incomplete command with the most similar command. Otherwise, fulfill the command line with "No matched command".
+
+The following sequence diagram shows an example of how the Auto-complete operation works with incomplete command `histoe` (closest command is `history`):
+
+image::Auto-completeSequenceDiagram_01.png[width="650"]
+
+==== Design Considerations
+
+* **Alternative 1:** Auto-complete the input command by that if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command.
+** Pros: Simple.
+** Cons: If the user wrongly types the incomplete command, it can not correct them.
+* **Alternative 2(current choice):**if the input incomplete command is a substring of a command in CommandList, fulfill the input command with that command. If the input incomplete command is not a substring of any commands in CommandList, caculate the similarity and return the most similar command by applying a math concept: Levenshtein Distance.
+** Pros: Even if the user wrongly type a command, Auto-complete feature can correct it.
+** Cons: Difficult to design the algorithm.
+
+
 //end::autoComplete[]
 
 // tag::wrongCommandSuggestion[]
