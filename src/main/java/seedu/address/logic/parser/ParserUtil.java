@@ -33,7 +33,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_FILENAME = "Filename is invalid.";
-    public static final String MESSAGE_INVALID_EXTENSION = "Filename must end with \".xml\".";
+    public static final String MESSAGE_INVALID_EXTENSION = "Filename must end with \".json\".";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

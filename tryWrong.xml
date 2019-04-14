@@ -1,0 +1,49 @@
+{
+  "tasks" : [ {
+    "name" : "CS2110",
+    "description" : "Do sequence",
+    "tagged" : [ "CS2110" ],
+    "startDate" : "01-01-11",
+    "startTime" : "01.00",
+    "endDate" : "02-01-11",
+    "endTime" : "02.00",
+    "categories" : "a"
+  }, {
+    "name" : "sameStartDateWithCS2110",
+    "description" : "Do sequence",
+    "tagged" : [ "sameStartDateWithCS2110" ],
+    "startDate" : "01-01-11",
+    "startTime" : "01.00",
+    "endDate" : "02-01-11",
+    "endTime" : "02.00",
+    "categories" : "a"
+  }, {
+    "name" : "cs2100",
+    "description" : "Do user",
+    "tagged" : [ "CS2100" ],
+    "startDate" : "03-03-03",
+    "startTime" : "03.00",
+    "endDate" : "04-03-04",
+    "endTime" : "04.00",
+    "categories" : "a"
+  }, {
+    "name" : "neverStart",
+    "description" : "test clear command",
+    "tagged" : [ "NeverEnd" ],
+    "startDate" : "01-01-99",
+    "startTime" : "03.00",
+    "endDate" : "04-03-99",
+    "endTime" : "04.00",
+    "categories" : "o"
+  }, {
+    "name" : "neverStart2",
+    "description" : "second test clear command",
+    "tagged" : [ "NeverEnd" ],
+    "startDate" : "01-01-60",
+    "startTime" : "03.00",
+    "endDate" : "04-03-60",
+    "endTime" : "04.00",
+    "categories" : "e"
+  } ],
+  "days" : [ ]
+}

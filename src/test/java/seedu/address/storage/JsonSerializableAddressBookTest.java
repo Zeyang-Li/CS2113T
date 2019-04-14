@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import static org.junit.Assert.assertEquals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,8 +10,6 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.TaskBook;
-import seedu.address.testutil.TypicalTasks;
 
 public class JsonSerializableAddressBookTest {
 
@@ -24,14 +21,6 @@ public class JsonSerializableAddressBookTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    @Test
-    public void toModelType_typicalTasksFile_success() throws Exception {
-        JsonSerializableTaskBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
-                JsonSerializableTaskBook.class).get();
-        TaskBook taskBookFromFile = dataFromFile.toModelType();
-        TaskBook typicalTasksTaskBook = TypicalTasks.getTypicalTaskBook();
-        assertEquals(taskBookFromFile, typicalTasksTaskBook);
-    }
 
     @Test
     public void toModelType_invalidTaskFile_throwsIllegalValueException() throws Exception {

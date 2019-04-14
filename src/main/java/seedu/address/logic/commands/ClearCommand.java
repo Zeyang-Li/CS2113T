@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +33,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_CLEARDATE_SUCCESS = "clear %1$d tasks which start at %2$s";
     public static final String MESSAGE_CLEARYD_SUCCESS = "clear %1$d tasks which have already ended on %2$s";
     public static final String MESSAGE_LOGIN = "Please login first";
+    public static final String MESSAGE_INVALID_DATE = "Date is not valid";
     private String specificDate;
     private int count = 0;
     private List<Task> tasksToBeDeleted = new ArrayList<Task>();
@@ -63,6 +65,66 @@ public class ClearCommand extends Command {
             } else {
                 return false;
             }
+        }
+        return false;
+    }
+
+    /**
+     * check whether is numberic
+     * @param str
+     * @return
+     */
+    public static boolean isNumberic(String str) {
+        Pattern pattern = Pattern.compile("[0-9]*");
+        return pattern.matcher(str).matches();
+    }
+    /**
+     * Boolean function that help predicate to check valid date format.
+     */
+    public boolean isValidDate(String checkingDate) {
+        final String[] specificDateList = checkingDate.split("-");
+
+        if (specificDateList.length == 3) {
+            char[] days=specificDateList[0].toCharArray();
+            char[] months=specificDateList[1].toCharArray();
+            char[] years=specificDateList[2].toCharArray();
+
+            if (days.length == 2 && months.length == 2 && years.length == 2) {
+                if (isNumberic(specificDateList[0]) && isNumberic(specificDateList[1])
+                        && isNumberic(specificDateList[2])) {
+                    final Integer day = Integer.parseInt(specificDateList[0]);
+                    final Integer month = Integer.parseInt(specificDateList[1]);
+                    if (day <= 31 && day > 0 && month > 0 && month <= 12) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+
+        } else if (specificDateList.length == 2) {
+            char[] months=specificDateList[0].toCharArray();
+            char[] years=specificDateList[1].toCharArray();
+
+            if (months.length == 2 && years.length == 2) {
+                if (isNumberic(specificDateList[0]) && isNumberic(specificDateList[1])) {
+                    final Integer month = Integer.parseInt(specificDateList[0]);
+                    if (month > 0 && month <= 12) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+
         }
         return false;
     }
@@ -132,18 +194,26 @@ public class ClearCommand extends Command {
             model.commitTaskBook();
             return new CommandResult(String.format(MESSAGE_CLEARYD_SUCCESS, count, specificDate));
 
-        } else {
+        } else if (isValidDate(this.specificDate)){
 
-            List<Task> lastShownList = model.getFilteredTaskList();
-            for (Task task : lastShownList) {
-                if (checkStartDate(task)) {
-                    count++;
-                    tasksToBeDeleted.add(task);
+            if(isValidDate(this.specificDate)) {
+                List<Task> lastShownList = model.getFilteredTaskList();
+                for (Task task : lastShownList) {
+                    if (checkStartDate(task)) {
+                        count++;
+                        tasksToBeDeleted.add(task);
+                    }
                 }
+                model.deleteTaskList(tasksToBeDeleted);
+                model.commitTaskBook();
+                return new CommandResult(String.format(MESSAGE_CLEARDATE_SUCCESS, count, specificDate));
+            } else {
+                return new CommandResult(MESSAGE_INVALID_DATE);
             }
-            model.deleteTaskList(tasksToBeDeleted);
-            model.commitTaskBook();
-            return new CommandResult(String.format(MESSAGE_CLEARDATE_SUCCESS, count, specificDate));
+
+
+        } else {
+            throw new CommandException(MESSAGE_INVALID_DATE);
         }
     }
 }
