@@ -146,7 +146,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void DateWithNoTask_nonEmptyTaskBook_success()
+    public void dateWithNoTask_nonEmptyTaskBook_success()
             throws DataConversionException, IllegalValueException, IOException {
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), new AccountList());
