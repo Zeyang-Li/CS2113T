@@ -28,7 +28,7 @@ public class MonthCommand extends Command {
     private String parameter = " ";
 
     public MonthCommand(String c) throws ParseException {
-        c = c.replaceAll("\\s","");
+        c = c.replaceAll("\\s", "");
         //System.out.println(c);
         if (c.equals("+")) {
             this.parameter = "next";
