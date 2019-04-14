@@ -12,6 +12,14 @@ public class PreTask {
     private float start;
     private float end;
 
+    /**
+     * Pre-processing the tasks as PreTask.
+     * Used in the timeline and calendar.
+     * @param ttl
+     * @param cat
+     * @param s
+     * @param e
+     */
     public PreTask(String ttl, String cat, float s, float e) {
         this.title = ttl;
         this.cate = cat;

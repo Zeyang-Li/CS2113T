@@ -19,6 +19,12 @@ import seedu.address.model.task.Task;
  * The real implementation for calendar will be here.
  */
 public class Calendar extends Node {
+    private static final int CALENDAR_WIDTH = 340;
+    private static final int CALENDAR_HEIGHT = 340;
+    private static final int GRID_WIDTH = 48;
+    private static final int GRID_HEIGHT = 40;
+    private static final double ANCHOR_SIZE = 5;
+
     private ArrayList<PaneNode> allCalendarDays = new ArrayList<>(35);
     private VBox view;
     private YearMonth shownYearMonth;
@@ -35,13 +41,13 @@ public class Calendar extends Node {
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         GridPane.setMargin(calendar, new Insets(0, 0, 0, 5));
-        calendar.setPrefSize(340, 200);
+        calendar.setPrefSize(CALENDAR_WIDTH, CALENDAR_HEIGHT);
 
         //Fill up the calendar.
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 PaneNode newGrid = new PaneNode();
-                newGrid.setPrefSize(48, 40);
+                newGrid.setPrefSize(GRID_WIDTH, GRID_HEIGHT);
                 newGrid.setStyle("-fx-background-color: white;");
                 calendar.add(newGrid, j, i);
                 allCalendarDays.add(newGrid);
@@ -59,7 +65,7 @@ public class Calendar extends Node {
         int col = 1;
         for (Text day : weekDays) {
             AnchorPane aGrid = new AnchorPane();
-            aGrid.setPrefSize(48, 10);
+            aGrid.setPrefSize(GRID_WIDTH, GRID_HEIGHT);
             aGrid.getChildren().add(day);
             weekDayLabel.add(aGrid, col, 0);
             col++;
@@ -92,8 +98,8 @@ public class Calendar extends Node {
             }
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
             aGrid.setDay(calendarDate);
-            aGrid.setTopAnchor(txt, 5.0);
-            aGrid.setLeftAnchor(txt, 5.0);
+            aGrid.setTopAnchor(txt, ANCHOR_SIZE);
+            aGrid.setLeftAnchor(txt, ANCHOR_SIZE);
             aGrid = setColor(aGrid, yearMonth.getYear(), yearMonth.getMonthValue(), calendarDate.getDayOfMonth());
             aGrid.getChildren().add(txt);
             calendarDate = calendarDate.plusDays(1);

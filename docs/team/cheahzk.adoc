@@ -15,8 +15,8 @@ and helps them to be aware of all the tasks dateline.
 image::Ui.png[width="790"]
 _Figure 1. An overview of our application._
 
-My role was to design and write the codes for the Daily Time Planner feature with `showtime` command as well as some
-enhancement to the `add` command. +
+My role was to design and write the codes for the Daily Time Planner feature with `showtime` command as well as morphing
+the addressbook code to Tasketch code in the beginning. I also did some enhancement to the `add` command. +
 
 The following sections illustrate these enhancements in more detail, as well as the relevant sections I have added to
 the user and developer guides in relation to these enhancements.
@@ -60,7 +60,8 @@ into the Tasketch, as well as ensuring the Daily Time Planner works correctly af
 *** Added UI for Daily Time Planner commands (Pull requests https://github.com/CS2113-AY1819S2-T09-2/main/pull/116[#116])
 ** Documentation:
 *** Did cosmetic tweaks and added more content to existing contents of the User Guide, Developer Guide and ReadMe ( https://github.com/CS2113-AY1819S2-T09-2/main/pull/110[#110],
-https://github.com/CS2113-AY1819S2-T09-2/main/pull/111[#111])
+https://github.com/CS2113-AY1819S2-T09-2/main/pull/111[#111], https://github.com/CS2113-AY1819S2-T09-2/main/pull/125[#125], https://github.com/CS2113-AY1819S2-T09-2/main/pull/149[#149],
+https://github.com/CS2113-AY1819S2-T09-2/main/pull/157[#157], https://github.com/CS2113-AY1819S2-T09-2/main/pull/169[#169], https://github.com/CS2113-AY1819S2-T09-2/main/pull/174[#174])
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/CS2113-AY1819S2-T09-2/main/pull/38[#38]
 
@@ -83,6 +84,9 @@ To get started, you will need to add a task into Tasketch. The format is as belo
 When you are adding a task, the app will ensure that there will be no duplicate names added. This is to ensure that
 there is no confusion in the task names.
 
+[TIP]
+Tasks can overlap each other, meaning you can have 2 tasks planned at the same period, as you can multitask.
+
 Adding a task with the same start date and end date means that it is a daily task, will be monitored by the Daily Time
 Planner. Different dates means it is a long period task, thus will not be considered as daily task but can still be added.
 
@@ -104,9 +108,9 @@ A task can have any number of tags (including 0)
 
 [NOTE]
 If any of the above is violated, the app will alert you that it is an invalid command with the correct format shown to
-you. +
+you.
  +
-image:InvalidCommand.png[]
+image:InvalidCommand.png[width="900"] +
 _Figure 2. An invalid command message._
 
 Format: `add n/TASK_NAME sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME d/DESCRIPTION c/CATEGORIES [t/TAG]...`
@@ -121,12 +125,14 @@ Adds a task named MA1101R tutorial. It starts at 12:00 on March 14th, 2019 and e
 Adds a task named CS3235 lecture. It starts at 8:00 on March 13rd, 2019 and ends at 10:00 on March 14th, 2019. Its description is to talk about network security. The tag for it is 'important'.
 
 Result: +
-You should see the task added into the Task Box. (e.g. added a task on 15-03-19) +
-image:TaskBox.png[] +
+You should see the task added into the Task Box. (e.g. added a task on 15-03-19)
+
+image:TaskBox.png[width="250"] +
 _Figure 3. Expected result in Task Box after adding a task_
 
-The time duration on that task will be calculated at the back and the time will be reflected in the Day Box. +
-image:DayBox.png[] +
+The time duration on that task will be calculated at the back and the time will be reflected in the Day Box.
+
+image:DayBox.png[width="250"] +
 _Figure 4. Expected result in Day Box after adding a task_
 
 === Showing time planned for all task categories : `showtime`
@@ -140,7 +146,7 @@ If you want to the time planned for everyday, just use this command.
 Format: `showtime`
 
 Result: +
-You should see a list of days with all the category times in the Day Box as shown below. +
+You should see a list of days with all the category times in the Day Box as shown below.
 
 image:ShowTime.png[width="250"] +
 _Figure 5. Expected result in Day Box after `showtime`_
@@ -153,9 +159,10 @@ Format: `showtime DATE`
 Example: `showtime 15-03-19`
 
 Result: +
-You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty.
+You should see a day of your choice with all the category times in the Day Box, if the date exists, else it will be empty. +
+If you input anything that is invalid like `showtime sfsf`, error message will be prompted with the correct usage.
 
-image:ShowTimeDate.png[] +
+image:ShowTimeDate.png[width="250"] +
 _Figure 6. Expected result in Day Box after showtime 15-03-19_
 
 == Contributions to the Developer Guide
@@ -173,6 +180,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Task Book data.
+* stores currently logged in Account.
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * exposes an unmodifiable `ObservableList<Day>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -194,11 +202,7 @@ Daily Time Planner for monitoring. +
 
 Start time and end time are used for calculating the time period of that task and to be added into the accumulated time
 for a category for that date of a task. ( eg. if the task with date 13-03-19 is a category academic task, its calculated
-time period will be added to the academic accumulated time in the day 13-03-19. )
-
-These information is passed to the `calculateTime()` method in Day object in the form of string, so it has to be
-converted to double data type for calculation purpose using `Double.valueOf()`. Then it has to be rounded up to the power
-of 2 for consistency in data representation.
+time period will be added to the academic accumulated time in the day 13-03-19. ) These information is passed to the `calculateTime()` method in Day object in the form of string.
 
 Besides `Task` model being used to represent all the tasks added, there is also `Day` model to represent all the days
 which stores information (date and accumulated time of that 5 task categories) of the tasks added to that day.
@@ -238,3 +242,32 @@ the data of the latest `UniqueTaskList` and `UniqueDayList` will need to transfe
 [NOTE]
 `dayMap` will be a reinitialised to new `HashMap` as the data in `UniqueDayList` is inaccurate during `resetData(ReadOnlyTaskBook newData)`. +
 So, it is better to start in clean state and re-add all the time period of all tasks in the `UniqueTaskList`. The `UniqueDayList` will be updated as well.
+
+==== Enhancement to `add` Command
+To ensure the Daily Time Planner works as it intended, some input checks have been implemented to properly guide and to
+ensure the user to input the `add` command correctly.
+
+*Adding Daily Task* +
+With the user inputs, the app will check the start and end dates. If the dates are identical, meaning it is a daily task,
+then the start and end times will be checked through `CheckValidTime(Task)` because it is not correct to have a task to
+end even before it starts. +
+
+If the `CheckValidTime(Task)` results false, the system will throw exception and inform the
+user that it is an invalid command and tell the user that start time must be before the end time.
+
+*Adding Long Term Task* +
+If the dates are not identical, it only means that the task ends after few days from the start date or it can be end date
+is before start date. In order to verify this, the start and end dates need to be checked through `CheckValidDate(Task)`. +
+
+If `CheckValidDate(Task)` results negative, the system will throw exception and inform the user that it is an invalid
+command and tell the user that start date must be before the end date. If it results positive, the system will proceed to
+check the start and end times through `CheckValidTime(Task)` to ensure that the end time is after the start time. If it
+results negative, the system will throw exception and inform the user that it is an invalid command and tell the user
+that start time must be before the end time.
+
+If both `CheckValidDate(Task)` and `CheckValidTime(Task)` are passed, then it is a valid command.
+
+The system will also check for the date and time format. For dates (dd-mm-yy), the days should be more than 0 and less than 32,
+months should be more than 0 and less than 13. For times (hh.mm), the hours should range from 0 to 23, while
+the minutes range from 0 to 59. +
+If the formats are violated, error message with correct usage will be prompted.
