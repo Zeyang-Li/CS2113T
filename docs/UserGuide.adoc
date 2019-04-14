@@ -41,7 +41,6 @@ type either `add` or `a`.
 * Parameters can be in any order e.g. if the command specifies `sd/START_DATE ed/END_DATE`, `ed/END_DATE sd/START_DATE` is also acceptable.
 * The format for dates is `dd-mm-yy`. For example: `25-03-19` means March 25th, 2019.
 * The format for times is `hh.mm` and it is using 24-hour clock. For example: `13.00` means 1 o'clock in the afternoon.
-* Tags names should be alphanumeric. For example: DueSoon, CS2113TLecture
 
 [[category]]
 ****
