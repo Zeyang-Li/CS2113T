@@ -39,7 +39,8 @@ public class ExportCommandParser implements Parser<ExportCommand> {
                                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE), pe);
                     }
                 } else {
-                    throw new ParseException(String.format(MESSAGE_INVALID_CATEGORY_FORMAT, ExportCommand.MESSAGE_USAGE));
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_CATEGORY_FORMAT, ExportCommand.MESSAGE_USAGE));
                 }
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_FILETYPE_FORMAT, ExportCommand.MESSAGE_USAGE));
@@ -66,6 +67,9 @@ public class ExportCommandParser implements Parser<ExportCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
         }
     }
+    /**
+     * Check whether the file type is json
+     */
 
     public boolean isValidFileType(String input) {
         Pattern p = Pattern.compile(".*json.*");

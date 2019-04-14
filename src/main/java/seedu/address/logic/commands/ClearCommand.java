@@ -85,9 +85,9 @@ public class ClearCommand extends Command {
         final String[] specificDateList = checkingDate.split("-");
 
         if (specificDateList.length == 3) {
-            char[] days=specificDateList[0].toCharArray();
-            char[] months=specificDateList[1].toCharArray();
-            char[] years=specificDateList[2].toCharArray();
+            char[] days = specificDateList[0].toCharArray();
+            char[] months = specificDateList[1].toCharArray();
+            char[] years = specificDateList[2].toCharArray();
 
             if (days.length == 2 && months.length == 2 && years.length == 2) {
                 if (isNumberic(specificDateList[0]) && isNumberic(specificDateList[1])
@@ -107,8 +107,8 @@ public class ClearCommand extends Command {
             }
 
         } else if (specificDateList.length == 2) {
-            char[] months=specificDateList[0].toCharArray();
-            char[] years=specificDateList[1].toCharArray();
+            char[] months = specificDateList[0].toCharArray();
+            char[] years = specificDateList[1].toCharArray();
 
             if (months.length == 2 && years.length == 2) {
                 if (isNumberic(specificDateList[0]) && isNumberic(specificDateList[1])) {
@@ -194,9 +194,9 @@ public class ClearCommand extends Command {
             model.commitTaskBook();
             return new CommandResult(String.format(MESSAGE_CLEARYD_SUCCESS, count, specificDate));
 
-        } else if (isValidDate(this.specificDate)){
+        } else if (isValidDate(this.specificDate)) {
 
-            if(isValidDate(this.specificDate)) {
+            if (isValidDate(this.specificDate)) {
                 List<Task> lastShownList = model.getFilteredTaskList();
                 for (Task task : lastShownList) {
                     if (checkStartDate(task)) {
