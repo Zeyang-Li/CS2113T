@@ -21,7 +21,7 @@ import seedu.address.model.account.Account;
  * Raises an exception if last account in the list.
  */
 public class DeleteAccountCommand extends Command {
-    public static final String COMMAND_WORD = "deleteAccount";
+    public static final String COMMAND_WORD = "deleteaccount";
 
     public static final String COMMAND_ALIAS = "dAc";
 

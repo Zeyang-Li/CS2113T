@@ -47,6 +47,17 @@ public class TaskBuilder {
         category = new Categories(DEFAULT_CATEGORY);
     }
 
+    public TaskBuilder(String name, String sd, String st, String ed, String et, String d, String c) {
+        this.name = new Name(name);
+        this.startDate = new StartDate(sd);
+        this.startTime = new StartTime(st);
+        this.endDate = new EndDate(ed);
+        this.endTime = new EndTime(et);
+        this.description = new Description(d);
+        this.tags = new HashSet<>();
+        this.category = new Categories(c);
+    }
+
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */

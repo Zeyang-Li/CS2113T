@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 
 public class LoginStatusCommand extends Command {
 
-    public static final String COMMAND_WORD = "loginStatus";
+    public static final String COMMAND_WORD = "loginstatus";
     public static final String MESSAGE_SUCCESS = "Logged in as: %1$s";
     public static final String MESSAGE_NOT_LOGGED_IN = "Not logged in";
 

@@ -17,7 +17,7 @@ import seedu.address.model.account.UsernameContainsKeywordsPredicate;
  */
 public class FindAccountCommand extends Command {
 
-    public static final String COMMAND_WORD = "findAccount";
+    public static final String COMMAND_WORD = "findaccount";
 
     public static final String COMMAND_ALIAS = "fAc";
 
