@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Used for parsing user input for clear command
  */
 
-public class ClearCommandParser {
+public class ClearCommandParser implements Parser<ClearCommand> {
     /**
      * Parse function
      */
@@ -41,4 +41,7 @@ public class ClearCommandParser {
             return false;
         }
     }
+
+
+
 }

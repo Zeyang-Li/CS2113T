@@ -17,7 +17,7 @@ import seedu.address.model.account.Account;
  */
 public class ListAccountsCommand extends Command {
 
-    public static final String COMMAND_WORD = "listAccounts";
+    public static final String COMMAND_WORD = "listaccounts";
 
     public static final String COMMAND_ALIAS = "lAc";
 

@@ -435,7 +435,7 @@ Given below is an example usage of how the WrongCommandSuggestion behaves at eac
 
 The following sequence diagram shows an example of how the WrongCommandSuggestion operation works with wrongly spelt command `clarr` (closest command is `clear`):
 
-image::WrongCommandSuggestionSequenceDiagram.png[width="650"]
+image::WrongCommandSuggestionSequenceDiagram.png[width="850"]
 
 ==== Design Considerations
 
@@ -506,13 +506,13 @@ These two parts will help the user better arrange their time usage by visualizat
 *** PaneNode extends AnchorPane.
 
 
-** **Implementation for Timeline:** Using javafx and segment each part of the browserPanel.
+** **Implementation for Timeline:** Using JavaFx and segment each part of the browserPanel.
 
 *** First, separate the whole `browserPanel` into 2 parts: `upperPane` and `timelinePane`.
 *** Second, separate the `upperPane` into `calendarPane` and `reminderPane`.
-*** The whole implementation of `timeline` is in `timelinePane` using javafx.
-*** The overall structure is javafx VBox, which is a vertical arrangement structure.
-*** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
+*** The whole implementation of `timeline` is in `timelinePane` using JavaFx.
+*** The overall structure is JavaFx VBox, which is a vertical arrangement structure.
+*** Inside the VBox, there are key time points for interval of 2 hours. Then the next is timeline for each category.
 
 ***
 ==== Design Considerations

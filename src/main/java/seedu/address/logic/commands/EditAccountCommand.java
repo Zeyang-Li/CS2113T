@@ -27,7 +27,7 @@ import seedu.address.model.account.Username;
  */
 public class EditAccountCommand extends Command {
 
-    public static final String COMMAND_WORD = "editAccount";
+    public static final String COMMAND_WORD = "editaccount";
 
     public static final String COMMAND_ALIAS = "eAc";
 
