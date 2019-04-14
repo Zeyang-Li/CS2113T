@@ -6,14 +6,16 @@
 == PROJECT: Tasketch
 
 ---
+Hello there~!:)
+
+This is Jingchen from the `Tasketch` project team. This project is under National University of Singapore, School of Computing's module CS2113T. My teammates and I aim to create a software which helps NUS students manage their time properly. This portfolio serves to document my work on Tasketch.
 
 == Overview
 
-image::Ui.png[width="600"]
+image::Ui.png[width="1000"]
 
 Tasketch is a time management software helping NUS students who need to manage their time by allocating time to daily tasks. More importantly, Tasketch is optimized for those who prefer to use a desktop app and work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). +
 Tasketch is morphed from addressbook-level4 by 5 students, namely Cheah Zhi Kang, Jin Shibo, Li Zeyang, Wan Chunwei and Zhang Jingchen(me).
-This Project Portfolio is a summary of enhanced features done by me.
 
 == Summary of contributions
 
@@ -23,7 +25,7 @@ This Project Portfolio is a summary of enhanced features done by me.
 ** Highlights: Each category timeline will have their own color to be distinguished.
 ** Credits: _{Shibo's idea is used on filtering the tasks according to date}_
 
-* *Other enhancement*: Changed the find and history command that allows the user to easily locate a task and see history commands.
+* *Other enhancement*: Added command for changing calendar. Changed the find and history command that allows the user to easily locate a task and see history commands.
 
 * *Code contributed*: [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=Jingchen&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master&repoSort=true[Functional code]] [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-01&timeframe=day&reverse=false&groupSelect=groupByRepos&breakdown=false&tabAuthor=jingchen-z&tabRepo=CS2113-AY1819S2-T09-2_main_master[Test code]] _{give links to collated code files}_
 
@@ -55,10 +57,7 @@ This Project Portfolio is a summary of enhanced features done by me.
 
 https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/UserGuide.adoc[../UserGuide.adoc]
 
-=== Update the project picture
-
-The overview and screen shoot picture (available https://github.com/CS2113-AY1819S2-T09-2/main/blob/master/docs/images/Ui.png[[picture]])
-== View calender & timeline
+= View calender & timeline
 
 === Set the calendar to desired month : `month`
 
@@ -175,12 +174,12 @@ These two parts will help the user better arrange their time usage by visualizat
 
 ***
 
-** **Implementation for Timeline:** Using javafx and segment each part of the browserPanel.
+** **Implementation for Timeline:** Using JavaFx and segment each part of the browserPanel.
 
 *** First, separate the whole `browserPanel` into 2 parts: `upperPane` and `timelinePane`.
 *** Second, separate the `upperPane` into `calendarPane` and `reminderPane`.
-*** The whole implementation of `timeline` is in `timelinePane` using javafx.
-*** The overall structure is javafx VBox, which is a vertical arrangement structure.
+*** The whole implementation of `timeline` is in `timelinePane` using JavaFx.
+*** The overall structure is JavaFx VBox, which is a vertical arrangement structure.
 *** Inside the VBox, there are key time points for interval of 2 hours. Then the timeline for each category.
 
 ==== Design Considerations
