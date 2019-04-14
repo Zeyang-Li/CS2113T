@@ -88,7 +88,7 @@ public class CommandTestUtil {
                 .withEndDate(VALID_ENDDATE_CS2113).withEndTime(VALID_ENDTIME_CS2113)
                 .withCategories(VALID_CATEGORY_CS2113).withDescription(VALID_DESCRIPTION_CS2113)
                 .withTags(VALID_TAG_CS2113);
-    	DESC_CS2101 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2101)
+        DESC_CS2101 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2101)
                 .withStartDate(VALID_STARTDATE_CS2101).withStartTime(VALID_STARTTIME_CS2101)
                 .withEndDate(VALID_ENDDATE_CS2101).withEndTime(VALID_ENDTIME_CS2101)
                 .withCategories(VALID_CATEGORY_CS2101).withDescription(VALID_DESCRIPTION_CS2101)

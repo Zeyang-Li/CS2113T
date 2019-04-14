@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEM
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 import org.junit.Before;
 import org.junit.Test;
