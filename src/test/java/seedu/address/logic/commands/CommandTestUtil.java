@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.TaskBook;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -77,6 +78,22 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditTaskDescriptorBuilder DESC_CS2113;
+    public static final EditTaskDescriptorBuilder DESC_CS2101;
+
+    static {
+        DESC_CS2113 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2113)
+                .withStartDate(VALID_STARTDATE_CS2113).withStartTime(VALID_STARTTIME_CS2113)
+                .withEndDate(VALID_ENDDATE_CS2113).withEndTime(VALID_ENDTIME_CS2113)
+                .withCategories(VALID_CATEGORY_CS2113).withDescription(VALID_DESCRIPTION_CS2113)
+                .withTags(VALID_TAG_CS2113);
+        DESC_CS2101 = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2101)
+                .withStartDate(VALID_STARTDATE_CS2101).withStartTime(VALID_STARTTIME_CS2101)
+                .withEndDate(VALID_ENDDATE_CS2101).withEndTime(VALID_ENDTIME_CS2101)
+                .withCategories(VALID_CATEGORY_CS2101).withDescription(VALID_DESCRIPTION_CS2101)
+                .withTags(VALID_TAG_CS2101);
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
