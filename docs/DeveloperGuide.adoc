@@ -1040,7 +1040,7 @@ If you trying to find a particular date in the day list. For example, '13-03-19'
 Invalid commands like `showtime sfsf` will prompt error message with the correct usage.
 === Timeline visualization
 Assuming that you followed the procedure given above, there should be a few tasks added to your Tasketch. +
-Such that you could test `timeline` using the above tasks. 
+Such that you could test `timeline` using the above tasks.
 
 *Viewing timeline* +
 In order to test the timeline, you are encouraged to follow the steps below.
