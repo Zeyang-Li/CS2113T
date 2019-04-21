@@ -215,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
             defaultPage.setReminder(logic);
             if (!commandText.equals("list")) {
                 logic.reinitializeRemindList();
+                defaultPage.setReminder(logic);
             }
 
             if (commandResult.isShowHelp()) {
