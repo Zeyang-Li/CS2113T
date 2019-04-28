@@ -25,10 +25,11 @@ public class CheckValidDate {
         String[] dateS = task.getStartDate().value.split("-");
         String[] dateE = task.getEndDate().value.split("-");
 
-        if (Integer.parseInt(dateS[0]) > Integer.parseInt(dateE[0])) {
+        if (Integer.parseInt(dateS[1]) > Integer.parseInt(dateE[1])) {
             return false;
         }
-        if (Integer.parseInt(dateS[1]) > Integer.parseInt(dateE[1])) {
+        if (Integer.parseInt(dateS[0]) > Integer.parseInt(dateE[0])
+                && Integer.parseInt(dateS[1]) > Integer.parseInt(dateE[1])) {
             return false;
         }
         if (Integer.parseInt(dateS[2]) > Integer.parseInt(dateE[2])) {
