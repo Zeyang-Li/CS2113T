@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.FileUtil.isValidJsonFilename;
 import static seedu.address.commons.util.FileUtil.isValidPath;
-import static seedu.address.commons.util.FileUtil.isValidXmlFilename;
 import static seedu.address.model.Filetype.isValidFiletype;
 
 import java.nio.file.Path;
@@ -218,7 +218,7 @@ public class ParserUtil {
         if (!isValidPath(trimmedFilename)) {
             throw new ParseException(MESSAGE_INVALID_FILENAME);
         }
-        if (!isValidXmlFilename(trimmedFilename)) {
+        if (!isValidJsonFilename(trimmedFilename)) {
             throw new ParseException(MESSAGE_INVALID_EXTENSION);
         }
         return Paths.get("data", trimmedFilename);

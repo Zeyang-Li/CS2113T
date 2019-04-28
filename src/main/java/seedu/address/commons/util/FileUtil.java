@@ -37,7 +37,7 @@ public class FileUtil {
      * otherwise returns false.
      * @param filename A string representing the file path. Cannot be null.
      */
-    public static boolean isValidXmlFilename(String filename) {
+    public static boolean isValidJsonFilename(String filename) {
         if (filename.length() <= JSON_FILE_EXTENSION.length()) {
             return false;
         }
